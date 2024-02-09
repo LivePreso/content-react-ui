@@ -1,0 +1,96 @@
+.toggle {
+  position: relative;
+
+  // bigger hit area, some visual feedback
+  padding: 10px;
+  cursor: pointer;
+
+  input[type="checkbox"] {
+    width: var(--toggle-track-w);
+    height: var(--toggle-track-h);
+    appearance: none;
+    position: absolute;
+    background-color: transparent;
+    cursor: pointer;
+    border-radius: var(--toggle-track-br);
+    border: 0;
+    z-index: 1;
+    top: -1px;
+    left: 0;
+  }
+
+  .track {
+    background-color: var(--toggle-inactive-track-bg);
+    width: var(--toggle-track-w);
+    height: var(--toggle-track-h);
+    border-radius: var(--toggle-track-br);
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: var(--toggle-track-mt);
+
+    .switch {
+      background-color: var(--toggle-inactive-switch-bg);
+      height: var(--toggle-switch-w);
+      width: var(--toggle-switch-h);
+      margin: var(--toggle-switch-m);
+      border-radius: var(--toggle-switch-br);
+      display: inline-block;
+      transition: all 150ms ease-in-out;
+      transform: translate3d(0, 0, 0);
+      text-align: center;
+
+      .icon {
+        opacity: 0;
+        transition: opacity 150ms ease-in-out;
+
+        svg {
+          fill: var(--toggle-inactive-icon-bg);
+        }
+      }
+    }
+  }
+
+  .label {
+    margin-left: var(--toggle-label-left-margin);
+  }
+
+  &.is-active {
+    .track {
+      background-color: var(--toggle-active-track-bg);
+
+      .switch {
+        background-color: var(--toggle-active-switch-bg);
+        height: var(--toggle-switch-active-w);
+        width: var(--toggle-switch-active-h);
+        margin: var(--toggle-switch-active-m);
+        transform: translate3d(12px, 0, 0);
+
+        .icon {
+          opacity: 1;
+
+          svg {
+            fill: var(--toggle-active-icon-bg);
+          }
+        }
+      }
+    }
+  }
+
+  &.is-disabled {
+    cursor: none;
+
+    .track {
+      background-color: var(--toggle-disabled-track-bg);
+
+      .switch {
+        background-color: var(--toggle-disabled-switch-bg);
+
+        .icon {
+          svg {
+            fill: var(--toggle-disabled-icon-bg);
+          }
+        }
+      }
+    }
+  }
+}

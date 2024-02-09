@@ -1,0 +1,88 @@
+@import "@deck/css/variables/base/style-mixins";
+
+@mixin add-tags {
+  &.p {
+    @include p-styles;
+
+    min-height: 23px;
+
+    // TODO: We need to do these to override the global "first-child" margin
+    // added to the header tags. Perhaps the global one should be more
+    // specific?
+    margin-top: 0;
+  }
+
+  &.h1 {
+    @include h1-styles;
+
+    min-height: 58px;
+  }
+
+  &.h2 {
+    @include h2-styles;
+
+    min-height: 48px;
+    margin-top: 0;
+  }
+
+  &.h3 {
+    @include h3-styles;
+
+    min-height: 40px;
+    margin-top: 0;
+  }
+
+  &.h4 {
+    @include h4-styles;
+
+    min-height: 33px;
+    margin-top: 0;
+  }
+
+  &.h5 {
+    @include h5-styles;
+
+    min-height: 33px;
+    margin-top: 0;
+  }
+
+  &.h6 {
+    @include h6-styles;
+
+    min-height: 21px;
+    margin-top: 0;
+  }
+}
+
+@mixin shared-styles {
+  cursor: pointer;
+  padding: 2px;
+  font-family: var(--main-font);
+}
+
+.edit {
+  outline: 1px solid #3c80f6;
+  @include shared-styles;
+  @include add-tags;
+}
+
+.input {
+  outline: none;
+  width: 100%;
+  border: 0;
+  background: none;
+
+  &:focus {
+    border: 0;
+    outline: 1px solid #3c80f6;
+    padding: 2px;
+    margin: 0;
+  }
+
+  @include shared-styles;
+  @include add-tags;
+}
+
+.readonly {
+  padding: 2px;
+}

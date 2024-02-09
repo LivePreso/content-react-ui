@@ -1,0 +1,31 @@
+.item {
+  font-family: var(--main-font);
+  font-size: var(--text-fz-p);
+  line-height: var(--text-lh-p);
+  font-weight: var(--text-fw-p);
+  padding: 10px 20px;
+  cursor: pointer;
+  background-color: var(--color-white);
+  border-radius: var(--dropdown-item-border-radius);
+
+  .label {
+    color: var(--dropdown-item-label-color);
+    font-size: var(--dropdown-item-label-fz);
+    line-height: var(--dropdown-item-label-lh);
+    font-weight: var(--dropdown-item-label-fw);
+  }
+
+  &:hover {
+    background-color: var(--dropdown-item-label-hover-bg);
+  }
+
+  &:not(.client-can-click) {
+    .client & {
+      cursor: default;
+
+      &:hover {
+        background-color: inherit;
+      }
+    }
+  }
+}

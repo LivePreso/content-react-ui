@@ -1,0 +1,43 @@
+.tab {
+  position: relative;
+  flex: 1;
+  display: flex;
+  justify-content: var(--tab-justify);
+  padding: var(--tab-pad);
+  background-color: var(--tab-bg);
+  outline: none;
+  cursor: pointer;
+
+  .label {
+    font-size: var(--tab-label-fz);
+    line-height: var(--tab-label-lh);
+    font-weight: var(--tab-label-fw);
+  }
+
+  &.is-active {
+    background-color: var(--tab-bg-active);
+
+    .label {
+      color: var(--tab-text-active);
+      font-weight: var(--tab-label-fw-active);
+    }
+
+    // Active underline
+    &::after {
+      content: "";
+      position: absolute;
+      left: -1px;
+      right: -1px;
+      bottom: -1px;
+
+      // 1px offset for positioning above
+      height: calc(var(--tab-underline-height) + 1px);
+      background-color: var(--tab-underline-color);
+    }
+  }
+
+  &.is-disabled {
+    cursor: default;
+    opacity: 0.4;
+  }
+}

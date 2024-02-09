@@ -1,0 +1,11 @@
+.down {
+  transform: scaleY(-1);
+}
+
+.right {
+  transform: rotate(90);
+}
+
+.left {
+  transform: rotate(-90);
+}

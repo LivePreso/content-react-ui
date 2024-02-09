@@ -1,0 +1,9 @@
+.background-colour {
+  --table-cell-fz: var(--text-fz-h6);
+
+  td {
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
+    background-color: var(--color-bg-4) !important;
+  }
+}

@@ -1,0 +1,10 @@
+@import "@deck/css/variables/base/style-mixins";
+
+.background {
+  @include h6-styles;
+
+  margin-right: auto;
+  background-color: var(--color-bg-1);
+  padding: 5px;
+  margin-top: 15px;
+}

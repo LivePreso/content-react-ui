@@ -1,0 +1,29 @@
+import { Meta, Title, IconGallery, IconItem } from '@storybook/blocks';
+import * as icons from './';
+
+<Meta title="components/Icons" />
+
+# Icons
+
+```javascript
+import { CalendarIcon } from '@deck/components/icons';
+
+<CalendarIcon color="red" />;
+```
+
+<br />
+
+<IconGallery>
+  <IconItem name="CalendarIcon">
+    <icons.CalendarIcon />
+  </IconItem>
+  <IconItem name="CheckMarkIcon">
+    <icons.CheckMarkIcon />
+  </IconItem>
+  <IconItem name="ChevronDownIcon">
+    <icons.ChevronDownIcon />
+  </IconItem>
+  <IconItem name="ChevronUpIcon">
+    <icons.ChevronUpIcon />
+  </IconItem>
+</IconGallery>

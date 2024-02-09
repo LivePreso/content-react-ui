@@ -1,2 +1,3 @@
-# content-react-components
-React components for content creation
+# content-react-ui
+
+React components, hooks and helper functions for content creation

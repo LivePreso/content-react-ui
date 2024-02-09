@@ -1,0 +1,30 @@
+.arrow {
+  position: relative;
+  top: 2px;
+  margin-right: 5px;
+}
+
+.sub-header {
+  font-size: var(--text-fz-h6);
+  color: var(--color-neutral-2);
+}
+
+.large {
+  .row {
+    justify-content: flex-start;
+    margin-bottom: 12px;
+
+    &.primary {
+      font-size: var(--text-fz-h4);
+
+      & svg {
+        height: 24px;
+        width: auto;
+      }
+    }
+
+    .arrow {
+      top: -3px;
+    }
+  }
+}

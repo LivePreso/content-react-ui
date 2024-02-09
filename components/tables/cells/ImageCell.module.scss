@@ -1,0 +1,11 @@
+.image {
+  width: 100%;
+  height: 100%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: left top;
+
+  &:not(:first-child) {
+    margin-top: var(--space-med);
+  }
+}

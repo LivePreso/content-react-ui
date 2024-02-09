@@ -1,0 +1,9 @@
+.slide {
+  position: absolute;
+  inset: 0;
+  padding: var(--slide-pad-top) var(--slide-pad-right) var(--slide-pad-bottom)
+    var(--slide-pad-left);
+  font-size: var(--text-fz-p);
+  line-height: var(--text-lh-p);
+  background-color: var(--slide-bg-color);
+}
