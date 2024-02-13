@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Cell } from '@deck/components/ui/Table';
+import { Cell } from '@ui/components/ui/Table';
 import style from './ImageCell.module.scss';
 
 export function ImageCell(props) {
@@ -24,10 +24,10 @@ export function ImageCell(props) {
 ImageCell.propTypes = {
   label: PropTypes.string,
   imageStyle: PropTypes.string.isRequired,
-  ...Cell.propTypes
+  ...Cell.propTypes,
 };
 
 ImageCell.defaultProps = {
   label: null,
-  ...Cell.defaultProps
+  ...Cell.defaultProps,
 };

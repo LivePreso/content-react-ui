@@ -27,10 +27,10 @@ export function ChevronUpIcon({ className, color }) {
 
 ChevronUpIcon.propTypes = {
   color: PropTypes.string,
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 ChevronUpIcon.defaultProps = {
   color: null,
-  className: ''
+  className: '',
 };

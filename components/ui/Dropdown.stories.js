@@ -1,21 +1,21 @@
 import React from 'react';
 import { useArgs } from '@storybook/preview-api';
 
-import { CalendarIcon } from '@deck/components/icons';
+import { CalendarIcon } from '@ui/components/icons';
 import { DropdownItem } from './DropdownItem';
 import { Dropdown } from './Dropdown';
 
 export default {
   component: Dropdown,
-  title: 'Components/UI/Dropdown'
+  title: 'Components/UI/Dropdown',
 };
 
 const DropdownDecorators = [
-  Story => (
+  (Story) => (
     <div style={{ height: '200px' }}>
       <Story />
     </div>
-  )
+  ),
 ];
 
 const DropdownTemplate = {
@@ -26,13 +26,13 @@ const DropdownTemplate = {
       <Dropdown
         selected={value}
         {...args}
-        onChange={val => {
+        onChange={(val) => {
           updateArgs({ selected: val });
         }}
       />
     );
   },
-  decorators: [...DropdownDecorators]
+  decorators: [...DropdownDecorators],
 };
 
 export const Default = {
@@ -43,24 +43,24 @@ export const Default = {
     options: [
       {
         label: 'Yellow',
-        value: 'yellow'
+        value: 'yellow',
       },
       {
         label: 'Red',
-        value: 'red'
+        value: 'red',
       },
       {
         label: 'Pink',
-        value: 'pink'
-      }
-    ]
-  }
+        value: 'pink',
+      },
+    ],
+  },
 };
 
 export const RenderItem = {
   args: {
     ...Default.args,
-    renderItem: item => <DropdownItem key={item.value} label={item.label} />
+    renderItem: (item) => <DropdownItem key={item.value} label={item.label} />,
   },
-  decorators: [...DropdownDecorators]
+  decorators: [...DropdownDecorators],
 };

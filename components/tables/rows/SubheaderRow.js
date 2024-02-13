@@ -16,9 +16,9 @@ export function SubheaderRow(props) {
 }
 
 SubheaderRow.propTypes = {
-  ...BodyRow.propTypes
+  ...BodyRow.propTypes,
 };
 
 SubheaderRow.defaultProps = {
-  ...BodyRow.defaultProps
+  ...BodyRow.defaultProps,
 };

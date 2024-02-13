@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { DeltaValue } from '@deck/components/stats';
-import { DeltaValueBubble } from '@deck/components/stats/DeltaValueBubble';
-import { isValidNumber } from '@deck/js/data-processing/utils/math-utils';
-import { Errors } from '@deck/components/misc/Errors';
+import { DeltaValue } from '@ui/components/stats';
+import { DeltaValueBubble } from '@ui/components/stats/DeltaValueBubble';
+import { isValidNumber } from '@ui/js/data-processing/utils/math-utils';
+import { Errors } from '@ui/components/misc/Errors';
 import style from './MetricItem.module.scss';
 
 export function MetricItem(props) {
@@ -25,11 +25,11 @@ export function MetricItem(props) {
 MetricItem.propTypes = {
   title: PropTypes.string,
   metric: PropTypes.shape({ DeltaValue }.propTypes),
-  bubble: PropTypes.shape({ DeltaValueBubble }.propTypes)
+  bubble: PropTypes.shape({ DeltaValueBubble }.propTypes),
 };
 
 MetricItem.defaultProps = {
   title: '',
   metric: {},
-  bubble: null
+  bubble: null,
 };

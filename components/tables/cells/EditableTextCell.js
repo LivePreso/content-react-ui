@@ -1,5 +1,5 @@
-import { EditableText } from '@deck/components/ui';
-import { Cell } from '@deck/components/ui/Table';
+import { EditableText } from '@ui/components/ui';
+import { Cell } from '@ui/components/ui/Table';
 import React from 'react';
 
 export function EditableTextCell(props) {
@@ -22,7 +22,7 @@ export function EditableTextCell(props) {
     isReadOnly,
     tag,
     label,
-    toolbar
+    toolbar,
   };
 
   return (
@@ -34,10 +34,10 @@ export function EditableTextCell(props) {
 
 EditableTextCell.propTypes = {
   ...EditableText.propTypes,
-  ...Cell.propTypes
+  ...Cell.propTypes,
 };
 
 EditableTextCell.defaultProps = {
   ...EditableText.defaultProps,
-  ...Cell.defaultProps
+  ...Cell.defaultProps,
 };

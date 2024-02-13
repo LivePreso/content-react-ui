@@ -16,9 +16,9 @@ export function HighlightRow(props) {
 }
 
 HighlightRow.propTypes = {
-  ...BodyRow.propTypes
+  ...BodyRow.propTypes,
 };
 
 HighlightRow.defaultProps = {
-  ...BodyRow.defaultProps
+  ...BodyRow.defaultProps,
 };

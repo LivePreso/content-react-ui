@@ -18,7 +18,7 @@ export function EditableInput(props) {
       value={value}
       className={classnames(style.edit, style[tagName])}
       inputClassName={classnames(style.input, style[tagName])}
-      onChange={e => {
+      onChange={(e) => {
         onChange(e.target.value);
       }}
     />
@@ -29,12 +29,12 @@ EditableInput.propTypes = {
   value: PropTypes.string,
   onChange: PropTypes.func,
   readOnly: PropTypes.bool,
-  tagName: PropTypes.oneOf(['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'])
+  tagName: PropTypes.oneOf(['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6']),
 };
 
 EditableInput.defaultProps = {
   value: '',
   onChange: () => {},
   tagName: 'p',
-  readOnly: false
+  readOnly: false,
 };

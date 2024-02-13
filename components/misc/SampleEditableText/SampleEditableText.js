@@ -40,9 +40,9 @@ export function SampleEditableText(props) {
 }
 
 SampleEditableText.propTypes = {
-  title: PropTypes.string
+  title: PropTypes.string,
 };
 
 SampleEditableText.defaultProps = {
-  title: ''
+  title: '',
 };

@@ -1,26 +1,40 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { useModes, useSlide, useContext } from "@livepreso/content-react";
-import { EditableInput } from "./EditableInput";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { useModes, useSlide, useContext } from '@livepreso/content-react';
+import { EditableInput } from './EditableInput';
 
 function useEditableReadOnly(allowedModes) {
-  const { isPresomanager, isScreenshot, isRemote, isShareOnline, isReadOnly, isPreview, isPresent, isReview } =
-    useModes();
+  const {
+    isPresomanager,
+    isScreenshot,
+    isRemote,
+    isShareOnline,
+    isReadOnly,
+    isPreview,
+    isPresent,
+    isReview,
+  } = useModes();
 
   // Safe to say it's read only in these modes
-  if (isPresomanager || isScreenshot || isRemote || isShareOnline || isReadOnly) {
+  if (
+    isPresomanager ||
+    isScreenshot ||
+    isRemote ||
+    isShareOnline ||
+    isReadOnly
+  ) {
     return true;
   }
 
-  if (isPreview && !allowedModes.includes("prep")) {
+  if (isPreview && !allowedModes.includes('prep')) {
     return true;
   }
 
-  if (isPresent && !allowedModes.includes("present")) {
+  if (isPresent && !allowedModes.includes('present')) {
     return true;
   }
 
-  if (isReview && !allowedModes.includes("review")) {
+  if (isReview && !allowedModes.includes('review')) {
     return true;
   }
 
@@ -51,11 +65,13 @@ ContextEditableInput.propTypes = {
   id: PropTypes.string.isRequired,
   children: PropTypes.node,
   tagName: EditableInput.propTypes.tagName,
-  allowedModes: PropTypes.arrayOf(PropTypes.oneOf(["prep", "present", "review"])),
+  allowedModes: PropTypes.arrayOf(
+    PropTypes.oneOf(['prep', 'present', 'review']),
+  ),
 };
 
 ContextEditableInput.defaultProps = {
-  children: "",
+  children: '',
   tagName: EditableInput.defaultProps.tagName,
-  allowedModes: ["prep"],
+  allowedModes: ['prep'],
 };

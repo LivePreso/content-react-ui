@@ -22,10 +22,10 @@ export function SampleParagraph(props) {
 
 SampleParagraph.propTypes = {
   title: PropTypes.string,
-  content: PropTypes.string
+  content: PropTypes.string,
 };
 
 SampleParagraph.defaultProps = {
   title: '',
-  content: ''
+  content: '',
 };

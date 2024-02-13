@@ -1,17 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Cell } from '@deck/components/ui/Table';
+import { Cell } from '@ui/components/ui/Table';
 import classNames from 'classnames';
 
 export function TextCell(props) {
-  const {
-    value,
-    formatter,
-    color,
-    className,
-    valueClassName,
-    ...cellProps
-  } = props;
+  const { value, formatter, color, className, valueClassName, ...cellProps } =
+    props;
 
   const formattedValue = formatter ? formatter(value) : value;
   const colorClass = color ? color(value) : '';
@@ -28,7 +22,7 @@ TextCell.propTypes = {
   formatter: PropTypes.func,
   color: PropTypes.func,
   valueClassName: PropTypes.string,
-  ...Cell.propTypes
+  ...Cell.propTypes,
 };
 
 TextCell.defaultProps = {
@@ -36,5 +30,5 @@ TextCell.defaultProps = {
   formatter: null,
   color: null,
   valueClassName: null,
-  ...Cell.defaultProps
+  ...Cell.defaultProps,
 };

@@ -11,7 +11,7 @@ vs a series of cells, as its input */
 export function HeaderRow(props) {
   const { columns, className, uid } = props;
 
-  const children = columns.map(headerCellConfig => {
+  const children = columns.map((headerCellConfig) => {
     const { title, type, config, uid: colUid, width } = headerCellConfig;
     if (type === CELL_TYPES.SUBTITLE) {
       const { title: cellTitle, subtitle } = config;
@@ -45,14 +45,14 @@ HeaderRow.propTypes = {
       width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
       type: PropTypes.string,
       title: PropTypes.string,
-      config: PropTypes.oneOfType([PropTypes.shape(SubTitleCell.propTypes)])
-    })
+      config: PropTypes.oneOfType([PropTypes.shape(SubTitleCell.propTypes)]),
+    }),
   ),
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 HeaderRow.defaultProps = {
   uid: 'row0',
   columns: [],
-  className: ''
+  className: '',
 };

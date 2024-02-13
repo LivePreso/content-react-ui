@@ -78,9 +78,9 @@ export function HomeCashIcon({ className }) {
 }
 
 HomeCashIcon.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 HomeCashIcon.defaultProps = {
-  className: ''
+  className: '',
 };

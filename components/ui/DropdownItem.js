@@ -19,11 +19,11 @@ export function DropdownItem({ className, onClick, label }) {
 DropdownItem.propTypes = {
   label: PropTypes.string,
   className: PropTypes.string,
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
 };
 
 DropdownItem.defaultProps = {
   label: '',
   className: '',
-  onClick: () => {}
+  onClick: () => {},
 };

@@ -3,7 +3,7 @@
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import React, { useEffect, useRef, useState } from 'react';
-import { ChevronDownIcon } from '@deck/components/icons';
+import { ChevronDownIcon } from '@ui/components/icons';
 import { DropdownItem } from './DropdownItem';
 import style from './Dropdown.module.scss';
 
@@ -19,7 +19,7 @@ export function Dropdown({
   width,
   disabled,
   readonly,
-  onChange
+  onChange,
 }) {
   const ref = useRef(null);
   const [open, setOpen] = useState(false);
@@ -27,7 +27,7 @@ export function Dropdown({
   const classes = classNames(style.dropdown, 'no-screenshot', className);
 
   useEffect(() => {
-    const handleClickOutside = event => {
+    const handleClickOutside = (event) => {
       if (ref.current && !ref.current.contains(event.target)) {
         setOpen(false);
       }
@@ -44,23 +44,23 @@ export function Dropdown({
     setOpen(!open);
   };
 
-  const generateItemClick = val => () => {
+  const generateItemClick = (val) => () => {
     setOpen(false);
     onChange(val);
   };
 
   // let fullOptions = [{ label: placeholder, value: '_none_' }]
-  const fullOptions = options.map(option =>
-    option.label ? option : { label: option, value: option }
+  const fullOptions = options.map((option) =>
+    option.label ? option : { label: option, value: option },
   );
 
-  const currentOption = fullOptions.find(v => v.value === selected);
+  const currentOption = fullOptions.find((v) => v.value === selected);
 
-  const items = fullOptions.map(option => {
+  const items = fullOptions.map((option) => {
     if (typeof renderItem === 'function') {
       return renderItem({
         ...option,
-        onClick: generateItemClick(option.value)
+        onClick: generateItemClick(option.value),
       });
     }
 
@@ -92,7 +92,7 @@ export function Dropdown({
           [style.disabled]: disabled,
           [style.readonly]: readonly,
           [style[`direction-${direction}`]]: direction,
-          [style.hasOptionsArrow]: hasOptionsArrow
+          [style.hasOptionsArrow]: hasOptionsArrow,
         })}
       >
         {items}
@@ -106,8 +106,8 @@ Dropdown.propTypes = {
   options: PropTypes.arrayOf(
     PropTypes.shape({
       label: PropTypes.string,
-      value: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-    })
+      value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    }),
   ),
   renderItem: PropTypes.func,
   icon: PropTypes.node,
@@ -118,7 +118,7 @@ Dropdown.propTypes = {
   width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   disabled: PropTypes.bool,
   readonly: PropTypes.bool,
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
 };
 
 Dropdown.defaultProps = {
@@ -133,5 +133,5 @@ Dropdown.defaultProps = {
   width: null,
   disabled: false,
   readonly: false,
-  onChange: () => {}
+  onChange: () => {},
 };

@@ -30,10 +30,10 @@ export function CheckMarkIcon({ className, color }) {
 
 CheckMarkIcon.propTypes = {
   color: PropTypes.string,
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 CheckMarkIcon.defaultProps = {
   color: null,
-  className: ''
+  className: '',
 };

@@ -27,10 +27,10 @@ export function CalendarIcon({ className, color }) {
 
 CalendarIcon.propTypes = {
   color: PropTypes.string,
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 CalendarIcon.defaultProps = {
   color: null,
-  className: ''
+  className: '',
 };

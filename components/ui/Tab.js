@@ -10,11 +10,11 @@ export function Tab({
   label,
   onClick,
   active,
-  disabled
+  disabled,
 }) {
   const classes = classNames(className, style.tab, {
     [style.isActive]: active,
-    [style.isDisabled]: disabled
+    [style.isDisabled]: disabled,
   });
   const labelClasses = classNames(labelClassName, style.label);
 
@@ -38,12 +38,12 @@ Tab.propTypes = {
   onClick: PropTypes.func,
   disabled: PropTypes.bool,
   className: PropTypes.string,
-  labelClassName: PropTypes.string
+  labelClassName: PropTypes.string,
 };
 
 Tab.defaultProps = {
   onClick: () => {},
   disabled: false,
   className: '',
-  labelClassName: ''
+  labelClassName: '',
 };

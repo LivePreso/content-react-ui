@@ -3,7 +3,7 @@ import { Table, Row, Cell } from './Table';
 
 export default {
   component: Table,
-  title: 'Components/UI/Table'
+  title: 'Components/UI/Table',
 };
 
 export const Default = {
@@ -39,9 +39,9 @@ export const Default = {
         <Cell>
           <span>5th</span>
         </Cell>
-      </Row>
-    ]
-  }
+      </Row>,
+    ],
+  },
 };
 
 export const StickyColumn = {
@@ -110,7 +110,7 @@ export const StickyColumn = {
         <Cell>
           <span>5th</span>
         </Cell>
-      </Row>
-    ]
-  }
+      </Row>,
+    ],
+  },
 };

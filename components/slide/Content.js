@@ -1,8 +1,8 @@
-import PropTypes from "prop-types";
-import React from "react";
-import classNames from "classnames";
-import { Flex } from "@deck/components/layout";
-import style from "./Content.module.scss";
+import PropTypes from 'prop-types';
+import React from 'react';
+import classNames from 'classnames';
+import { Flex } from '@ui/components/layout';
+import style from './Content.module.scss';
 
 export function Content({ className, children }) {
   const classes = classNames(className, style.content);
@@ -17,5 +17,5 @@ Content.propTypes = {
 
 Content.defaultProps = {
   children: null,
-  className: "",
+  className: '',
 };

@@ -3,7 +3,7 @@ import { Column, Block } from './index';
 
 export default {
   component: Column,
-  title: 'Components/Layout/Column'
+  title: 'Components/Layout/Column',
 };
 
 export const Default = {
@@ -17,9 +17,9 @@ export const Default = {
       </div>,
       <div key="item-3">
         <p>Item three</p>
-      </div>
-    ]
-  }
+      </div>,
+    ],
+  },
 };
 
 export const FlexBlocks = {
@@ -33,7 +33,7 @@ export const FlexBlocks = {
       </Block>,
       <Block key="block-2" flex={2} hasBorder>
         <p>Item two</p>
-      </Block>
-    ]
-  }
+      </Block>,
+    ],
+  },
 };

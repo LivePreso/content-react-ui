@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { Arrow } from '@deck/components/design/Arrow';
+import { Arrow } from '@ui/components/design/Arrow';
 import style from './DeltaValueBubble.module.scss';
 
 export function DeltaValueBubble(props) {
@@ -30,14 +30,14 @@ DeltaValueBubble.propTypes = {
   className: PropTypes.string,
   primary: PropTypes.number,
   showArrow: PropTypes.bool,
-  secondary: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+  secondary: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };
 
 DeltaValueBubble.defaultProps = {
-  formatter: v => v,
+  formatter: (v) => v,
   color: () => 'color-text',
   className: null,
   primary: 567.34,
   secondary: null,
-  showArrow: true
+  showArrow: true,
 };

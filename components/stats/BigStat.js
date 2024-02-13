@@ -1,28 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { flexPropTypes } from '@deck/components/layout/flex-prop-types';
-import { Column } from '@deck/components/layout';
-import { getCurrencyCode } from '@deck/js/get-currency-code';
-import style from './BigStat.module.scss';
+import { flexPropTypes } from '@ui/components/layout/flex-prop-types';
+import { Column } from '@ui/components/layout';
+import { getCurrencyCode } from '@ui/js/get-currency-code';
 import {
   percentifyFactory,
   decimalifyFactory,
-  currencyCodifyFactory
-} from '../../js/data-processing/utils/data-formatting';
+  currencyCodifyFactory,
+} from '@ui/utils/data-formatting';
+import style from './BigStat.module.scss';
 
 const formatterMap = {
   currency: currencyCodifyFactory({
     numDecimal: 2,
-    currency: getCurrencyCode()
+    currency: getCurrencyCode(),
   }),
   number: decimalifyFactory({ minDecimal: 0, maxDecimal: 2 }),
-  percent: percentifyFactory({ numDecimal: 1 })
+  percent: percentifyFactory({ numDecimal: 1 }),
 };
 
 export function BigStat(props) {
   const { label, value, format, className, ...columnProps } = props;
 
-  const formatValue = val => {
+  const formatValue = (val) => {
     return formatterMap[format](val);
   };
 
@@ -43,7 +43,7 @@ BigStat.propTypes = {
   className: PropTypes.string,
   format: PropTypes.oneOf(['currency', 'number', 'percent']),
   label: PropTypes.string,
-  value: PropTypes.number
+  value: PropTypes.number,
 };
 
 BigStat.defaultProps = {
@@ -53,5 +53,5 @@ BigStat.defaultProps = {
   format: 'number',
   className: null,
   label: null,
-  value: null
+  value: null,
 };

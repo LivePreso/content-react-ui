@@ -1,26 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { isNull, isUndefined } from 'lodash-es';
-import { Row, Column } from '@deck/components/layout';
+import { Row, Column } from '@ui/components/layout';
 
-import { Arrow } from '@deck/components/design/Arrow';
+import { Arrow } from '@ui/components/design/Arrow';
 import classNames from 'classnames';
 import style from './DeltaValue.module.scss';
 
 export function DeltaValue(props) {
-  const {
-    primary,
-    secondary,
-    formatter,
-    color,
-    showArrow,
-    className,
-    theme
-  } = props;
+  const { primary, secondary, formatter, color, showArrow, className, theme } =
+    props;
   const outputColor = color(primary);
 
   const themeClassName = {
-    large: style.large
+    large: style.large,
   }[theme];
 
   return (
@@ -54,15 +47,15 @@ DeltaValue.propTypes = {
   primary: PropTypes.number,
   showArrow: PropTypes.bool,
   secondary: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  theme: PropTypes.string
+  theme: PropTypes.string,
 };
 
 DeltaValue.defaultProps = {
-  formatter: v => v,
+  formatter: (v) => v,
   color: () => 'color-text',
   className: null,
   primary: 567.34,
   secondary: null,
   showArrow: true,
-  theme: ''
+  theme: '',
 };

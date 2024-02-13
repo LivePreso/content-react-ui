@@ -3,7 +3,7 @@ import { Block } from './Block';
 
 export default {
   component: Block,
-  title: 'Components/Layout/Block'
+  title: 'Components/Layout/Block',
 };
 
 export const Default = {
@@ -13,13 +13,13 @@ export const Default = {
         <h3>Title</h3>
         <p>Lorem Ipsum</p>
       </>
-    )
-  }
+    ),
+  },
 };
 
 export const HasBorder = {
   args: {
     ...Default.args,
-    hasBorder: true
-  }
+    hasBorder: true,
+  },
 };

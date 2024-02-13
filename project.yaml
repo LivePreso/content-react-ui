@@ -1,0 +1,3 @@
+version: 3
+key: "ui"
+src: ./.storybook/project

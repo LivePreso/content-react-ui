@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { Column } from '@deck/components/layout';
-import { Header } from '@deck/components/slide';
+import { Column } from '@ui/components/layout';
+import { Header } from '@ui/components/slide';
 import style from './SectionHeader.module.scss';
 
 import { Slide } from '../slide/Slide';
@@ -25,11 +25,11 @@ export function SectionHeader({ className, title, children }) {
 SectionHeader.propTypes = {
   title: PropTypes.string,
   className: PropTypes.string,
-  children: PropTypes.node
+  children: PropTypes.node,
 };
 
 SectionHeader.defaultProps = {
   title: null,
   className: '',
-  children: null
+  children: null,
 };

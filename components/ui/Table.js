@@ -4,13 +4,8 @@ import classNames from 'classnames';
 import style from './Table.module.scss';
 
 export function Table(props) {
-  const {
-    hasBorder,
-    isPresoManagerInteractive,
-    children,
-    className,
-    sticky
-  } = props;
+  const { hasBorder, isPresoManagerInteractive, children, className, sticky } =
+    props;
 
   const opts = {};
 
@@ -23,15 +18,15 @@ export function Table(props) {
   const stickyClasses = {
     row: [style.tableSticky, style.tableStickyRow],
     column: [style.tableSticky, style.tableStickyColumn],
-    both: [style.tableSticky, style.tableStickyRow, style.tableStickyColumn]
+    both: [style.tableSticky, style.tableStickyRow, style.tableStickyColumn],
   };
 
   const wrapperClasses = classNames(
     [style.tableWrapper].concat(isSticky ? stickyClasses[sticky] : []),
     {
       [style.hasBorder]: hasBorder,
-      interactive: isSticky
-    }
+      interactive: isSticky,
+    },
   );
 
   return (
@@ -48,7 +43,7 @@ Table.propTypes = {
   children: PropTypes.node,
   sticky: PropTypes.oneOf(['none', 'row', 'column', 'both']),
   isPresoManagerInteractive: PropTypes.bool,
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 Table.defaultProps = {
@@ -56,7 +51,7 @@ Table.defaultProps = {
   children: [],
   sticky: 'none',
   isPresoManagerInteractive: false,
-  className: ''
+  className: '',
 };
 
 export function Row({ children, className }) {
@@ -67,12 +62,12 @@ export function Row({ children, className }) {
 
 Row.propTypes = {
   children: PropTypes.node,
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 Row.defaultProps = {
   children: [],
-  className: ''
+  className: '',
 };
 
 export function Cell(props) {
@@ -83,10 +78,10 @@ export function Cell(props) {
     rowSpan,
     rowSpanAdjacent,
     width,
-    align
+    align,
   } = props;
   const compiledClasses = classNames('cell', style.table, className, {
-    [style.hasSpanLeft]: rowSpanAdjacent === 'left'
+    [style.hasSpanLeft]: rowSpanAdjacent === 'left',
   });
   // width: number = px, string = %
   let widthProp = null;
@@ -99,7 +94,7 @@ export function Cell(props) {
   }
   const inline = {
     textAlign: align,
-    width: widthProp
+    width: widthProp,
   };
   return (
     <td
@@ -120,7 +115,7 @@ Cell.propTypes = {
   colSpan: PropTypes.number,
   rowSpan: PropTypes.number,
   rowSpanAdjacent: PropTypes.oneOf(['left', 'right']),
-  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
 Cell.defaultProps = {
@@ -130,5 +125,5 @@ Cell.defaultProps = {
   rowSpan: 1,
   rowSpanAdjacent: null,
   width: null,
-  align: 'left'
+  align: 'left',
 };

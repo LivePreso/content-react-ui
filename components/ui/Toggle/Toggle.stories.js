@@ -4,13 +4,13 @@ import { Toggle } from './Toggle';
 
 export default {
   component: Toggle,
-  title: 'Components/UI/Toggle'
+  title: 'Components/UI/Toggle',
 };
 
 export const Default = {
   args: {
     label: 'Toggle',
-    active: false
+    active: false,
   },
   render: function Render(args) {
     const [{ active }, updateArgs] = useArgs();
@@ -20,5 +20,5 @@ export const Default = {
     };
 
     return <Toggle {...args} onChange={onChange} active={active} />;
-  }
+  },
 };

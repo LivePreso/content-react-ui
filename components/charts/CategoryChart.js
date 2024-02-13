@@ -4,7 +4,7 @@
 ] */
 
 import React, { useCallback } from 'react';
-import { useChartTheme } from '@deck/react-hooks/use-chart-theme';
+import { useChartTheme } from '@ui/hooks/use-chart-theme';
 import { BaseChart } from './BaseChart';
 import {
   baseChartProps,
@@ -13,7 +13,7 @@ import {
   createCategoryXAxis,
   createSeries,
   createLegend,
-  createCursor
+  createCursor,
 } from './chart-utils';
 
 /**
@@ -27,32 +27,32 @@ export function CategoryChart({
   width,
   height,
   tooltips,
-  themeFunctions
+  themeFunctions,
 }) {
   const combinedThemeFuncs = useChartTheme(themeFunctions, false);
 
   const chartFunction = useCallback(
-    chart => {
+    (chart) => {
       const xAxisObj = createCategoryXAxis(chart, {
         key: series[0].dataFieldX,
-        ...xAxis
+        ...xAxis,
       });
-      const yAxisCollection = yAxes.map(axis => ({
+      const yAxisCollection = yAxes.map((axis) => ({
         key: axis.key,
-        axis: createValueYAxis(chart, axis)
+        axis: createValueYAxis(chart, axis),
       }));
 
       createSeries(chart, {
         tooltips,
         dataFields: { yAxis: 'valueY', xAxis: 'categoryX' },
         seriesOptions: series,
-        yAxes: yAxisCollection
+        yAxes: yAxisCollection,
       });
 
       chart.legend = createLegend();
       chart.cursor = createCursor(xAxisObj);
     },
-    [series, tooltips, xAxis, yAxes]
+    [series, tooltips, xAxis, yAxes],
   );
 
   return (
@@ -67,9 +67,9 @@ export function CategoryChart({
 }
 
 CategoryChart.propTypes = {
-  ...baseChartProps
+  ...baseChartProps,
 };
 
 CategoryChart.defaultProps = {
-  ...baseChartDefaultProps
+  ...baseChartDefaultProps,
 };

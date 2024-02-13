@@ -1,8 +1,8 @@
-import PropTypes from "prop-types";
-import React from "react";
-import classnames from "classnames";
-import { Column } from "../../layout";
-import style from "./Slide.module.scss";
+import PropTypes from 'prop-types';
+import React from 'react';
+import classnames from 'classnames';
+import { Column } from '../../layout';
+import style from './Slide.module.scss';
 
 export function Slide({ className, children }) {
   const classes = classnames(style.slide, className);
@@ -17,5 +17,5 @@ Slide.propTypes = {
 
 Slide.defaultProps = {
   children: null,
-  className: "",
+  className: '',
 };

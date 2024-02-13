@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Row } from '@deck/components/layout';
+import { Row } from '@ui/components/layout';
 import { Tab } from './Tab';
 import style from './Tabs.module.scss';
 
@@ -11,7 +11,7 @@ export function Tabs({
   items,
   renderItem,
   onChange,
-  disabled
+  disabled,
 }) {
   const classes = classNames(className, style.tabs);
 
@@ -48,13 +48,13 @@ Tabs.propTypes = {
       label: PropTypes.string.isRequired,
       value: PropTypes.string.isRequired,
       className: PropTypes.string,
-      labelClassName: PropTypes.string
-    })
+      labelClassName: PropTypes.string,
+    }),
   ),
   renderItem: PropTypes.func,
   disabled: PropTypes.bool,
   onChange: PropTypes.func,
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 Tabs.defaultProps = {
@@ -62,5 +62,5 @@ Tabs.defaultProps = {
   renderItem: null,
   disabled: false,
   onChange: () => {},
-  className: ''
+  className: '',
 };

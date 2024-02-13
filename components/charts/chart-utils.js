@@ -18,7 +18,7 @@ export const baseChartProps = {
     combineSeries: PropTypes.bool,
     text: PropTypes.string,
     xFormatter: PropTypes.func,
-    yFormatter: PropTypes.func
+    yFormatter: PropTypes.func,
     // TODO: Investigate always having tooltips turned on
     // TODO: alwaysShow doesn't work with value axis x + y together
     // alwaysShow: PropTypes.bool,
@@ -42,8 +42,8 @@ export const baseChartProps = {
       /**
        * Available 'line' and 'bubble' series
        */
-      dataFieldHeat: PropTypes.string
-    })
+      dataFieldHeat: PropTypes.string,
+    }),
   ).isRequired,
   xAxis: PropTypes.exact({
     title: PropTypes.string,
@@ -56,7 +56,7 @@ export const baseChartProps = {
     /**
      * Exposes "axis" to allow for setting custom config/adapters
      */
-    overrideFunction: PropTypes.func
+    overrideFunction: PropTypes.func,
   }),
   yAxes: PropTypes.arrayOf(
     PropTypes.exact({
@@ -74,25 +74,25 @@ export const baseChartProps = {
       /**
        * Exposes "axis" to allow for setting custom config/adapters
        */
-      overrideFunction: PropTypes.func
-    })
+      overrideFunction: PropTypes.func,
+    }),
   ).isRequired,
   data: PropTypes.arrayOf(
     PropTypes.objectOf(
-      PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-    )
-  )
+      PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    ),
+  ),
 };
 
 export const baseChartDefaultProps = {
   themeFunctions: [],
   tooltips: {
-    active: false
+    active: false,
   },
   width: '100%',
   height: '100%',
   xAxis: {},
-  data: []
+  data: [],
 };
 
 function getSeriesType(type) {
@@ -117,8 +117,8 @@ function createValueAxis(
     max = null,
     extraMinMax = null,
     isQuadrant = false,
-    overrideFunction = null
-  } = {}
+    overrideFunction = null,
+  } = {},
 ) {
   const axis = chart[`${direction}Axes`].push(new am4charts.ValueAxis());
   axis.title.text = title;
@@ -179,7 +179,7 @@ export function createValueXAxis(chart, options = {}) {
 function createCategoryAxis(
   chart,
   direction = 'x',
-  { key = 'category', title = '' } = {}
+  { key = 'category', title = '' } = {},
 ) {
   const axis = chart[`${direction}Axes`].push(new am4charts.CategoryAxis());
   axis.dataFields.category = key;
@@ -207,23 +207,23 @@ const dateFormats = {
   day: {
     format: 'MMM d',
     periodChange: "MMM d ''yy",
-    tooltip: 'MMM d yyyy'
+    tooltip: 'MMM d yyyy',
   },
   week: {
     format: "'W'w",
     periodChange: "'W'w ''yy",
-    tooltip: "'W'w MMM d yyyy"
+    tooltip: "'W'w MMM d yyyy",
   },
   month: {
     format: 'MMM',
     periodChange: "MMM ''yy",
-    tooltip: 'MMM yyyy'
+    tooltip: 'MMM yyyy',
   },
   quarter: {
     format: "'Q'q",
     periodChange: "'Q'q ''yy",
-    tooltip: "'Q'q yyyy"
-  }
+    tooltip: "'Q'q yyyy",
+  },
 };
 
 // TODO: labels appear in between data entries for the quarter
@@ -235,7 +235,7 @@ function setDateFormat(axis, granularity) {
       axis.dateFormats.setKey(key, dateFormats[granularity].format);
       axis.periodChangeDateFormats.setKey(
         key,
-        dateFormats[granularity].periodChange
+        dateFormats[granularity].periodChange,
       );
     }
   }
@@ -243,7 +243,7 @@ function setDateFormat(axis, granularity) {
   if (granularity !== 'quarter') {
     axis.baseInterval = {
       count: granularity === 'quarter' ? 3 : 1,
-      timeUnit: granularity === 'quarter' ? 'month' : granularity
+      timeUnit: granularity === 'quarter' ? 'month' : granularity,
     };
   }
 }
@@ -251,7 +251,7 @@ function setDateFormat(axis, granularity) {
 function createDateAxis(
   chart,
   direction = 'x',
-  { title = '', granularity = 'month' } = {}
+  { title = '', granularity = 'month' } = {},
 ) {
   const axis = chart[`${direction}Axes`].push(new am4charts.DateAxis());
   axis.title.text = title;
@@ -309,7 +309,7 @@ function applyBubbleOptions(series, { useHeatMap } = {}) {
       target: bullet.circle,
       min: 10,
       max: 60,
-      property: 'radius'
+      property: 'radius',
     });
   } else {
     bullet.radius = 8;
@@ -323,20 +323,20 @@ export function createSeries(
     dataFields,
     seriesOptions,
     yAxes,
-    granularity = 'month'
-  } = {}
+    granularity = 'month',
+  } = {},
 ) {
-  const seriesWithAxis = seriesOptions.map(ser => {
-    let yAxis = yAxes.find(axis => axis.key === ser.valueAxisKey);
+  const seriesWithAxis = seriesOptions.map((ser) => {
+    let yAxis = yAxes.find((axis) => axis.key === ser.valueAxisKey);
     if (!yAxis) yAxis = { axis: yAxes[0].axis };
 
     return {
       ...ser,
-      valueAxis: yAxis.axis
+      valueAxis: yAxis.axis,
     };
   });
 
-  return seriesWithAxis.map(options => {
+  return seriesWithAxis.map((options) => {
     const {
       type = 'column',
       dataFieldX,
@@ -349,7 +349,7 @@ export function createSeries(
       name = '',
       fillOpacity = 0,
       numberFormat = null,
-      showValue = false
+      showValue = false,
     } = options;
 
     const series = chart.series.push(new am4charts[getSeriesType(type)]());
@@ -460,8 +460,8 @@ export function createLegend() {
   legend.data = [
     {
       name: 'area_booking_conversion',
-      fill: 'red'
-    }
+      fill: 'red',
+    },
   ];
 
   const marker = legend.markers.template.children.getIndex(0);
@@ -497,9 +497,9 @@ export function AddValueChartTooltips(xAxis) {
       const dataItem = seri.dataItems.getIndex(
         seri.dataItems.findClosestIndex(
           value,
-          x => (x[key] ? x[key] : undefined),
-          'any'
-        )
+          (x) => (x[key] ? x[key] : undefined),
+          'any',
+        ),
       );
       return dataItem;
     };
