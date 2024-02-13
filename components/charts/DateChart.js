@@ -4,6 +4,7 @@
 ] */
 
 import React, { useCallback } from 'react';
+import { useChartTheme } from '@ui/hooks/use-chart-theme';
 import { BaseChart } from './BaseChart';
 import {
   baseChartProps,
@@ -13,7 +14,7 @@ import {
   createSeries,
   createLegend,
   createCursor,
-} from './chart-utils';
+} from './utils/xy-chart-utils';
 
 /**
  * Chart with date x-axis (date) & value y-axes (number)
@@ -28,6 +29,8 @@ export function DateChart({
   tooltips,
   themeFunctions,
 }) {
+  const combinedThemeFuncs = useChartTheme(themeFunctions);
+
   const chartFunction = useCallback(
     (chart) => {
       const xAxisObj = createDateXAxis(chart, xAxis);
@@ -52,7 +55,7 @@ export function DateChart({
 
   return (
     <BaseChart
-      themeFunctions={themeFunctions}
+      themeFunctions={combinedThemeFuncs}
       chartFunction={chartFunction}
       data={data}
       width={width}

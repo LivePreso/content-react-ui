@@ -1,6 +1,9 @@
 @import './normalize/import';
 @import './style-mixins';
 
+// Component variables
+@import './variables/base/import';
+
 * {
   box-sizing: border-box;
 }

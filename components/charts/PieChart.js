@@ -4,64 +4,55 @@
 ] */
 
 import React, { useCallback } from 'react';
+import * as am4core from '@amcharts/amcharts4/core';
 import { useChartTheme } from '@ui/hooks/use-chart-theme';
 import { BaseChart } from './BaseChart';
 import {
   baseChartProps,
   baseChartDefaultProps,
-  createValueXAxis,
-  createValueYAxis,
   createSeries,
   createLegend,
-  createCursor,
-  AddValueChartTooltips,
-} from './utils/xy-chart-utils';
+} from './utils/pie-chart-utils';
 
 /**
- * Chart with value x-axis (number) & value y-axes (number)
+ * Pie Chart with category (name) & value (number)
  */
-export function ValueChart({
+export function PieChart({
   series,
-  xAxis,
-  yAxes,
   data,
   width,
   height,
   tooltips,
+  showLegend,
+  innerRadius,
+  callout,
   themeFunctions,
 }) {
   const combinedThemeFuncs = useChartTheme(themeFunctions);
 
   const chartFunction = useCallback(
     (chart) => {
-      const xAxisObj = createValueXAxis(chart, xAxis);
-      const yAxisCollection = yAxes.map((axis) => ({
-        key: axis.key,
-        axis: createValueYAxis(chart, axis),
-      }));
-
       createSeries(chart, {
-        tooltips: {
-          text: '{name}: {valueY}\n{name}: {valueX}',
-          ...tooltips,
-        },
-        dataFields: { yAxis: 'valueY', xAxis: 'valueX' },
+        tooltips,
         seriesOptions: series,
-        yAxes: yAxisCollection,
       });
 
-      if (tooltips.active) {
-        AddValueChartTooltips(xAxisObj);
+      if (showLegend) {
+        chart.legend = createLegend();
       }
 
-      chart.legend = createLegend();
-      chart.cursor = createCursor(xAxisObj);
+      chart.innerRadius = am4core.percent(innerRadius);
+
+      if (callout) {
+        // TODO: Add label in center of pie (large stat)
+      }
     },
-    [series, tooltips, xAxis, yAxes],
+    [series, tooltips, showLegend, innerRadius, callout],
   );
 
   return (
     <BaseChart
+      type="pie"
       themeFunctions={combinedThemeFuncs}
       chartFunction={chartFunction}
       data={data}
@@ -71,10 +62,10 @@ export function ValueChart({
   );
 }
 
-ValueChart.propTypes = {
+PieChart.propTypes = {
   ...baseChartProps,
 };
 
-ValueChart.defaultProps = {
+PieChart.defaultProps = {
   ...baseChartDefaultProps,
 };

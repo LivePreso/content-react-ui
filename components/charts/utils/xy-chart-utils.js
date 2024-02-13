@@ -457,13 +457,6 @@ export function createLegend() {
   legend.itemContainers.template.cursorOverStyle =
     am4core.MouseCursorStyle.default;
 
-  legend.data = [
-    {
-      name: 'area_booking_conversion',
-      fill: 'red',
-    },
-  ];
-
   const marker = legend.markers.template.children.getIndex(0);
   marker.height = 14;
   marker.width = 14;

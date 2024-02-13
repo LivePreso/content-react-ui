@@ -14,7 +14,7 @@ import {
   createSeries,
   createLegend,
   createCursor,
-} from './chart-utils';
+} from './utils/xy-chart-utils';
 
 /**
  * Chart with category x-axis (name) & value y-axes (number)
@@ -29,7 +29,7 @@ export function CategoryChart({
   tooltips,
   themeFunctions,
 }) {
-  const combinedThemeFuncs = useChartTheme(themeFunctions, false);
+  const combinedThemeFuncs = useChartTheme(themeFunctions);
 
   const chartFunction = useCallback(
     (chart) => {

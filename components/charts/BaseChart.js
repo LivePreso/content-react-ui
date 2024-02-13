@@ -25,6 +25,14 @@ const arePropsEqual = (oldProps, newProps) => {
   );
 };
 
+function getAMChartType(type) {
+  if (type === 'pie') {
+    return am4charts.PieChart;
+  }
+
+  return am4charts.XYChart;
+}
+
 /**
  * Return a memoized component here for performance reasons.
  *
@@ -36,6 +44,7 @@ const arePropsEqual = (oldProps, newProps) => {
  * https://react.dev/reference/react/memo
  */
 export const BaseChart = React.memo(function BaseChart({
+  type,
   chartFunction,
   themeFunctions,
   data,
@@ -51,10 +60,13 @@ export const BaseChart = React.memo(function BaseChart({
 
       // Prevent bullets on the edge of a chart being cropped
       chart.maskBullets = false;
-      // Disable pinch to zoom
-      chart.zoomOutButton.disabled = true;
+
+      if (type === 'xy') {
+        // Disable pinch to zoom
+        chart.zoomOutButton.disabled = true;
+      }
     },
-    [chartFunction],
+    [chartFunction, type],
   );
 
   // Chart setup - initial load
@@ -66,7 +78,7 @@ export const BaseChart = React.memo(function BaseChart({
       }
     }
 
-    const amChart = am4core.create(id.current, am4charts.XYChart);
+    const amChart = am4core.create(id.current, getAMChartType(type));
 
     onInitialize(amChart);
 
@@ -75,7 +87,7 @@ export const BaseChart = React.memo(function BaseChart({
     return () => {
       amChart.dispose();
     };
-  }, [onInitialize, themeFunctions]);
+  }, [type, onInitialize, themeFunctions]);
 
   useEffect(() => {
     // Handle data updates triggered by state changes
@@ -86,6 +98,7 @@ export const BaseChart = React.memo(function BaseChart({
 }, arePropsEqual);
 
 BaseChart.propTypes = {
+  type: PropTypes.oneOf(['xy', 'pie']),
   chartFunction: PropTypes.func.isRequired,
   themeFunctions: PropTypes.arrayOf(PropTypes.func),
   width: PropTypes.string,
@@ -98,6 +111,7 @@ BaseChart.propTypes = {
 };
 
 BaseChart.defaultProps = {
+  type: 'xy',
   width: '100%',
   height: '100%',
   themeFunctions: null,

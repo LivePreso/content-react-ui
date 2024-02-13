@@ -17,7 +17,7 @@ import {
   createLegend,
   createCursor,
   AddValueChartTooltips,
-} from './chart-utils';
+} from './utils/xy-chart-utils';
 
 const axisLabelledLowHigh = (label, target) => {
   if (target.dataItem.values.value.value === 0) {
@@ -92,7 +92,7 @@ export function QuadrantChart({
   tooltips,
   themeFunctions,
 }) {
-  const combinedThemeFuncs = useChartTheme(themeFunctions, false);
+  const combinedThemeFuncs = useChartTheme(themeFunctions);
   const [normalizedChartData, setNormalizedChartData] = useState([]);
   const [chartMinMaxValues, setChartMinMaxValues] = useState({});
 
