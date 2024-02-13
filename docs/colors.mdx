@@ -1,0 +1,39 @@
+import colors from '../css/variables/_colors.scss';
+import { CssVariables } from './CssVariables';
+
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Design/Sass/Colors" />
+
+# Colors
+
+---
+
+<br />
+<br />
+
+#### Usage
+
+<br />
+
+**CSS**
+
+```css
+import "@ui/css/variables/_colors.scss";
+
+color: $color-brand-1;
+color: var(--color-brand-1);
+```
+
+**JS**
+
+```js
+import colors from '@ui/css/variables/_colors.scss';
+
+console.log(colors.colorBrand1);
+```
+
+#### Examples
+
+<br />
+<CssVariables />

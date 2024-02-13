@@ -16,7 +16,6 @@ export const Default = {
       name: 'Room Nights',
       dataFieldCategory: 'hotel',
       dataFieldValue: 'room_nights',
-      showValue: true,
     },
     data: [
       {
@@ -39,13 +38,12 @@ export const BasicDonut = {
   args: {
     width: '100%',
     height: '500px',
-    innerRadius: 70,
+    innerRadius: 60,
     series: {
       name: 'Room Nights',
       dataFieldCategory: 'hotel',
       dataFieldValue: 'room_nights',
-      showLabels: false,
-      showValue: true,
+      hideLabels: true,
     },
     data: [
       {
