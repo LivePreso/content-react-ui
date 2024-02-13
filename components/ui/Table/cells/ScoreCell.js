@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Cell } from '@ui/components/ui/Table';
+import { Cell } from '@ui/components/ui/Table/Cell';
 import classNames from 'classnames';
 import style from './ScoreCell.module.scss';
 

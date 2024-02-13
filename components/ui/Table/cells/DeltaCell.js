@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { isNull, isUndefined } from 'lodash-es';
-import { Cell } from '@ui/components/ui/Table';
+import { Cell } from '@ui/components/ui/Table/Cell';
 import { DeltaValue } from '@ui/components/stats';
 
 export function DeltaCell(props) {

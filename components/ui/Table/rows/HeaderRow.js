@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Cell, Row } from '../../ui/Table';
+import { Cell } from '../Cell';
+import { Row } from '../Row';
 import { SubTitleCell } from '../cells';
 import style from './HeaderRow.module.scss';
 import { CELL_TYPES } from '../table-constants';

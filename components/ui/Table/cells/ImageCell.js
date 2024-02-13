@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Cell } from '@ui/components/ui/Table';
+import { Cell } from '@ui/components/ui/Table/Cell';
 import style from './ImageCell.module.scss';
 
 export function ImageCell(props) {

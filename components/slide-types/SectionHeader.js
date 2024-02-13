@@ -2,10 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { Column } from '@ui/components/layout';
-import { Header } from '@ui/components/slide';
+import { Header, Slide } from '@ui/components/slide';
 import style from './SectionHeader.module.scss';
-
-import { Slide } from '../slide/Slide';
 
 export function SectionHeader({ className, title, children }) {
   const classes = classnames(style.sectionHeader, className);

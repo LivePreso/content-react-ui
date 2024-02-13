@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { Cell } from '@ui/components/ui/Table';
+import { Cell } from '@ui/components/ui/Table/Cell';
 import React from 'react';
 
 export function SubTitleCell(props) {

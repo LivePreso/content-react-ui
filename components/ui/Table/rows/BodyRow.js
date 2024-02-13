@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { getColWidth } from '@ui/js/data-processing/utils/generate-table-layout';
-import { Row } from '../../ui/Table';
+import { getColWidth } from '@ui/utils/generate-table-layout';
+import { Row } from '../Row';
 import { CELL_TYPES_MAP, columnPropTypes } from '../table-constants';
 import { TextCell } from '../cells';
 
