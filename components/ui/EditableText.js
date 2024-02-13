@@ -5,7 +5,7 @@ import style from './EditableText.module.scss';
 
 const blockLevelFormats = ['format', 'list'];
 
-export const EditableText = React.memo(props => {
+export const EditableText = React.memo((props) => {
   const {
     id,
     isPrep,
@@ -16,7 +16,7 @@ export const EditableText = React.memo(props => {
     className,
     children,
     label,
-    toolbar
+    toolbar,
   } = props;
   const { slideKey } = useSlide();
   const Tag = `${tag}`;
@@ -46,7 +46,7 @@ export const EditableText = React.memo(props => {
     const toolbarOptions =
       tag === 'div'
         ? toolbar
-        : toolbar.filter(option => blockLevelFormats.indexOf(option) < 0);
+        : toolbar.filter((option) => blockLevelFormats.indexOf(option) < 0);
 
     opts['data-toolbar'] = toolbarOptions.join(' ');
   }
@@ -80,12 +80,12 @@ EditableText.propTypes = {
       'superscript',
       'align',
       'link',
-      'removeformat'
-    ])
+      'removeformat',
+    ]),
   ),
   label: PropTypes.string,
   children: PropTypes.node,
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 EditableText.defaultProps = {
@@ -101,9 +101,9 @@ EditableText.defaultProps = {
     'color',
     'superscript',
     'align',
-    'removeformat'
+    'removeformat',
   ],
   label: null,
   children: null,
-  className: ''
+  className: '',
 };

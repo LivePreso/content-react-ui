@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { getColWidth } from '@deck/js/data-processing/utils/generate-table-layout';
+import { getColWidth } from '@ui/js/data-processing/utils/generate-table-layout';
 import { Row } from '../../ui/Table';
 import { CELL_TYPES_MAP, columnPropTypes } from '../table-constants';
 import { TextCell } from '../cells';
 
 export function BodyRow(props) {
   const { cells, columns, className, uid } = props;
-  const children = cells.map(cell => {
+  const children = cells.map((cell) => {
     const { type, config, ...cellProps } = cell;
     const { width } = getColWidth(columns, cells, cell);
     // augment with a key
@@ -40,10 +40,10 @@ BodyRow.propTypes = {
   /* eslint-enable react/forbid-prop-types */
 
   columns: columnPropTypes,
-  ...Row.propTypes
+  ...Row.propTypes,
 };
 
 BodyRow.defaultProps = {
   ...Row.defaultProps,
-  columns: []
+  columns: [],
 };

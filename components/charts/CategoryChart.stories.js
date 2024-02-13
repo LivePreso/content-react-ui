@@ -2,7 +2,7 @@ import { CategoryChart } from './CategoryChart';
 
 export default {
   component: CategoryChart,
-  title: 'Components/Charts/CategoryChart'
+  title: 'Components/Charts/CategoryChart',
 };
 
 export const Default = {
@@ -11,7 +11,7 @@ export const Default = {
     height: '500px',
     tooltips: {
       active: true,
-      combineSeries: true
+      combineSeries: true,
     },
     series: [
       {
@@ -19,30 +19,30 @@ export const Default = {
         name: 'Room Nights',
         dataFieldX: 'hotel',
         dataFieldY: 'room_nights',
-        showValue: true
-      }
+        showValue: true,
+      },
     ],
     yAxes: [
       {
         name: 'Room Nights',
-        key: 'room_nights'
-      }
+        key: 'room_nights',
+      },
     ],
     data: [
       {
         room_nights: '150',
-        hotel: 'Grand Plaza'
+        hotel: 'Grand Plaza',
       },
       {
         room_nights: '200',
-        hotel: "Ceasar's"
+        hotel: "Ceasar's",
       },
       {
         room_nights: '100',
-        hotel: 'Hampton Town'
-      }
-    ]
-  }
+        hotel: 'Hampton Town',
+      },
+    ],
+  },
 };
 
 export const DoubleAxis = {
@@ -55,40 +55,40 @@ export const DoubleAxis = {
         name: 'Room Nights',
         dataFieldX: 'hotel',
         dataFieldY: 'room_nights',
-        valueAxisKey: 'room_nights'
+        valueAxisKey: 'room_nights',
       },
       {
         type: 'column',
         name: 'Room Nights LY',
         dataFieldX: 'hotel',
         dataFieldY: 'room_nights_ly',
-        valueAxisKey: 'room_nights'
+        valueAxisKey: 'room_nights',
       },
       {
         type: 'line',
         name: 'ADR',
         dataFieldX: 'hotel',
         dataFieldY: 'adr',
-        valueAxisKey: 'adr'
+        valueAxisKey: 'adr',
       },
       {
         type: 'line',
         name: 'ADR LY',
         dataFieldX: 'hotel',
         dataFieldY: 'adr_ly',
-        valueAxisKey: 'adr'
-      }
+        valueAxisKey: 'adr',
+      },
     ],
     yAxes: [
       {
         title: 'Room Nights',
-        key: 'room_nights'
+        key: 'room_nights',
       },
       {
         title: 'ADR',
         key: 'adr',
-        opposite: true
-      }
+        opposite: true,
+      },
     ],
     data: [
       {
@@ -96,22 +96,22 @@ export const DoubleAxis = {
         room_nights_ly: 150,
         adr: 1200,
         adr_ly: 1000,
-        hotel: 'Grand Plaza'
+        hotel: 'Grand Plaza',
       },
       {
         room_nights: 230,
         room_nights_ly: 200,
         adr: 1500,
         adr_ly: 1570,
-        hotel: "Ceasar's"
+        hotel: "Ceasar's",
       },
       {
         room_nights: 80,
         room_nights_ly: 100,
         adr: 2180,
         adr_ly: 2100,
-        hotel: 'Hampton Town'
-      }
-    ]
-  }
+        hotel: 'Hampton Town',
+      },
+    ],
+  },
 };

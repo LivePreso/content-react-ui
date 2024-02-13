@@ -7,7 +7,7 @@ import {
   ScoreCell,
   SubTitleCell,
   TextCell,
-  ToggleCell
+  ToggleCell,
 } from './cells';
 
 export const ROW_TYPES = {
@@ -15,7 +15,7 @@ export const ROW_TYPES = {
   SUBHEADER: 'SubheaderRow',
   HIGHLIGHT: 'HighlightRow',
   HEADER: 'HeaderRow',
-  BODY: 'BodyRow'
+  BODY: 'BodyRow',
 };
 
 export const CELL_TYPES = {
@@ -27,7 +27,7 @@ export const CELL_TYPES = {
   SCORE: 'ScoreCell',
   TOGGLE: 'ToggleCell',
   EDITABLE: 'EditableTextCell',
-  BUTTONS: 'ButtonsCell'
+  BUTTONS: 'ButtonsCell',
 };
 
 export const CELL_TYPES_MAP = {
@@ -39,7 +39,7 @@ export const CELL_TYPES_MAP = {
   [CELL_TYPES.SCORE]: ScoreCell,
   [CELL_TYPES.TOGGLE]: ToggleCell,
   [CELL_TYPES.EDITABLE]: EditableTextCell,
-  [CELL_TYPES.BUTTONS]: ButtonsCell
+  [CELL_TYPES.BUTTONS]: ButtonsCell,
 };
 
 export const columnPropTypes = PropTypes.arrayOf(
@@ -50,6 +50,6 @@ export const columnPropTypes = PropTypes.arrayOf(
     type: PropTypes.oneOf(Object.values(CELL_TYPES)),
     // Different types above will have different config types. We'll use the
     // component attached to each type to further check the config props.
-    config: PropTypes.object
-  })
+    config: PropTypes.object,
+  }),
 );

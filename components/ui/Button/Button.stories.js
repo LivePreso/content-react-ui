@@ -1,39 +1,39 @@
 import React from 'react';
-import { CalendarIcon } from '@deck/components/icons';
+import { CalendarIcon } from '@ui/components/icons';
 import { Button } from './Button';
 
 export default {
   component: Button,
-  title: 'Components/UI/Button'
+  title: 'Components/UI/Button',
 };
 
 const ButtonTemplate = {
   render: function Render(args) {
     return <Button {...args} onClick={() => {}} />;
-  }
+  },
 };
 
 export const Default = {
   ...ButtonTemplate,
   args: {
-    label: 'Click me'
-  }
+    label: 'Click me',
+  },
 };
 
 export const LeftIcon = {
   ...ButtonTemplate,
   args: {
     label: 'Click me',
-    leftIcon: <CalendarIcon />
-  }
+    leftIcon: <CalendarIcon />,
+  },
 };
 
 export const RightIcon = {
   ...ButtonTemplate,
   args: {
     label: 'Click me',
-    rightIcon: <CalendarIcon />
-  }
+    rightIcon: <CalendarIcon />,
+  },
 };
 
 export const SecondaryLeftIcon = {
@@ -41,8 +41,8 @@ export const SecondaryLeftIcon = {
   args: {
     label: 'Click me',
     leftIcon: <CalendarIcon />,
-    variant: 'secondary'
-  }
+    variant: 'secondary',
+  },
 };
 
 export const TextLeftIcon = {
@@ -50,6 +50,6 @@ export const TextLeftIcon = {
   args: {
     label: 'Click me',
     leftIcon: <CalendarIcon />,
-    variant: 'text'
-  }
+    variant: 'text',
+  },
 };

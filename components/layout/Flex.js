@@ -13,9 +13,9 @@ export function Flex({ className, flex, children }) {
 }
 
 Flex.propTypes = {
-  flex: flexPropTypes
+  flex: flexPropTypes,
 };
 
 Flex.defaultProps = {
-  flex: 1
+  flex: 1,
 };

@@ -1,10 +1,10 @@
 import React from 'react';
-import { Table, Row, Cell } from '@deck/components/ui/Table';
+import { Table, Row, Cell } from '@ui/components/ui/Table';
 import {
   posNegFactory,
   currencifyFactory,
-  percentifyFactory
-} from '@deck/js/data-processing/utils/data-formatting';
+  percentifyFactory,
+} from '@ui/utils/data-formatting';
 import { DeltaValue } from './DeltaValue';
 
 const posGreen = posNegFactory({ pos: 'color-brand-3', neg: 'color-brand-4' });
@@ -14,11 +14,11 @@ const currencify = currencifyFactory({ numDecimal: 2 });
 
 const colourFunctions = {
   'positive is green': posGreen,
-  'negative is green': negGreen
+  'negative is green': negGreen,
 };
 const primaryFormatters = {
   percentage: percentify,
-  currency: currencify
+  currency: currencify,
 };
 
 export default {
@@ -29,17 +29,17 @@ export default {
       options: Object.keys(colourFunctions),
       mapping: colourFunctions,
       control: {
-        type: 'select'
-      }
+        type: 'select',
+      },
     },
     formatter: {
       options: Object.keys(primaryFormatters),
       mapping: primaryFormatters,
       control: {
-        type: 'select'
-      }
-    }
-  }
+        type: 'select',
+      },
+    },
+  },
 };
 
 export const Default = {
@@ -53,12 +53,12 @@ export const Default = {
             <DeltaValue />
           </Cell>
         </Row>
-      </Table>
+      </Table>,
     ],
 
     primary: 0.342,
     color: posGreen,
     formatter: percentify,
-    secondary: currencify(100)
-  }
+    secondary: currencify(100),
+  },
 };

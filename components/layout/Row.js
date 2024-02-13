@@ -27,15 +27,15 @@ Row.propTypes = {
     'large',
     'flex-around',
     'flex-between',
-    'flex-evenly'
+    'flex-evenly',
   ]),
   /**
    * Note: 'justify' is ignored when using a 'flex-' gap
    */
-  justify: PropTypes.oneOf(['start', 'end', 'center'])
+  justify: PropTypes.oneOf(['start', 'end', 'center']),
 };
 
 Row.defaultProps = {
   ...FlexGroup.defaultProps,
-  gap: null
+  gap: null,
 };

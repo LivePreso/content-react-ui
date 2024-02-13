@@ -10,7 +10,7 @@ import { Tabs } from './Tabs';
 
 export default {
   component: Tabs,
-  title: 'Components/UI/Tabs'
+  title: 'Components/UI/Tabs',
 };
 
 const TabsTemplate = {
@@ -21,12 +21,12 @@ const TabsTemplate = {
       <Tabs
         selected={value}
         {...args}
-        onChange={val => {
+        onChange={(val) => {
           updateArgs({ selected: val });
         }}
       />
     );
-  }
+  },
 };
 
 export const Default = {
@@ -36,18 +36,18 @@ export const Default = {
     items: [
       {
         label: 'Tab one',
-        value: 'one'
+        value: 'one',
       },
       {
         label: 'Tab two',
-        value: 'two'
+        value: 'two',
       },
       {
         label: 'Tab three',
-        value: 'three'
-      }
-    ]
-  }
+        value: 'three',
+      },
+    ],
+  },
 };
 
 export const RenderItem = {
@@ -60,7 +60,7 @@ export const RenderItem = {
         label={tab.label}
         active={active}
       />
-    )
+    ),
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
@@ -68,14 +68,14 @@ export const RenderItem = {
     await userEvent.click(await canvas.findByRole('tab', { name: 'Tab one' }));
     await userEvent.click(await canvas.findByRole('tab', { name: 'Tab two' }));
     await userEvent.click(
-      await canvas.findByRole('tab', { name: 'Tab three' })
+      await canvas.findByRole('tab', { name: 'Tab three' }),
     );
-  }
+  },
 };
 
 export const Disabled = {
   args: {
     ...Default.args,
-    disabled: true
-  }
+    disabled: true,
+  },
 };

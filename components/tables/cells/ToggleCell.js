@@ -1,5 +1,5 @@
-import { Toggle } from '@deck/components/ui';
-import { Cell } from '@deck/components/ui/Table';
+import { Toggle } from '@ui/components/ui';
+import { Cell } from '@ui/components/ui/Table';
 import React from 'react';
 
 export function ToggleCell(props) {
@@ -21,7 +21,7 @@ export function ToggleCell(props) {
     onChange,
     disabled,
     id,
-    icon
+    icon,
   };
 
   return (
@@ -33,10 +33,10 @@ export function ToggleCell(props) {
 
 ToggleCell.propTypes = {
   ...Toggle.propTypes,
-  ...Cell.propTypes
+  ...Cell.propTypes,
 };
 
 ToggleCell.defaultProps = {
   ...Toggle.defaultProps,
-  ...Cell.defaultProps
+  ...Cell.defaultProps,
 };

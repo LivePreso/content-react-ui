@@ -4,7 +4,7 @@
 ] */
 
 import React, { useCallback } from 'react';
-import { useChartTheme } from '@deck/react-hooks/use-chart-theme';
+import { useChartTheme } from '@ui/hooks/use-chart-theme';
 import { BaseChart } from './BaseChart';
 import {
   baseChartProps,
@@ -14,7 +14,7 @@ import {
   createSeries,
   createLegend,
   createCursor,
-  AddValueChartTooltips
+  AddValueChartTooltips,
 } from './chart-utils';
 
 /**
@@ -28,26 +28,26 @@ export function ValueChart({
   width,
   height,
   tooltips,
-  themeFunctions
+  themeFunctions,
 }) {
   const combinedThemeFuncs = useChartTheme(themeFunctions, false);
 
   const chartFunction = useCallback(
-    chart => {
+    (chart) => {
       const xAxisObj = createValueXAxis(chart, xAxis);
-      const yAxisCollection = yAxes.map(axis => ({
+      const yAxisCollection = yAxes.map((axis) => ({
         key: axis.key,
-        axis: createValueYAxis(chart, axis)
+        axis: createValueYAxis(chart, axis),
       }));
 
       createSeries(chart, {
         tooltips: {
           text: '{name}: {valueY}\n{name}: {valueX}',
-          ...tooltips
+          ...tooltips,
         },
         dataFields: { yAxis: 'valueY', xAxis: 'valueX' },
         seriesOptions: series,
-        yAxes: yAxisCollection
+        yAxes: yAxisCollection,
       });
 
       if (tooltips.active) {
@@ -57,7 +57,7 @@ export function ValueChart({
       chart.legend = createLegend();
       chart.cursor = createCursor(xAxisObj);
     },
-    [series, tooltips, xAxis, yAxes]
+    [series, tooltips, xAxis, yAxes],
   );
 
   return (
@@ -72,9 +72,9 @@ export function ValueChart({
 }
 
 ValueChart.propTypes = {
-  ...baseChartProps
+  ...baseChartProps,
 };
 
 ValueChart.defaultProps = {
-  ...baseChartDefaultProps
+  ...baseChartDefaultProps,
 };

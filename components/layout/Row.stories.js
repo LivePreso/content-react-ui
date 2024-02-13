@@ -3,7 +3,7 @@ import { Row, Block } from './index';
 
 export default {
   component: Row,
-  title: 'Components/Layout/Row'
+  title: 'Components/Layout/Row',
 };
 
 export const Default = {
@@ -18,9 +18,9 @@ export const Default = {
       </div>,
       <div key="item-3">
         <p>Item three</p>
-      </div>
-    ]
-  }
+      </div>,
+    ],
+  },
 };
 
 export const FlexBlocks = {
@@ -32,7 +32,7 @@ export const FlexBlocks = {
       </Block>,
       <Block key="block-2" flex={2}>
         <p>Item two</p>
-      </Block>
-    ]
-  }
+      </Block>,
+    ],
+  },
 };

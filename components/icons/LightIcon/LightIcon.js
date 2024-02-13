@@ -80,9 +80,9 @@ export function LightIcon({ className }) {
 }
 
 LightIcon.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 LightIcon.defaultProps = {
-  className: ''
+  className: '',
 };

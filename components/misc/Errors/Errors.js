@@ -7,7 +7,7 @@ export function Errors(props) {
 
   return (
     <div className={style.errors}>
-      {errors.map(error => (
+      {errors.map((error) => (
         <h5>{error}</h5>
       ))}
     </div>
@@ -15,5 +15,5 @@ export function Errors(props) {
 }
 
 Errors.propTypes = {
-  errors: PropTypes.arrayOf(PropTypes.string).isRequired
+  errors: PropTypes.arrayOf(PropTypes.string).isRequired,
 };

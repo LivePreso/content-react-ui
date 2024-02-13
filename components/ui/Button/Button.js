@@ -44,7 +44,7 @@ Button.propTypes = {
   rightIcon: PropTypes.element,
   isPresoManagerInteractive: PropTypes.bool,
   disabled: PropTypes.bool,
-  variant: PropTypes.oneOf(['primary', 'secondary', 'text'])
+  variant: PropTypes.oneOf(['primary', 'secondary', 'text']),
 };
 
 Button.defaultProps = {
@@ -55,5 +55,5 @@ Button.defaultProps = {
   rightIcon: null,
   isPresoManagerInteractive: false,
   disabled: false,
-  variant: 'primary'
+  variant: 'primary',
 };

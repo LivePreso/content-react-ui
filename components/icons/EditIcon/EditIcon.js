@@ -30,10 +30,10 @@ export function EditIcon({ className, color }) {
 
 EditIcon.propTypes = {
   color: PropTypes.string,
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 EditIcon.defaultProps = {
   color: null,
-  className: ''
+  className: '',
 };

@@ -1,18 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Cell } from '@deck/components/ui/Table';
+import { Cell } from '@ui/components/ui/Table';
 import classNames from 'classnames';
 import style from './ScoreCell.module.scss';
 
 export function ScoreCell(props) {
-  const {
-    value,
-    compareValue,
-    color,
-    className,
-    subtitle,
-    ...cellProps
-  } = props;
+  const { value, compareValue, color, className, subtitle, ...cellProps } =
+    props;
 
   /* TODO revise this once a clean way of handling colors exists */
   const colorClass = color ? color(value) : '';
@@ -33,7 +27,7 @@ ScoreCell.propTypes = {
   compareValue: PropTypes.number,
   subtitle: PropTypes.string,
   color: PropTypes.func,
-  ...Cell.propTypes
+  ...Cell.propTypes,
 };
 
 ScoreCell.defaultProps = {
@@ -41,5 +35,5 @@ ScoreCell.defaultProps = {
   compareValue: 100,
   subtitle: null,
   color: null,
-  ...Cell.defaultProps
+  ...Cell.defaultProps,
 };

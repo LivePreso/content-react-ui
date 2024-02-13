@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { Cell } from '@deck/components/ui/Table';
+import { Cell } from '@ui/components/ui/Table';
 import React from 'react';
 
 export function SubTitleCell(props) {
@@ -15,11 +15,11 @@ export function SubTitleCell(props) {
 SubTitleCell.propTypes = {
   title: PropTypes.string,
   subtitle: PropTypes.string,
-  ...Cell.propTypes
+  ...Cell.propTypes,
 };
 
 SubTitleCell.defaultProps = {
   title: 'title',
   subtitle: null,
-  ...Cell.defaultProps
+  ...Cell.defaultProps,
 };

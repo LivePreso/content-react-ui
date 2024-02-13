@@ -14,13 +14,13 @@ export function Block({
   noPadding,
   className,
   children,
-  isHidden
+  isHidden,
 }) {
   const classes = classNames(style.block, className, {
     [style.hasBorder]: hasBorder,
     [style.hasMarginBottom]: hasMarginBottom,
     [style.noPadding]: noPadding,
-    [style.isHidden]: isHidden
+    [style.isHidden]: isHidden,
   });
 
   return (
@@ -40,7 +40,7 @@ Block.propTypes = {
   noPadding: PropTypes.bool,
   className: PropTypes.string,
   children: PropTypes.node,
-  isHidden: PropTypes.bool
+  isHidden: PropTypes.bool,
 };
 
 Block.defaultProps = {
@@ -53,7 +53,7 @@ Block.defaultProps = {
   noPadding: false,
   className: '',
   children: null,
-  isHidden: false
+  isHidden: false,
 };
 
 export function BlockTitle({ className, children }) {
@@ -64,10 +64,10 @@ export function BlockTitle({ className, children }) {
 
 BlockTitle.propTypes = {
   children: PropTypes.node,
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 BlockTitle.defaultProps = {
   children: null,
-  className: ''
+  className: '',
 };

@@ -27,10 +27,10 @@ export function Arrow(props) {
 Arrow.propTypes = {
   orientation: PropTypes.oneOf(['up', 'down', 'left', 'right']),
   color: PropTypes.string,
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 Arrow.defaultProps = {
   orientation: 'up',
   color: 'color-text',
-  className: null
+  className: null,
 };

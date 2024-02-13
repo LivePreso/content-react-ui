@@ -1,0 +1,15 @@
+{
+    "**/*.{js,json,css,md}": [
+      "prettier --write"
+    ],
+    "**/*.mdx": [
+      "prettier --parser mdx --write"
+    ],
+    "**/*.scss": [
+      "prettier --write",
+      "stylelint"
+    ],
+    "**/*.js": [
+      "eslint --fix",
+    ]
+}

@@ -12,14 +12,14 @@ export function FlexGroup({
   children,
   align,
   gap,
-  justify
+  justify,
 }) {
   const classes = classNames(
     className,
     style.flexGroup,
     style[`align-${align}`],
     // Do not apply justify class if supplied gap is a flex option
-    { [style[`justify-${justify}`]]: !gap || !gap.includes('flex-') }
+    { [style[`justify-${justify}`]]: !gap || !gap.includes('flex-') },
   );
 
   return (
@@ -45,14 +45,14 @@ FlexGroup.propTypes = {
     'large',
     'flex-around',
     'flex-between',
-    'flex-evenly'
+    'flex-evenly',
   ]),
   /**
    * Note: 'justify' is ignored when using a 'flex-' gap
    */
   justify: PropTypes.oneOf(['start', 'end', 'center']),
   children: PropTypes.node,
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 FlexGroup.defaultProps = {
@@ -63,5 +63,5 @@ FlexGroup.defaultProps = {
   gap: null,
   justify: 'start',
   children: null,
-  className: ''
+  className: '',
 };

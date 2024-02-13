@@ -12,7 +12,7 @@ import {
   createDateXAxis,
   createSeries,
   createLegend,
-  createCursor
+  createCursor,
 } from './chart-utils';
 
 /**
@@ -26,14 +26,14 @@ export function DateChart({
   width,
   height,
   tooltips,
-  themeFunctions
+  themeFunctions,
 }) {
   const chartFunction = useCallback(
-    chart => {
+    (chart) => {
       const xAxisObj = createDateXAxis(chart, xAxis);
-      const yAxisCollection = yAxes.map(axis => ({
+      const yAxisCollection = yAxes.map((axis) => ({
         key: axis.key,
-        axis: createValueYAxis(chart, axis)
+        axis: createValueYAxis(chart, axis),
       }));
 
       createSeries(chart, {
@@ -41,13 +41,13 @@ export function DateChart({
         dataFields: { yAxis: 'valueY', xAxis: 'dateX' },
         seriesOptions: series,
         yAxes: yAxisCollection,
-        granularity: xAxis.granularity
+        granularity: xAxis.granularity,
       });
 
       chart.legend = createLegend();
       chart.cursor = createCursor(xAxisObj);
     },
-    [series, tooltips, xAxis, yAxes]
+    [series, tooltips, xAxis, yAxes],
   );
 
   return (
@@ -62,9 +62,9 @@ export function DateChart({
 }
 
 DateChart.propTypes = {
-  ...baseChartProps
+  ...baseChartProps,
 };
 
 DateChart.defaultProps = {
-  ...baseChartDefaultProps
+  ...baseChartDefaultProps,
 };

@@ -5,7 +5,7 @@
 
 import React, { useCallback, useEffect, useState } from 'react';
 import * as am4core from '@amcharts/amcharts4/core';
-import { useChartTheme } from '@deck/react-hooks/use-chart-theme';
+import { useChartTheme } from '@ui/hooks/use-chart-theme';
 import PropTypes from 'prop-types';
 import { BaseChart } from './BaseChart';
 import {
@@ -16,7 +16,7 @@ import {
   createSeries,
   createLegend,
   createCursor,
-  AddValueChartTooltips
+  AddValueChartTooltips,
 } from './chart-utils';
 
 const axisLabelledLowHigh = (label, target) => {
@@ -33,7 +33,7 @@ function getType(value) {
   return value.match(/_([a-z]+)$/)?.[1];
 }
 
-const getChartMinMax = data =>
+const getChartMinMax = (data) =>
   Object.keys(data).reduce((_ranges, key) => {
     const ranges = _ranges;
     const value = data[key];
@@ -90,7 +90,7 @@ export function QuadrantChart({
   width,
   height,
   tooltips,
-  themeFunctions
+  themeFunctions,
 }) {
   const combinedThemeFuncs = useChartTheme(themeFunctions, false);
   const [normalizedChartData, setNormalizedChartData] = useState([]);
@@ -103,55 +103,55 @@ export function QuadrantChart({
   }, [data]);
 
   const chartFunction = useCallback(
-    chart => {
+    (chart) => {
       // We want both axis to be in the range of 0 - 100
       // to keep grid lines symmetrical
       const resolvedXAxis = {
         ...xAxis,
         max: 100,
         min: 0,
-        overrideFunction: axis => {
+        overrideFunction: (axis) => {
           axis.renderer.labels.template.adapter.add(
             'text',
-            axisLabelledLowHigh
+            axisLabelledLowHigh,
           );
           // eslint-disable-next-line no-param-reassign
           axis.cursorTooltipEnabled = false;
-        }
+        },
       };
 
       const xAxisObj = createValueXAxis(chart, {
         ...resolvedXAxis,
-        isQuadrant: true
+        isQuadrant: true,
       });
-      const yAxisCollection = yAxes.map(yAxis => {
+      const yAxisCollection = yAxes.map((yAxis) => {
         const resolvedYAxis = {
           ...yAxis,
           max: 100,
           min: 0,
-          overrideFunction: axis => {
+          overrideFunction: (axis) => {
             axis.renderer.labels.template.adapter.add(
               'text',
-              axisLabelledLowHigh
+              axisLabelledLowHigh,
             );
             // eslint-disable-next-line no-param-reassign
             axis.cursorTooltipEnabled = false;
-          }
+          },
         };
         return {
           key: yAxis.key,
-          axis: createValueYAxis(chart, { ...resolvedYAxis, isQuadrant: true })
+          axis: createValueYAxis(chart, { ...resolvedYAxis, isQuadrant: true }),
         };
       });
 
       const seriesInstances = createSeries(chart, {
         tooltips: {
           // text: '{categoryY}: {valueY}\n{}: {valueX}',
-          ...tooltips
+          ...tooltips,
         },
         dataFields: { yAxis: 'valueY', xAxis: 'valueX' },
         seriesOptions: series,
-        yAxes: yAxisCollection
+        yAxes: yAxisCollection,
       });
 
       chart.legend = createLegend();
@@ -161,23 +161,23 @@ export function QuadrantChart({
         AddValueChartTooltips(xAxisObj);
       }
 
-      const yFormatter = tooltips.yFormatter || (v => v);
+      const yFormatter = tooltips.yFormatter || ((v) => v);
 
-      seriesInstances.forEach(seriesInstance => {
+      seriesInstances.forEach((seriesInstance) => {
         seriesInstance.adapter.add('tooltipText', (text, target) => {
           const yKey = getType(target.dataFields.valueY);
 
           const valueY = yFormatter(
             denormalizeValue(
               target.tooltipDataItem.valueY,
-              chartMinMaxValues[yKey].max
-            )
+              chartMinMaxValues[yKey].max,
+            ),
           );
           return `[${seriesInstance.fill.hex}]●[/] [bold]${seriesInstance.name}[/]\n [bold]${target.yAxis.title.text}:[/] ${valueY} `;
         });
       });
 
-      quadrants.forEach(quadrant => {
+      quadrants.forEach((quadrant) => {
         const label = chart.createChild(am4core.Label);
         label.isMeasured = false;
 
@@ -185,12 +185,12 @@ export function QuadrantChart({
         label.fill = am4core.color('#abb4c9');
         label.padding(4, 8, 4, 8);
 
-        Object.keys(quadrant.label).forEach(key => {
+        Object.keys(quadrant.label).forEach((key) => {
           label[key] = quadrant.label[key];
         });
       });
     },
-    [quadrants, series, tooltips, xAxis, yAxes, chartMinMaxValues]
+    [quadrants, series, tooltips, xAxis, yAxes, chartMinMaxValues],
   );
 
   return (
@@ -208,11 +208,11 @@ QuadrantChart.propTypes = {
   ...baseChartProps,
   quadrants: PropTypes.arrayOf(
     PropTypes.exact({
-      label: PropTypes.string
-    })
-  )
+      label: PropTypes.string,
+    }),
+  ),
 };
 
 QuadrantChart.defaultProps = {
-  ...baseChartDefaultProps
+  ...baseChartDefaultProps,
 };

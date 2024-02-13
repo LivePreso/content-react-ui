@@ -1,0 +1,17 @@
+{
+  "extends": [
+    "stylelint-config-standard-scss",
+    "stylelint-config-prettier-scss"
+  ],
+  "rules": {
+    "selector-class-pattern": [
+      "^([a-z][a-z0-9]*)(-[a-z0-9]+)*$",
+      { "resolveNestedSelectors": true }
+    ],
+    "color-function-notation": ["legacy", { "ignore": ["with-var-inside"] }],
+    "alpha-value-notation": "number",
+    "property-no-unknown": null,
+    "selector-pseudo-class-no-unknown": null,
+    "no-descending-specificity": null
+  }
+}
