@@ -1,0 +1,37 @@
+:root {
+  // Table (parent component)
+
+  --table-border: 2px solid transparent;
+  --table-fz: var(--text-fz-h6);
+  --table-fw: var(--text-fw-medium);
+  --table-border-radius: var(--border-radius-none);
+
+  // Table.Row (child component)
+  --table-row-background: transparent;
+  --table-row-border: 2px solid var(--border-color);
+
+  // inherit
+  --table-row-fw: var(--table-fw);
+  --table-row-fz: var(--table-fz);
+
+  // highlight rows variant - override with brand colours etc
+  --table-row-background-highlight: #eee;
+  --table-row-fw-highlight: var(--text-fw-medium);
+  --table-row-fz-highlight: var(--table-row-fz);
+
+  // Table.Cell
+  --table-cell-background: transparent;
+  --table-cell-border: 2px solid var(--border-color);
+  --table-cell-padding-v: 10px;
+  --table-cell-padding-h: 20px;
+  --table-cell-align: center;
+
+  // inherit
+  --table-cell-fz: var(--table-row-fz);
+  --table-cell-fw: var(--table-row-fw);
+
+  // highlight cells variant
+  --table-cell-background-highlight: var(--table-row-background-highlight);
+  --table-cell-fw-highlight: var(--table-row-fw-highlight);
+  --table-cell-fz-highlight: var(--table-row-fz-highlight);
+}

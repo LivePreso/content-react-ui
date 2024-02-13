@@ -1,0 +1,40 @@
+:root {
+  // General colours
+  --color-white: #fff;
+  --color-black: #000;
+
+  // l = light
+  // d = dark
+  --color-brand-1: red;
+  --color-brand-1-l: red;
+  --color-brand-1-d: red;
+  --color-brand-1-d1: red;
+  --color-brand-1-d2: var(--color-brand-d);
+  --color-brand-2: yellow;
+  --color-brand-2-l: yellow;
+  --color-brand-2-d: yellow;
+  --color-brand-3: green;
+  --color-brand-3-l: green;
+  --color-brand-3-d: green;
+
+  // Backgrounds
+  --color-bg-1: #fff;
+  --color-bg-2: #ddd;
+  --color-bg-3: #bbb;
+  --color-bg-4: #999;
+  --color-bg-5: #777;
+
+  // Text
+  --color-text: var(--color-black);
+
+  // Contrasts to the respective brand colors
+  --color-contrast-1: var(--color-white);
+  --color-contrast-2: red;
+  --color-contrast-3: var(--color-black);
+
+  // Loader
+  --loading-spinner: var(--color-brand-1);
+
+  // TODO: Add more
+  // TODO: Add LP defaults for component library
+}

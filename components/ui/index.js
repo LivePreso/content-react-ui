@@ -4,3 +4,4 @@ export * from './EditableText';
 export * from './Dropdown';
 export * from './Tabs';
 export * from './Tab';
+export * from './Modal';

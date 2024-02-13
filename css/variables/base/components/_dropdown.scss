@@ -1,0 +1,27 @@
+:root {
+  // Input
+  --dropdown-input-border: var(--border-stroke) solid var(--color-brand-1);
+  --dropdown-input-bg-color: var(--color-brand-1-l);
+  --dropdown-input-padding: var(--space-sml);
+  --dropdown-input-border-radius: var(--border-radius-sml);
+
+  // Text
+  --dropdown-label-color: var(--color-text);
+  --dropdown-label-fz: var(--text-fz-h5);
+  --dropdown-label-lh: var(--text-lh-h5);
+  --dropdown-label-fw: var(--text-fw-normal);
+  --dropdown-item-label-color: var(--dropdown-label-color);
+  --dropdown-item-label-fz: var(--dropdown-label-fz);
+  --dropdown-item-label-lh: var(--dropdown-label-lh);
+  --dropdown-item-label-fw: var(--dropdown-label-fw);
+  --dropdown-item-label-hover-bg: var(--color-brand-1-l2);
+  --dropdown-item-border-radius: var(--border-radius-none);
+
+  // Icons
+  --dropdown-icon-color: var(--color-text);
+
+  // Options
+  --dropdown-options-bg-color: var(--color-white);
+  --dropdown-options-border-radius: var(--border-radius-none);
+  --dropdown-options-pad: 0px;
+}

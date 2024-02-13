@@ -1,0 +1,111 @@
+@import './normalize/import';
+@import './style-mixins';
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  // Components (header, subheader etc.)
+  article,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  input,
+  strong,
+  ol,
+  ul,
+  li,
+  th,
+  td,
+  text,
+  label {
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-decoration: none;
+    margin: 0;
+    font-family: var(--main-font);
+    font-weight: var(--text-fw-normal);
+    color: var(--color-text);
+  }
+
+  em,
+  i {
+    font-style: italic;
+  }
+
+  b,
+  strong {
+    @include strong-styles;
+  }
+
+  h1 {
+    @include h1-styles;
+  }
+
+  h2 {
+    @include h2-styles;
+  }
+
+  h3 {
+    @include h3-styles;
+  }
+
+  h4 {
+    @include h4-styles;
+  }
+
+  h5 {
+    @include h5-styles;
+  }
+
+  h6 {
+    @include h6-styles;
+  }
+
+  p {
+    @include p-styles;
+  }
+
+  ol {
+    margin-top: var(--text-margin-top-ol);
+    padding-left: var(--text-pad-left-ol);
+  }
+
+  ul {
+    margin-top: var(--text-margin-top-ul);
+    padding-left: var(--text-pad-left-ol);
+    list-style: var(--text-list-style-ul);
+  }
+
+  li {
+    font-size: var(--text-fz-li);
+    line-height: var(--text-lh-li);
+    font-weight: var(--text-fw-li);
+    padding-bottom: var(--text-pad-bottom-li);
+
+    b,
+    strong {
+      font-weight: var(--text-fw-li-bold);
+    }
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  ol,
+  ul {
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+}

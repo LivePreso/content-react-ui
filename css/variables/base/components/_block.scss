@@ -1,0 +1,12 @@
+:root {
+  --block-pad-top: var(--space-sml);
+  --block-pad-sides: var(--space-sml);
+  --block-pad-bottom: var(--space-sml);
+  --block-pad: var(--block-pad-top) var(--block-pad-sides)
+    var(--block-pad-bottom);
+  --block-bg-color: var(--color-bg-2);
+  --block-title-bg-color: var(--color-bg-4);
+  --block-border-radius: 0;
+  --block-border: var(--border);
+  --block-margin-bottom: var(--space-med);
+}
