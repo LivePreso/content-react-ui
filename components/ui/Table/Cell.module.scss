@@ -1,0 +1,10 @@
+.cell {
+  padding: var(--table-cell-padding-v) var(--table-cell-padding-h);
+  color: var(--table-cell-text-color);
+  background-color: var(--table-cell-bg);
+  font-size: var(--table-fz);
+  line-height: var(--table-lh);
+  font-weight: var(--table-fw);
+  text-align: var(--table-cell-text-align);
+  vertical-align: var(--table-cell-v-align);
+}

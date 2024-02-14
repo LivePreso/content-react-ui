@@ -1,6 +1,14 @@
 import React from 'react';
-import { addRowAndCellUids, addUids } from '@ui/utils/add-uids';
-import { Table, Row, Cell } from '.';
+import { addRowAndCellUids } from '@ui/utils/add-uids';
+import {
+  Table,
+  Row,
+  Cell,
+  HeaderRow,
+  SubheaderRow,
+  HighlightRow,
+  TitleCell,
+} from '.';
 // import { propertyAnalysisToTableConfig } from '../../js/data-processing/property-analysis';
 import { CELL_TYPES, ROW_TYPES } from './table-constants';
 
@@ -15,7 +23,7 @@ export const Default = {
 
     children: (
       <>
-        <Row type="header">
+        <HeaderRow>
           <Cell colSpan={2}>first cell spans 2</Cell>
           <Cell>
             <span>second</span>
@@ -26,11 +34,9 @@ export const Default = {
           <Cell>
             <span>4th</span>
           </Cell>
-        </Row>
+        </HeaderRow>
         <Row>
-          <Cell type="header">
-            <span>first cell</span>
-          </Cell>
+          <TitleCell title="first cell" />
           <Cell>
             <span>2nd</span>
           </Cell>
@@ -54,7 +60,7 @@ export const StickyColumn = {
     label: 'Sticky first column',
     sticky: 'column',
     children: [
-      <Row type="header">
+      <HeaderRow>
         <Cell>
           <span>first cell spans 2</span>
         </Cell>
@@ -70,9 +76,9 @@ export const StickyColumn = {
         <Cell>
           <span>5th</span>
         </Cell>
-      </Row>,
-      <Row>
-        <Cell type="header">first cell</Cell>
+      </HeaderRow>,
+      <SubheaderRow>
+        <TitleCell title="subheader row" />
         <Cell>
           <span>2nd</span>
         </Cell>
@@ -85,9 +91,9 @@ export const StickyColumn = {
         <Cell>
           <span>5th</span>
         </Cell>
-      </Row>,
-      <Row>
-        <Cell type="header">first cell</Cell>
+      </SubheaderRow>,
+      <HighlightRow>
+        <TitleCell title="highlight row" />
         <Cell>
           <span>2nd</span>
         </Cell>
@@ -100,9 +106,9 @@ export const StickyColumn = {
         <Cell>
           <span>5th</span>
         </Cell>
-      </Row>,
+      </HighlightRow>,
       <Row>
-        <Cell type="header">first cell</Cell>
+        <TitleCell title="first cell" />
         <Cell>
           <span>2nd</span>
         </Cell>
@@ -121,7 +127,14 @@ export const StickyColumn = {
 };
 
 const sampleTableConfig = [
-  { type: ROW_TYPES.HEADER },
+  {
+    type: ROW_TYPES.HEADER,
+    cells: [
+      { type: CELL_TYPES.TEXT, config: { value: 'Column 1' } },
+      { type: CELL_TYPES.TEXT, config: { value: 'Column 2' } },
+      { type: CELL_TYPES.TEXT, config: { value: 'Column 3' } },
+    ],
+  },
   {
     type: ROW_TYPES.SUBHEADER,
 
@@ -235,17 +248,13 @@ const sampleTableConfig = [
   },
 ];
 
-const sampleColumnLayout = [
-  { title: 'column one', width: '33%' },
-  { title: 'column two', width: '33%' },
-  { title: 'column three', width: '33%' },
-];
+const sampleColumnWidths = ['50%', '25%', '25%'];
 
 export const Schema = {
   args: {
     label: 'Default',
     rows: addRowAndCellUids(sampleTableConfig),
-    columns: addUids(sampleColumnLayout),
+    columnWidths: sampleColumnWidths,
   },
 };
 

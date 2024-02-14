@@ -1,5 +1,5 @@
 // get a column config, taking into account colspans of preceding rows
-export function getColWidth(columnLayout, rowItems, targetItem) {
+export function getColWidth(columnWidths, rowItems, targetItem) {
   const targetColumnIndex = rowItems.reduce(
     (_runningIndex, column, columnIndex) => {
       let runningIndex = _runningIndex;
@@ -9,5 +9,5 @@ export function getColWidth(columnLayout, rowItems, targetItem) {
     },
     0,
   );
-  return columnLayout[targetColumnIndex];
+  return columnWidths[targetColumnIndex];
 }

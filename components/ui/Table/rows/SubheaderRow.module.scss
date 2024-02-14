@@ -1,9 +1,10 @@
-.background-colour {
-  --table-cell-fz: var(--text-fz-h6);
-
+.subheader-row {
   td {
-    padding-top: 8px !important;
-    padding-bottom: 8px !important;
-    background-color: var(--color-bg-4) !important;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    background-color: var(--table-subheader-bg);
+    font-size: var(--table-subheader-fz);
+    line-height: var(--table-subheader-lh);
+    font-weight: var(--table-subheader-fw);
   }
 }

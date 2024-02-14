@@ -1,40 +1,92 @@
-:root {
-  // General colours
-  --color-white: #fff;
-  --color-black: #000;
+@use 'sass:map';
 
-  // l = light
-  // d = dark
-  --color-brand-1: red;
-  --color-brand-1-l: red;
-  --color-brand-1-d: red;
-  --color-brand-1-d1: red;
-  --color-brand-1-d2: var(--color-brand-d);
-  --color-brand-2: yellow;
-  --color-brand-2-l: yellow;
-  --color-brand-2-d: yellow;
-  --color-brand-3: green;
-  --color-brand-3-l: green;
-  --color-brand-3-d: green;
+// l = light
+// d = dark
+$colors: (
+  'brand-1': #2206c2,
+  'brand-1-l4': #e9e6f9,
+  'brand-1-l3': #bdb4ed,
+  'brand-1-l2': #9183e1,
+  'brand-1-l1': #6451d4,
+  'brand-1-d1': #1b059b,
+  'brand-1-d2': #140474,
+  'brand-1-d3': #0e024e,
+  'brand-1-d4': #070127,
+  'brand-2': #6d57ff,
+  'brand-3': #7a06ee,
+  'brand-4': #c702e6,
+  'brand-5': #ff3111,
+  'brand-6': #cbfe3a,
+  'brand-7': #0efbed,
 
-  // Backgrounds
-  --color-bg-1: #fff;
-  --color-bg-2: #ddd;
-  --color-bg-3: #bbb;
-  --color-bg-4: #999;
-  --color-bg-5: #777;
+  // greys
+  'white': #fff,
+  'grey-l6': #eee,
+  'grey-l5': #ddd,
+  'grey-l4': #ccc,
+  'grey-l3': #bbb,
+  'grey-l2': #aaa,
+  'grey-l1': #888,
+  'grey': #777,
+  'grey-d1': #666,
+  'grey-d2': #555,
+  'grey-d3': #444,
+  'grey-d4': #333,
+  'grey-d5': #222,
+  'grey-d6': #111,
+  'black': #000,
 
   // Text
-  --color-text: var(--color-black);
+  'text': #000,
+  // neutrals
+  'neutral-2': #666,
+);
+
+:root {
+  @each $name, $color in $colors {
+    --color-#{$name}: #{$color};
+  }
+
+  // Shortcut colors
+  --color-brand-1-l: var(--color-brand-1-l2);
+  --color-brand-1-d: var(--color-brand-1-d3);
+
+  // Backgrounds
+  --color-bg-1: var(--color-white);
+  --color-bg-2: var(--color-grey-l4);
+  --color-bg-3: var(--color-grey-l2);
+  --color-bg-4: var(--color-brand-1);
+  --color-bg-5: var(--color-brand-2);
 
   // Contrasts to the respective brand colors
-  --color-contrast-1: var(--color-white);
-  --color-contrast-2: red;
-  --color-contrast-3: var(--color-black);
+  --color-contrast-1: var(--color-text);
+  --color-contrast-2: var(--color-text);
+  --color-contrast-3: var(--color-text);
+  --color-contrast-4: var(--color-bg-1);
+  --color-contrast-5: var(--color-bg-1);
+}
 
-  // Loader
-  --loading-spinner: var(--color-brand-1);
+// Export for use in storybook
+:export {
+  @each $name, $color in $colors {
+    color-#{$name}: #{$color};
+  }
 
-  // TODO: Add more
-  // TODO: Add LP defaults for component library
+  // Export actual values of shortcut colors
+  color-brand-1-l: map.get($colors, 'brand-1-l2');
+  color-brand-1-d: map.get($colors, 'brand-1-d3');
+
+  // Backgrounds
+  color-bg-1: map.get($colors, 'white');
+  color-bg-2: map.get($colors, 'grey-l4');
+  color-bg-3: map.get($colors, 'grey-l2');
+  color-bg-4: map.get($colors, 'brand-1');
+  color-bg-5: map.get($colors, 'brand-2');
+
+  // Export the actual values of contrast colors
+  color-contrast-1: map.get($colors, 'text');
+  color-contrast-2: map.get($colors, 'text');
+  color-contrast-3: map.get($colors, 'text');
+  color-contrast-4: map.get($colors, 'white');
+  color-contrast-5: map.get($colors, 'white');
 }

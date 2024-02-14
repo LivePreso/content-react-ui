@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import style from './Table.module.scss';
+import style from './Cell.module.scss';
 
 export function Cell(props) {
   const {
@@ -13,7 +13,7 @@ export function Cell(props) {
     width,
     align,
   } = props;
-  const compiledClasses = classNames(style.table, className, {
+  const compiledClasses = classNames(style.cell, className, {
     [style.hasSpanLeft]: rowSpanAdjacent === 'left',
   });
   // width: number = px, string = %

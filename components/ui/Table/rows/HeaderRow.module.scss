@@ -1,7 +1,8 @@
 .header-row {
   td {
-    background-color: var(--table-row-background-highlight) !important;
-    font-size: var(--table-row-fz-highlight) !important;
-    font-weight: var(--table-row-fw-highlight);
+    background-color: var(--table-header-bg);
+    font-size: var(--table-header-fz);
+    line-height: var(--table-header-lh);
+    font-weight: var(--table-header-fw);
   }
 }

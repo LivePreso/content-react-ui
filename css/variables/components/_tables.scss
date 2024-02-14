@@ -3,35 +3,43 @@
 
   --table-border: 2px solid transparent;
   --table-fz: var(--text-fz-h6);
+  --table-lh: var(--text-lh-h6);
   --table-fw: var(--text-fw-medium);
   --table-border-radius: var(--border-radius-none);
 
   // Table.Row (child component)
-  --table-row-background: transparent;
+  --table-row-bg: transparent;
   --table-row-border: 2px solid var(--border-color);
 
-  // inherit
-  --table-row-fw: var(--table-fw);
-  --table-row-fz: var(--table-fz);
+  // header variant
+  --table-header-bg: var(--color-brand-1);
+  --table-header-fz: var(--text-fz-p);
+  --table-header-lh: var(--text-lh-p);
+  --table-header-fw: var(--text-fw-bold);
 
-  // highlight rows variant - override with brand colours etc
-  --table-row-background-highlight: #eee;
-  --table-row-fw-highlight: var(--text-fw-medium);
-  --table-row-fz-highlight: var(--table-row-fz);
+  // subheader variant
+  --table-subheader-bg: var(--color-brand-1-l1);
+  --table-subheader-fz: var(--table-fz);
+  --table-subheader-lh: var(--table-lh);
+  --table-subheader-fw: var(--text-fw-medium);
+
+  // highlight variant - override with brand colours etc
+  --table-highlight-bg: var(--color-brand-1-l2);
+  --table-highlight-fz: var(--table-fz);
+  --table-highlight-lh: var(--table-lh);
+  --table-highlight-fw: var(--text-fw-medium);
+
+  // title variant
+  --table-title-fz: var(--table-header-fz);
+  --table-title-lh: var(--table-header-lh);
+  --table-title-fw: var(--table-header-fw);
 
   // Table.Cell
-  --table-cell-background: transparent;
+  --table-cell-bg: transparent;
   --table-cell-border: 2px solid var(--border-color);
   --table-cell-padding-v: 10px;
   --table-cell-padding-h: 20px;
-  --table-cell-align: center;
-
-  // inherit
-  --table-cell-fz: var(--table-row-fz);
-  --table-cell-fw: var(--table-row-fw);
-
-  // highlight cells variant
-  --table-cell-background-highlight: var(--table-row-background-highlight);
-  --table-cell-fw-highlight: var(--table-row-fw-highlight);
-  --table-cell-fz-highlight: var(--table-row-fz-highlight);
+  --table-cell-text-align: center;
+  --table-cell-v-align: center;
+  --table-cell-text-color: var(--color-text);
 }

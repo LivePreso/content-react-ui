@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { ROW_TYPES, columnPropTypes } from './table-constants';
+import { getColWidth } from '@ui/utils/generate-table-layout';
+import { ROW_TYPES, CELL_TYPES_MAP } from './table-constants';
+import { TextCell } from './cells';
 import { BodyRow, HeaderRow, SubheaderRow, HighlightRow } from './rows';
 import style from './Table.module.scss';
 
@@ -10,7 +12,7 @@ export function Table(props) {
     hasBorder,
     isPresoManagerInteractive,
     rows,
-    columns,
+    columnWidths,
     children,
     className,
     sticky,
@@ -31,54 +33,51 @@ export function Table(props) {
   };
 
   const outputRows = rows.map((row) => {
-    const {
-      type: rowType,
-      uid,
-      cells: rowCells,
-      className: rowClassName,
-    } = row;
+    const { type: rowType, uid, cells = [], className: rowClassName } = row;
+
+    const rowCells = cells.map((cell) => {
+      const { type, config, ...cellProps } = cell;
+      const width = getColWidth(columnWidths, cells, cell);
+      // augment with a key
+      cellProps.key = cellProps.uid;
+      cellProps.width = width;
+
+      const CellComponent = CELL_TYPES_MAP[type];
+
+      if (!CellComponent) {
+        const errorMessage = { value: `unknown component '${type}' ` };
+        return <TextCell {...cellProps} config={errorMessage} />;
+      }
+
+      return <CellComponent {...cellProps} {...config} />;
+    });
+
     if (rowType === ROW_TYPES.HEADER) {
-      // header uses columns to generate cells, not rowCells
       return (
-        <HeaderRow
-          key={uid}
-          uid={uid}
-          columns={columns}
-          className={rowClassName}
-        />
+        <HeaderRow key={uid} uid={uid} className={rowClassName}>
+          {rowCells}
+        </HeaderRow>
       );
     }
     if (row.type === ROW_TYPES.SUBHEADER) {
       return (
-        <SubheaderRow
-          key={uid}
-          uid={uid}
-          cells={rowCells}
-          columns={columns}
-          className={rowClassName}
-        />
+        <SubheaderRow key={uid} uid={uid} className={rowClassName}>
+          {rowCells}
+        </SubheaderRow>
       );
     }
     if (row.type === ROW_TYPES.HIGHLIGHT) {
       return (
-        <HighlightRow
-          key={uid}
-          uid={uid}
-          cells={rowCells}
-          columns={columns}
-          className={rowClassName}
-        />
+        <HighlightRow key={uid} uid={uid} className={rowClassName}>
+          {rowCells}
+        </HighlightRow>
       );
     }
     // default row style
     return (
-      <BodyRow
-        key={uid}
-        uid={uid}
-        cells={rowCells}
-        columns={columns}
-        className={rowClassName}
-      />
+      <BodyRow key={uid} uid={uid} className={rowClassName}>
+        {rowCells}
+      </BodyRow>
     );
   });
 
@@ -108,13 +107,15 @@ Table.propTypes = {
     PropTypes.exact({
       uid: PropTypes.string.isRequired,
       type: PropTypes.oneOf(Object.values(ROW_TYPES)).isRequired,
-      // Different types above will have different allowed cell types. We'll use the
-      // component attached to each type to further check the config props.
+      // We're letting the components further down check the cell types
+      // rather than trying to check at the top level due to complexity of the propTypes
       cells: PropTypes.arrayOf(PropTypes.object),
       className: PropTypes.string,
     }),
   ),
-  columns: columnPropTypes,
+  columnWidths: PropTypes.arrayOf(
+    PropTypes.oneOf([PropTypes.number, PropTypes.string]),
+  ),
   children: PropTypes.node,
   sticky: PropTypes.oneOf(['none', 'row', 'column', 'both']),
   isPresoManagerInteractive: PropTypes.bool,
@@ -124,7 +125,7 @@ Table.propTypes = {
 Table.defaultProps = {
   hasBorder: false,
   rows: [],
-  columns: [],
+  columnWidths: [],
   children: [],
   sticky: 'none',
   isPresoManagerInteractive: false,
