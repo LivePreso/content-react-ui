@@ -93,7 +93,7 @@ Table.propTypes = {
     }),
   ),
   columnWidths: PropTypes.arrayOf(
-    PropTypes.oneOf([PropTypes.number, PropTypes.string]),
+    PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   ),
   children: PropTypes.node,
   sticky: PropTypes.oneOf(['none', 'row', 'column', 'both']),
