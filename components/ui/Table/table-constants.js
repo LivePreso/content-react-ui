@@ -10,12 +10,22 @@ import {
   ToggleCell,
 } from './cells';
 
+import { BodyRow, SubheaderRow, HighlightRow, HeaderRow } from './rows';
+
 export const ROW_TYPES = {
   DEFAULT: 'Default',
   SUBHEADER: 'SubheaderRow',
   HIGHLIGHT: 'HighlightRow',
   HEADER: 'HeaderRow',
   BODY: 'BodyRow',
+};
+
+export const ROW_TYPES_MAP = {
+  [ROW_TYPES.DEFAULT]: BodyRow,
+  [ROW_TYPES.SUBHEADER]: SubheaderRow,
+  [ROW_TYPES.HIGHLIGHT]: HighlightRow,
+  [ROW_TYPES.HEADER]: HeaderRow,
+  [ROW_TYPES.BODY]: BodyRow,
 };
 
 export const CELL_TYPES = {
@@ -41,15 +51,3 @@ export const CELL_TYPES_MAP = {
   [CELL_TYPES.EDITABLE]: EditableTextCell,
   [CELL_TYPES.BUTTONS]: ButtonsCell,
 };
-
-// export const columnPropTypes = PropTypes.arrayOf(
-//   PropTypes.exact({
-//     uid: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-//     width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-//     title: PropTypes.string,
-//     type: PropTypes.oneOf(Object.values(CELL_TYPES)),
-//     // Different types above will have different config types. We'll use the
-//     // component attached to each type to further check the config props.
-//     config: PropTypes.object,
-//   }),
-// );

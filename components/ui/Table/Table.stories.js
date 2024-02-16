@@ -23,30 +23,32 @@ export const Default = {
 
     children: (
       <>
-        <HeaderRow>
-          <Cell colSpan={2}>first cell spans 2</Cell>
-          <Cell>
+        <HeaderRow uid="row-1">
+          <Cell uid="r1-c1" colSpan={2}>
+            first cell spans 2
+          </Cell>
+          <Cell uid="r1-c2">
             <span>second</span>
           </Cell>
-          <Cell>
+          <Cell uid="r1-c3">
             <span>third</span>
           </Cell>
-          <Cell>
+          <Cell uid="r1-c4">
             <span>4th</span>
           </Cell>
         </HeaderRow>
-        <Row>
-          <TitleCell title="first cell" />
-          <Cell>
+        <Row uid="row-2">
+          <TitleCell uid="r2-c1" title="first cell" />
+          <Cell uid="r2-c2">
             <span>2nd</span>
           </Cell>
-          <Cell>
+          <Cell uid="r2-c3">
             <span>3rd</span>
           </Cell>
-          <Cell>
+          <Cell uid="r2-c4">
             <span>4th</span>
           </Cell>
-          <Cell>
+          <Cell uid="r2-c5">
             <span>5th</span>
           </Cell>
         </Row>
@@ -60,65 +62,65 @@ export const StickyColumn = {
     label: 'Sticky first column',
     sticky: 'column',
     children: [
-      <HeaderRow>
-        <Cell>
+      <HeaderRow uid="row-1">
+        <Cell uid="r1-c1">
           <span>first cell spans 2</span>
         </Cell>
-        <Cell>
+        <Cell uid="r1-c2">
           <span>second</span>
         </Cell>
-        <Cell>
+        <Cell uid="r1-c3">
           <span>third</span>
         </Cell>
-        <Cell>
+        <Cell uid="r1-c4">
           <span>4th</span>
         </Cell>
-        <Cell>
+        <Cell uid="r1-c5">
           <span>5th</span>
         </Cell>
       </HeaderRow>,
-      <SubheaderRow>
-        <TitleCell title="subheader row" />
-        <Cell>
+      <SubheaderRow uid="row-2">
+        <TitleCell uid="r1-c1" title="subheader row" />
+        <Cell uid="r1-c2">
           <span>2nd</span>
         </Cell>
-        <Cell>
+        <Cell uid="r1-c3">
           <span>3rd</span>
         </Cell>
-        <Cell>
+        <Cell uid="r1-c4">
           <span>4th</span>
         </Cell>
-        <Cell>
+        <Cell uid="r1-c5">
           <span>5th</span>
         </Cell>
       </SubheaderRow>,
-      <HighlightRow>
-        <TitleCell title="highlight row" />
-        <Cell>
+      <HighlightRow uid="row-3">
+        <TitleCell uid="r1-c1" title="highlight row" />
+        <Cell uid="r1-c2">
           <span>2nd</span>
         </Cell>
-        <Cell>
+        <Cell uid="r1-c3">
           <span>3rd</span>
         </Cell>
-        <Cell>
+        <Cell uid="r1-c4">
           <span>4th</span>
         </Cell>
-        <Cell>
+        <Cell uid="r1-c5">
           <span>5th</span>
         </Cell>
       </HighlightRow>,
-      <Row>
-        <TitleCell title="first cell" />
-        <Cell>
+      <Row uid="row-4">
+        <TitleCell uid="r1-c1" title="first cell" />
+        <Cell uid="r1-c2">
           <span>2nd</span>
         </Cell>
-        <Cell>
+        <Cell uid="r1-c3">
           <span>3rd</span>
         </Cell>
-        <Cell>
+        <Cell uid="r1-c4">
           <span>4th</span>
         </Cell>
-        <Cell>
+        <Cell uid="r1-c5">
           <span>5th</span>
         </Cell>
       </Row>,

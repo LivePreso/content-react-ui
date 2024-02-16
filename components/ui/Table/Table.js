@@ -2,9 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { getColWidth } from '@ui/utils/generate-table-layout';
-import { ROW_TYPES, CELL_TYPES_MAP } from './table-constants';
+import { ROW_TYPES, CELL_TYPES_MAP, ROW_TYPES_MAP } from './table-constants';
 import { TextCell } from './cells';
-import { BodyRow, HeaderRow, SubheaderRow, HighlightRow } from './rows';
 import style from './Table.module.scss';
 
 export function Table(props) {
@@ -52,32 +51,12 @@ export function Table(props) {
       return <CellComponent {...cellProps} {...config} />;
     });
 
-    if (rowType === ROW_TYPES.HEADER) {
-      return (
-        <HeaderRow key={uid} uid={uid} className={rowClassName}>
-          {rowCells}
-        </HeaderRow>
-      );
-    }
-    if (row.type === ROW_TYPES.SUBHEADER) {
-      return (
-        <SubheaderRow key={uid} uid={uid} className={rowClassName}>
-          {rowCells}
-        </SubheaderRow>
-      );
-    }
-    if (row.type === ROW_TYPES.HIGHLIGHT) {
-      return (
-        <HighlightRow key={uid} uid={uid} className={rowClassName}>
-          {rowCells}
-        </HighlightRow>
-      );
-    }
-    // default row style
+    const RowComponent = ROW_TYPES_MAP[rowType] || ROW_TYPES_MAP.BodyRow;
+
     return (
-      <BodyRow key={uid} uid={uid} className={rowClassName}>
+      <RowComponent key={uid} uid={uid} className={rowClassName}>
         {rowCells}
-      </BodyRow>
+      </RowComponent>
     );
   });
 
