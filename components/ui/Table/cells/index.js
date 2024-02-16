@@ -7,3 +7,4 @@ export * from './ScoreCell';
 export * from './EditableTextCell';
 export * from './ToggleCell';
 export * from './ButtonsCell';
+export * from './LegendCell';

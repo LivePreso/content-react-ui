@@ -1,0 +1,17 @@
+.legend-cell {
+  .container {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .token {
+    flex: none;
+    width: var(--table-legend-token-width);
+    height: var(--table-legend-token-width);
+    margin-right: var(--table-legend-token-margin);
+  }
+
+  .label {
+    min-width: 0;
+  }
+}

@@ -42,4 +42,10 @@
   --table-cell-text-align: center;
   --table-cell-v-align: center;
   --table-cell-text-color: var(--color-text);
+
+  // Legend cell
+  --table-legend-token-size: 20px;
+  --table-legend-token-width: var(--table-legend-token-size);
+  --table-legend-token-height: var(--table-legend-token-size);
+  --table-legend-token-margin: var(--space-sml);
 }

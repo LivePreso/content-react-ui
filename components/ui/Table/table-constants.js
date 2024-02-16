@@ -8,6 +8,7 @@ import {
   SubTitleCell,
   TextCell,
   ToggleCell,
+  LegendCell,
 } from './cells';
 
 import { BodyRow, SubheaderRow, HighlightRow, HeaderRow } from './rows';
@@ -37,6 +38,7 @@ export const CELL_TYPES = {
   SCORE: 'ScoreCell',
   TOGGLE: 'ToggleCell',
   EDITABLE: 'EditableTextCell',
+  LEGEND: 'LegendCell',
   BUTTONS: 'ButtonsCell',
 };
 
@@ -49,5 +51,6 @@ export const CELL_TYPES_MAP = {
   [CELL_TYPES.SCORE]: ScoreCell,
   [CELL_TYPES.TOGGLE]: ToggleCell,
   [CELL_TYPES.EDITABLE]: EditableTextCell,
+  [CELL_TYPES.LEGEND]: LegendCell,
   [CELL_TYPES.BUTTONS]: ButtonsCell,
 };
