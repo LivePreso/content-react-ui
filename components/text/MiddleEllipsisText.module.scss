@@ -1,0 +1,14 @@
+.wrapper {
+  display: flex;
+
+  .before-ellipsis {
+    flex: 0 1 auto;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .after-ellipsis {
+    flex: none;
+  }
+}
