@@ -11,29 +11,6 @@
   --table-row-bg: transparent;
   --table-row-border: 2px solid var(--border-color);
 
-  // header variant
-  --table-header-bg: var(--color-brand-1);
-  --table-header-fz: var(--text-fz-p);
-  --table-header-lh: var(--text-lh-p);
-  --table-header-fw: var(--text-fw-bold);
-
-  // subheader variant
-  --table-subheader-bg: var(--color-brand-1-l1);
-  --table-subheader-fz: var(--table-fz);
-  --table-subheader-lh: var(--table-lh);
-  --table-subheader-fw: var(--text-fw-medium);
-
-  // highlight variant - override with brand colours etc
-  --table-highlight-bg: var(--color-brand-1-l2);
-  --table-highlight-fz: var(--table-fz);
-  --table-highlight-lh: var(--table-lh);
-  --table-highlight-fw: var(--text-fw-medium);
-
-  // title variant
-  --table-title-fz: var(--table-header-fz);
-  --table-title-lh: var(--table-header-lh);
-  --table-title-fw: var(--table-header-fw);
-
   // Table.Cell
   --table-cell-bg: transparent;
   --table-cell-border: 2px solid var(--border-color);
@@ -42,6 +19,38 @@
   --table-cell-text-align: center;
   --table-cell-v-align: center;
   --table-cell-text-color: var(--color-text);
+
+  // header variant
+  --table-header-bg: var(--color-brand-1);
+  --table-header-color: var(--color-contrast-4);
+  --table-header-fz: var(--text-fz-p);
+  --table-header-lh: var(--text-lh-p);
+  --table-header-fw: var(--text-fw-bold);
+  --table-header-cell-padding-v: var(--table-cell-padding-v);
+  --table-header-cell-padding-h: var(--table-cell-padding-h);
+
+  // subheader variant
+  --table-subheader-bg: var(--color-brand-1-l1);
+  --table-subheader-color: var(--color-contrast-1);
+  --table-subheader-fz: var(--table-fz);
+  --table-subheader-lh: var(--table-lh);
+  --table-subheader-fw: var(--text-fw-medium);
+  --table-subheader-cell-padding-v: var(--table-cell-padding-v);
+  --table-subheader-cell-padding-h: var(--table-cell-padding-h);
+
+  // highlight variant - override with brand colours etc
+  --table-highlight-bg: var(--color-brand-1-l2);
+  --table-highlight-color: var(--color-contrast-4);
+  --table-highlight-fz: var(--table-fz);
+  --table-highlight-lh: var(--table-lh);
+  --table-highlight-fw: var(--text-fw-medium);
+  --table-highlight-cell-padding-v: var(--table-cell-padding-v);
+  --table-highlight-cell-padding-h: var(--table-cell-padding-h);
+
+  // title variant
+  --table-title-fz: var(--table-header-fz);
+  --table-title-lh: var(--table-header-lh);
+  --table-title-fw: var(--table-header-fw);
 
   // Legend cell
   --table-legend-token-size: 20px;

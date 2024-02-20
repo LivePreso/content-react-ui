@@ -9,7 +9,6 @@ export function EditableTextCell(props) {
     isCompany,
     isReadOnly,
     tag,
-    label,
     toolbar,
     children,
     ...cellProps
@@ -21,7 +20,6 @@ export function EditableTextCell(props) {
     isCompany,
     isReadOnly,
     tag,
-    label,
     toolbar,
   };
 

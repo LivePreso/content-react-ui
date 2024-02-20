@@ -1,6 +1,9 @@
 .header-row {
   td {
+    padding: var(--table-header-cell-padding-v)
+      var(--table-header-cell-padding-h);
     background-color: var(--table-header-bg);
+    color: var(--table-header-color);
     font-size: var(--table-header-fz);
     line-height: var(--table-header-lh);
     font-weight: var(--table-header-fw);

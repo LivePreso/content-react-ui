@@ -1,7 +1,7 @@
 :root {
-  --grid-gap-sml: 10px;
-  --grid-gap-med: 30px;
-  --grid-gap-lrg: 50px;
+  --grid-gap-sml: var(--space-sml);
+  --grid-gap-med: var(--space-med);
+  --grid-gap-lrg: var(--space-lrg);
   --col-gap-sml: var(--grid-gap-sml);
   --col-gap-med: var(--grid-gap-med);
   --col-gap-lrg: var(--grid-gap-lrg);

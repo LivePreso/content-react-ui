@@ -1,8 +1,9 @@
 .subheader-row {
   td {
-    padding-top: 8px;
-    padding-bottom: 8px;
+    padding: var(--table-subheader-cell-padding-v)
+      var(--table-subheader-cell-padding-h);
     background-color: var(--table-subheader-bg);
+    color: var(--table-subheader-color);
     font-size: var(--table-subheader-fz);
     line-height: var(--table-subheader-lh);
     font-weight: var(--table-subheader-fw);
