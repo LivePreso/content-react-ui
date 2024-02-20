@@ -1,4 +1,23 @@
+.wrapper {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .modal {
-  .is-open {
-  }
+  position: relative;
+  padding: 20px;
+  margin: auto var(--modal-margin-sides);
+  border-radius: var(--border-radius-med);
+  background-color: var(--color-bg-1);
+}
+
+.shroud {
+  position: absolute;
+  inset: 0;
+  background-color: var(--color-black);
+  opacity: 0.4;
+  cursor: pointer;
 }
