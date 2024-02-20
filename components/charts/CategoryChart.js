@@ -4,6 +4,7 @@
 ] */
 
 import React, { useCallback } from 'react';
+import PropTypes from 'prop-types';
 import { useChartTheme } from '@ui/hooks/use-chart-theme';
 import { BaseChart } from './BaseChart';
 import {
@@ -26,6 +27,8 @@ export function CategoryChart({
   data,
   width,
   height,
+  showLegend,
+  enableCursor,
   tooltips,
   themeFunctions,
 }) {
@@ -49,10 +52,15 @@ export function CategoryChart({
         yAxes: yAxisCollection,
       });
 
-      chart.legend = createLegend();
-      chart.cursor = createCursor(xAxisObj);
+      if (showLegend) {
+        chart.legend = createLegend();
+      }
+
+      if (enableCursor) {
+        chart.cursor = createCursor(xAxisObj);
+      }
     },
-    [series, tooltips, xAxis, yAxes],
+    [series, tooltips, xAxis, yAxes, showLegend, enableCursor],
   );
 
   return (
@@ -68,8 +76,10 @@ export function CategoryChart({
 
 CategoryChart.propTypes = {
   ...baseChartProps,
+  enableCursor: PropTypes.bool,
 };
 
 CategoryChart.defaultProps = {
   ...baseChartDefaultProps,
+  enableCursor: false,
 };

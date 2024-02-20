@@ -26,6 +26,7 @@ export function DateChart({
   data,
   width,
   height,
+  showLegend,
   tooltips,
   themeFunctions,
 }) {
@@ -47,10 +48,13 @@ export function DateChart({
         granularity: xAxis.granularity,
       });
 
-      chart.legend = createLegend();
+      if (showLegend) {
+        chart.legend = createLegend();
+      }
+
       chart.cursor = createCursor(xAxisObj);
     },
-    [series, tooltips, xAxis, yAxes],
+    [series, tooltips, xAxis, yAxes, showLegend],
   );
 
   return (

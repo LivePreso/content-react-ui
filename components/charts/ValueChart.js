@@ -14,7 +14,7 @@ import {
   createSeries,
   createLegend,
   createCursor,
-  AddValueChartTooltips,
+  addValueChartTooltips,
 } from './utils/xy-chart-utils';
 
 /**
@@ -27,6 +27,7 @@ export function ValueChart({
   data,
   width,
   height,
+  showLegend,
   tooltips,
   themeFunctions,
 }) {
@@ -51,13 +52,15 @@ export function ValueChart({
       });
 
       if (tooltips.active) {
-        AddValueChartTooltips(xAxisObj);
+        addValueChartTooltips(xAxisObj);
+      }
+      if (showLegend) {
+        chart.legend = createLegend();
       }
 
-      chart.legend = createLegend();
       chart.cursor = createCursor(xAxisObj);
     },
-    [series, tooltips, xAxis, yAxes],
+    [series, tooltips, xAxis, yAxes, showLegend],
   );
 
   return (

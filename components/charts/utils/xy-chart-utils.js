@@ -13,6 +13,7 @@ am4core.options.autoSetClassName = true;
 export const baseChartProps = {
   /** AMcharts 4 theme function */
   themeFunctions: PropTypes.arrayOf(PropTypes.func),
+  showLegend: PropTypes.bool,
   tooltips: PropTypes.exact({
     active: PropTypes.bool,
     combineSeries: PropTypes.bool,
@@ -53,6 +54,8 @@ export const baseChartProps = {
     extraMinMax: PropTypes.number,
     numberFormat: PropTypes.string,
     granularity: PropTypes.oneOf(['day', 'week', 'month', 'quarter']),
+    hideGrid: PropTypes.bool,
+    hideLabels: PropTypes.bool,
     /**
      * Exposes "axis" to allow for setting custom config/adapters
      */
@@ -67,6 +70,8 @@ export const baseChartProps = {
       min: PropTypes.number,
       max: PropTypes.number,
       extraMinMax: PropTypes.number,
+      hideGrid: PropTypes.bool,
+      hideLabels: PropTypes.bool,
       /**
        * https://www.amcharts.com/docs/v4/concepts/formatters/formatting-numbers/
        */
@@ -86,6 +91,7 @@ export const baseChartProps = {
 
 export const baseChartDefaultProps = {
   themeFunctions: [],
+  showLegend: false,
   tooltips: {
     active: false,
   },
@@ -118,11 +124,21 @@ function createValueAxis(
     extraMinMax = null,
     isQuadrant = false,
     overrideFunction = null,
+    hideGrid = false,
+    hideLabels = false,
   } = {},
 ) {
   const axis = chart[`${direction}Axes`].push(new am4charts.ValueAxis());
   axis.title.text = title;
   axis.cursorTooltipEnabled = true;
+  axis.renderer.grid.template.disabled = hideGrid;
+  axis.renderer.labels.template.disabled = hideLabels;
+
+  if (direction === 'y') {
+    axis.renderer.baseGrid.stroke = am4core.color('#abb4c9');
+    axis.renderer.baseGrid.strokeWidth = 2;
+    axis.renderer.baseGrid.strokeOpacity = 1;
+  }
 
   if (min !== null) axis.min = min;
   if (max !== null) axis.max = max;
@@ -158,10 +174,12 @@ export function createValueYAxis(chart, { opposite = false, ...options } = {}) {
 
   axis.renderer.opposite = opposite || false;
 
-  if (opposite) {
-    axis.title.marginLeft = 50;
-  } else {
-    axis.title.marginRight = 50;
+  if (!options.hideLabels) {
+    if (opposite) {
+      axis.title.marginLeft = 50;
+    } else {
+      axis.title.marginRight = 50;
+    }
   }
 
   if (chart.yAxes.indexOf(axis) > 0) {
@@ -179,13 +197,15 @@ export function createValueXAxis(chart, options = {}) {
 function createCategoryAxis(
   chart,
   direction = 'x',
-  { key = 'category', title = '' } = {},
+  { key = 'category', title = '', hideGrid = false, hideLabels = false } = {},
 ) {
   const axis = chart[`${direction}Axes`].push(new am4charts.CategoryAxis());
   axis.dataFields.category = key;
   axis.title.text = title;
   axis.renderer.cellStartLocation = 0.2;
   axis.renderer.cellEndLocation = 0.8;
+  axis.renderer.grid.template.disabled = hideGrid;
+  axis.renderer.labels.template.disabled = hideLabels;
   axis.cursorTooltipEnabled = false;
   return axis;
 }
@@ -251,7 +271,12 @@ function setDateFormat(axis, granularity) {
 function createDateAxis(
   chart,
   direction = 'x',
-  { title = '', granularity = 'month' } = {},
+  {
+    title = '',
+    granularity = 'month',
+    hideGrid = false,
+    hideLabels = false,
+  } = {},
 ) {
   const axis = chart[`${direction}Axes`].push(new am4charts.DateAxis());
   axis.title.text = title;
@@ -259,6 +284,8 @@ function createDateAxis(
 
   axis.renderer.cellStartLocation = 0.2;
   axis.renderer.cellEndLocation = 0.8;
+  axis.renderer.grid.template.disabled = hideGrid;
+  axis.renderer.labels.template.disabled = hideLabels;
   if (granularity === 'day' || granularity === 'week') {
     axis.renderer.minGridDistance = 30;
     // TODO: investigate changing this dynamically if needed
@@ -482,7 +509,7 @@ export function createCursor(xAxis) {
  * Tooltips do not work out of the box for value xAxis
  * https://www.amcharts.com/docs/v4/tutorials/multiple-cursor-tooltips-on-scatter-chart/
  */
-export function AddValueChartTooltips(xAxis) {
+export function addValueChartTooltips(xAxis) {
   if (xAxis) {
     xAxis.getSeriesDataItem = (seri, position) => {
       const key = xAxis.axisFieldName + xAxis.axisLetter;
