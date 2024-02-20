@@ -10,8 +10,24 @@ export function isInvalidNumber(num) {
   );
 }
 
-export function getPlural(number) {
-  return number === 1 ? '' : 's';
+export function isUpperCase(str) {
+  return str === str.toUpperCase();
+}
+
+export function getPlural(string, count = 0) {
+  const strLower = string.toLowerCase();
+  const isSingle = count === 1;
+  const isUpper = isUpperCase(string);
+  let val = isSingle ? string : `${string}s`;
+
+  // Add special case plurals here:
+  if (strLower === 'child' || strLower === 'children') {
+    // Slice to maintain possible starting uppercase
+    const childStr = string.slice(0, 5);
+    val = isSingle ? childStr : `${childStr}ren`;
+  }
+
+  return isUpper ? val.toUpperCase() : val;
 }
 
 export function posNegFactory({ pos, neg }) {
