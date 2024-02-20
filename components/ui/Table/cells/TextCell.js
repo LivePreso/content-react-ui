@@ -26,7 +26,7 @@ TextCell.propTypes = {
 };
 
 TextCell.defaultProps = {
-  value: 0,
+  value: null,
   formatter: null,
   color: null,
   valueClassName: null,
