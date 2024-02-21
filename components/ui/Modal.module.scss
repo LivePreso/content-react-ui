@@ -9,10 +9,17 @@
 
 .modal {
   position: relative;
-  padding: 20px;
+  padding: var(--modal-padding-top) var(--modal-padding-sides)
+    var(--modal-padding-bottom);
   margin: auto var(--modal-margin-sides);
-  border-radius: var(--border-radius-med);
+  border-radius: var(--modal-border-radius);
   background-color: var(--color-bg-1);
+  max-height: 80%;
+
+  .contents {
+    max-height: 100%;
+    overflow: auto;
+  }
 }
 
 .shroud {
