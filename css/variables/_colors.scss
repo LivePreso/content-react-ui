@@ -38,6 +38,8 @@ $colors: (
 
   // Text
   'text': #000,
+  'text-contrast': #fff,
+
   // neutrals
   'neutral-2': #666,
 );
@@ -62,8 +64,8 @@ $colors: (
   --color-contrast-1: var(--color-text);
   --color-contrast-2: var(--color-text);
   --color-contrast-3: var(--color-text);
-  --color-contrast-4: var(--color-bg-1);
-  --color-contrast-5: var(--color-bg-1);
+  --color-contrast-4: var(--color-text-contrast);
+  --color-contrast-5: var(--color-text-contrast);
 }
 
 // Export for use in storybook
@@ -87,6 +89,6 @@ $colors: (
   color-contrast-1: map.get($colors, 'text');
   color-contrast-2: map.get($colors, 'text');
   color-contrast-3: map.get($colors, 'text');
-  color-contrast-4: map.get($colors, 'white');
-  color-contrast-5: map.get($colors, 'white');
+  color-contrast-4: map.get($colors, 'text-contrast');
+  color-contrast-5: map.get($colors, 'text-contrast');
 }
