@@ -1,8 +1,10 @@
 .button {
-  display: block;
-  color: white;
-  background-color: var(--button-color-bg);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   padding: var(--space-med) var(--space-xlrg2);
+  color: var(--button-color-text);
+  background-color: var(--button-color-bg);
   border: 0;
   border-radius: 100px;
   cursor: pointer;
@@ -13,28 +15,21 @@
 
   .left-icon,
   .right-icon {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     vertical-align: middle;
-  }
-
-  .left-icon {
-    margin-right: 8px;
-  }
-
-  .right-icon {
-    margin-left: 8px;
   }
 
   svg {
     fill: var(--button-color-icon);
-    width: 20px;
-    height: 20px;
   }
 
-  &:hover {
+  &:hover:not(:disabled) {
     background-color: var(--button-color-hover);
   }
 
-  &:active {
+  &:active:not(:disabled) {
     background-color: var(--button-color-active);
   }
 
@@ -46,16 +41,9 @@
   &:disabled {
     cursor: not-allowed;
     opacity: 0.7;
-
-    &:hover {
-      background-color: var(--button-color-bg);
-    }
-
-    &:active {
-      background-color: var(--button-color-bg);
-    }
   }
 
+  // variant
   &.secondary {
     border: 1px solid var(--button-color-bg);
     background-color: transparent;
@@ -65,7 +53,7 @@
       fill: var(--button-color-bg);
     }
 
-    &:hover {
+    &:hover:not(:disabled) {
       border-color: var(--button-color-hover);
       color: var(--button-color-hover);
 
@@ -77,19 +65,142 @@
 
   &.text {
     border: 0;
+    padding: 0;
     background-color: transparent;
     color: var(--button-color-bg);
-    padding: 0;
 
     svg {
       fill: var(--button-color-bg);
     }
 
-    &:hover {
+    &:focus {
+      color: var(--button-color-focus);
+      box-shadow: none;
+
+      svg {
+        fill: var(--button-color-focus);
+      }
+    }
+
+    &:hover:not(:disabled) {
       color: var(--button-color-hover);
 
       svg {
         fill: var(--button-color-hover);
+      }
+    }
+  }
+
+  // size
+  &.small {
+    .label {
+      font-size: var(--button-fz-small);
+      line-height: var(--button-lh-small);
+      font-weight: var(--button-fw-small);
+    }
+
+    .left-icon {
+      margin-right: var(--button-icon-margin-small);
+    }
+
+    .right-icon {
+      margin-left: var(--button-icon-margin-small);
+    }
+
+    svg {
+      width: var(--button-icon-sz-small);
+      height: var(--button-icon-sz-small);
+    }
+  }
+
+  &.medium {
+    .label {
+      font-size: var(--button-fz-medium);
+      line-height: var(--button-lh-medium);
+      font-weight: var(--button-fw-medium);
+    }
+
+    .left-icon {
+      margin-right: var(--button-icon-margin-medium);
+    }
+
+    .right-icon {
+      margin-left: var(--button-icon-margin-medium);
+    }
+
+    svg {
+      width: var(--button-icon-sz-medium);
+      height: var(--button-icon-sz-medium);
+    }
+  }
+
+  &.large {
+    .label {
+      font-size: var(--button-fz-large);
+      line-height: var(--button-lh-large);
+      font-weight: var(--button-fw-large);
+    }
+
+    .left-icon {
+      margin-right: var(--button-icon-margin-large);
+    }
+
+    .right-icon {
+      margin-left: var(--button-icon-margin-large);
+    }
+
+    svg {
+      width: var(--button-icon-sz-large);
+      height: var(--button-icon-sz-large);
+    }
+  }
+
+  // inverted colours
+  &.inverted-colors {
+    color: var(--button-color-text-inverted);
+    background-color: var(--button-color-bg-inverted);
+
+    &.secondary {
+      border-color: var(--button-color-bg-inverted);
+      background-color: transparent;
+      color: var(--button-color-bg-inverted);
+
+      svg {
+        fill: var(--button-color-bg-inverted);
+      }
+
+      &:hover:not(:disabled) {
+        border-color: var(--button-color-hover-inverted);
+        color: var(--button-color-hover-inverted);
+
+        svg {
+          fill: var(--button-color-hover-inverted);
+        }
+      }
+    }
+
+    &.text {
+      background-color: transparent;
+      color: var(--button-color-bg-inverted);
+
+      svg {
+        fill: var(--button-color-bg-inverted);
+      }
+
+      &:focus {
+        color: var(--button-color-focus-inverted);
+
+        svg {
+          fill: var(--button-color-focus-inverted);
+        }
+      }
+
+      &:hover:not(:disabled) {
+        color: var(--button-color-hover-inverted);
+
+        svg {
+          fill: var(--button-color-hover-inverted);
+        }
       }
     }
   }

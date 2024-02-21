@@ -10,12 +10,20 @@ export function Button(props) {
     label,
     leftIcon,
     rightIcon,
+    invertColors,
     variant,
+    size,
     isPresoManagerInteractive,
     ...rest
   } = props;
 
-  const resolvedClassName = classNames(style.button, style[variant], className);
+  const resolvedClassName = classNames(
+    style.button,
+    style[variant],
+    { [style.invertedColors]: invertColors },
+    { [style[size]]: size },
+    className,
+  );
 
   const opts = {};
 
@@ -44,7 +52,9 @@ Button.propTypes = {
   rightIcon: PropTypes.element,
   isPresoManagerInteractive: PropTypes.bool,
   disabled: PropTypes.bool,
+  invertColors: PropTypes.bool,
   variant: PropTypes.oneOf(['primary', 'secondary', 'text']),
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
 };
 
 Button.defaultProps = {
@@ -55,5 +65,7 @@ Button.defaultProps = {
   rightIcon: null,
   isPresoManagerInteractive: false,
   disabled: false,
+  invertColors: false,
   variant: 'primary',
+  size: 'medium',
 };

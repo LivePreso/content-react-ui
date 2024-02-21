@@ -8,12 +8,20 @@ import style from './ButtonsCell.module.scss';
 export function ButtonsCell(props) {
   const { buttons, ...cellProps } = props;
 
+  const wrapperClasses = classNames(style.buttonsContainer, {
+    [style.alignRight]: cellProps.align === 'right',
+  });
+
   return (
     <Cell {...cellProps}>
-      {buttons.map(({ key, className, ...buttonProps }) => {
-        const buttonClasses = classNames(className, style.button);
-        return <Button key={key} className={buttonClasses} {...buttonProps} />;
-      })}
+      <div className={wrapperClasses}>
+        {buttons.map(({ key, className, ...buttonProps }) => {
+          const buttonClasses = classNames(className, style.button);
+          return (
+            <Button key={key} className={buttonClasses} {...buttonProps} />
+          );
+        })}
+      </div>
     </Cell>
   );
 }

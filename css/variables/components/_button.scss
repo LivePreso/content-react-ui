@@ -1,7 +1,33 @@
 :root {
+  --button-color-text: var(--color-text-contrast);
   --button-color-bg: var(--color-brand-1);
   --button-color-hover: var(--color-brand-1-d2);
   --button-color-active: var(--color-brand-1-l1);
-  --button-color-focus: var(--color-black);
-  --button-color-icon: var(--color-white);
+  --button-color-focus: var(--color-brand-1-d2);
+  --button-color-icon: var(--color-text-contrast);
+
+  // size
+  --button-fz-small: var(--text-fz-p);
+  --button-lh-small: var(--text-lh-p);
+  --button-fw-small: var(--button-fw);
+  --button-icon-sz-small: 24px;
+  --button-icon-margin-small: 4px;
+  --button-fz-medium: var(--text-fz-h5);
+  --button-lh-medium: var(--text-lh-h5);
+  --button-fw-medium: var(--button-fw);
+  --button-icon-sz-medium: 30px;
+  --button-icon-margin-medium: 8px;
+  --button-fz-large: var(--text-fz-h4);
+  --button-lh-large: var(--text-lh-h4);
+  --button-fw-large: var(--button-fw);
+  --button-icon-sz-large: 36px;
+  --button-icon-margin-large: 10px;
+
+  // inverted
+  --button-color-text-inverted: var(--button-color-bg);
+  --button-color-bg-inverted: var(--button-color-text);
+  --button-color-hover-inverted: var(--color-brand-1-l3);
+  --button-color-active-inverted: var(--color-brand-1-l4);
+  --button-color-focus-inverted: var(--color-brand-1-l3);
+  --button-color-icon-inverted: var(--button-color-bg);
 }
