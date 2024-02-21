@@ -67,13 +67,14 @@
     border: 0;
     padding: 0;
     background-color: transparent;
-    color: var(--button-color-bg);
+    color: var(--button-color-text-variant);
 
     svg {
-      fill: var(--button-color-bg);
+      fill: var(--button-color-text-variant);
     }
 
     &:focus {
+      background-color: transparent;
       color: var(--button-color-focus);
       box-shadow: none;
 
@@ -83,6 +84,7 @@
     }
 
     &:hover:not(:disabled) {
+      background-color: transparent;
       color: var(--button-color-hover);
 
       svg {
@@ -181,10 +183,10 @@
 
     &.text {
       background-color: transparent;
-      color: var(--button-color-bg-inverted);
+      color: var(--button-color-text-variant-inverted);
 
       svg {
-        fill: var(--button-color-bg-inverted);
+        fill: var(--button-color-text-variant-inverted);
       }
 
       &:focus {

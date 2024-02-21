@@ -23,6 +23,9 @@
   --button-icon-sz-large: 36px;
   --button-icon-margin-large: 10px;
 
+  // variant
+  --button-color-text-variant: var(--button-color-bg);
+
   // inverted
   --button-color-text-inverted: var(--button-color-bg);
   --button-color-bg-inverted: var(--button-color-text);
@@ -30,4 +33,5 @@
   --button-color-active-inverted: var(--color-brand-1-l4);
   --button-color-focus-inverted: var(--color-brand-1-l3);
   --button-color-icon-inverted: var(--button-color-bg);
+  --button-color-text-variant-inverted: var(--button-color-bg-inverted);
 }
