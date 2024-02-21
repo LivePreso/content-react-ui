@@ -24,8 +24,8 @@ export const baseChartProps = {
     // TODO: alwaysShow doesn't work with value axis x + y together
     // alwaysShow: PropTypes.bool,
   }),
-  width: PropTypes.string,
-  height: PropTypes.string,
+  width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   series: PropTypes.arrayOf(
     PropTypes.exact({
       type: PropTypes.oneOf(['line', 'column', 'bubble']).isRequired,
