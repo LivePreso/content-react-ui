@@ -1,4 +1,4 @@
-import { isNaN, isNull, isUndefined } from 'lodash-es';
+import { isNaN, isNull, isUndefined, isNumber } from 'lodash-es';
 
 export function isInvalidNumber(num) {
   return (
@@ -79,14 +79,14 @@ export function cleanNumberFactory(options) {
  */
 function currencify(
   num,
-  { numDecimal = 0, minDecimal, maxDecimal, currency } = {},
+  { numDecimal = 0, minDecimal, maxDecimal, currencyCode } = {},
 ) {
   // Return - for NaN, null, Infinite or undefined
   if (isInvalidNumber(num)) {
     return '-';
   }
 
-  if (!currency) {
+  if (!currencyCode) {
     // eslint-disable-next-line no-console
     console.warn('currencify - currency code not provided');
 
@@ -99,7 +99,7 @@ function currencify(
 
   const returnNum = Number(num).toLocaleString('en', {
     style: 'currency',
-    currency,
+    currency: currencyCode,
     minimumFractionDigits: minDecimal || numDecimal,
     maximumFractionDigits: maxDecimal || numDecimal,
   });
@@ -222,5 +222,97 @@ export function slugify() {
       .replace(/\s+/g, '-')
       .replace(/[^\w-]+/g, '')
       .replace(/--+/g, '-');
+  };
+}
+
+// Make Nice numbers/text --------------------------- //
+function prettyNumberify(
+  value,
+  {
+    useLongName = false,
+    returnArray = false,
+    numDecimal = 0,
+    extraDec = false,
+    currencyCode = null,
+  } = {},
+) {
+  const invalidStr = 'Invalid Number';
+
+  let n = value;
+  let z;
+  let t = '';
+
+  const p = /^[0-9.]+$/; // NUMBER PATTERN
+  let numberNames = {
+    K: 'k',
+    M: 'm',
+    B: 'b',
+    T: 't',
+  }; // Default Number Representation
+
+  if (useLongName === true) {
+    numberNames = {
+      K: 'thousand',
+      M: 'million',
+      B: 'billion',
+      T: 'trillion',
+    };
+  }
+
+  const decModifier = 10 ** numDecimal;
+
+  if (isNumber(n) || n?.match(p)) {
+    n = parseFloat(n);
+    z = 0;
+
+    const absN = Math.abs(n);
+    if (absN >= 1000) {
+      let m = 0;
+
+      if (absN >= 1000000000000) {
+        m = Math.floor(n / (1000000000000 / decModifier)); // GETS THE FIRST TWO DECIMAL POINTS
+        t = numberNames.T;
+      } else if (absN >= 1000000000) {
+        m = Math.floor(n / (1000000000 / decModifier)); // GETS THE FIRST TWO DECIMAL POINTS
+        t = numberNames.B;
+      } else if (absN >= 1000000) {
+        m = Math.floor(n / (1000000 / decModifier)); // GETS THE FIRST TWO DECIMAL POINTS
+        t = numberNames.M;
+      } else if (absN >= 1000) {
+        m = Math.floor(n / (1000 / decModifier)); // GETS THE FIRST TWO DECIMAL POINTS
+        t = numberNames.K;
+      }
+
+      if (!extraDec && m.toString().length >= 4) {
+        z = Math.floor(m / decModifier); // REMOVES THE DECIMAL PLACE
+      } else {
+        z = m / decModifier; // ADDS THE DECIMAL PLACE
+      }
+
+      if (currencyCode)
+        z = currencify(z, {
+          minDecimal: 0,
+          maxDecimal: numDecimal,
+          currencyCode,
+        });
+    } else {
+      z = n;
+      if (currencyCode) z = currencify(z, { numDecimal, currencyCode });
+    }
+  } else {
+    z = invalidStr;
+  }
+
+  // How to format the result
+  if (returnArray) {
+    const theArray = [z, t];
+    return theArray;
+  }
+  return `${z}${t}`;
+}
+
+export function prettyNumberifyFactory(options) {
+  return (val) => {
+    return prettyNumberify(val, options);
   };
 }
