@@ -11,9 +11,14 @@ am4core.options.commercialLicense = true;
 am4core.options.autoSetClassName = true;
 
 export const baseChartProps = {
+  className: PropTypes.string,
   /** AMcharts 4 theme function */
   themeFunctions: PropTypes.arrayOf(PropTypes.func),
   showLegend: PropTypes.bool,
+  label: PropTypes.exact({
+    text: PropTypes.string,
+    fontSize: PropTypes.number,
+  }),
   tooltips: PropTypes.exact({
     active: PropTypes.bool,
     combineSeries: PropTypes.bool,
@@ -94,7 +99,9 @@ export const baseChartProps = {
 };
 
 export const baseChartDefaultProps = {
+  className: null,
   themeFunctions: [],
+  label: null,
   tooltips: {
     active: false,
   },
@@ -138,7 +145,7 @@ function createValueAxis(
 ) {
   const axis = chart[`${direction}Axes`].push(new am4charts.ValueAxis());
   axis.title.text = title;
-  axis.cursorTooltipEnabled = true;
+  axis.cursorTooltipEnabled = false;
   axis.renderer.grid.template.disabled = hideGrid;
   axis.renderer.labels.template.disabled = hideLabels;
 
@@ -463,20 +470,9 @@ export function createSeries(
     // Tooltips
     if (tooltips.active) {
       series.tooltipText =
-        tooltips.text || `{${dataFields.xAxis}}: {${dataFields.yAxis}}`;
-      series.tooltip.getFillFromObject = false;
-
-      series.tooltip.background.fill = am4core.color('#24262C');
-      series.tooltip.label.fill = am4core.color('#fff');
-      series.tooltip.background.stroke = am4core.color('#000');
-      series.tooltip.pointerOrientation = 'vertical';
-      series.tooltip.label.paddingTop = 12;
-      series.tooltip.label.paddingRight = 12;
-      series.tooltip.label.paddingBottom = 12;
-      series.tooltip.label.paddingLeft = 12;
-
-      series.tooltip.defaultState.transitionDuration = 0;
-      series.tooltip.hiddenState.transitionDuration = 0;
+        tooltips.text ||
+        `{${dataFields.xAxis}}: {${dataFields.yAxis}.formatNumber("${numberFormat}")}`;
+      // TODO: tooltip styling options
 
       // TODO: Doesn't work for double x + y value axis
       // if (tooltips.alwaysShow) {
@@ -544,6 +540,19 @@ export function createCursor(xAxis) {
   // tooltip hack to get only one showing at a time
   cursor.maxTooltipDistance = -1;
   return cursor;
+}
+
+export function applyLabel(
+  chart,
+  { text = '', fontSize = 26, fontWeight = 400 } = {},
+) {
+  const label = chart.createChild(am4core.Label);
+  label.align = 'center';
+  label.marginTop = 15;
+  label.text = text;
+  label.fontSize = fontSize;
+  label.fontWeight = fontWeight;
+  return label;
 }
 
 /**

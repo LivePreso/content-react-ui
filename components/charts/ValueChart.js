@@ -16,12 +16,14 @@ import {
   createCursor,
   addValueChartTooltips,
   applyChartColors,
+  applyLabel,
 } from './utils/xy-chart-utils';
 
 /**
  * Chart with value x-axis (number) & value y-axes (number)
  */
 export function ValueChart({
+  className,
   series,
   xAxis,
   yAxes,
@@ -29,6 +31,7 @@ export function ValueChart({
   width,
   height,
   showLegend,
+  label,
   tooltips,
   colors,
   themeFunctions,
@@ -64,12 +67,17 @@ export function ValueChart({
       }
 
       chart.cursor = createCursor(xAxisObj);
+
+      if (label) {
+        applyLabel(chart, label);
+      }
     },
-    [series, tooltips, colors, xAxis, yAxes, showLegend],
+    [series, tooltips, colors, label, xAxis, yAxes, showLegend],
   );
 
   return (
     <BaseChart
+      className={className}
       themeFunctions={combinedThemeFuncs}
       chartFunction={chartFunction}
       data={data}

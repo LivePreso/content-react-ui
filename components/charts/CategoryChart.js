@@ -4,7 +4,6 @@
 ] */
 
 import React, { useCallback } from 'react';
-import PropTypes from 'prop-types';
 import { useChartTheme } from '@ui/hooks/use-chart-theme';
 import { BaseChart } from './BaseChart';
 import {
@@ -16,12 +15,14 @@ import {
   createLegend,
   createCursor,
   applyChartColors,
+  applyLabel,
 } from './utils/xy-chart-utils';
 
 /**
  * Chart with category x-axis (name) & value y-axes (number)
  */
 export function CategoryChart({
+  className,
   series,
   xAxis,
   yAxes,
@@ -29,7 +30,7 @@ export function CategoryChart({
   width,
   height,
   showLegend,
-  enableCursor,
+  label,
   tooltips,
   colors,
   themeFunctions,
@@ -61,15 +62,18 @@ export function CategoryChart({
         chart.legend = createLegend();
       }
 
-      if (enableCursor) {
-        chart.cursor = createCursor(xAxisObj);
+      chart.cursor = createCursor(xAxisObj);
+
+      if (label) {
+        applyLabel(chart, label);
       }
     },
-    [series, tooltips, colors, xAxis, yAxes, showLegend, enableCursor],
+    [series, tooltips, colors, label, xAxis, yAxes, showLegend],
   );
 
   return (
     <BaseChart
+      className={className}
       themeFunctions={combinedThemeFuncs}
       chartFunction={chartFunction}
       data={data}
@@ -81,10 +85,8 @@ export function CategoryChart({
 
 CategoryChart.propTypes = {
   ...baseChartProps,
-  enableCursor: PropTypes.bool,
 };
 
 CategoryChart.defaultProps = {
   ...baseChartDefaultProps,
-  enableCursor: false,
 };

@@ -11,8 +11,13 @@ am4core.options.commercialLicense = true;
 am4core.options.autoSetClassName = true;
 
 export const baseChartProps = {
+  className: PropTypes.string,
   /** AMcharts 4 theme function */
   themeFunctions: PropTypes.arrayOf(PropTypes.func),
+  label: PropTypes.exact({
+    text: PropTypes.string,
+    fontSize: PropTypes.number,
+  }),
   tooltips: PropTypes.exact({
     active: PropTypes.bool,
     text: PropTypes.string,
@@ -20,6 +25,7 @@ export const baseChartProps = {
   width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   showLegend: PropTypes.bool,
+  radius: PropTypes.number,
   innerRadius: PropTypes.number,
   callout: PropTypes.string,
   series: PropTypes.exact({
@@ -44,13 +50,16 @@ export const baseChartProps = {
 };
 
 export const baseChartDefaultProps = {
+  className: null,
   themeFunctions: [],
+  label: null,
   tooltips: {
     active: false,
   },
   width: '100%',
   height: '100%',
   showLegend: false,
+  radius: 85,
   innerRadius: 0,
   callout: null,
   data: [],
@@ -70,6 +79,7 @@ export function createSeries(
     name = '',
     // fillOpacity = 0,
     hideLabels = false,
+    numberFormat,
   } = seriesOptions;
 
   const series = chart.series.push(new am4charts.PieSeries());
@@ -89,20 +99,11 @@ export function createSeries(
 
   // Tooltips
   if (tooltips.active) {
-    series.tooltipText = tooltips.text || `{category}: {value}`;
-    series.tooltip.getFillFromObject = false;
-
-    series.tooltip.background.fill = am4core.color('#24262C');
-    series.tooltip.label.fill = am4core.color('#fff');
-    series.tooltip.background.stroke = am4core.color('#000');
-    series.tooltip.pointerOrientation = 'vertical';
-    series.tooltip.label.paddingTop = 12;
-    series.tooltip.label.paddingRight = 12;
-    series.tooltip.label.paddingBottom = 12;
-    series.tooltip.label.paddingLeft = 12;
-
-    series.tooltip.defaultState.transitionDuration = 0;
-    series.tooltip.hiddenState.transitionDuration = 0;
+    series.slices.template.tooltipText =
+      tooltips.text || `{category}: {value.formatNumber("${numberFormat}")}`;
+    // TODO: tooltip styling options
+  } else {
+    series.slices.template.tooltipText = '';
   }
 
   return series;
@@ -124,4 +125,17 @@ export function createLegend() {
   marker.cornerRadius(7, 7, 7, 7);
   marker.dy = 4;
   return legend;
+}
+
+export function applyLabel(
+  chart,
+  { text = '', fontSize = 26, fontWeight = 'normal' } = {},
+) {
+  const label = chart.seriesContainer.createChild(am4core.Label);
+  label.horizontalCenter = 'middle';
+  label.verticalCenter = 'middle';
+  label.text = text;
+  label.fontSize = fontSize;
+  label.fontWeight = fontWeight;
+  return label;
 }

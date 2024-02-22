@@ -83,6 +83,7 @@ const normalizeData = (data, chartDataMinMax) =>
  * Plot area is visually divided into 4 equal quadrants with optional labels
  */
 export function QuadrantChart({
+  className,
   series,
   quadrants = [],
   xAxis,
@@ -213,6 +214,7 @@ export function QuadrantChart({
 
   return (
     <BaseChart
+      className={className}
       themeFunctions={combinedThemeFuncs}
       chartFunction={chartFunction}
       data={[normalizedChartData]}

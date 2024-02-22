@@ -44,6 +44,7 @@ function getAMChartType(type) {
  * https://react.dev/reference/react/memo
  */
 export const BaseChart = React.memo(function BaseChart({
+  className,
   type,
   chartFunction,
   themeFunctions,
@@ -94,7 +95,9 @@ export const BaseChart = React.memo(function BaseChart({
     chartRef.current.data = data;
   }, [data]);
 
-  return <div id={id.current} style={{ width, height }} />;
+  return (
+    <div id={id.current} className={className} style={{ width, height }} />
+  );
 }, arePropsEqual);
 
 BaseChart.propTypes = {
