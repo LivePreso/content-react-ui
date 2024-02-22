@@ -14,6 +14,10 @@ export function isUpperCase(str) {
   return str === str.toUpperCase();
 }
 
+export function undefinedAsDash(value) {
+  return isNull(value) || isUndefined(value) ? '-' : value;
+}
+
 export function getPlural(string, count = 0) {
   const strLower = string.toLowerCase();
   const isSingle = count === 1;
