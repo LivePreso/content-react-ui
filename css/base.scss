@@ -17,8 +17,12 @@ h4,
 h5,
 h6,
 p,
+button,
 input,
+b,
 strong,
+em,
+i,
 ol,
 ul,
 li,
@@ -33,6 +37,9 @@ label {
   margin: 0;
   font-family: var(--main-font);
   font-weight: var(--text-fw-normal);
+}
+
+article {
   color: var(--color-text);
 }
 
