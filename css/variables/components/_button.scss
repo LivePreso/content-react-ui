@@ -25,6 +25,9 @@
 
   // variant
   --button-color-text-variant: var(--button-color-bg);
+  --button-color-text-variant-hover: var(--button-color-hover);
+  --button-color-text-variant-active: var(--button-color-active);
+  --button-color-text-variant-focus: var(--button-color-focus);
 
   // inverted
   --button-color-text-inverted: var(--button-color-bg);
@@ -34,4 +37,13 @@
   --button-color-focus-inverted: var(--color-brand-1-l3);
   --button-color-icon-inverted: var(--button-color-bg);
   --button-color-text-variant-inverted: var(--button-color-bg-inverted);
+  --button-color-text-variant-hover-inverted: var(
+    --button-color-hover-inverted
+  );
+  --button-color-text-variant-active-inverted: var(
+    --button-color-active-inverted
+  );
+  --button-color-text-variant-focus-inverted: var(
+    --button-color-focus-inverted
+  );
 }

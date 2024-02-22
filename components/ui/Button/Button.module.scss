@@ -75,20 +75,29 @@
 
     &:focus {
       background-color: transparent;
-      color: var(--button-color-focus);
+      color: var(--button-color-text-variant-focus);
       box-shadow: none;
 
       svg {
-        fill: var(--button-color-focus);
+        fill: var(--button-color-text-variant-focus);
       }
     }
 
     &:hover:not(:disabled) {
       background-color: transparent;
-      color: var(--button-color-hover);
+      color: var(--button-color-text-variant-hover);
 
       svg {
-        fill: var(--button-color-hover);
+        fill: var(--button-color-text-variant-hover);
+      }
+    }
+
+    &:active:not(:disabled) {
+      background-color: transparent;
+      color: var(--button-color-text-variant-active);
+
+      svg {
+        fill: var(--button-color-text-variant-active);
       }
     }
   }
@@ -190,18 +199,18 @@
       }
 
       &:focus {
-        color: var(--button-color-focus-inverted);
+        color: var(--button-color-text-variant-focus-inverted);
 
         svg {
-          fill: var(--button-color-focus-inverted);
+          fill: var(--button-color-text-variant-focus-inverted);
         }
       }
 
       &:hover:not(:disabled) {
-        color: var(--button-color-hover-inverted);
+        color: var(--button-color-text-variant-hover-inverted);
 
         svg {
-          fill: var(--button-color-hover-inverted);
+          fill: var(--button-color-text-variant-hover-inverted);
         }
       }
     }
