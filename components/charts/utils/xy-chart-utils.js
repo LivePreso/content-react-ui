@@ -18,6 +18,7 @@ export const baseChartProps = {
   label: PropTypes.exact({
     text: PropTypes.string,
     fontSize: PropTypes.number,
+    fontWeight: PropTypes.number,
   }),
   tooltips: PropTypes.exact({
     active: PropTypes.bool,
