@@ -15,6 +15,7 @@ import {
   createLegend,
   createCursor,
   addValueChartTooltips,
+  applyChartColors,
 } from './utils/xy-chart-utils';
 
 /**
@@ -29,6 +30,7 @@ export function ValueChart({
   height,
   showLegend,
   tooltips,
+  colors,
   themeFunctions,
 }) {
   const combinedThemeFuncs = useChartTheme(themeFunctions);
@@ -41,11 +43,14 @@ export function ValueChart({
         axis: createValueYAxis(chart, axis),
       }));
 
+      applyChartColors(chart, colors);
+
       createSeries(chart, {
         tooltips: {
           text: '{name}: {valueY}\n{name}: {valueX}',
           ...tooltips,
         },
+        colors,
         dataFields: { yAxis: 'valueY', xAxis: 'valueX' },
         seriesOptions: series,
         yAxes: yAxisCollection,
@@ -60,7 +65,7 @@ export function ValueChart({
 
       chart.cursor = createCursor(xAxisObj);
     },
-    [series, tooltips, xAxis, yAxes, showLegend],
+    [series, tooltips, colors, xAxis, yAxes, showLegend],
   );
 
   return (

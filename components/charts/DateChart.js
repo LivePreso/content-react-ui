@@ -14,6 +14,7 @@ import {
   createSeries,
   createLegend,
   createCursor,
+  applyChartColors,
 } from './utils/xy-chart-utils';
 
 /**
@@ -28,6 +29,7 @@ export function DateChart({
   height,
   showLegend,
   tooltips,
+  colors,
   themeFunctions,
 }) {
   const combinedThemeFuncs = useChartTheme(themeFunctions);
@@ -40,8 +42,11 @@ export function DateChart({
         axis: createValueYAxis(chart, axis),
       }));
 
+      applyChartColors(chart, colors);
+
       createSeries(chart, {
         tooltips,
+        colors,
         dataFields: { yAxis: 'valueY', xAxis: 'dateX' },
         seriesOptions: series,
         yAxes: yAxisCollection,
@@ -54,7 +59,7 @@ export function DateChart({
 
       chart.cursor = createCursor(xAxisObj);
     },
-    [series, tooltips, xAxis, yAxes, showLegend],
+    [series, tooltips, colors, xAxis, yAxes, showLegend],
   );
 
   return (

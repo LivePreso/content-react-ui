@@ -15,6 +15,7 @@ import {
   createSeries,
   createLegend,
   createCursor,
+  applyChartColors,
 } from './utils/xy-chart-utils';
 
 /**
@@ -30,6 +31,7 @@ export function CategoryChart({
   showLegend,
   enableCursor,
   tooltips,
+  colors,
   themeFunctions,
 }) {
   const combinedThemeFuncs = useChartTheme(themeFunctions);
@@ -45,8 +47,11 @@ export function CategoryChart({
         axis: createValueYAxis(chart, axis),
       }));
 
+      applyChartColors(chart, colors);
+
       createSeries(chart, {
         tooltips,
+        colors,
         dataFields: { yAxis: 'valueY', xAxis: 'categoryX' },
         seriesOptions: series,
         yAxes: yAxisCollection,
@@ -60,7 +65,7 @@ export function CategoryChart({
         chart.cursor = createCursor(xAxisObj);
       }
     },
-    [series, tooltips, xAxis, yAxes, showLegend, enableCursor],
+    [series, tooltips, colors, xAxis, yAxes, showLegend, enableCursor],
   );
 
   return (

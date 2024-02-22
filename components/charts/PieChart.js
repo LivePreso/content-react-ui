@@ -23,6 +23,7 @@ export function PieChart({
   width,
   height,
   tooltips,
+  colors,
   showLegend,
   innerRadius,
   callout,
@@ -34,6 +35,7 @@ export function PieChart({
     (chart) => {
       createSeries(chart, {
         tooltips,
+        colors,
         seriesOptions: series,
       });
 
@@ -47,7 +49,7 @@ export function PieChart({
         // TODO: Add label in center of pie (large stat)
       }
     },
-    [series, tooltips, showLegend, innerRadius, callout],
+    [series, tooltips, colors, showLegend, innerRadius, callout],
   );
 
   return (

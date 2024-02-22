@@ -38,6 +38,9 @@ export const baseChartProps = {
       PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     ),
   ),
+  colors: PropTypes.exact({
+    list: PropTypes.arrayOf(PropTypes.string),
+  }),
 };
 
 export const baseChartDefaultProps = {
@@ -51,9 +54,15 @@ export const baseChartDefaultProps = {
   innerRadius: 0,
   callout: null,
   data: [],
+  colors: {
+    list: [],
+  },
 };
 
-export function createSeries(chart, { tooltips = {}, seriesOptions } = {}) {
+export function createSeries(
+  chart,
+  { tooltips = {}, colors = {}, seriesOptions } = {},
+) {
   const {
     dataFieldCategory,
     dataFieldValue,
@@ -72,6 +81,11 @@ export function createSeries(chart, { tooltips = {}, seriesOptions } = {}) {
 
   series.dataFields.category = dataFieldCategory;
   series.dataFields.value = dataFieldValue;
+
+  // colors
+  if (colors.list?.length) {
+    series.colors.list = colors.list.map((color) => am4core.color(color));
+  }
 
   // Tooltips
   if (tooltips.active) {

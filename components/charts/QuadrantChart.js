@@ -17,6 +17,7 @@ import {
   createLegend,
   createCursor,
   addValueChartTooltips,
+  applyChartColors,
 } from './utils/xy-chart-utils';
 
 const axisLabelledLowHigh = (label, target) => {
@@ -91,6 +92,7 @@ export function QuadrantChart({
   height,
   showLegend,
   tooltips,
+  colors,
   themeFunctions,
 }) {
   const combinedThemeFuncs = useChartTheme(themeFunctions);
@@ -145,11 +147,14 @@ export function QuadrantChart({
         };
       });
 
+      applyChartColors(chart, colors);
+
       const seriesInstances = createSeries(chart, {
         tooltips: {
           // text: '{categoryY}: {valueY}\n{}: {valueX}',
           ...tooltips,
         },
+        colors,
         dataFields: { yAxis: 'valueY', xAxis: 'valueX' },
         seriesOptions: series,
         yAxes: yAxisCollection,
@@ -194,7 +199,16 @@ export function QuadrantChart({
         });
       });
     },
-    [quadrants, series, tooltips, xAxis, yAxes, chartMinMaxValues, showLegend],
+    [
+      quadrants,
+      series,
+      tooltips,
+      colors,
+      xAxis,
+      yAxes,
+      chartMinMaxValues,
+      showLegend,
+    ],
   );
 
   return (

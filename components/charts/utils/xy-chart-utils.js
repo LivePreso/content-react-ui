@@ -1,6 +1,6 @@
 /* eslint no-param-reassign: [
   "error",
-  { "props": true, "ignorePropertyModificationsFor": ["axis", "series", "xAxis"] }
+  { "props": true, "ignorePropertyModificationsFor": ["chart", "axis", "series", "xAxis"] }
 ] */
 
 import PropTypes from 'prop-types';
@@ -26,6 +26,10 @@ export const baseChartProps = {
   }),
   width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  colors: PropTypes.exact({
+    list: PropTypes.arrayOf(PropTypes.string),
+    applyToEachSeries: PropTypes.bool,
+  }),
   series: PropTypes.arrayOf(
     PropTypes.exact({
       type: PropTypes.oneOf(['line', 'column', 'bubble']).isRequired,
@@ -91,12 +95,16 @@ export const baseChartProps = {
 
 export const baseChartDefaultProps = {
   themeFunctions: [],
-  showLegend: false,
   tooltips: {
     active: false,
   },
   width: '100%',
   height: '100%',
+  showLegend: false,
+  colors: {
+    list: [],
+    applyToEachSeries: false,
+  },
   xAxis: {},
   data: [],
 };
@@ -343,10 +351,39 @@ function applyBubbleOptions(series, { useHeatMap } = {}) {
   }
 }
 
+export function applyChartColors(chart, colors = {}) {
+  if (colors.list?.length) {
+    chart.colors.list = colors.list.map((color) => am4core.color(color));
+  }
+}
+
+function applySeriesColors(chart, { type, series }) {
+  if (type === 'column') {
+    series.columns.template.adapter.add('fill', (fill, target) => {
+      return chart.colors.getIndex(target.dataItem.index);
+    });
+
+    series.columns.template.adapter.add('stroke', (stroke, target) => {
+      return chart.colors.getIndex(target.dataItem.index);
+    });
+  }
+
+  if (type === 'line' || type === 'bubble') {
+    series.bullets.template.adapter.add('fill', (fill, target) => {
+      return chart.colors.getIndex(target.dataItem.index);
+    });
+
+    series.lines.template.adapter.add('stroke', (stroke, target) => {
+      return chart.colors.getIndex(target.dataItem.index);
+    });
+  }
+}
+
 export function createSeries(
   chart,
   {
     tooltips = {},
+    colors = {},
     dataFields,
     seriesOptions,
     yAxes,
@@ -393,6 +430,10 @@ export function createSeries(
 
     if (type === 'bubble') {
       applyBubbleOptions(series, { useHeatMap: Boolean(dataFieldHeat) });
+    }
+
+    if (colors.applyToEachSeries) {
+      applySeriesColors(chart, { type, series });
     }
 
     if (showValue) {
