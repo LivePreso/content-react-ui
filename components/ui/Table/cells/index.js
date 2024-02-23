@@ -1,3 +1,4 @@
+export * from './EmptyCell';
 export * from './TitleCell';
 export * from './SubTitleCell';
 export * from './ImageCell';
@@ -8,3 +9,4 @@ export * from './EditableTextCell';
 export * from './ToggleCell';
 export * from './ButtonsCell';
 export * from './LegendCell';
+export * from './DefinitionListCell';

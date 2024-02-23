@@ -90,7 +90,8 @@
     &.table-sticky-row {
       overflow-y: auto;
 
-      tr:first-child td {
+      // 2nd child sticky skips over the "empty" row colSpan fix
+      tr:nth-child(2) td {
         position: sticky;
         top: 0;
         z-index: 2;

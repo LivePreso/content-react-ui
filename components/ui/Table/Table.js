@@ -1,10 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { uniqueId } from 'lodash-es';
 import { getColWidth } from '@ui/utils/generate-table-layout';
 import { ROW_TYPES, CELL_TYPES_MAP, ROW_TYPES_MAP } from './table-constants';
-import { TextCell } from './cells';
+import { TextCell, EmptyCell } from './cells';
 import style from './Table.module.scss';
+import { BodyRow } from './rows';
 
 export function Table(props) {
   const {
@@ -30,6 +32,16 @@ export function Table(props) {
     column: [style.tableSticky, style.tableStickyColumn],
     both: [style.tableSticky, style.tableStickyRow, style.tableStickyColumn],
   };
+
+  // empty row of columns with colSpan 1
+  // Fixes problem with colSpans used in header
+  const blankRow = (
+    <BodyRow>
+      {columnWidths.map((width) => (
+        <EmptyCell key={`empty-${uniqueId()}`} width={width} />
+      ))}
+    </BodyRow>
+  );
 
   const outputRows = rows.map((row) => {
     const { type: rowType, uid, cells = [], className: rowClassName } = row;
@@ -72,6 +84,7 @@ export function Table(props) {
     <div className={wrapperClasses} {...opts}>
       <table className={className}>
         <tbody>
+          {blankRow}
           {outputRows}
           {children}
         </tbody>

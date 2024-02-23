@@ -1,14 +1,15 @@
-// import PropTypes from 'prop-types';
 import {
   ButtonsCell,
   DeltaCell,
   EditableTextCell,
+  EmptyCell,
   ImageCell,
   ScoreCell,
   SubTitleCell,
   TextCell,
   ToggleCell,
   LegendCell,
+  DefinitionListCell,
 } from './cells';
 
 import { BodyRow, SubheaderRow, HighlightRow, HeaderRow } from './rows';
@@ -31,6 +32,7 @@ export const ROW_TYPES_MAP = {
 
 export const CELL_TYPES = {
   DEFAULT: 'Default',
+  EMPTY: 'EmptyCell',
   IMAGE: 'ImageCell',
   DELTA: 'DeltaCell',
   TEXT: 'TextCell',
@@ -40,10 +42,12 @@ export const CELL_TYPES = {
   EDITABLE: 'EditableTextCell',
   LEGEND: 'LegendCell',
   BUTTONS: 'ButtonsCell',
+  DEFINITION_LIST: 'DefinitionListCell',
 };
 
 export const CELL_TYPES_MAP = {
   [CELL_TYPES.DEFAULT]: TextCell,
+  [CELL_TYPES.EMPTY]: EmptyCell,
   [CELL_TYPES.IMAGE]: ImageCell,
   [CELL_TYPES.DELTA]: DeltaCell,
   [CELL_TYPES.TEXT]: TextCell,
@@ -53,4 +57,5 @@ export const CELL_TYPES_MAP = {
   [CELL_TYPES.EDITABLE]: EditableTextCell,
   [CELL_TYPES.LEGEND]: LegendCell,
   [CELL_TYPES.BUTTONS]: ButtonsCell,
+  [CELL_TYPES.DEFINITION_LIST]: DefinitionListCell,
 };
