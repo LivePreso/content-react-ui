@@ -36,9 +36,9 @@ export function Table(props) {
   // empty row of columns with colSpan 1
   // Fixes problem with colSpans used in header
   const blankRow = (
-    <BodyRow>
+    <BodyRow uid={`empty-row-${uniqueId()}`}>
       {columnWidths.map((width) => (
-        <EmptyCell key={`empty-${uniqueId()}`} width={width} />
+        <EmptyCell key={`empty-cell-${uniqueId()}`} width={width} />
       ))}
     </BodyRow>
   );
