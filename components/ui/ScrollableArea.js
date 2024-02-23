@@ -6,11 +6,7 @@ import style from './ScrollableArea.module.scss';
 export function ScrollableArea({ children, className }) {
   const classes = classNames(className, style.scrollableArea);
 
-  return (
-    <div className={classes}>
-      <div>{children}</div>
-    </div>
-  );
+  return <div className={classes}>{children}</div>;
 }
 
 ScrollableArea.propTypes = {
