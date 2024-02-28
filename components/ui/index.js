@@ -1,4 +1,5 @@
 export * from './Button';
+export * from './Checkbox';
 export * from './Toggle';
 export * from './EditableText';
 export * from './Dropdown';
