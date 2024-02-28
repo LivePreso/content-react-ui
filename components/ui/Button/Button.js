@@ -6,6 +6,7 @@ import style from './Button.module.scss';
 export function Button(props) {
   const {
     className,
+    classNameLabel,
     type,
     label,
     leftIcon,
@@ -25,6 +26,8 @@ export function Button(props) {
     className,
   );
 
+  const labelClasses = classNames(classNameLabel, style.label);
+
   const opts = {};
 
   if (isPresoManagerInteractive) {
@@ -37,7 +40,7 @@ export function Button(props) {
     // eslint-disable-next-line react/button-has-type
     <button {...rest} type={type} className={resolvedClassName} {...opts}>
       {leftIcon && <span className={style.leftIcon}>{leftIcon}</span>}
-      <span className={style.label}>{label}</span>
+      <span className={labelClasses}>{label}</span>
       {rightIcon && <span className={style.rightIcon}>{rightIcon}</span>}
     </button>
   );
@@ -45,6 +48,7 @@ export function Button(props) {
 
 Button.propTypes = {
   className: PropTypes.string,
+  classNameLabel: PropTypes.string,
   label: PropTypes.string,
   onClick: PropTypes.func.isRequired,
   type: PropTypes.oneOf(['button', 'submit', 'reset']),
@@ -59,6 +63,7 @@ Button.propTypes = {
 
 Button.defaultProps = {
   className: '',
+  classNameLabel: '',
   label: '',
   type: 'button',
   leftIcon: null,

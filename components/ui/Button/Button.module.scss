@@ -2,11 +2,10 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: var(--space-med) var(--space-xlrg2);
   color: var(--button-color-text);
   background-color: var(--button-color-bg);
   border: 0;
-  border-radius: 100px;
+  border-radius: var(--button-border-radius);
   cursor: pointer;
 
   .label {
@@ -104,6 +103,13 @@
 
   // size
   &.small {
+    padding: var(--button-padding-top-small) var(--button-padding-sides-small)
+      var(--button-padding-bottom-small);
+
+    &.text {
+      padding: 0;
+    }
+
     .label {
       font-size: var(--button-fz-small);
       line-height: var(--button-lh-small);
@@ -125,6 +131,13 @@
   }
 
   &.medium {
+    padding: var(--button-padding-top-medium) var(--button-padding-sides-medium)
+      var(--button-padding-bottom-medium);
+
+    &.text {
+      padding: 0;
+    }
+
     .label {
       font-size: var(--button-fz-medium);
       line-height: var(--button-lh-medium);
@@ -146,6 +159,13 @@
   }
 
   &.large {
+    padding: var(--button-padding-top-large) var(--button-padding-sides-large)
+      var(--button-padding-bottom-large);
+
+    &.text {
+      padding: 0;
+    }
+
     .label {
       font-size: var(--button-fz-large);
       line-height: var(--button-lh-large);
