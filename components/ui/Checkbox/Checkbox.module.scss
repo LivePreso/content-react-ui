@@ -16,22 +16,29 @@
   }
 
   .box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: var(--checkbox-size);
     height: var(--checkbox-size);
     border: var(--checkbox-border);
     background-color: var(--checkbox-inactive-bg);
     border-radius: var(--checkbox-border-radius);
-    vertical-align: middle;
     transition:
       background-color 150ms ease-in-out,
       border-color 150ms ease-in-out;
-    text-align: center;
 
     .icon {
+      position: relative;
+      top: -1px;
+      width: var(--checkbox-icon-size);
+      height: var(--checkbox-icon-size);
       opacity: 0;
       transition: opacity 150ms ease-in-out;
 
       svg {
+        width: 100%;
+        height: 100%;
         fill: var(--checkbox-icon-color);
       }
     }
