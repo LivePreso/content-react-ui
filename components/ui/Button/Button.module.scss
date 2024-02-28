@@ -201,11 +201,11 @@
       }
 
       &:hover:not(:disabled) {
-        border-color: var(--button-color-hover-inverted);
-        color: var(--button-color-hover-inverted);
+        border-color: var(--button-color-inverted-hover);
+        color: var(--button-color-inverted-hover);
 
         svg {
-          fill: var(--button-color-hover-inverted);
+          fill: var(--button-color-inverted-hover);
         }
       }
     }
@@ -219,18 +219,18 @@
       }
 
       &:focus {
-        color: var(--button-color-text-variant-focus-inverted);
+        color: var(--button-color-text-variant-inverted-focus);
 
         svg {
-          fill: var(--button-color-text-variant-focus-inverted);
+          fill: var(--button-color-text-variant-inverted-focus);
         }
       }
 
       &:hover:not(:disabled) {
-        color: var(--button-color-text-variant-hover-inverted);
+        color: var(--button-color-text-variant-inverted-hover);
 
         svg {
-          fill: var(--button-color-text-variant-hover-inverted);
+          fill: var(--button-color-text-variant-inverted-hover);
         }
       }
     }
