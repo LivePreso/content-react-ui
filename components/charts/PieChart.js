@@ -32,6 +32,7 @@ export function PieChart({
   innerRadius,
   callout,
   themeFunctions,
+  onReady,
 }) {
   const combinedThemeFuncs = useChartTheme(themeFunctions);
 
@@ -70,6 +71,7 @@ export function PieChart({
       data={data}
       width={width}
       height={height}
+      onReady={onReady}
     />
   );
 }

@@ -34,6 +34,7 @@ export function DateChart({
   tooltips,
   colors,
   themeFunctions,
+  onReady,
 }) {
   const combinedThemeFuncs = useChartTheme(themeFunctions);
 
@@ -77,6 +78,7 @@ export function DateChart({
       data={data}
       width={width}
       height={height}
+      onReady={onReady}
     />
   );
 }

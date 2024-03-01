@@ -34,6 +34,7 @@ export function CategoryChart({
   tooltips,
   colors,
   themeFunctions,
+  onReady,
 }) {
   const combinedThemeFuncs = useChartTheme(themeFunctions);
 
@@ -79,6 +80,7 @@ export function CategoryChart({
       data={data}
       width={width}
       height={height}
+      onReady={onReady}
     />
   );
 }

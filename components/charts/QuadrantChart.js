@@ -95,6 +95,7 @@ export function QuadrantChart({
   tooltips,
   colors,
   themeFunctions,
+  onReady,
 }) {
   const combinedThemeFuncs = useChartTheme(themeFunctions);
   const [normalizedChartData, setNormalizedChartData] = useState([]);
@@ -220,6 +221,7 @@ export function QuadrantChart({
       data={[normalizedChartData]}
       width={width}
       height={height}
+      onReady={onReady}
     />
   );
 }

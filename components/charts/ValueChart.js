@@ -35,6 +35,7 @@ export function ValueChart({
   tooltips,
   colors,
   themeFunctions,
+  onReady,
 }) {
   const combinedThemeFuncs = useChartTheme(themeFunctions);
 
@@ -83,6 +84,7 @@ export function ValueChart({
       data={data}
       width={width}
       height={height}
+      onReady={onReady}
     />
   );
 }

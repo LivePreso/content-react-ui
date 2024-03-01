@@ -5,6 +5,7 @@
 
 import { uniqueId, isEqual } from 'lodash-es';
 import React, { useCallback, useEffect, useRef } from 'react';
+import { useSlideDone } from '@livepreso/content-react';
 import PropTypes from 'prop-types';
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
@@ -54,6 +55,7 @@ export const BaseChart = React.memo(function BaseChart({
 }) {
   const chartRef = useRef(null);
   const id = useRef(uniqueId('amchart'));
+  const chartReady = useSlideDone();
 
   const onInitialize = useCallback(
     function (chart) {
@@ -84,11 +86,13 @@ export const BaseChart = React.memo(function BaseChart({
     onInitialize(amChart);
 
     chartRef.current = amChart;
+    amChart.events.on('appeared', chartReady);
 
     return () => {
+      amChart.events.off('appeared', chartReady);
       amChart.dispose();
     };
-  }, [type, onInitialize, themeFunctions]);
+  }, [type, onInitialize, themeFunctions, chartReady]);
 
   useEffect(() => {
     // Handle data updates triggered by state changes
@@ -101,6 +105,7 @@ export const BaseChart = React.memo(function BaseChart({
 }, arePropsEqual);
 
 BaseChart.propTypes = {
+  className: PropTypes.string,
   type: PropTypes.oneOf(['xy', 'pie']),
   chartFunction: PropTypes.func.isRequired,
   themeFunctions: PropTypes.arrayOf(PropTypes.func),
@@ -114,6 +119,7 @@ BaseChart.propTypes = {
 };
 
 BaseChart.defaultProps = {
+  className: null,
   type: 'xy',
   width: '100%',
   height: '100%',

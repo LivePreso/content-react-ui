@@ -14,6 +14,7 @@ export const baseChartProps = {
   className: PropTypes.string,
   /** AMcharts 4 theme function */
   themeFunctions: PropTypes.arrayOf(PropTypes.func),
+  onReady: PropTypes.func,
   label: PropTypes.exact({
     text: PropTypes.string,
     fontSize: PropTypes.number,
@@ -53,6 +54,7 @@ export const baseChartProps = {
 export const baseChartDefaultProps = {
   className: null,
   themeFunctions: [],
+  onReady: () => {},
   label: null,
   tooltips: {
     active: false,
