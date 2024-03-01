@@ -2,12 +2,12 @@ import React from 'react';
 import { useArgs } from '@storybook/preview-api';
 
 import { CalendarIcon } from '@ui/components/icons';
-import { DropdownItem } from './DropdownItem';
+import { BasicDropdownItem } from './items/BasicDropdownItem';
 import { Dropdown } from './Dropdown';
 
 export default {
   component: Dropdown,
-  title: 'Components/UI/Dropdown',
+  title: 'Components/UI/Dropdown/Dropdown',
 };
 
 const DropdownDecorators = [
@@ -39,7 +39,7 @@ export const Default = {
   ...DropdownTemplate,
   args: {
     selected: 'yellow',
-    icon: <CalendarIcon />,
+    leftIcon: <CalendarIcon />,
     options: [
       {
         label: 'Yellow',
@@ -60,7 +60,9 @@ export const Default = {
 export const RenderItem = {
   args: {
     ...Default.args,
-    renderItem: (item) => <DropdownItem key={item.value} label={item.label} />,
+    renderItem: (item) => (
+      <BasicDropdownItem key={item.value} label={item.label} />
+    ),
   },
   decorators: [...DropdownDecorators],
 };

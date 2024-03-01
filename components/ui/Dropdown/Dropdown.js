@@ -4,14 +4,15 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import React, { useEffect, useRef, useState } from 'react';
 import { ChevronDownIcon } from '@ui/components/icons';
-import { DropdownItem } from './DropdownItem';
+import { BasicDropdownItem } from './items/BasicDropdownItem';
 import style from './Dropdown.module.scss';
 
 export function Dropdown({
   className,
   options,
   renderItem,
-  icon,
+  leftIcon,
+  arrowIcon,
   direction,
   hasOptionsArrow,
   placeholder,
@@ -44,9 +45,9 @@ export function Dropdown({
     setOpen(!open);
   };
 
-  const generateItemClick = (val) => () => {
+  const generateItemClick = (val, data) => () => {
     setOpen(false);
-    onChange(val);
+    onChange(val, data);
   };
 
   // let fullOptions = [{ label: placeholder, value: '_none_' }]
@@ -56,19 +57,29 @@ export function Dropdown({
 
   const currentOption = fullOptions.find((v) => v.value === selected);
 
+  // TODO: Switch over to same TYPE logic as Table config
   const items = fullOptions.map((option) => {
+    const { value, label, data, renderItem: optionRenderItem } = option;
+
+    if (typeof optionRenderItem === 'function') {
+      return optionRenderItem({
+        ...option,
+        onClick: generateItemClick(value, data),
+      });
+    }
+
     if (typeof renderItem === 'function') {
       return renderItem({
         ...option,
-        onClick: generateItemClick(option.value),
+        onClick: generateItemClick(value, data),
       });
     }
 
     return (
-      <DropdownItem
-        onClick={generateItemClick(option.value)}
-        key={`option-${option.value}`}
-        label={option.label}
+      <BasicDropdownItem
+        onClick={generateItemClick(value, data)}
+        key={`option-${value}`}
+        label={label}
       />
     );
   });
@@ -80,11 +91,13 @@ export function Dropdown({
         className={classNames(style.input)}
         onClick={toggleOpen}
       >
-        {icon && <div className={style.inputIcon}>{icon}</div>}
+        {leftIcon && <div className={style.inputIcon}>{leftIcon}</div>}
         <h5 className={style.inputLabel}>
           {currentOption?.label || placeholder}
         </h5>
-        <ChevronDownIcon />
+        <div className={style.arrowIcon}>
+          {arrowIcon || <ChevronDownIcon />}
+        </div>
       </div>
       <div
         className={classNames(style.options, {
@@ -107,10 +120,12 @@ Dropdown.propTypes = {
     PropTypes.shape({
       label: PropTypes.string,
       value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+      renderItem: PropTypes.func,
     }),
   ),
   renderItem: PropTypes.func,
-  icon: PropTypes.node,
+  leftIcon: PropTypes.node,
+  arrowIcon: PropTypes.node,
   direction: PropTypes.oneOf(['bottom', 'top']),
   hasOptionsArrow: PropTypes.bool,
   placeholder: PropTypes.string,
@@ -125,7 +140,8 @@ Dropdown.defaultProps = {
   className: '',
   options: [],
   renderItem: null,
-  icon: null,
+  leftIcon: null,
+  arrowIcon: null,
   direction: 'bottom',
   hasOptionsArrow: false,
   placeholder: '',

@@ -5,25 +5,25 @@ import classNames from 'classnames';
 import React from 'react';
 import style from './DropdownItem.module.scss';
 
-export function DropdownItem({ className, onClick, label }) {
+export function DropdownItem({ className, onClick, children }) {
   const classes = classNames(style.item, className);
 
   // TODO: give necessary role attributes etc. for accessibility ARIA
   return (
     <div role="option" className={classes} onClick={onClick}>
-      <p className={style.label}>{label}</p>
+      {children}
     </div>
   );
 }
 
 DropdownItem.propTypes = {
-  label: PropTypes.string,
   className: PropTypes.string,
   onClick: PropTypes.func,
+  children: PropTypes.element,
 };
 
 DropdownItem.defaultProps = {
-  label: '',
   className: '',
   onClick: () => {},
+  children: null,
 };

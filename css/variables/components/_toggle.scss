@@ -21,7 +21,7 @@
   --toggle-disabled-icon-bg: var(--toggle-disabled-bg);
 
   // Geometry
-  --toggle-label-left-margin: 12px;
+  --toggle-label-margin: 12px;
 
   // Geometry - track
   --toggle-track-w: 32px;
@@ -37,4 +37,9 @@
   --toggle-switch-active-w: 16px;
   --toggle-switch-active-h: 16px;
   --toggle-switch-active-m: 2px;
+
+  // Label
+  --toggle-label-fz: var(--text-fz-h6);
+  --toggle-label-lh: var(--text-lh-h6);
+  --toggle-label-fw: var(--text-fw-h6);
 }
