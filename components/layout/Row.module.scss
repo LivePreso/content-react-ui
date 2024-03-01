@@ -1,6 +1,10 @@
 .row {
   flex-direction: row;
 
+  &.reverse {
+    flex-direction: row-reverse;
+  }
+
   &.gap-small > *:not(:first-child) {
     margin-left: var(--row-gap-sml);
   }

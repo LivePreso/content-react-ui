@@ -1,6 +1,10 @@
 .column {
   flex-direction: column;
 
+  &.reverse {
+    flex-direction: column-reverse;
+  }
+
   &.gap-small > *:not(:first-child) {
     margin-top: var(--col-gap-sml);
   }
