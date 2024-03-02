@@ -8,11 +8,20 @@
     position: absolute;
 
     // bigger hit area, some visual feedback
-    inset: calc(-1 * var(--space-sml));
+    $extra-hitarea: 4px;
+
+    width: calc(100% + $extra-hitarea * 2);
+    height: calc(100% + $extra-hitarea * 2);
+    inset: calc(-1 * $extra-hitarea);
     background-color: transparent;
     cursor: pointer;
     border: 0;
     z-index: 1;
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 5px var(--button-color-focus);
+    }
   }
 
   .track {
