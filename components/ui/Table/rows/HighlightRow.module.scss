@@ -1,0 +1,11 @@
+.highlight-row {
+  td {
+    padding: var(--table-highlight-cell-padding-v)
+      var(--table-highlight-cell-padding-h);
+    background-color: var(--table-highlight-bg);
+    color: var(--table-highlight-color);
+    font-size: var(--table-highlight-fz);
+    line-height: var(--table-highlight-lh);
+    font-weight: var(--table-highlight-fw);
+  }
+}

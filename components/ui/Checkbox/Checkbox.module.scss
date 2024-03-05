@@ -1,0 +1,101 @@
+.checkbox {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+
+  input[type='checkbox'] {
+    appearance: none;
+    position: absolute;
+
+    // bigger hit area, some visual feedback
+    $extra-hitarea: 4px;
+
+    width: calc(100% + $extra-hitarea * 2);
+    height: calc(100% + $extra-hitarea * 2);
+    inset: calc(-1 * $extra-hitarea);
+    background-color: transparent;
+    cursor: pointer;
+    border: 0;
+    z-index: 1;
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 5px var(--button-color-focus);
+    }
+  }
+
+  .box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: var(--checkbox-size);
+    height: var(--checkbox-size);
+    border: var(--checkbox-border);
+    background-color: var(--checkbox-inactive-bg);
+    border-radius: var(--checkbox-border-radius);
+    transition:
+      background-color 150ms ease-in-out,
+      border-color 150ms ease-in-out;
+
+    .icon {
+      position: relative;
+      top: -1px;
+      width: var(--checkbox-icon-size);
+      height: var(--checkbox-icon-size);
+      opacity: 0;
+      transition: opacity 150ms ease-in-out;
+
+      svg {
+        width: 100%;
+        height: 100%;
+        fill: var(--checkbox-icon-color);
+      }
+    }
+  }
+
+  .label {
+    font-size: var(--checkbox-fz);
+    line-height: var(--checkbox-lh);
+    font-weight: var(--checkbox-fw);
+    margin-left: var(--checkbox-label-left-margin);
+  }
+
+  &.is-active {
+    .box {
+      border-color: var(--checkbox-active-border-color);
+      background-color: var(--checkbox-active-bg);
+
+      .icon {
+        opacity: 1;
+      }
+    }
+  }
+
+  &.is-disabled {
+    cursor: initial;
+
+    .box {
+      border-color: var(--checkbox-disabled-border-color);
+      background-color: var(--checkbox-disabled-bg);
+
+      .icon {
+        svg {
+          fill: var(--checkbox-disabled-icon-color);
+        }
+      }
+    }
+
+    &.is-active {
+      .box {
+        border-color: var(--checkbox-active-disabled-border-color);
+        background-color: var(--checkbox-active-disabled-bg);
+
+        .icon {
+          svg {
+            fill: var(--checkbox-active-disabled-icon-color);
+          }
+        }
+      }
+    }
+  }
+}

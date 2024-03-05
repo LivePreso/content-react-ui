@@ -16,8 +16,9 @@ import {
   createSeries,
   createLegend,
   createCursor,
-  AddValueChartTooltips,
-} from './chart-utils';
+  addValueChartTooltips,
+  applyChartColors,
+} from './utils/xy-chart-utils';
 
 const axisLabelledLowHigh = (label, target) => {
   if (target.dataItem.values.value.value === 0) {
@@ -82,6 +83,7 @@ const normalizeData = (data, chartDataMinMax) =>
  * Plot area is visually divided into 4 equal quadrants with optional labels
  */
 export function QuadrantChart({
+  className,
   series,
   quadrants = [],
   xAxis,
@@ -89,10 +91,13 @@ export function QuadrantChart({
   data,
   width,
   height,
+  showLegend,
   tooltips,
+  colors,
   themeFunctions,
+  onReady,
 }) {
-  const combinedThemeFuncs = useChartTheme(themeFunctions, false);
+  const combinedThemeFuncs = useChartTheme(themeFunctions);
   const [normalizedChartData, setNormalizedChartData] = useState([]);
   const [chartMinMaxValues, setChartMinMaxValues] = useState({});
 
@@ -144,21 +149,27 @@ export function QuadrantChart({
         };
       });
 
+      applyChartColors(chart, colors);
+
       const seriesInstances = createSeries(chart, {
         tooltips: {
           // text: '{categoryY}: {valueY}\n{}: {valueX}',
           ...tooltips,
         },
+        colors,
         dataFields: { yAxis: 'valueY', xAxis: 'valueX' },
         seriesOptions: series,
         yAxes: yAxisCollection,
       });
 
-      chart.legend = createLegend();
+      if (showLegend) {
+        chart.legend = createLegend();
+      }
+
       chart.cursor = createCursor(xAxisObj);
 
       if (tooltips.active) {
-        AddValueChartTooltips(xAxisObj);
+        addValueChartTooltips(xAxisObj);
       }
 
       const yFormatter = tooltips.yFormatter || ((v) => v);
@@ -190,16 +201,27 @@ export function QuadrantChart({
         });
       });
     },
-    [quadrants, series, tooltips, xAxis, yAxes, chartMinMaxValues],
+    [
+      quadrants,
+      series,
+      tooltips,
+      colors,
+      xAxis,
+      yAxes,
+      chartMinMaxValues,
+      showLegend,
+    ],
   );
 
   return (
     <BaseChart
+      className={className}
       themeFunctions={combinedThemeFuncs}
       chartFunction={chartFunction}
       data={[normalizedChartData]}
       width={width}
       height={height}
+      onReady={onReady}
     />
   );
 }

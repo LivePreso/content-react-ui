@@ -1,0 +1,11 @@
+:root {
+  --grid-gap-sml: var(--space-sml);
+  --grid-gap-med: var(--space-med);
+  --grid-gap-lrg: var(--space-lrg);
+  --col-gap-sml: var(--grid-gap-sml);
+  --col-gap-med: var(--grid-gap-med);
+  --col-gap-lrg: var(--grid-gap-lrg);
+  --row-gap-sml: var(--grid-gap-sml);
+  --row-gap-med: var(--grid-gap-med);
+  --row-gap-lrg: var(--grid-gap-lrg);
+}

@@ -1,22 +1,27 @@
 .toggle {
   position: relative;
-
-  // bigger hit area, some visual feedback
-  padding: 10px;
+  display: inline-block;
   cursor: pointer;
 
   input[type='checkbox'] {
-    width: var(--toggle-track-w);
-    height: var(--toggle-track-h);
     appearance: none;
     position: absolute;
+
+    // bigger hit area, some visual feedback
+    $extra-hitarea: 4px;
+
+    width: calc(100% + $extra-hitarea * 2);
+    height: calc(100% + $extra-hitarea * 2);
+    inset: calc(-1 * $extra-hitarea);
     background-color: transparent;
     cursor: pointer;
-    border-radius: var(--toggle-track-br);
     border: 0;
     z-index: 1;
-    top: -1px;
-    left: 0;
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 5px var(--button-color-focus);
+    }
   }
 
   .track {
@@ -26,15 +31,16 @@
     border-radius: var(--toggle-track-br);
     display: inline-block;
     vertical-align: middle;
-    margin-top: var(--toggle-track-mt);
 
     .switch {
+      display: flex;
+      justify-content: center;
+      align-items: center;
       background-color: var(--toggle-inactive-switch-bg);
       height: var(--toggle-switch-w);
       width: var(--toggle-switch-h);
       margin: var(--toggle-switch-m);
       border-radius: var(--toggle-switch-br);
-      display: inline-block;
       transition: all 150ms ease-in-out;
       transform: translate3d(0, 0, 0);
       text-align: center;
@@ -51,7 +57,17 @@
   }
 
   .label {
-    margin-left: var(--toggle-label-left-margin);
+    font-size: var(--toggle-label-fz);
+    line-height: var(--toggle-label-lh);
+    font-weight: var(--toggle-label-fw);
+
+    &.label-align-left {
+      margin-right: var(--toggle-label-margin);
+    }
+
+    &.label-align-right {
+      margin-left: var(--toggle-label-margin);
+    }
   }
 
   &.is-active {

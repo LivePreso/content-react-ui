@@ -14,22 +14,29 @@ import {
   createSeries,
   createLegend,
   createCursor,
-} from './chart-utils';
+  applyChartColors,
+  applyLabel,
+} from './utils/xy-chart-utils';
 
 /**
  * Chart with category x-axis (name) & value y-axes (number)
  */
 export function CategoryChart({
+  className,
   series,
   xAxis,
   yAxes,
   data,
   width,
   height,
+  showLegend,
+  label,
   tooltips,
+  colors,
   themeFunctions,
+  onReady,
 }) {
-  const combinedThemeFuncs = useChartTheme(themeFunctions, false);
+  const combinedThemeFuncs = useChartTheme(themeFunctions);
 
   const chartFunction = useCallback(
     (chart) => {
@@ -42,26 +49,38 @@ export function CategoryChart({
         axis: createValueYAxis(chart, axis),
       }));
 
+      applyChartColors(chart, colors);
+
       createSeries(chart, {
         tooltips,
+        colors,
         dataFields: { yAxis: 'valueY', xAxis: 'categoryX' },
         seriesOptions: series,
         yAxes: yAxisCollection,
       });
 
-      chart.legend = createLegend();
+      if (showLegend) {
+        chart.legend = createLegend();
+      }
+
       chart.cursor = createCursor(xAxisObj);
+
+      if (label) {
+        applyLabel(chart, label);
+      }
     },
-    [series, tooltips, xAxis, yAxes],
+    [series, tooltips, colors, label, xAxis, yAxes, showLegend],
   );
 
   return (
     <BaseChart
+      className={className}
       themeFunctions={combinedThemeFuncs}
       chartFunction={chartFunction}
       data={data}
       width={width}
       height={height}
+      onReady={onReady}
     />
   );
 }

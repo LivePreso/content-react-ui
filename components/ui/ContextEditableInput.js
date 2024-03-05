@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useModes, useSlide, useContext } from '@livepreso/content-react';
+import { useModes, useSlide, useSlideContext } from '@livepreso/content-react';
 import { EditableInput } from './EditableInput';
 
 function useEditableReadOnly(allowedModes) {
@@ -43,7 +43,9 @@ function useEditableReadOnly(allowedModes) {
 
 export function ContextEditableInput({ id, tagName, allowedModes, children }) {
   const { slideKey } = useSlide();
-  const [value, setValue] = useContext(`context-editables.${slideKey}.${id}`);
+  const [value, setValue] = useSlideContext(
+    `context-editables.${slideKey}.${id}`,
+  );
 
   const readOnly = useEditableReadOnly(allowedModes);
 

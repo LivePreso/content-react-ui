@@ -1,0 +1,89 @@
+import borders from '../css/variables/_borders.scss';
+
+import { Meta, Unstyled, ColorPalette, ColorItem } from '@storybook/blocks';
+
+<Meta title="Design/Sass/Borders" />
+
+# Borders
+
+---
+
+<br />
+<br />
+
+#### Usage
+
+```css
+border-radius: var(--border-radius-small);
+border-radius: var(--border-radius-med);
+border-radius: var(--border-radius-lrg);
+```
+
+```js
+import borders from '@deck/css/variables/agoda/borders.scss';
+
+console.log(borders.borderRadiusSml);
+console.log(borders.borderRadiusMed);
+console.log(borders.borderRadiusLrg);
+```
+
+#### Examples
+
+<br />
+
+###### --border-radius ({borders.borderRadius})
+
+<Unstyled>
+  <div
+    style={{
+      borderRadius: borders.borderRadius,
+      border: `2px dotted black`,
+      width: '100%',
+      height: 100,
+    }}
+  />
+</Unstyled>
+
+<br />
+###### --border-radius-sml ({borders.borderRadiusSml})
+
+<Unstyled>
+  <div
+    style={{
+      borderRadius: borders.borderRadiusSml,
+      border: `2px dotted black`,
+      width: '100%',
+      height: 100,
+    }}
+  />
+</Unstyled>
+
+<br />
+
+###### --border-radius-med ({borders.borderRadiusMed})
+
+<Unstyled>
+  <div
+    style={{
+      borderRadius: borders.borderRadiusMed,
+      border: `2px dotted black`,
+      width: '100%',
+      height: 100,
+    }}
+  />
+</Unstyled>
+
+<br />
+
+###### --border-radius-lrg ({borders.borderRadiusLrg})
+
+<Unstyled>
+  <div
+    style={{
+      borderRadius: borders.borderRadiusLrg,
+      border: `2px dotted black`,
+      width: '100%',
+      height: 100,
+    }}
+  />
+</Unstyled>

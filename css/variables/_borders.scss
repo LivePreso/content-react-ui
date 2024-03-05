@@ -1,0 +1,17 @@
+$radii: (
+  'default': 50%,
+  'sml': 5px,
+  'med': 15px,
+  'large': 30px,
+);
+
+:root {
+  --border-radius: 50%;
+  --border-radius-none: 0;
+  --border-radius-sml: 5px;
+  --border-radius-med: 15px;
+  --border-radius-lrg: 30px;
+  --border-stroke: 2px;
+  --border-color: var(--color-bg-3);
+  --border: var(--border-stroke) solid var(--border-color);
+}

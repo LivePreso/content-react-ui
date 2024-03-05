@@ -1,0 +1,62 @@
+:root {
+  --button-border-radius: var(--border-radius-sml);
+  --button-padding-top: var(--space-sml);
+  --button-padding-bottom: var(--space-sml);
+  --button-padding-sides: var(--space-med);
+  --button-color-text: var(--color-text-contrast);
+  --button-color-bg: var(--color-brand-1);
+  --button-color-hover: var(--color-brand-1-d2);
+  --button-color-active: var(--color-brand-1-l1);
+  --button-color-focus: var(--color-brand-1-d2);
+  --button-color-icon: var(--color-text-contrast);
+
+  // size
+  --button-padding-top-small: var(--button-padding-top);
+  --button-padding-bottom-small: var(--button-padding-bottom);
+  --button-padding-sides-small: var(--button-padding-sides);
+  --button-fz-small: var(--text-fz-p);
+  --button-lh-small: var(--text-lh-p);
+  --button-fw-small: var(--button-fw);
+  --button-icon-sz-small: 24px;
+  --button-icon-margin-small: 4px;
+  --button-padding-top-medium: var(--button-padding-top);
+  --button-padding-bottom-medium: var(--button-padding-bottom);
+  --button-padding-sides-medium: var(--button-padding-sides);
+  --button-fz-medium: var(--text-fz-h5);
+  --button-lh-medium: var(--text-lh-h5);
+  --button-fw-medium: var(--button-fw);
+  --button-icon-sz-medium: 30px;
+  --button-icon-margin-medium: 8px;
+  --button-padding-top-large: var(--space-med);
+  --button-padding-bottom-large: var(--space-med);
+  --button-padding-sides-large: var(--space-lrg);
+  --button-fz-large: var(--text-fz-h4);
+  --button-lh-large: var(--text-lh-h4);
+  --button-fw-large: var(--button-fw);
+  --button-icon-sz-large: 36px;
+  --button-icon-margin-large: 10px;
+
+  // variant
+  --button-color-text-variant: var(--button-color-bg);
+  --button-color-text-variant-hover: var(--button-color-hover);
+  --button-color-text-variant-active: var(--button-color-active);
+  --button-color-text-variant-focus: var(--button-color-focus);
+
+  // inverted
+  --button-color-text-inverted: var(--button-color-bg);
+  --button-color-bg-inverted: var(--button-color-text);
+  --button-color-inverted-hover: var(--color-brand-1-l3);
+  --button-color-inverted-active: var(--color-brand-1-l4);
+  --button-color-inverted-focus: var(--color-brand-1-l3);
+  --button-color-icon-inverted: var(--button-color-bg);
+  --button-color-text-variant-inverted: var(--button-color-bg-inverted);
+  --button-color-text-variant-inverted-hover: var(
+    --button-color-inverted-hover
+  );
+  --button-color-text-variant-inverted-active: var(
+    --button-color-inverted-active
+  );
+  --button-color-text-variant-inverted-focus: var(
+    --button-color-inverted-focus
+  );
+}

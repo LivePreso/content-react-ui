@@ -1,9 +1,10 @@
-import "./styles.scss";
+import '../css/core.scss';
+import './styles.scss';
 
 /** @type { import('@storybook/react').Preview } */
 const preview = {
   parameters: {
-    actions: { argTypesRegex: "^on[A-Z].*" },
+    actions: { argTypesRegex: '^on[A-Z].*' },
     controls: {
       matchers: {
         color: /(background|color)$/i,
@@ -13,7 +14,7 @@ const preview = {
 
     options: {
       storySort: {
-        order: ["Components"],
+        order: ['Components'],
       },
     },
   },

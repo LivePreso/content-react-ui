@@ -1,0 +1,44 @@
+:root {
+  // Colors
+  --toggle-switch-bg: var(--color-bg-1);
+  --toggle-inactive-bg: var(--color-brand-1-l);
+  --toggle-active-bg: var(--color-brand-1);
+  --toggle-disabled-bg: var(--color-disabled);
+
+  // Colors - inactive
+  --toggle-inactive-track-bg: var(--toggle-inactive-bg);
+  --toggle-inactive-switch-bg: var(--toggle-switch-bg);
+  --toggle-inactive-icon-bg: var(--toggle-inactive-bg);
+
+  // Colors - active
+  --toggle-active-track-bg: var(--toggle-active-bg);
+  --toggle-active-switch-bg: var(--toggle-switch-bg);
+  --toggle-active-icon-bg: var(--toggle-active-bg);
+
+  // Colors - disabled
+  --toggle-disabled-track-bg: var(--toggle-disabled-bg);
+  --toggle-disabled-switch-bg: var(--toggle-switch-bg);
+  --toggle-disabled-icon-bg: var(--toggle-disabled-bg);
+
+  // Geometry
+  --toggle-label-margin: 12px;
+
+  // Geometry - track
+  --toggle-track-w: 32px;
+  --toggle-track-h: 20px;
+  --toggle-track-br: 10px;
+
+  // Geometry - switch
+  --toggle-switch-w: 12px;
+  --toggle-switch-h: 12px;
+  --toggle-switch-m: 4px;
+  --toggle-switch-br: 100%;
+  --toggle-switch-active-w: 16px;
+  --toggle-switch-active-h: 16px;
+  --toggle-switch-active-m: 2px;
+
+  // Label
+  --toggle-label-fz: var(--text-fz-h6);
+  --toggle-label-lh: var(--text-lh-h6);
+  --toggle-label-fw: var(--text-fw-h6);
+}

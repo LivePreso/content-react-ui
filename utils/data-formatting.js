@@ -1,4 +1,4 @@
-import { isNaN, isNull, isUndefined } from 'lodash-es';
+import { isNaN, isNull, isUndefined, isNumber } from 'lodash-es';
 
 export function isInvalidNumber(num) {
   return (
@@ -10,8 +10,28 @@ export function isInvalidNumber(num) {
   );
 }
 
-export function getPlural(number) {
-  return number === 1 ? '' : 's';
+export function isUpperCase(str) {
+  return str === str.toUpperCase();
+}
+
+export function undefinedAsDash(value) {
+  return isNull(value) || isUndefined(value) ? '-' : value;
+}
+
+export function getPlural(string, count = 0) {
+  const strLower = string.toLowerCase();
+  const isSingle = count === 1;
+  const isUpper = isUpperCase(string);
+  let val = isSingle ? string : `${string}s`;
+
+  // Add special case plurals here:
+  if (strLower === 'child' || strLower === 'children') {
+    // Slice to maintain possible starting uppercase
+    const childStr = string.slice(0, 5);
+    val = isSingle ? childStr : `${childStr}ren`;
+  }
+
+  return isUpper ? val.toUpperCase() : val;
 }
 
 export function posNegFactory({ pos, neg }) {
@@ -63,14 +83,14 @@ export function cleanNumberFactory(options) {
  */
 function currencify(
   num,
-  { numDecimal = 0, minDecimal, maxDecimal, currency } = {},
+  { numDecimal = 0, minDecimal, maxDecimal, currencyCode } = {},
 ) {
   // Return - for NaN, null, Infinite or undefined
   if (isInvalidNumber(num)) {
     return '-';
   }
 
-  if (!currency) {
+  if (!currencyCode) {
     // eslint-disable-next-line no-console
     console.warn('currencify - currency code not provided');
 
@@ -83,7 +103,7 @@ function currencify(
 
   const returnNum = Number(num).toLocaleString('en', {
     style: 'currency',
-    currency,
+    currency: currencyCode,
     minimumFractionDigits: minDecimal || numDecimal,
     maximumFractionDigits: maxDecimal || numDecimal,
   });
@@ -192,4 +212,132 @@ export function capitalise(input) {
   }
 
   return result;
+}
+
+export function slugify() {
+  return function (value) {
+    const str = value.toString();
+    return str
+      .toString()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .toLowerCase()
+      .trim()
+      .replace(/\s+/g, '-')
+      .replace(/[^\w-]+/g, '')
+      .replace(/--+/g, '-');
+  };
+}
+
+/**
+ * Converts numbers into truncated strings with large number suffixes
+ *
+ * Example: 1,236,453 = 1m
+ *
+ * @param {number} value
+ * @param {boolean} options.useLongName - use longhand suffix, eg. 'm' = 'million'
+ * @param {boolean} options.returnArray - return array instead of string, eg. [1, 'm']
+ * @param {number} options.numDecimal
+ * @param {function} options.roundingFunc
+ * @param {number} options.maxLength - removes decimal places if truncated value surpasses maxLength (eg. maxLength 3: 123.6K = 123K, 1,235 = 1.2K)
+ * @param {string} options.currencyCode - convert to currency, supply ISO currency code (https://en.wikipedia.org/wiki/ISO_4217)
+ * @returns {(string|Array)}
+ */
+function prettyNumberify(
+  value,
+  {
+    useLongName = false,
+    returnArray = false,
+    numDecimal = 0,
+    roundingFunc = Math.round,
+    maxLength = null,
+    currencyCode = null,
+  } = {},
+) {
+  const invalidStr = 'Invalid Number';
+
+  let n = value;
+  let z;
+  let t = '';
+
+  const p = /^[0-9.]+$/; // NUMBER PATTERN
+  let numberNames = {
+    K: 'k',
+    M: 'm',
+    B: 'b',
+    T: 't',
+  }; // Default Number Representation
+
+  if (useLongName === true) {
+    numberNames = {
+      K: 'thousand',
+      M: 'million',
+      B: 'billion',
+      T: 'trillion',
+    };
+  }
+
+  const decModifier = 10 ** numDecimal;
+
+  if (isNumber(n) || n?.match(p)) {
+    n = parseFloat(n);
+    z = 0;
+
+    const absN = Math.abs(n);
+    if (absN >= 1000) {
+      let m = 0;
+
+      if (absN >= 1000000000000) {
+        m = roundingFunc(n / (1000000000000 / decModifier));
+        t = numberNames.T;
+      } else if (absN >= 1000000000) {
+        m = roundingFunc(n / (1000000000 / decModifier));
+        t = numberNames.B;
+      } else if (absN >= 1000000) {
+        m = roundingFunc(n / (1000000 / decModifier));
+        t = numberNames.M;
+      } else if (absN >= 1000) {
+        m = roundingFunc(n / (1000 / decModifier));
+        t = numberNames.K;
+      }
+
+      const resultLength = m.toString().length;
+      if (maxLength !== null && resultLength > maxLength) {
+        const resultDiff = resultLength - maxLength;
+        const newDecModifier =
+          10 ** (resultDiff <= numDecimal ? numDecimal - resultDiff : 0);
+        m = roundingFunc(n / (1000 / newDecModifier));
+        z = m / newDecModifier;
+      } else {
+        // ADDS THE DECIMAL PLACE
+        z = m / decModifier;
+      }
+
+      if (currencyCode)
+        z = currencify(z, {
+          minDecimal: 0,
+          maxDecimal: numDecimal,
+          currencyCode,
+        });
+    } else {
+      // Add decimal to numbers under 1,000
+      z = roundingFunc(n * decModifier) / decModifier;
+      if (currencyCode) z = currencify(z, { numDecimal, currencyCode });
+    }
+  } else {
+    z = invalidStr;
+  }
+
+  if (returnArray) {
+    const theArray = [z, t];
+    return theArray;
+  }
+
+  return `${z}${t}`;
+}
+
+export function prettyNumberifyFactory(options) {
+  return (val) => {
+    return prettyNumberify(val, options);
+  };
 }

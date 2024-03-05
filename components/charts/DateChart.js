@@ -4,6 +4,7 @@
 ] */
 
 import React, { useCallback } from 'react';
+import { useChartTheme } from '@ui/hooks/use-chart-theme';
 import { BaseChart } from './BaseChart';
 import {
   baseChartProps,
@@ -13,21 +14,30 @@ import {
   createSeries,
   createLegend,
   createCursor,
-} from './chart-utils';
+  applyChartColors,
+  applyLabel,
+} from './utils/xy-chart-utils';
 
 /**
  * Chart with date x-axis (date) & value y-axes (number)
  */
 export function DateChart({
+  className,
   series,
   xAxis,
   yAxes,
   data,
   width,
   height,
+  showLegend,
+  label,
   tooltips,
+  colors,
   themeFunctions,
+  onReady,
 }) {
+  const combinedThemeFuncs = useChartTheme(themeFunctions);
+
   const chartFunction = useCallback(
     (chart) => {
       const xAxisObj = createDateXAxis(chart, xAxis);
@@ -36,27 +46,39 @@ export function DateChart({
         axis: createValueYAxis(chart, axis),
       }));
 
+      applyChartColors(chart, colors);
+
       createSeries(chart, {
         tooltips,
+        colors,
         dataFields: { yAxis: 'valueY', xAxis: 'dateX' },
         seriesOptions: series,
         yAxes: yAxisCollection,
         granularity: xAxis.granularity,
       });
 
-      chart.legend = createLegend();
+      if (showLegend) {
+        chart.legend = createLegend();
+      }
+
       chart.cursor = createCursor(xAxisObj);
+
+      if (label) {
+        applyLabel(chart, label);
+      }
     },
-    [series, tooltips, xAxis, yAxes],
+    [series, tooltips, colors, label, xAxis, yAxes, showLegend],
   );
 
   return (
     <BaseChart
-      themeFunctions={themeFunctions}
+      className={className}
+      themeFunctions={combinedThemeFuncs}
       chartFunction={chartFunction}
       data={data}
       width={width}
       height={height}
+      onReady={onReady}
     />
   );
 }

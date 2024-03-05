@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { flexPropTypes } from '@ui/components/layout/flex-prop-types';
 import { Column } from '@ui/components/layout';
-import { getCurrencyCode } from '@ui/js/get-currency-code';
 import {
   percentifyFactory,
   decimalifyFactory,
@@ -13,7 +12,7 @@ import style from './BigStat.module.scss';
 const formatterMap = {
   currency: currencyCodifyFactory({
     numDecimal: 2,
-    currency: getCurrencyCode(),
+    currency: 'AUD',
   }),
   number: decimalifyFactory({ minDecimal: 0, maxDecimal: 2 }),
   percent: percentifyFactory({ numDecimal: 1 }),

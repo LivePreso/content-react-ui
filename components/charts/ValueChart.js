@@ -14,23 +14,30 @@ import {
   createSeries,
   createLegend,
   createCursor,
-  AddValueChartTooltips,
-} from './chart-utils';
+  addValueChartTooltips,
+  applyChartColors,
+  applyLabel,
+} from './utils/xy-chart-utils';
 
 /**
  * Chart with value x-axis (number) & value y-axes (number)
  */
 export function ValueChart({
+  className,
   series,
   xAxis,
   yAxes,
   data,
   width,
   height,
+  showLegend,
+  label,
   tooltips,
+  colors,
   themeFunctions,
+  onReady,
 }) {
-  const combinedThemeFuncs = useChartTheme(themeFunctions, false);
+  const combinedThemeFuncs = useChartTheme(themeFunctions);
 
   const chartFunction = useCallback(
     (chart) => {
@@ -40,33 +47,44 @@ export function ValueChart({
         axis: createValueYAxis(chart, axis),
       }));
 
+      applyChartColors(chart, colors);
+
       createSeries(chart, {
         tooltips: {
           text: '{name}: {valueY}\n{name}: {valueX}',
           ...tooltips,
         },
+        colors,
         dataFields: { yAxis: 'valueY', xAxis: 'valueX' },
         seriesOptions: series,
         yAxes: yAxisCollection,
       });
 
       if (tooltips.active) {
-        AddValueChartTooltips(xAxisObj);
+        addValueChartTooltips(xAxisObj);
+      }
+      if (showLegend) {
+        chart.legend = createLegend();
       }
 
-      chart.legend = createLegend();
       chart.cursor = createCursor(xAxisObj);
+
+      if (label) {
+        applyLabel(chart, label);
+      }
     },
-    [series, tooltips, xAxis, yAxes],
+    [series, tooltips, colors, label, xAxis, yAxes, showLegend],
   );
 
   return (
     <BaseChart
+      className={className}
       themeFunctions={combinedThemeFuncs}
       chartFunction={chartFunction}
       data={data}
       width={width}
       height={height}
+      onReady={onReady}
     />
   );
 }

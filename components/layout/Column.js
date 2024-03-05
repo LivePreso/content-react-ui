@@ -4,8 +4,10 @@ import PropTypes from 'prop-types';
 import { FlexGroup } from './FlexGroup';
 import style from './Column.module.scss';
 
-export function Column({ className, children, gap, ...props }) {
-  const classes = classNames(className, style.column, style[`gap-${gap}`]);
+export function Column({ className, children, gap, reverse, ...props }) {
+  const classes = classNames(className, style.column, style[`gap-${gap}`], {
+    [style.reverse]: reverse,
+  });
 
   return (
     <FlexGroup className={classes} gap={gap} {...props}>
@@ -33,9 +35,11 @@ Column.propTypes = {
    * Note: 'justify' is ignored when using a 'flex-' gap
    */
   justify: PropTypes.oneOf(['start', 'end', 'center']),
+  reverse: PropTypes.bool,
 };
 
 Column.defaultProps = {
   ...FlexGroup.defaultProps,
   gap: null,
+  reverse: false,
 };

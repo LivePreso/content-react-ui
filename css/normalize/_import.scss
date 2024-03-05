@@ -1,0 +1,8 @@
+// From Normalize:
+// https://github.com/JohnAlbin/normalize-scss/tree/main
+
+@import 'normalize';
+
+#slideshow {
+  @include normalize;
+}

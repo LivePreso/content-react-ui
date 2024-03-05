@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { DeltaValue } from '@ui/components/stats';
 import { DeltaValueBubble } from '@ui/components/stats/DeltaValueBubble';
-import { isValidNumber } from '@ui/js/data-processing/utils/math-utils';
+import { isValidNumber } from '@ui/utils/math-utils';
 import { Errors } from '@ui/components/misc/Errors';
 import style from './MetricItem.module.scss';
 

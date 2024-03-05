@@ -1,0 +1,10 @@
+:root {
+  --slide-content-bg-color: transparent;
+
+  // Content padding
+  --slide-content-pad-sides: 0px;
+  --slide-content-pad-left: var(--slide-content-pad-sides);
+  --slide-content-pad-right: var(--slide-content-pad-sides);
+  --slide-content-pad-top: 0px;
+  --slide-content-pad-bottom: 0px;
+}

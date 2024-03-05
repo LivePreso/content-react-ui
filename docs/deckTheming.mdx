@@ -1,0 +1,15 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Deck theming" />
+
+## Basic theming
+
+CSS variables have been used for basic theming of content decks and their components.
+
+Client-specifc CSS variables should be created to override the base styles as required.
+
+When referencing what variables are available for override, see css > variables. This set of variables will eventually become part of a base content component library, and should be considered read-only.
+
+## Custom styles
+
+If more complex styling is required, a new React component + CSS module pair should be created to wrap the target base component.

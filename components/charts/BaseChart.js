@@ -5,9 +5,13 @@
 
 import { uniqueId, isEqual } from 'lodash-es';
 import React, { useCallback, useEffect, useRef } from 'react';
+import { useSlideDone } from '@livepreso/content-react';
 import PropTypes from 'prop-types';
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
+
+am4core.options.commercialLicense = true;
+am4core.options.autoSetClassName = true;
 
 /**
  * The default comparison is shallow equality, so we're using
@@ -25,6 +29,14 @@ const arePropsEqual = (oldProps, newProps) => {
   );
 };
 
+function getAMChartType(type) {
+  if (type === 'pie') {
+    return am4charts.PieChart;
+  }
+
+  return am4charts.XYChart;
+}
+
 /**
  * Return a memoized component here for performance reasons.
  *
@@ -36,6 +48,8 @@ const arePropsEqual = (oldProps, newProps) => {
  * https://react.dev/reference/react/memo
  */
 export const BaseChart = React.memo(function BaseChart({
+  className,
+  type,
   chartFunction,
   themeFunctions,
   data,
@@ -44,6 +58,7 @@ export const BaseChart = React.memo(function BaseChart({
 }) {
   const chartRef = useRef(null);
   const id = useRef(uniqueId('amchart'));
+  const chartReady = useSlideDone();
 
   const onInitialize = useCallback(
     function (chart) {
@@ -51,10 +66,14 @@ export const BaseChart = React.memo(function BaseChart({
 
       // Prevent bullets on the edge of a chart being cropped
       chart.maskBullets = false;
-      // Disable pinch to zoom
-      chart.zoomOutButton.disabled = true;
+
+      // Is an XY chart (eg. category, value or date)
+      if (type === 'xy') {
+        // Disable pinch to zoom
+        chart.zoomOutButton.disabled = true;
+      }
     },
-    [chartFunction],
+    [chartFunction, type],
   );
 
   // Chart setup - initial load
@@ -66,30 +85,37 @@ export const BaseChart = React.memo(function BaseChart({
       }
     }
 
-    const amChart = am4core.create(id.current, am4charts.XYChart);
+    const amChart = am4core.create(id.current, getAMChartType(type));
 
     onInitialize(amChart);
 
     chartRef.current = amChart;
+    amChart.events.on('appeared', chartReady);
 
     return () => {
+      amChart.events.off('appeared', chartReady);
       amChart.dispose();
     };
-  }, [onInitialize, themeFunctions]);
+  }, [type, onInitialize, themeFunctions, chartReady]);
 
   useEffect(() => {
     // Handle data updates triggered by state changes
     chartRef.current.data = data;
   }, [data]);
 
-  return <div id={id.current} style={{ width, height }} />;
+  return (
+    <div id={id.current} className={className} style={{ width, height }} />
+  );
 }, arePropsEqual);
 
 BaseChart.propTypes = {
+  className: PropTypes.string,
+  /* Select between XY chart (eg. category, value, date) or pie chart */
+  type: PropTypes.oneOf(['xy', 'pie']),
   chartFunction: PropTypes.func.isRequired,
   themeFunctions: PropTypes.arrayOf(PropTypes.func),
-  width: PropTypes.string,
-  height: PropTypes.string,
+  width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   data: PropTypes.arrayOf(
     PropTypes.objectOf(
       PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -98,6 +124,8 @@ BaseChart.propTypes = {
 };
 
 BaseChart.defaultProps = {
+  className: null,
+  type: 'xy',
   width: '100%',
   height: '100%',
   themeFunctions: null,

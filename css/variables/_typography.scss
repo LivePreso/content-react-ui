@@ -1,0 +1,69 @@
+:root {
+  --main-font: arial, helvetica, sans-serif;
+
+  // Font weights
+  // https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight
+  --text-fw-thin: 100;
+  --text-fw-extra-light: 200;
+  --text-fw-light: 300;
+  --text-fw-normal: 400;
+  --text-fw-medium: 500;
+  --text-fw-semi-bold: 600;
+  --text-fw-bold: 700;
+  --text-fw-extra-bold: 800;
+  --text-fw-black: 900;
+  --text-fw-extra-black: 950;
+
+  // fz = font-size
+  // lh = line-height
+  // fw = font-weight
+  --text-fz-h1: 80px;
+  --text-lh-h1: 84px;
+  --text-fw-h1: var(--text-fw-normal);
+  --text-fw-h1-bold: var(--text-fw-bold);
+  --text-margin-top-h1: 0.2em;
+  --text-fz-h2: 64px;
+  --text-lh-h2: 68px;
+  --text-fw-h2: var(--text-fw-normal);
+  --text-fw-h2-bold: var(--text-fw-bold);
+  --text-margin-top-h2: 0.4em;
+  --text-fz-h3: 50px;
+  --text-lh-h3: 54px;
+  --text-fw-h3: var(--text-fw-normal);
+  --text-fw-h3-bold: var(--text-fw-bold);
+  --text-margin-top-h3: 0.6em;
+  --text-fz-h4: 40px;
+  --text-lh-h4: 44px;
+  --text-fw-h4: var(--text-fw-normal);
+  --text-fw-h4-bold: var(--text-fw-bold);
+  --text-margin-top-h4: 0.8em;
+  --text-fz-h5: 34px;
+  --text-lh-h5: 38px;
+  --text-fw-h5: var(--text-fw-normal);
+  --text-fw-h5-bold: var(--text-fw-bold);
+  --text-margin-top-h5: 1em;
+  --text-fz-h6: 20px;
+  --text-lh-h6: 24px;
+  --text-fw-h6: var(--text-fw-normal);
+  --text-fw-h6-bold: var(--text-fw-bold);
+  --text-margin-top-h6: 0.8em;
+  --text-fz-p: 26px;
+  --text-lh-p: 30px;
+  --text-fw-p: var(--text-fw-normal);
+  --text-fw-p-bold: var(--text-fw-bold);
+  --text-margin-top-p: 0.8em;
+
+  // Lists
+  --text-fz-li: var(--text-fz-p);
+  --text-lh-li: var(--text-lh-p);
+  --text-fw-li: var(--text-fw-p);
+  --text-fw-li-bold: var(--text-fw-bold);
+  --text-margin-top-list: 0.8em;
+  --text-margin-top-ol: var(--text-margin-top-list);
+  --text-margin-top-ul: var(--text-margin-top-list);
+  --text-pad-left-list: 1.2em;
+  --text-pad-left-ol: var(--text-pad-left-list);
+  --text-pad-left-ul: var(--text-pad-left-list);
+  --text-pad-bottom-li: 0.2em;
+  --text-list-style-ul: disc;
+}
