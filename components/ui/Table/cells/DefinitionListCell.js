@@ -13,7 +13,7 @@ export function DefinitionListCell(props) {
         const formattedValue = formatter ? formatter(value) : value;
 
         return (
-          <div>
+          <div key={`${label}${value}`}>
             <span className={style.definition}>{label}:</span>
             <Nbsp />
             <span>{formattedValue}</span>

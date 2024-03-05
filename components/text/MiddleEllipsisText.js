@@ -7,7 +7,7 @@ import style from './MiddleEllipsisText.module.scss';
 export function MiddleEllipsisText(props) {
   const { children, minAfter, className } = props;
 
-  const words = children.split(' ');
+  const words = children.toString().split(' ');
   let after = words.length > 1 ? words.pop() : null;
   let before = words.join(' ');
 

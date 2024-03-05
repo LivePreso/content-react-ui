@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useId } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { uniqueId } from 'lodash-es';
 import { getColWidth } from '@ui/utils/generate-table-layout';
 import { ROW_TYPES, CELL_TYPES_MAP, ROW_TYPES_MAP } from './table-constants';
 import { TextCell, EmptyCell } from './cells';
@@ -22,7 +21,7 @@ export function Table(props) {
   const opts = {};
 
   if (isPresoManagerInteractive) {
-    opts['data-companywide-interactive'] = isPresoManagerInteractive;
+    opts['data-companywide-interactive'] = true;
   }
 
   const isSticky = sticky !== 'none';
@@ -35,11 +34,14 @@ export function Table(props) {
 
   // empty row of columns with colSpan 1
   // Fixes problem with colSpans used in header
+  const emptyRowId = useId();
   const blankRow = (
-    <BodyRow uid={`empty-row-${uniqueId()}`}>
-      {columnWidths.map((width) => (
-        <EmptyCell key={`empty-cell-${uniqueId()}`} width={width} />
-      ))}
+    <BodyRow uid={`empty-row-${emptyRowId}`}>
+      {columnWidths.map((width) => {
+        return (
+          <EmptyCell key={`empty-cell-${emptyRowId}-${width}`} width={width} />
+        );
+      })}
     </BodyRow>
   );
 
@@ -49,18 +51,22 @@ export function Table(props) {
     const rowCells = cells.map((cell) => {
       const { type, config, ...cellProps } = cell;
       const width = getColWidth(columnWidths, cells, cell);
+
       // augment with a key
-      cellProps.key = cellProps.uid;
-      cellProps.width = width;
+      const newCellProps = {
+        ...cellProps,
+        key: cellProps.uid,
+        width,
+      };
 
       const CellComponent = CELL_TYPES_MAP[type];
 
       if (!CellComponent) {
         const errorMessage = { value: `unknown component '${type}' ` };
-        return <TextCell {...cellProps} config={errorMessage} />;
+        return <TextCell {...newCellProps} config={errorMessage} />;
       }
 
-      return <CellComponent {...cellProps} {...config} />;
+      return <CellComponent {...newCellProps} {...config} />;
     });
 
     const RowComponent = ROW_TYPES_MAP[rowType] || ROW_TYPES_MAP.BodyRow;

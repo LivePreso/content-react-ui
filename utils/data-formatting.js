@@ -229,14 +229,28 @@ export function slugify() {
   };
 }
 
-// Make Nice numbers/text --------------------------- //
+/**
+ * Converts numbers into truncated strings with large number suffixes
+ *
+ * Example: 1,236,453 = 1m
+ *
+ * @param {number} value
+ * @param {boolean} options.useLongName - use longhand suffix, eg. 'm' = 'million'
+ * @param {boolean} options.returnArray - return array instead of string, eg. [1, 'm']
+ * @param {number} options.numDecimal
+ * @param {function} options.roundingFunc
+ * @param {number} options.maxLength - removes decimal places if truncated value surpasses maxLength (eg. maxLength 3: 123.6K = 123K, 1,235 = 1.2K)
+ * @param {string} options.currencyCode - convert to currency, supply ISO currency code (https://en.wikipedia.org/wiki/ISO_4217)
+ * @returns {(string|Array)}
+ */
 function prettyNumberify(
   value,
   {
     useLongName = false,
     returnArray = false,
     numDecimal = 0,
-    extraDec = false,
+    roundingFunc = Math.round,
+    maxLength = null,
     currencyCode = null,
   } = {},
 ) {
@@ -274,23 +288,29 @@ function prettyNumberify(
       let m = 0;
 
       if (absN >= 1000000000000) {
-        m = Math.floor(n / (1000000000000 / decModifier)); // GETS THE FIRST TWO DECIMAL POINTS
+        m = roundingFunc(n / (1000000000000 / decModifier));
         t = numberNames.T;
       } else if (absN >= 1000000000) {
-        m = Math.floor(n / (1000000000 / decModifier)); // GETS THE FIRST TWO DECIMAL POINTS
+        m = roundingFunc(n / (1000000000 / decModifier));
         t = numberNames.B;
       } else if (absN >= 1000000) {
-        m = Math.floor(n / (1000000 / decModifier)); // GETS THE FIRST TWO DECIMAL POINTS
+        m = roundingFunc(n / (1000000 / decModifier));
         t = numberNames.M;
       } else if (absN >= 1000) {
-        m = Math.floor(n / (1000 / decModifier)); // GETS THE FIRST TWO DECIMAL POINTS
+        m = roundingFunc(n / (1000 / decModifier));
         t = numberNames.K;
       }
 
-      if (!extraDec && m.toString().length >= 4) {
-        z = Math.floor(m / decModifier); // REMOVES THE DECIMAL PLACE
+      const resultLength = m.toString().length;
+      if (maxLength !== null && resultLength > maxLength) {
+        const resultDiff = resultLength - maxLength;
+        const newDecModifier =
+          10 ** (resultDiff <= numDecimal ? numDecimal - resultDiff : 0);
+        m = roundingFunc(n / (1000 / newDecModifier));
+        z = m / newDecModifier;
       } else {
-        z = m / decModifier; // ADDS THE DECIMAL PLACE
+        // ADDS THE DECIMAL PLACE
+        z = m / decModifier;
       }
 
       if (currencyCode)
@@ -300,18 +320,19 @@ function prettyNumberify(
           currencyCode,
         });
     } else {
-      z = n;
+      // Add decimal to numbers under 1,000
+      z = roundingFunc(n * decModifier) / decModifier;
       if (currencyCode) z = currencify(z, { numDecimal, currencyCode });
     }
   } else {
     z = invalidStr;
   }
 
-  // How to format the result
   if (returnArray) {
     const theArray = [z, t];
     return theArray;
   }
+
   return `${z}${t}`;
 }
 

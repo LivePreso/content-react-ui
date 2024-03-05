@@ -1,5 +1,5 @@
 import React from 'react';
-import { addRowAndCellUids } from '@ui/utils/add-uids';
+import { addRowAndCellUids } from './utils';
 import {
   Table,
   Row,
@@ -9,7 +9,6 @@ import {
   HighlightRow,
   TitleCell,
 } from '.';
-// import { propertyAnalysisToTableConfig } from '../../js/data-processing/property-analysis';
 import { CELL_TYPES, ROW_TYPES } from './table-constants';
 
 export default {
@@ -259,50 +258,3 @@ export const Schema = {
     columnWidths: sampleColumnWidths,
   },
 };
-
-// // data driven example
-// const dummyFeed = {
-//   hotel_net_room_nights: 100,
-//   hotel_net_room_nights_growth: 0.8, // percent
-//   hotel_conversion: 0.6, // percent
-//   hotel_pricing_health: 0.8, // percent
-//   hotel_adr: 100,
-//   hotel_adr_ly: 120,
-//   hotel_adr_growth: -0.2, // percent
-//   hotel_impressions: 234000,
-//   hotel_content_score: 90,
-//   hotel_review_score: 8,
-
-//   comp_set_net_room_nights: 100,
-//   comp_set_net_room_nights_growth: -0.8, // percent
-//   comp_set_conversion: 0.6, // percent
-//   comp_set_pricing_health: 0.8, // percent
-//   comp_set_adr: 100,
-//   comp_set_adr_ly: 120,
-//   comp_set_adr_growth: -0.2, // percent
-//   comp_set_impressions: 234000,
-//   comp_set_content_score: 90,
-//   comp_set_review_score: '8.8 - 7.9',
-
-//   diff_net_room_nights: 0.4, // percent
-//   diff_conversion: 0.6, // percent
-//   diff_pricing_health: 0.8, // percent
-//   diff_adr: -0.25, // percent
-//   diff_impressions: -0.26, // percent
-// };
-
-// // outputs columns / rows from a feed input - specific to a feed / slide
-// const tableConfig = propertyAnalysisToTableConfig(
-//   dummyFeed,
-//   '<< hotel name >>',
-// );
-// // takes columns / rows - generic table builder
-// const { rows, columns } = tableConfig;
-
-// export const DataProcessing = {
-//   args: {
-//     label: 'Default',
-//     rows,
-//     columns,
-//   },
-// };

@@ -31,7 +31,7 @@ export function Button(props) {
   const opts = {};
 
   if (isPresoManagerInteractive) {
-    opts['data-companywide-interactive'] = isPresoManagerInteractive;
+    opts['data-companywide-interactive'] = true;
   }
 
   return (

@@ -7,9 +7,6 @@ import PropTypes from 'prop-types';
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
 
-am4core.options.commercialLicense = true;
-am4core.options.autoSetClassName = true;
-
 export const baseChartProps = {
   className: PropTypes.string,
   /** AMcharts 4 theme function */

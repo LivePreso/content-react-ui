@@ -10,6 +10,9 @@ import PropTypes from 'prop-types';
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
 
+am4core.options.commercialLicense = true;
+am4core.options.autoSetClassName = true;
+
 /**
  * The default comparison is shallow equality, so we're using
  * lodash's isEqual for deep comparison instead.
@@ -64,6 +67,7 @@ export const BaseChart = React.memo(function BaseChart({
       // Prevent bullets on the edge of a chart being cropped
       chart.maskBullets = false;
 
+      // Is an XY chart (eg. category, value or date)
       if (type === 'xy') {
         // Disable pinch to zoom
         chart.zoomOutButton.disabled = true;
@@ -106,6 +110,7 @@ export const BaseChart = React.memo(function BaseChart({
 
 BaseChart.propTypes = {
   className: PropTypes.string,
+  /* Select between XY chart (eg. category, value, date) or pie chart */
   type: PropTypes.oneOf(['xy', 'pie']),
   chartFunction: PropTypes.func.isRequired,
   themeFunctions: PropTypes.arrayOf(PropTypes.func),
