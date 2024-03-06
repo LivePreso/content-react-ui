@@ -5,10 +5,17 @@ import style from './Modal.module.scss';
 
 export function Modal({ children, className, onClose }) {
   const classes = classNames(className, style.modal);
+  const shroudClasses = classNames(style.shroud, {
+    [style.isClickable]: typeof onClose === 'function',
+  });
 
   return (
     <div className={style.wrapper}>
-      <div className={style.shroud} onClick={onClose} type="button" />
+      <div
+        className={shroudClasses}
+        onClick={onClose && onClose}
+        type="button"
+      />
       <div className={classes}>{children}</div>
     </div>
   );
@@ -21,7 +28,7 @@ Modal.propTypes = {
 };
 
 Modal.defaultProps = {
-  onClose: () => {},
+  onClose: null,
   children: null,
   className: '',
 };
