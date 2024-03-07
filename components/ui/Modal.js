@@ -13,7 +13,7 @@ export function Modal({ children, className, onClose }) {
     <div className={style.wrapper}>
       <div
         className={shroudClasses}
-        onClick={onClose && onClose}
+        onClick={typeof onClose === 'function' ? onClose : null}
         type="button"
       />
       <div className={classes}>{children}</div>
