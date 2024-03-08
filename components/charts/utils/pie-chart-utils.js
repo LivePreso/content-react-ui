@@ -103,6 +103,8 @@ export function createSeries(
       tooltips.text || `{category}: {value.formatNumber("${numberFormat}")}`;
     // TODO: tooltip styling options
   } else {
+    series.slices.template.states.getKey('hover').properties.scale = 1;
+    series.slices.template.states.getKey('active').properties.shiftRadius = 0;
     series.slices.template.tooltipText = '';
   }
 
