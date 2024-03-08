@@ -10,7 +10,7 @@ import { Tabs } from './Tabs';
 
 export default {
   component: Tabs,
-  title: 'Components/UI/Tabs',
+  title: 'Components/UI/Tabs/Tabs',
 };
 
 const TabsTemplate = {

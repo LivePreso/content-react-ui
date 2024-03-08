@@ -1,4 +1,5 @@
 import React from 'react';
+import { useArgs } from '@storybook/preview-api';
 import { addRowAndCellUids } from './utils';
 import {
   Table,
@@ -7,6 +8,8 @@ import {
   HeaderRow,
   SubheaderRow,
   HighlightRow,
+  AccordionRow,
+  BodyRow,
   TitleCell,
 } from '.';
 import { CELL_TYPES, ROW_TYPES } from './table-constants';
@@ -256,5 +259,61 @@ export const Schema = {
     label: 'Default',
     rows: addRowAndCellUids(sampleTableConfig),
     columnWidths: sampleColumnWidths,
+  },
+};
+
+export const AccordionTable = {
+  render: function Render({ children, rows, ...args }) {
+    const [{ active }, updateArgs] = useArgs();
+
+    return (
+      <Table {...args}>
+        <AccordionRow
+          active={active}
+          rows={rows}
+          onToggle={(val) => {
+            updateArgs({ active: val });
+          }}
+        >
+          {children}
+        </AccordionRow>
+      </Table>
+    );
+  },
+  args: {
+    uid: 'accordion',
+    active: false,
+    columnWidths: ['60%', '40%'],
+    rows: [
+      {
+        renderItem: (item) => (
+          <BodyRow uid="r2" {...item}>
+            <Cell uid="r2-c1">
+              <span>Product name</span>
+            </Cell>
+            <Cell uid="r2-c2">
+              <span>Product value</span>
+            </Cell>
+          </BodyRow>
+        ),
+      },
+      {
+        renderItem: (item) => (
+          <BodyRow uid="r3" {...item}>
+            <Cell uid="r3-c1">
+              <span>Product name</span>
+            </Cell>
+            <Cell uid="r3-c2">
+              <span>Product value</span>
+            </Cell>
+          </BodyRow>
+        ),
+      },
+    ],
+    children: (
+      <Cell uid="r1-c1" colSpan={2}>
+        <span>Accordion Row</span>
+      </Cell>
+    ),
   },
 };

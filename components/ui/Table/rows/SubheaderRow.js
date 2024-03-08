@@ -4,10 +4,14 @@ import style from './SubheaderRow.module.scss';
 import { BodyRow } from './BodyRow';
 
 export function SubheaderRow(props) {
-  const { uid, children, className } = props;
+  const { uid, children, className, ...rowProps } = props;
 
   return (
-    <BodyRow uid={uid} className={classNames([className, style.subheaderRow])}>
+    <BodyRow
+      uid={uid}
+      className={classNames([className, style.subheaderRow])}
+      {...rowProps}
+    >
       {children}
     </BodyRow>
   );

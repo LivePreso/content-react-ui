@@ -1,5 +1,5 @@
 import React from 'react';
-import classnames from 'classnames';
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import style from './Arrow.module.scss';
 
@@ -7,7 +7,7 @@ export function Arrow(props) {
   const { className, orientation, color } = props;
   return (
     <svg
-      className={classnames(className, style.svg, style[orientation])}
+      className={classNames(className, style.svg, style[orientation])}
       width="14"
       height="15"
       viewBox="0 0 14 15"

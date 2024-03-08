@@ -1,0 +1,28 @@
+.accordion-row {
+  cursor: pointer;
+
+  td:first-child {
+    padding-left: calc(var(--table-header-cell-padding-h) + 1.5em);
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0.8em;
+      left: var(--table-header-cell-padding-h);
+      border: 0.5em solid transparent;
+      border-top-color: var(--table-header-color);
+      width: 0;
+      height: 0;
+    }
+  }
+
+  &.is-open {
+    td:first-child {
+      &::before {
+        top: 0.2em;
+        border-top-color: transparent;
+        border-bottom-color: var(--table-header-color);
+      }
+    }
+  }
+}

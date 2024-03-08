@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import classnames from 'classnames';
+import classNames from 'classnames';
 import { Column } from '../../layout';
 import style from './Slide.module.scss';
 
 export function Slide({ className, children }) {
-  const classes = classnames(style.slide, className);
+  const classes = classNames(style.slide, className);
 
   return <Column className={classes}>{children}</Column>;
 }

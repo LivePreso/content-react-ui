@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
+import classNames from 'classnames';
 import { EditText } from 'react-edit-text';
 import style from './EditableInput.module.scss';
 
@@ -16,8 +16,8 @@ export function EditableInput(props) {
   return (
     <EditText
       value={value}
-      className={classnames(style.edit, style[tagName])}
-      inputClassName={classnames(style.input, style[tagName])}
+      className={classNames(style.edit, style[tagName])}
+      inputClassName={classNames(style.input, style[tagName])}
       onChange={(e) => {
         onChange(e.target.value);
       }}

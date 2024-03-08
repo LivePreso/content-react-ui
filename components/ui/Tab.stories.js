@@ -2,7 +2,7 @@ import { Tab } from './Tab';
 
 export default {
   component: Tab,
-  title: 'Components/UI/Tab',
+  title: 'Components/UI/Tabs/Tab',
 };
 
 export const Default = {

@@ -4,10 +4,14 @@ import style from './HighlightRow.module.scss';
 import { BodyRow } from './BodyRow';
 
 export function HighlightRow(props) {
-  const { uid, children, className } = props;
+  const { uid, children, className, ...rowProps } = props;
 
   return (
-    <BodyRow uid={uid} className={classNames([className, style.highlightRow])}>
+    <BodyRow
+      uid={uid}
+      className={classNames([className, style.highlightRow])}
+      {...rowProps}
+    >
       {children}
     </BodyRow>
   );

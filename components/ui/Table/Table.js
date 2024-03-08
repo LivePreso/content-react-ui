@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { getColWidth } from '@ui/utils/generate-table-layout';
 import { ROW_TYPES, CELL_TYPES_MAP, ROW_TYPES_MAP } from './table-constants';
+import { EMPTY_ACCORDION_KEY } from './table-variables';
 import { TextCell, EmptyCell } from './cells';
 import style from './Table.module.scss';
 import { BodyRow } from './rows';
@@ -15,6 +16,7 @@ export function Table(props) {
     columnWidths,
     children,
     className,
+    tbodyClassName,
     sticky,
   } = props;
 
@@ -35,7 +37,7 @@ export function Table(props) {
   // empty row of columns with colSpan 1
   // Fixes problem with colSpans used in header
   const blankRow = (
-    <BodyRow uid="empty-row">
+    <BodyRow uid="empty-row" accordionHeaderKey={EMPTY_ACCORDION_KEY}>
       {columnWidths.map((width, emptyIdx) => {
         return (
           <EmptyCell
@@ -91,7 +93,7 @@ export function Table(props) {
   return (
     <div className={wrapperClasses} {...opts}>
       <table className={className}>
-        <tbody>
+        <tbody className={tbodyClassName}>
           {blankRow}
           {outputRows}
           {children}
@@ -119,6 +121,7 @@ Table.propTypes = {
   children: PropTypes.node,
   sticky: PropTypes.oneOf(['none', 'row', 'column', 'both']),
   isPresoManagerInteractive: PropTypes.bool,
+  tbodyClassName: PropTypes.string,
   className: PropTypes.string,
 };
 
@@ -129,5 +132,6 @@ Table.defaultProps = {
   children: [],
   sticky: 'none',
   isPresoManagerInteractive: false,
+  tbodyClassName: '',
   className: '',
 };
