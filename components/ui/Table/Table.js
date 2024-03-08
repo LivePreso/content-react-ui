@@ -1,4 +1,4 @@
-import React, { useId } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { getColWidth } from '@ui/utils/generate-table-layout';
@@ -34,12 +34,14 @@ export function Table(props) {
 
   // empty row of columns with colSpan 1
   // Fixes problem with colSpans used in header
-  const emptyRowId = useId();
   const blankRow = (
-    <BodyRow uid={`empty-row-${emptyRowId}`}>
-      {columnWidths.map((width) => {
+    <BodyRow uid="empty-row">
+      {columnWidths.map((width, emptyIdx) => {
         return (
-          <EmptyCell key={`empty-cell-${emptyRowId}-${width}`} width={width} />
+          <EmptyCell
+            key={`empty-cell-${width}-${emptyIdx + 1}`}
+            width={width}
+          />
         );
       })}
     </BodyRow>
