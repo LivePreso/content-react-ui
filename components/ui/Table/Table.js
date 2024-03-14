@@ -2,11 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { getColWidth } from '@ui/utils/generate-table-layout';
-import { ROW_TYPES, CELL_TYPES_MAP, ROW_TYPES_MAP } from './table-constants';
-import { EMPTY_ACCORDION_KEY } from './table-variables';
+import { ROW_TYPES, EMPTY_ACCORDION_KEY } from './table-constants';
+import { CELL_TYPES_MAP, ROW_TYPES_MAP } from './table-type-maps';
 import { TextCell, EmptyCell } from './cells';
 import style from './Table.module.scss';
 import { BodyRow } from './rows';
+import { AccordionRow } from './rows/AccordionRow';
 
 export function Table(props) {
   const {
@@ -49,38 +50,72 @@ export function Table(props) {
     </BodyRow>
   );
 
-  const outputRows = rows.map((row) => {
-    const { type: rowType, uid, cells = [], className: rowClassName } = row;
+  const generateRows = (rowsSchema) => {
+    return rowsSchema.map((row) => {
+      const {
+        type: rowType,
+        uid,
+        cells = [],
+        rows: accordionRows,
+        className: rowClassName,
+        ...rowProps
+      } = row;
 
-    const rowCells = cells.map((cell) => {
-      const { type, config, ...cellProps } = cell;
-      const width = getColWidth(columnWidths, cells, cell);
+      const rowCells = cells.map((cell) => {
+        const { type, config, ...cellProps } = cell;
+        const width = getColWidth(columnWidths, cells, cell);
 
-      // augment with a key
-      const newCellProps = {
-        ...cellProps,
-        key: cellProps.uid,
-        width,
-      };
+        // augment with a key
+        const newCellProps = {
+          ...cellProps,
+          key: cellProps.uid,
+          width,
+        };
 
-      const CellComponent = CELL_TYPES_MAP[type];
+        const CellComponent = CELL_TYPES_MAP[type];
 
-      if (!CellComponent) {
-        const errorMessage = { value: `unknown component '${type}' ` };
-        return <TextCell {...newCellProps} config={errorMessage} />;
+        if (!CellComponent) {
+          const errorMessage = { value: `unknown component '${type}' ` };
+          return <TextCell {...newCellProps} config={errorMessage} />;
+        }
+
+        return <CellComponent {...newCellProps} {...config} />;
+      });
+
+      if (accordionRows?.length) {
+        return (
+          <AccordionRow
+            key={uid}
+            uid={uid}
+            type={rowType}
+            rows={accordionRows.map((ar) => {
+              return {
+                ...ar,
+                renderItem: (item) => generateRows([item])[0],
+              };
+            })}
+            className={rowClassName}
+            {...rowProps}
+          >
+            {rowCells}
+          </AccordionRow>
+        );
       }
 
-      return <CellComponent {...newCellProps} {...config} />;
+      const RowComponent = ROW_TYPES_MAP[rowType] || ROW_TYPES_MAP.BodyRow;
+
+      return (
+        <RowComponent
+          key={uid}
+          uid={uid}
+          className={rowClassName}
+          {...rowProps}
+        >
+          {rowCells}
+        </RowComponent>
+      );
     });
-
-    const RowComponent = ROW_TYPES_MAP[rowType] || ROW_TYPES_MAP.BodyRow;
-
-    return (
-      <RowComponent key={uid} uid={uid} className={rowClassName}>
-        {rowCells}
-      </RowComponent>
-    );
-  });
+  };
 
   const wrapperClasses = classNames(
     [style.tableWrapper].concat(isSticky ? stickyClasses[sticky] : []),
@@ -95,7 +130,7 @@ export function Table(props) {
       <table className={className}>
         <tbody className={tbodyClassName}>
           {blankRow}
-          {outputRows}
+          {generateRows(rows)}
           {children}
         </tbody>
       </table>
@@ -106,12 +141,13 @@ export function Table(props) {
 Table.propTypes = {
   hasBorder: PropTypes.bool,
   rows: PropTypes.arrayOf(
-    PropTypes.exact({
+    PropTypes.shape({
       uid: PropTypes.string.isRequired,
       type: PropTypes.oneOf(Object.values(ROW_TYPES)).isRequired,
       // We're letting the components further down check the cell types
       // rather than trying to check at the top level due to complexity of the propTypes
-      cells: PropTypes.arrayOf(PropTypes.object),
+      cells: PropTypes.arrayOf(PropTypes.shape({})),
+      rows: PropTypes.arrayOf(PropTypes.shape({})),
       className: PropTypes.string,
     }),
   ),

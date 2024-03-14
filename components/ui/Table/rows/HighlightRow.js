@@ -4,12 +4,14 @@ import style from './HighlightRow.module.scss';
 import { BodyRow } from './BodyRow';
 
 export function HighlightRow(props) {
-  const { uid, children, className, ...rowProps } = props;
+  const { uid, accordionHeaderKey, children, className, ...rowProps } = props;
 
   return (
     <BodyRow
       uid={uid}
-      className={classNames([className, style.highlightRow])}
+      className={classNames(className, style.highlightRow, {
+        [style.accordionRow]: accordionHeaderKey?.length,
+      })}
       {...rowProps}
     >
       {children}

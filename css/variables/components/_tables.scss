@@ -57,4 +57,11 @@
   --table-legend-token-width: var(--table-legend-token-size);
   --table-legend-token-height: var(--table-legend-token-size);
   --table-legend-token-margin: var(--space-sml);
+
+  // Accordion row
+  --table-accordion-width: 12px;
+  --table-accordion-padding-right: 10px;
+  --table-accordion-cell-padding: calc(
+    var(--table-accordion-width) * 2 + var(--table-accordion-padding-right)
+  );
 }

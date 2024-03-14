@@ -1,40 +1,43 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Row } from '../Row';
-import { HeaderRow } from './HeaderRow';
+import { ROW_TYPES } from '../table-constants';
+import { ROW_TYPES_MAP } from '../table-type-maps';
 import style from './AccordionRow.module.scss';
 
 export function AccordionRow({
   uid,
-  active,
   accordionParentKeys: parentKeys,
+  type,
   children,
-  onToggle,
   rows,
   className,
   ...rowProps
 }) {
+  const [isOpen, setIsOpen] = useState(false);
+
   const handleClick = () => {
-    onToggle(!active);
+    setIsOpen(!isOpen);
   };
+
+  const RowComponent = ROW_TYPES_MAP[type] || ROW_TYPES_MAP.HeaderRow;
 
   return (
     <>
-      <HeaderRow
+      <RowComponent
         uid={uid}
         accordionHeaderKey={uid}
         accordionParentKeys={parentKeys}
         onClick={handleClick}
         {...rowProps}
         className={classNames(className, style.accordionRow, {
-          [style.isOpen]: active,
+          [style.isOpen]: isOpen,
         })}
       >
         {children}
-      </HeaderRow>
+      </RowComponent>
 
-      {active &&
+      {isOpen &&
         rows.map(({ renderItem, accordionParentKeys = [], ...row }, idx) => {
           return renderItem({
             key: `${uid}-${idx + 1}`,
@@ -55,10 +58,20 @@ AccordionRow.propTypes = {
   onToggle: PropTypes.func,
   rows: PropTypes.arrayOf(
     PropTypes.shape({
-      ...Row.propTypes,
+      accordionHeaderKey: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string,
+      ]),
+      accordionParentKeys: PropTypes.arrayOf(
+        PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+      ),
+      onClick: PropTypes.func,
+      children: PropTypes.node,
+      className: PropTypes.string,
       renderItem: PropTypes.func,
     }),
   ),
+  type: PropTypes.oneOf(Object.values(ROW_TYPES)),
   children: PropTypes.node,
   className: PropTypes.string,
 };
@@ -68,6 +81,7 @@ AccordionRow.defaultProps = {
   active: false,
   onToggle: () => {},
   rows: [],
+  type: null,
   children: null,
   className: '',
 };

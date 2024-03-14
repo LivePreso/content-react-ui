@@ -2,15 +2,17 @@
   cursor: pointer;
 
   td:first-child {
-    padding-left: calc(var(--table-header-cell-padding-h) + 1.5em);
+    padding-left: calc(
+      var(--table-cell-padding-h) + var(--table-accordion-cell-padding)
+    );
 
     &::before {
       content: '';
       position: absolute;
       top: 0.8em;
-      left: var(--table-header-cell-padding-h);
-      border: 0.5em solid transparent;
-      border-top-color: var(--table-header-color);
+      left: var(--table-cell-padding-h);
+      border: var(--table-accordion-width) solid transparent;
+      border-top-color: var(--table-cell-text-color);
       width: 0;
       height: 0;
     }
@@ -20,8 +22,7 @@
     td:first-child {
       &::before {
         top: 0.2em;
-        border-top-color: transparent;
-        border-bottom-color: var(--table-header-color);
+        transform: scaleY(-1);
       }
     }
   }

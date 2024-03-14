@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { EMPTY_ACCORDION_KEY } from './table-variables';
+import { EMPTY_ACCORDION_KEY } from './table-constants';
 import style from './Table.module.scss';
 
 export function Row({

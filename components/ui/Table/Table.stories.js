@@ -8,10 +8,10 @@ import {
   HeaderRow,
   SubheaderRow,
   HighlightRow,
-  AccordionRow,
   BodyRow,
   TitleCell,
 } from '.';
+import { AccordionRow } from './rows/AccordionRow';
 import { CELL_TYPES, ROW_TYPES } from './table-constants';
 
 export default {
@@ -146,24 +146,27 @@ const sampleTableConfig = [
       {
         colSpan: 3,
         type: CELL_TYPES.TEXT,
-        config: { value: 'Cell alignment' },
+        config: { value: 'Subheader accordion' },
       },
     ],
-  },
-  {
-    type: ROW_TYPES.BODY,
 
-    cells: [
-      { type: CELL_TYPES.TEXT, config: { value: 'text left' } },
+    rows: [
       {
-        type: CELL_TYPES.TEXT,
-        align: 'center',
-        config: { value: 'text center' },
-      },
-      {
-        type: CELL_TYPES.TEXT,
-        align: 'right',
-        config: { value: 'text right' },
+        type: ROW_TYPES.BODY,
+
+        cells: [
+          { type: CELL_TYPES.TEXT, config: { value: 'text left' } },
+          {
+            type: CELL_TYPES.TEXT,
+            align: 'center',
+            config: { value: 'text center' },
+          },
+          {
+            type: CELL_TYPES.TEXT,
+            align: 'right',
+            config: { value: 'text right' },
+          },
+        ],
       },
     ],
   },
@@ -190,6 +193,51 @@ const sampleTableConfig = [
       {
         type: CELL_TYPES.TEXT,
         config: { value: 'no colSpan' },
+      },
+    ],
+  },
+  {
+    type: ROW_TYPES.HEADER,
+
+    cells: [
+      {
+        colSpan: 3,
+        type: CELL_TYPES.TEXT,
+        config: { value: 'Header accordion' },
+      },
+    ],
+
+    rows: [
+      {
+        type: ROW_TYPES.SUBHEADER,
+
+        cells: [
+          {
+            colSpan: 3,
+            type: CELL_TYPES.TEXT,
+            config: { value: 'Nested accordion' },
+          },
+        ],
+
+        rows: [
+          {
+            type: ROW_TYPES.BODY,
+
+            cells: [
+              { type: CELL_TYPES.TEXT, config: { value: 'text left' } },
+              {
+                type: CELL_TYPES.TEXT,
+                align: 'center',
+                config: { value: 'text center' },
+              },
+              {
+                type: CELL_TYPES.TEXT,
+                align: 'right',
+                config: { value: 'text right' },
+              },
+            ],
+          },
+        ],
       },
     ],
   },

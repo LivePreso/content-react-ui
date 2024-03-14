@@ -8,4 +8,18 @@
     line-height: var(--table-highlight-lh);
     font-weight: var(--table-highlight-fw);
   }
+
+  &.accordion-row {
+    td:first-child {
+      padding-left: calc(
+        var(--table-highlight-cell-padding-h) +
+          var(--table-accordion-cell-padding)
+      );
+
+      &::before {
+        left: var(--table-highlight-cell-padding-h);
+        border-top-color: var(--table-highlight-color);
+      }
+    }
+  }
 }

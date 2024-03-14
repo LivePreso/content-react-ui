@@ -4,12 +4,15 @@ import { BodyRow } from './BodyRow';
 import style from './HeaderRow.module.scss';
 
 export function HeaderRow(props) {
-  const { children, className, uid, ...rowProps } = props;
+  const { accordionHeaderKey, children, className, uid, ...rowProps } = props;
 
   return (
     <BodyRow
       uid={uid}
-      className={classNames(style.headerRow, className)}
+      accordionHeaderKey={accordionHeaderKey}
+      className={classNames(style.headerRow, className, {
+        [style.accordionRow]: accordionHeaderKey?.length,
+      })}
       {...rowProps}
     >
       {children}
