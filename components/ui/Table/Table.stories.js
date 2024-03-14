@@ -132,6 +132,7 @@ export const StickyColumn = {
 
 const sampleTableConfig = [
   {
+    uid: 'header',
     type: ROW_TYPES.HEADER,
     cells: [
       { type: CELL_TYPES.TEXT, config: { value: 'Column 1' } },
@@ -140,6 +141,7 @@ const sampleTableConfig = [
     ],
   },
   {
+    uid: 'subheader-1',
     type: ROW_TYPES.SUBHEADER,
 
     cells: [
@@ -152,6 +154,7 @@ const sampleTableConfig = [
 
     rows: [
       {
+        uid: 'accordion-item-1',
         type: ROW_TYPES.BODY,
 
         cells: [
@@ -171,6 +174,7 @@ const sampleTableConfig = [
     ],
   },
   {
+    uid: 'subheader-2',
     type: ROW_TYPES.SUBHEADER,
 
     cells: [
@@ -182,6 +186,7 @@ const sampleTableConfig = [
     ],
   },
   {
+    uid: 'body-1',
     type: ROW_TYPES.BODY,
 
     cells: [
@@ -197,6 +202,7 @@ const sampleTableConfig = [
     ],
   },
   {
+    uid: 'header-2',
     type: ROW_TYPES.HEADER,
 
     cells: [
@@ -209,6 +215,7 @@ const sampleTableConfig = [
 
     rows: [
       {
+        uid: 'accordion-subheader-1',
         type: ROW_TYPES.SUBHEADER,
 
         cells: [
@@ -221,6 +228,7 @@ const sampleTableConfig = [
 
         rows: [
           {
+            uid: 'nested-accordion-item-1',
             type: ROW_TYPES.BODY,
 
             cells: [
@@ -242,6 +250,7 @@ const sampleTableConfig = [
     ],
   },
   {
+    uid: 'subheader-3',
     type: ROW_TYPES.SUBHEADER,
 
     cells: [
@@ -253,6 +262,7 @@ const sampleTableConfig = [
     ],
   },
   {
+    uid: 'body-2',
     type: ROW_TYPES.BODY,
 
     cells: [
@@ -273,6 +283,7 @@ const sampleTableConfig = [
     ],
   },
   {
+    uid: 'body-3',
     type: ROW_TYPES.BODY,
 
     cells: [
@@ -284,6 +295,7 @@ const sampleTableConfig = [
     ],
   },
   {
+    uid: 'body-4',
     type: ROW_TYPES.BODY,
 
     cells: [
@@ -317,6 +329,7 @@ export const AccordionTable = {
     return (
       <Table {...args}>
         <AccordionRow
+          uid="accordion-test"
           active={active}
           rows={rows}
           onToggle={(val) => {

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useModes } from '@livepreso/content-react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { ROW_TYPES } from '../table-constants';
@@ -14,7 +15,8 @@ export function AccordionRow({
   className,
   ...rowProps
 }) {
-  const [isOpen, setIsOpen] = useState(false);
+  const { isPdfScreenshot } = useModes();
+  const [isOpen, setIsOpen] = useState(isPdfScreenshot);
 
   const handleClick = () => {
     setIsOpen(!isOpen);
@@ -38,9 +40,8 @@ export function AccordionRow({
       </RowComponent>
 
       {isOpen &&
-        rows.map(({ renderItem, accordionParentKeys = [], ...row }, idx) => {
+        rows.map(({ renderItem, accordionParentKeys = [], ...row }) => {
           return renderItem({
-            key: `${uid}-${idx + 1}`,
             ...row,
             accordionParentKeys: [...accordionParentKeys, ...parentKeys, uid],
           });

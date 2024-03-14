@@ -50,71 +50,64 @@ export function Table(props) {
     </BodyRow>
   );
 
-  const generateRows = (rowsSchema) => {
-    return rowsSchema.map((row) => {
-      const {
-        type: rowType,
-        uid,
-        cells = [],
-        rows: accordionRows,
-        className: rowClassName,
-        ...rowProps
-      } = row;
+  const generateRow = (row) => {
+    const {
+      type: rowType,
+      uid,
+      cells = [],
+      rows: accordionRows,
+      className: rowClassName,
+      ...rowProps
+    } = row;
 
-      const rowCells = cells.map((cell) => {
-        const { type, config, ...cellProps } = cell;
-        const width = getColWidth(columnWidths, cells, cell);
+    const rowCells = cells.map((cell) => {
+      const { type, config, ...cellProps } = cell;
+      const width = getColWidth(columnWidths, cells, cell);
 
-        // augment with a key
-        const newCellProps = {
-          ...cellProps,
-          key: cellProps.uid,
-          width,
-        };
+      // augment with a key
+      const newCellProps = {
+        ...cellProps,
+        key: cellProps.uid,
+        width,
+      };
 
-        const CellComponent = CELL_TYPES_MAP[type];
+      const CellComponent = CELL_TYPES_MAP[type];
 
-        if (!CellComponent) {
-          const errorMessage = { value: `unknown component '${type}' ` };
-          return <TextCell {...newCellProps} config={errorMessage} />;
-        }
-
-        return <CellComponent {...newCellProps} {...config} />;
-      });
-
-      if (accordionRows?.length) {
-        return (
-          <AccordionRow
-            key={uid}
-            uid={uid}
-            type={rowType}
-            rows={accordionRows.map((ar) => {
-              return {
-                ...ar,
-                renderItem: (item) => generateRows([item])[0],
-              };
-            })}
-            className={rowClassName}
-            {...rowProps}
-          >
-            {rowCells}
-          </AccordionRow>
-        );
+      if (!CellComponent) {
+        const errorMessage = { value: `unknown component '${type}' ` };
+        return <TextCell {...newCellProps} config={errorMessage} />;
       }
 
-      const RowComponent = ROW_TYPES_MAP[rowType] || ROW_TYPES_MAP.BodyRow;
+      return <CellComponent {...newCellProps} {...config} />;
+    });
 
+    if (accordionRows?.length) {
       return (
-        <RowComponent
+        <AccordionRow
           key={uid}
           uid={uid}
+          type={rowType}
+          rows={accordionRows.map((ar) => {
+            return {
+              ...ar,
+              renderItem: (item) => generateRow(item),
+            };
+          })}
           className={rowClassName}
           {...rowProps}
         >
           {rowCells}
-        </RowComponent>
+        </AccordionRow>
       );
-    });
+    }
+
+    const RowComponent = ROW_TYPES_MAP[rowType] || ROW_TYPES_MAP.BodyRow;
+
+    return (
+      <RowComponent key={uid} uid={uid} className={rowClassName} {...rowProps}>
+        {rowCells}
+      </RowComponent>
+    );
   };
 
   const wrapperClasses = classNames(
@@ -130,7 +123,7 @@ export function Table(props) {
       <table className={className}>
         <tbody className={tbodyClassName}>
           {blankRow}
-          {generateRows(rows)}
+          {!!rows.length && rows.map((row) => generateRow(row))}
           {children}
         </tbody>
       </table>

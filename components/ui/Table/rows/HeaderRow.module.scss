@@ -17,7 +17,7 @@
 
       &::before {
         left: var(--table-header-cell-padding-h);
-        border-top-color: var(--table-header-color) !important;
+        border-top-color: var(--table-header-color);
       }
     }
   }
