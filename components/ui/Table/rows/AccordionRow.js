@@ -8,11 +8,11 @@ import style from './AccordionRow.module.scss';
 
 export function AccordionRow({
   uid,
-  accordionParentKeys: parentKeys,
   type,
   children,
   rows,
   className,
+  accordionParentKeys,
   ...rowProps
 }) {
   const { isPdfScreenshot } = useModes();
@@ -28,8 +28,9 @@ export function AccordionRow({
     <>
       <RowComponent
         uid={uid}
-        accordionHeaderKey={uid}
-        accordionParentKeys={parentKeys}
+        isAccordion
+        data-accordion-header={uid}
+        data-accordion-parent={accordionParentKeys.join(' ')}
         onClick={handleClick}
         {...rowProps}
         className={classNames(className, style.accordionRow, {
@@ -40,10 +41,13 @@ export function AccordionRow({
       </RowComponent>
 
       {isOpen &&
-        rows.map(({ renderItem, accordionParentKeys = [], ...row }) => {
+        rows.map(({ renderItem, ...row }) => {
+          const parentKeys = [...accordionParentKeys, uid];
+
           return renderItem({
             ...row,
-            accordionParentKeys: [...accordionParentKeys, ...parentKeys, uid],
+            accordionParentKeys: parentKeys,
+            'data-accordion-parent': parentKeys.join(' '),
           });
         })}
     </>

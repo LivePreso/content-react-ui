@@ -38,7 +38,7 @@ export function Table(props) {
   // empty row of columns with colSpan 1
   // Fixes problem with colSpans used in header
   const blankRow = (
-    <BodyRow uid="empty-row" accordionHeaderKey={EMPTY_ACCORDION_KEY}>
+    <BodyRow uid="empty-row" data-accordion-header={EMPTY_ACCORDION_KEY}>
       {columnWidths.map((width, emptyIdx) => {
         return (
           <EmptyCell

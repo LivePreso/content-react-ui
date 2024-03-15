@@ -1,54 +1,39 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { getDataProps } from '../../utils';
 import { EMPTY_ACCORDION_KEY } from './table-constants';
 import style from './Table.module.scss';
 
-export function Row({
-  children,
-  className,
-  onClick,
-  accordionHeaderKey,
-  accordionParentKeys,
-}) {
+export function Row({ children, className, onClick, ...props }) {
   const compiledClasses = classNames(style.table, className);
+  const dataAttrs = getDataProps(props);
 
-  const opts = {};
-
-  if (accordionHeaderKey) {
-    opts['data-accordion-header'] = accordionHeaderKey;
-  }
-
-  if (
-    accordionHeaderKey !== EMPTY_ACCORDION_KEY ||
-    accordionParentKeys.length
-  ) {
-    opts['data-accordion-parent'] = [
-      ...accordionParentKeys,
-      EMPTY_ACCORDION_KEY,
-    ].join(' ');
+  // For PDF table pagination to work, all rows, whether they are accordions
+  // or not, require the data attribute data-accordion-parent to be included.
+  // See Table.js: EMPTY_ACCORDION_KEY is added to the colSpan fixing "empty" row
+  if (dataAttrs['data-accordion-header'] !== EMPTY_ACCORDION_KEY) {
+    if (!dataAttrs['data-accordion-parent']) {
+      dataAttrs['data-accordion-parent'] = EMPTY_ACCORDION_KEY;
+    } else {
+      dataAttrs['data-accordion-parent'] += ` ${EMPTY_ACCORDION_KEY}`;
+    }
   }
 
   return (
-    <tr {...opts} className={compiledClasses} onClick={onClick}>
+    <tr {...dataAttrs} className={compiledClasses} onClick={onClick}>
       {children}
     </tr>
   );
 }
 
 Row.propTypes = {
-  accordionHeaderKey: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  accordionParentKeys: PropTypes.arrayOf(
-    PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  ),
   onClick: PropTypes.func,
   children: PropTypes.node,
   className: PropTypes.string,
 };
 
 Row.defaultProps = {
-  accordionHeaderKey: null,
-  accordionParentKeys: [],
   onClick: () => {},
   children: null,
   className: '',

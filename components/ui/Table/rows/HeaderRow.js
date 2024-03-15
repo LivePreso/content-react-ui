@@ -1,17 +1,17 @@
 import React from 'react';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 import { BodyRow } from './BodyRow';
 import style from './HeaderRow.module.scss';
 
 export function HeaderRow(props) {
-  const { accordionHeaderKey, children, className, uid, ...rowProps } = props;
+  const { isAccordion, children, className, uid, ...rowProps } = props;
 
   return (
     <BodyRow
       uid={uid}
-      accordionHeaderKey={accordionHeaderKey}
       className={classNames(style.headerRow, className, {
-        [style.accordionRow]: accordionHeaderKey !== null,
+        [style.accordionRow]: isAccordion,
       })}
       {...rowProps}
     >
@@ -21,9 +21,11 @@ export function HeaderRow(props) {
 }
 
 HeaderRow.propTypes = {
+  isAccordion: PropTypes.bool,
   ...BodyRow.propTypes,
 };
 
 HeaderRow.defaultProps = {
+  isAccordion: false,
   ...BodyRow.defaultProps,
 };
