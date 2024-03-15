@@ -2,10 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { getColWidth } from '@ui/utils/generate-table-layout';
-import { ROW_TYPES, CELL_TYPES_MAP, ROW_TYPES_MAP } from './table-constants';
+import { ROW_TYPES, EMPTY_ACCORDION_KEY } from './table-constants';
+import { CELL_TYPES_MAP, ROW_TYPES_MAP } from './table-type-maps';
 import { TextCell, EmptyCell } from './cells';
 import style from './Table.module.scss';
 import { BodyRow } from './rows';
+import { AccordionRow } from './rows/AccordionRow';
 
 export function Table(props) {
   const {
@@ -15,6 +17,7 @@ export function Table(props) {
     columnWidths,
     children,
     className,
+    tbodyClassName,
     sticky,
   } = props;
 
@@ -35,7 +38,7 @@ export function Table(props) {
   // empty row of columns with colSpan 1
   // Fixes problem with colSpans used in header
   const blankRow = (
-    <BodyRow uid="empty-row">
+    <BodyRow uid="empty-row" data-accordion-header={EMPTY_ACCORDION_KEY}>
       {columnWidths.map((width, emptyIdx) => {
         return (
           <EmptyCell
@@ -47,8 +50,15 @@ export function Table(props) {
     </BodyRow>
   );
 
-  const outputRows = rows.map((row) => {
-    const { type: rowType, uid, cells = [], className: rowClassName } = row;
+  const generateRow = (row) => {
+    const {
+      type: rowType,
+      uid,
+      cells = [],
+      rows: accordionRows,
+      className: rowClassName,
+      ...rowProps
+    } = row;
 
     const rowCells = cells.map((cell) => {
       const { type, config, ...cellProps } = cell;
@@ -71,14 +81,34 @@ export function Table(props) {
       return <CellComponent {...newCellProps} {...config} />;
     });
 
+    if (accordionRows?.length) {
+      return (
+        <AccordionRow
+          key={uid}
+          uid={uid}
+          type={rowType}
+          rows={accordionRows.map((ar) => {
+            return {
+              ...ar,
+              renderItem: (item) => generateRow(item),
+            };
+          })}
+          className={rowClassName}
+          {...rowProps}
+        >
+          {rowCells}
+        </AccordionRow>
+      );
+    }
+
     const RowComponent = ROW_TYPES_MAP[rowType] || ROW_TYPES_MAP.BodyRow;
 
     return (
-      <RowComponent key={uid} uid={uid} className={rowClassName}>
+      <RowComponent key={uid} uid={uid} className={rowClassName} {...rowProps}>
         {rowCells}
       </RowComponent>
     );
-  });
+  };
 
   const wrapperClasses = classNames(
     [style.tableWrapper].concat(isSticky ? stickyClasses[sticky] : []),
@@ -91,9 +121,9 @@ export function Table(props) {
   return (
     <div className={wrapperClasses} {...opts}>
       <table className={className}>
-        <tbody>
+        <tbody className={tbodyClassName}>
           {blankRow}
-          {outputRows}
+          {rows.map((row) => generateRow(row))}
           {children}
         </tbody>
       </table>
@@ -104,12 +134,13 @@ export function Table(props) {
 Table.propTypes = {
   hasBorder: PropTypes.bool,
   rows: PropTypes.arrayOf(
-    PropTypes.exact({
+    PropTypes.shape({
       uid: PropTypes.string.isRequired,
       type: PropTypes.oneOf(Object.values(ROW_TYPES)).isRequired,
       // We're letting the components further down check the cell types
       // rather than trying to check at the top level due to complexity of the propTypes
-      cells: PropTypes.arrayOf(PropTypes.object),
+      cells: PropTypes.arrayOf(PropTypes.shape({})),
+      rows: PropTypes.arrayOf(PropTypes.shape({})),
       className: PropTypes.string,
     }),
   ),
@@ -119,6 +150,7 @@ Table.propTypes = {
   children: PropTypes.node,
   sticky: PropTypes.oneOf(['none', 'row', 'column', 'both']),
   isPresoManagerInteractive: PropTypes.bool,
+  tbodyClassName: PropTypes.string,
   className: PropTypes.string,
 };
 
@@ -129,5 +161,6 @@ Table.defaultProps = {
   children: [],
   sticky: 'none',
   isPresoManagerInteractive: false,
+  tbodyClassName: '',
   className: '',
 };

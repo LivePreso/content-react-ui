@@ -1,6 +1,13 @@
 :root {
   --slide-content-bg-color: transparent;
 
+  // Content margin
+  --slide-content-margin-sides: 0px;
+  --slide-content-margin-left: var(--slide-content-margin-sides);
+  --slide-content-margin-right: var(--slide-content-margin-sides);
+  --slide-content-margin-top: 0px;
+  --slide-content-margin-bottom: 0px;
+
   // Content padding
   --slide-content-pad-sides: 0px;
   --slide-content-pad-left: var(--slide-content-pad-sides);

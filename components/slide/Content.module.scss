@@ -1,5 +1,7 @@
 .content {
   background-color: var(--slide-content-bg-color);
+  margin: var(--slide-content-margin-top) var(--slide-content-margin-right)
+    var(--slide-content-margin-bottom) var(--slide-content-margin-left);
   padding: var(--slide-content-pad-top) var(--slide-content-pad-right)
     var(--slide-content-pad-bottom) var(--slide-content-pad-left);
 }
