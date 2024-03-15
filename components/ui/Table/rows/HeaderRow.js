@@ -11,7 +11,7 @@ export function HeaderRow(props) {
       uid={uid}
       accordionHeaderKey={accordionHeaderKey}
       className={classNames(style.headerRow, className, {
-        [style.accordionRow]: accordionHeaderKey?.length,
+        [style.accordionRow]: accordionHeaderKey !== null,
       })}
       {...rowProps}
     >

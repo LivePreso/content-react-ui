@@ -10,7 +10,7 @@ export function SubheaderRow(props) {
     <BodyRow
       uid={uid}
       className={classNames(className, style.subheaderRow, {
-        [style.accordionRow]: accordionHeaderKey?.length,
+        [style.accordionRow]: accordionHeaderKey !== null,
       })}
       {...rowProps}
     >

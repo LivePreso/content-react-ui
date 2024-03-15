@@ -10,7 +10,7 @@ export function HighlightRow(props) {
     <BodyRow
       uid={uid}
       className={classNames(className, style.highlightRow, {
-        [style.accordionRow]: accordionHeaderKey?.length,
+        [style.accordionRow]: accordionHeaderKey !== null,
       })}
       {...rowProps}
     >

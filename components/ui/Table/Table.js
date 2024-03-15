@@ -123,7 +123,7 @@ export function Table(props) {
       <table className={className}>
         <tbody className={tbodyClassName}>
           {blankRow}
-          {!!rows.length && rows.map((row) => generateRow(row))}
+          {rows.map((row) => generateRow(row))}
           {children}
         </tbody>
       </table>

@@ -10,10 +10,12 @@
   }
 
   &.accordion-row {
+    $accordion-padding: calc(
+      var(--table-header-cell-padding-h) + var(--table-accordion-cell-padding)
+    );
+
     td:first-child {
-      padding-left: calc(
-        var(--table-header-cell-padding-h) + var(--table-accordion-cell-padding)
-      );
+      padding-left: $accordion-padding;
 
       &::before {
         left: var(--table-header-cell-padding-h);
