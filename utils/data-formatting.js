@@ -31,6 +31,12 @@ export function getPlural(string, count = 0) {
     val = isSingle ? childStr : `${childStr}ren`;
   }
 
+  if (strLower === 'policy' || strLower === 'policies') {
+    // Slice to maintain possible starting uppercase
+    const childStr = string.slice(0, 5);
+    val = isSingle ? `${childStr}y` : `${childStr}ies`;
+  }
+
   return isUpper ? val.toUpperCase() : val;
 }
 
