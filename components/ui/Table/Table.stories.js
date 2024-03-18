@@ -305,8 +305,8 @@ const sampleTableConfig = [
         config: { value: 'no rowSpan' },
       },
       {
-        type: CELL_TYPES.TEXT,
-        config: { value: 'no rowSpan' },
+        type: CELL_TYPES.DEFAULT,
+        config: { children: (<p>no rowSpan</p>) },
       },
     ],
   },
