@@ -16,7 +16,6 @@ export function ArrowRightIcon({ className, color }) {
       fill={color}
     >
       <path d="M8.2,20.5l8.5-8.5L8.2,3.5V20.5z" />
-      <path d="M0 24V0h24v24H0z" fill="none" />
     </svg>
   );
 }

@@ -29,6 +29,7 @@ export function AccordionRow({
       <RowComponent
         uid={uid}
         isAccordion
+        data-companywide-interactive
         data-accordion-header={uid}
         data-accordion-parent={accordionParentKeys.join(' ')}
         onClick={handleClick}

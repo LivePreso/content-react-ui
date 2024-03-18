@@ -24,11 +24,18 @@ export function getPlural(string, count = 0) {
   const isUpper = isUpperCase(string);
   let val = isSingle ? string : `${string}s`;
 
+  // TODO: replace me with a library!
   // Add special case plurals here:
   if (strLower === 'child' || strLower === 'children') {
     // Slice to maintain possible starting uppercase
     const childStr = string.slice(0, 5);
     val = isSingle ? childStr : `${childStr}ren`;
+  }
+
+  if (strLower === 'policy' || strLower === 'policies') {
+    // Slice to maintain possible starting uppercase
+    const childStr = string.slice(0, 5);
+    val = isSingle ? `${childStr}y` : `${childStr}ies`;
   }
 
   return isUpper ? val.toUpperCase() : val;
