@@ -1,6 +1,6 @@
 .flex-group {
   display: flex;
-  flex: 1;
+  min-height: 0;
 
   &.align-stretch {
     align-items: stretch;
