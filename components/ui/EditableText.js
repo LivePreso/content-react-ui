@@ -12,6 +12,7 @@ export const EditableText = React.memo((props) => {
     isCompany,
     isGlobal,
     isReadOnly,
+    disableSmartPaste,
     tag,
     className,
     children,
@@ -30,15 +31,19 @@ export const EditableText = React.memo((props) => {
     opts['data-editable'] = `${slideKey}-${id}`;
   }
 
-  if (isReadOnly) {
-    opts['data-readonly'] = true;
-  }
-
   // TODO: Might need some attention for user templates (check with Hugh)
   if (isCompany) {
     opts['data-companywide-editable'] = isGlobal
       ? id
       : `${slideKey?.replace('template-', '')}-${id}`;
+  }
+
+  if (isReadOnly) {
+    opts['data-readonly'] = true;
+  }
+
+  if (disableSmartPaste) {
+    opts['data-disable-smart-paste'] = true;
   }
 
   if (toolbar.length) {
@@ -70,6 +75,7 @@ EditableText.propTypes = {
    */
   isGlobal: PropTypes.bool,
   isReadOnly: PropTypes.bool,
+  disableSmartPaste: PropTypes.bool,
   tag: PropTypes.oneOf(['div', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p']),
   toolbar: PropTypes.arrayOf(
     PropTypes.oneOf([
@@ -93,6 +99,7 @@ EditableText.defaultProps = {
   isCompany: false,
   isGlobal: false,
   isReadOnly: false,
+  disableSmartPaste: false,
   tag: 'div',
   toolbar: [
     'format',

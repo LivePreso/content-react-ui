@@ -7,7 +7,11 @@ import style from './Slide.module.scss';
 export function Slide({ className, children }) {
   const classes = classNames(style.slide, className);
 
-  return <Column className={classes}>{children}</Column>;
+  return (
+    <Column flex={1} className={classes}>
+      {children}
+    </Column>
+  );
 }
 
 Slide.propTypes = {
