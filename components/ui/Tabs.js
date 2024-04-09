@@ -27,9 +27,12 @@ export function Tabs({
         index={idx}
         key={tab.value}
         label={tab.label}
+        value={tab.value}
         active={active}
         disabled={disabled}
         className={tab.className}
+        isPrep={tab.isPrep}
+        isCompany={tab.isCompany}
         onClick={() => onChange(tab.value)}
       />
     );
