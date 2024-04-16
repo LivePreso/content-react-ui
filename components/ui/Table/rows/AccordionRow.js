@@ -12,7 +12,7 @@ export function AccordionRow({
   children,
   rows,
   className,
-  accordionParentKeys,
+  parentKeys,
   ...rowProps
 }) {
   const { isPdfScreenshot } = useModes();
@@ -31,7 +31,7 @@ export function AccordionRow({
         isAccordion
         data-companywide-interactive
         data-accordion-header={uid}
-        data-accordion-parent={accordionParentKeys.join(' ')}
+        data-accordion-parent={parentKeys.join(' ')}
         onClick={handleClick}
         {...rowProps}
         className={classNames(className, style.accordionRow, {
@@ -42,13 +42,17 @@ export function AccordionRow({
       </RowComponent>
 
       {isOpen &&
-        rows.map(({ renderItem, ...row }) => {
-          const parentKeys = [...accordionParentKeys, uid];
+        rows.map(({ renderItem, parentKeys: rowParentKeys, ...row }) => {
+          const parentKeysCollection = [
+            ...(rowParentKeys || []),
+            ...parentKeys,
+            uid,
+          ];
 
           return renderItem({
             ...row,
-            accordionParentKeys: parentKeys,
-            'data-accordion-parent': parentKeys.join(' '),
+            parentKeys: parentKeysCollection,
+            'data-accordion-parent': parentKeysCollection.join(' '),
           });
         })}
     </>
@@ -57,18 +61,14 @@ export function AccordionRow({
 
 AccordionRow.propTypes = {
   uid: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
-  accordionParentKeys: PropTypes.arrayOf(
+  parentKeys: PropTypes.arrayOf(
     PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   ),
   active: PropTypes.bool,
   onToggle: PropTypes.func,
   rows: PropTypes.arrayOf(
     PropTypes.shape({
-      accordionHeaderKey: PropTypes.oneOfType([
-        PropTypes.number,
-        PropTypes.string,
-      ]),
-      accordionParentKeys: PropTypes.arrayOf(
+      parentKeys: PropTypes.arrayOf(
         PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
       ),
       onClick: PropTypes.func,
@@ -83,7 +83,7 @@ AccordionRow.propTypes = {
 };
 
 AccordionRow.defaultProps = {
-  accordionParentKeys: [],
+  parentKeys: [],
   active: false,
   onToggle: () => {},
   rows: [],

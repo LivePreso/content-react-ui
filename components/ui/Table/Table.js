@@ -55,6 +55,7 @@ export function Table(props) {
       type: rowType,
       uid,
       cells = [],
+      headerKey,
       rows: accordionRows,
       className: rowClassName,
       ...rowProps
@@ -104,7 +105,13 @@ export function Table(props) {
     const RowComponent = ROW_TYPES_MAP[rowType] || ROW_TYPES_MAP.BodyRow;
 
     return (
-      <RowComponent key={uid} uid={uid} className={rowClassName} {...rowProps}>
+      <RowComponent
+        key={uid}
+        uid={uid}
+        className={rowClassName}
+        data-accordion-header={headerKey}
+        {...rowProps}
+      >
         {rowCells}
       </RowComponent>
     );
