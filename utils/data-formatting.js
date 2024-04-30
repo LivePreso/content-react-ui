@@ -48,7 +48,7 @@ export function posNegFactory({ pos, neg }) {
   };
 }
 
-function percentify(num, { numDecimal = 1 } = {}) {
+function percentify(num, { numDecimal = 1, minDecimal, maxDecimal } = {}) {
   const number = Number(num);
 
   // Return - for NaN, null, Infinite or undefined
@@ -58,8 +58,8 @@ function percentify(num, { numDecimal = 1 } = {}) {
 
   return number.toLocaleString('en', {
     style: 'percent',
-    minimumFractionDigits: 0,
-    maximumFractionDigits: numDecimal,
+    minimumFractionDigits: minDecimal || numDecimal,
+    maximumFractionDigits: maxDecimal || numDecimal,
   });
 }
 
