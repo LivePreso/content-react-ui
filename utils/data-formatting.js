@@ -48,7 +48,7 @@ export function posNegFactory({ pos, neg }) {
   };
 }
 
-function percentify(num, { numDecimal = 1, minDecimal, maxDecimal } = {}) {
+function percentify(num, { numDecimal = 0, minDecimal, maxDecimal } = {}) {
   const number = Number(num);
 
   // Return - for NaN, null, Infinite or undefined
@@ -67,7 +67,7 @@ export function percentifyFactory(options) {
   return (val) => percentify(val, options);
 }
 
-function cleanNumber(number, { numDecimal = 0 }) {
+function cleanNumber(number, { numDecimal = 0, minDecimal, maxDecimal }) {
   // Return - for NaN, null, Infinite or undefined
   if (isInvalidNumber(number)) {
     return '-';
@@ -75,8 +75,8 @@ function cleanNumber(number, { numDecimal = 0 }) {
 
   return number.toLocaleString('en', {
     style: 'decimal',
-    minimumFractionDigits: 0,
-    maximumFractionDigits: numDecimal,
+    minimumFractionDigits: minDecimal || numDecimal,
+    maximumFractionDigits: maxDecimal || numDecimal,
   });
 }
 
