@@ -12,6 +12,7 @@ export function Checkbox({
   onChange,
   disabled,
   className,
+  labelClassName,
   id,
   icon,
 }) {
@@ -22,6 +23,8 @@ export function Checkbox({
     [style.isActive]: active,
     [style.isDisabled]: disabled,
   });
+
+  const labelClasses = classNames(style.label, labelClassName);
 
   const handleChange = () => {
     onChange(!active);
@@ -40,7 +43,7 @@ export function Checkbox({
         <div className={style.box}>
           {icon && <div className={style.icon}>{icon}</div>}
         </div>
-        {label && <div className={style.label}>{label}</div>}
+        {label && <div className={labelClasses}>{label}</div>}
       </Row>
     </label>
   );
@@ -53,6 +56,7 @@ Checkbox.propTypes = {
   onChange: PropTypes.func,
   disabled: PropTypes.bool,
   className: PropTypes.string,
+  labelClassName: PropTypes.string,
   id: PropTypes.string,
   icon: PropTypes.element,
 };
@@ -64,6 +68,7 @@ Checkbox.defaultProps = {
   onChange: () => {},
   disabled: false,
   className: '',
+  labelClassName: '',
   id: undefined,
   icon: <CheckMarkIcon />,
 };
