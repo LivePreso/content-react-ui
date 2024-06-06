@@ -58,6 +58,8 @@
     line-height: var(--checkbox-lh);
     font-weight: var(--checkbox-fw);
     margin-left: var(--checkbox-label-left-margin);
+    color: var(--checkbox-label-color);
+    transition: color 150ms ease-in-out;
   }
 
   &.is-active {
@@ -68,6 +70,10 @@
       .icon {
         opacity: 1;
       }
+    }
+
+    .label {
+      color: var(--checkbox-active-label-color);
     }
   }
 
@@ -85,6 +91,10 @@
       }
     }
 
+    .label {
+      color: var(--checkbox-disabled-label-color);
+    }
+
     &.is-active {
       .box {
         border-color: var(--checkbox-active-disabled-border-color);
@@ -95,6 +105,10 @@
             fill: var(--checkbox-active-disabled-icon-color);
           }
         }
+      }
+
+      .label {
+        color: var(--checkbox-active-disabled-label-color);
       }
     }
   }
