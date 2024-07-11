@@ -37,9 +37,15 @@
       background-color 150ms ease-in-out,
       border-color 150ms ease-in-out;
 
+    // align the checkbox to the middle of the top row of text
+    font-size: var(--checkbox-lh);
+    margin-top: calc(0.5em - (var(--checkbox-size) / 2));
+
     .icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       position: relative;
-      top: -1px;
       width: var(--checkbox-icon-size);
       height: var(--checkbox-icon-size);
       opacity: 0;

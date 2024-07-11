@@ -39,7 +39,7 @@ export function Checkbox({
         checked={active}
         disabled={disabled}
       />
-      <Row align="center">
+      <Row align="start">
         <div className={style.box}>
           {icon && <div className={style.icon}>{icon}</div>}
         </div>
