@@ -23,7 +23,7 @@ export function Dropdown({
   const ref = useRef(null);
   const [open, setOpen] = useState(false);
 
-  const classes = classNames(style.dropdown, 'no-screenshot', className);
+  const classes = classNames(style.dropdown, 'no-screenshot', className, { [style.readonly]: readonly });
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -40,10 +40,12 @@ export function Dropdown({
   }, [ref, setOpen]);
 
   const toggleOpen = () => {
+    if (readonly) return;
     setOpen(!open);
   };
 
   const generateItemClick = (val, data) => () => {
+    if (readonly) return;
     setOpen(false);
     onChange(val, data);
   };
