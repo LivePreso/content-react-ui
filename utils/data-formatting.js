@@ -199,26 +199,16 @@ export function toPercentGrowth(before, after) {
   return (after - before) / before;
 }
 
-export function capitalise(input) {
+export function capitalise(input, delimiter = ' ') {
   if (typeof input === 'undefined') {
     // eslint-disable-next-line
     console.error('Capitalise input is undefined');
     return null;
   }
-  let i;
-  let w;
-  let result = '';
-  const words = input.split(' ');
 
-  for (i = 0; i < words.length; i += 1) {
-    w = words[i];
-    result += w.substr(0, 1).toUpperCase() + w.substr(1);
-    if (i < words.length - 1) {
-      result += '';
-    }
-  }
+  const words = input.split(delimiter);
 
-  return result;
+  return words.map(w => w.substr(0, 1).toUpperCase() + w.substr(1)).join(delimiter);
 }
 
 export function slugify() {
