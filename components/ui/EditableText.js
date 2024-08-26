@@ -20,6 +20,7 @@ export const EditableText = React.memo((props) => {
     toolbar,
   } = props;
   const { slideKey } = useSlide();
+  const prepId = props.prepId || id;
   const Tag = `${tag}`;
   const opts = {};
 
@@ -28,7 +29,7 @@ export const EditableText = React.memo((props) => {
   }
 
   if (isPrep) {
-    opts['data-editable'] = `${slideKey}-${id}`;
+    opts['data-editable'] = `${slideKey}-${prepId}`;
   }
 
   // TODO: Might need some attention for user templates (check with Hugh)
@@ -68,6 +69,10 @@ export const EditableText = React.memo((props) => {
 
 EditableText.propTypes = {
   id: PropTypes.string.isRequired,
+  /**
+   * Optional prep-mode editable id, if not supplied 'id' will be used
+   */
+  prepId: PropTypes.string,
   isPrep: PropTypes.bool,
   isCompany: PropTypes.bool,
   /**
@@ -95,6 +100,7 @@ EditableText.propTypes = {
 };
 
 EditableText.defaultProps = {
+  prepId: null,
   isPrep: false,
   isCompany: false,
   isGlobal: false,

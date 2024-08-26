@@ -5,6 +5,7 @@ import React from 'react';
 export function EditableTextCell(props) {
   const {
     id,
+    prepId,
     isPrep,
     isCompany,
     isReadOnly,
@@ -16,6 +17,7 @@ export function EditableTextCell(props) {
 
   const { ...editableTextProps } = {
     id,
+    prepId,
     isPrep,
     isCompany,
     isReadOnly,

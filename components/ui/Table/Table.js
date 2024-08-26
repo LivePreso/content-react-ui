@@ -50,6 +50,27 @@ export function Table(props) {
     </BodyRow>
   );
 
+  const generateCell = (cell, cells) => {
+    const { type, config, ...cellProps } = cell;
+    const width = getColWidth(columnWidths, cells, cell);
+
+    // augment with a key & width
+    const newCellProps = {
+      ...cellProps,
+      key: cellProps.uid,
+      width,
+    };
+
+    const CellComponent = CELL_TYPES_MAP[type];
+
+    if (!CellComponent) {
+      const errorMessage = { value: `unknown component '${type}' ` };
+      return <TextCell {...newCellProps} config={errorMessage} />;
+    }
+
+    return <CellComponent {...newCellProps} {...config} />;
+  };
+
   const generateRow = (row) => {
     const {
       type: rowType,
@@ -61,26 +82,7 @@ export function Table(props) {
       ...rowProps
     } = row;
 
-    const rowCells = cells.map((cell) => {
-      const { type, config, ...cellProps } = cell;
-      const width = getColWidth(columnWidths, cells, cell);
-
-      // augment with a key
-      const newCellProps = {
-        ...cellProps,
-        key: cellProps.uid,
-        width,
-      };
-
-      const CellComponent = CELL_TYPES_MAP[type];
-
-      if (!CellComponent) {
-        const errorMessage = { value: `unknown component '${type}' ` };
-        return <TextCell {...newCellProps} config={errorMessage} />;
-      }
-
-      return <CellComponent {...newCellProps} {...config} />;
-    });
+    const rowCells = cells.map((cell) => generateCell(cell, cells));
 
     if (accordionRows?.length) {
       return (
@@ -146,7 +148,11 @@ Table.propTypes = {
       type: PropTypes.oneOf(Object.values(ROW_TYPES)).isRequired,
       // We're letting the components further down check the cell types
       // rather than trying to check at the top level due to complexity of the propTypes
-      cells: PropTypes.arrayOf(PropTypes.shape({})),
+      cells: PropTypes.arrayOf(
+        PropTypes.shape({
+          uid: PropTypes.string.isRequired,
+        }),
+      ),
       rows: PropTypes.arrayOf(PropTypes.shape({})),
       className: PropTypes.string,
     }),
