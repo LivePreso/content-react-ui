@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useSlide } from '@livepreso/content-react';
 import style from './EditableText.module.scss';
 
-const blockLevelFormats = ['format', 'list'];
+const blockLevelFormats = ['format', 'list', 'align'];
 
 export const EditableText = React.memo((props) => {
   const {
