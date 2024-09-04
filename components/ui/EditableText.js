@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useSlide } from '@livepreso/content-react';
+import { useSlide, useModes } from '@livepreso/content-react';
 import style from './EditableText.module.scss';
 
 const blockLevelFormats = ['format', 'list', 'align'];
@@ -8,6 +8,7 @@ const blockLevelFormats = ['format', 'list', 'align'];
 export const EditableText = React.memo((props) => {
   const {
     id,
+    prepId,
     isPrep,
     isCompany,
     isGlobal,
@@ -20,6 +21,7 @@ export const EditableText = React.memo((props) => {
     toolbar,
   } = props;
   const { slideKey } = useSlide();
+  const { isPresomanager } = useModes();
   const Tag = `${tag}`;
   const opts = {};
 
@@ -28,7 +30,7 @@ export const EditableText = React.memo((props) => {
   }
 
   if (isPrep) {
-    opts['data-editable'] = `${slideKey}-${id}`;
+    opts['data-editable'] = `${slideKey}-${prepId || id}`;
   }
 
   // TODO: Might need some attention for user templates (check with Hugh)
@@ -56,10 +58,12 @@ export const EditableText = React.memo((props) => {
     opts['data-toolbar'] = toolbarOptions.join(' ');
   }
 
+  const testid = isPresomanager ? id : prepId || id;
+
   return (
     <>
       {label && <p className={style.label}>{label}</p>}
-      <Tag data-testid={id} {...opts} className={className}>
+      <Tag data-testid={testid} {...opts} className={className}>
         {children}
       </Tag>
     </>
@@ -68,6 +72,7 @@ export const EditableText = React.memo((props) => {
 
 EditableText.propTypes = {
   id: PropTypes.string.isRequired,
+  prepId: PropTypes.string,
   isPrep: PropTypes.bool,
   isCompany: PropTypes.bool,
   /**
@@ -95,6 +100,7 @@ EditableText.propTypes = {
 };
 
 EditableText.defaultProps = {
+  prepId: null,
   isPrep: false,
   isCompany: false,
   isGlobal: false,
