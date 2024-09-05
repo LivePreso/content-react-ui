@@ -63,7 +63,12 @@ export const EditableText = React.memo((props) => {
   return (
     <>
       {label && <p className={style.label}>{label}</p>}
-      <Tag data-testid={testid} {...opts} className={className}>
+      <Tag
+        data-testid={testid}
+        {...opts}
+        className={className}
+        onClick={(e) => e.stopPropagation()}
+      >
         {children}
       </Tag>
     </>
