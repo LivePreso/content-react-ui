@@ -11,6 +11,7 @@ export function EditableTextCell(props) {
     isReadOnly,
     tag,
     toolbar,
+    stopPropagation,
     children,
     ...cellProps
   } = props;
@@ -23,6 +24,7 @@ export function EditableTextCell(props) {
     isReadOnly,
     tag,
     toolbar,
+    stopPropagation,
   };
 
   return (

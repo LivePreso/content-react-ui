@@ -19,6 +19,7 @@ export const EditableText = React.memo((props) => {
     children,
     label,
     toolbar,
+    stopPropagation,
   } = props;
   const { slideKey } = useSlide();
   const { isPresomanager } = useModes();
@@ -67,7 +68,7 @@ export const EditableText = React.memo((props) => {
         data-testid={testid}
         {...opts}
         className={className}
-        onClick={(e) => e.stopPropagation()}
+        onClick={stopPropagation ? (e) => e.stopPropagation() : () => {}}
       >
         {children}
       </Tag>
@@ -102,6 +103,7 @@ EditableText.propTypes = {
   label: PropTypes.string,
   children: PropTypes.node,
   className: PropTypes.string,
+  stopPropagation: PropTypes.bool,
 };
 
 EditableText.defaultProps = {
@@ -124,4 +126,5 @@ EditableText.defaultProps = {
   label: null,
   children: null,
   className: '',
+  stopPropagation: false,
 };
