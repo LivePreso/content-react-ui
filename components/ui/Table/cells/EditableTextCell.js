@@ -5,22 +5,26 @@ import React from 'react';
 export function EditableTextCell(props) {
   const {
     id,
+    prepId,
     isPrep,
     isCompany,
     isReadOnly,
     tag,
     toolbar,
+    stopPropagation,
     children,
     ...cellProps
   } = props;
 
   const { ...editableTextProps } = {
     id,
+    prepId,
     isPrep,
     isCompany,
     isReadOnly,
     tag,
     toolbar,
+    stopPropagation,
   };
 
   return (
