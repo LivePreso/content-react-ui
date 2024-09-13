@@ -27,3 +27,23 @@
     }
   }
 }
+
+.accordion-group {
+  &-enter {
+    opacity: 0.01;
+  }
+
+  &-enter-active {
+    opacity: 1;
+    transition: opacity 200ms ease-out;
+  }
+
+  &-leave {
+    opacity: 1;
+  }
+
+  &-leave-active {
+    opacity: 0.01;
+    transition: opacity 200ms ease-in;
+  }
+}

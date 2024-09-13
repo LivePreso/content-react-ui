@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
+import { CSSTransition } from 'react-transition-group';
 import { useModes } from '@livepreso/content-react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -17,6 +18,7 @@ export function AccordionRow({
 }) {
   const { isPdfScreenshot } = useModes();
   const [isOpen, setIsOpen] = useState(isPdfScreenshot);
+  const nodeRef = useRef(null);
 
   const handleClick = () => {
     setIsOpen(!isOpen);
@@ -41,20 +43,29 @@ export function AccordionRow({
         {children}
       </RowComponent>
 
-      {isOpen &&
-        rows.map(({ renderItem, parentKeys: rowParentKeys, ...row }) => {
-          const parentKeysCollection = [
-            ...(rowParentKeys || []),
-            ...parentKeys,
-            uid,
-          ];
+      {isOpen && (
+        <CSSTransition
+          nodeRef={nodeRef}
+          timeout={200}
+          className={style.accordionGroup}
+        >
+          <div ref={nodeRef}>
+            {rows.map(({ renderItem, parentKeys: rowParentKeys, ...row }) => {
+              const parentKeysCollection = [
+                ...(rowParentKeys || []),
+                ...parentKeys,
+                uid,
+              ];
 
-          return renderItem({
-            ...row,
-            parentKeys: parentKeysCollection,
-            'data-accordion-parent': parentKeysCollection.join(' '),
-          });
-        })}
+              return renderItem({
+                ...row,
+                parentKeys: parentKeysCollection,
+                'data-accordion-parent': parentKeysCollection.join(' '),
+              });
+            })}
+          </div>
+        </CSSTransition>
+      )}
     </>
   );
 }
