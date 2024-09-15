@@ -60,7 +60,7 @@ export function Toggle({
 
 Toggle.propTypes = {
   tabIndex: PropTypes.number,
-  label: PropTypes.string,
+  label: PropTypes.node,
   active: PropTypes.bool,
   onChange: PropTypes.func,
   disabled: PropTypes.bool,
@@ -72,7 +72,7 @@ Toggle.propTypes = {
 
 Toggle.defaultProps = {
   tabIndex: null,
-  label: '',
+  label: null,
   active: false,
   onChange: () => {},
   disabled: false,
