@@ -82,6 +82,10 @@
         transform: translate3d(var(--toggle-switch-transform), 0, 0);
 
         .icon {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
           opacity: 1;
 
           svg {
