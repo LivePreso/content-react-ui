@@ -76,12 +76,16 @@
 
       .switch {
         background-color: var(--toggle-active-switch-bg);
-        height: var(--toggle-switch-active-w);
-        width: var(--toggle-switch-active-h);
+        height: var(--toggle-switch-active-h);
+        width: var(--toggle-switch-active-w);
         margin: var(--toggle-switch-active-m);
-        transform: translate3d(12px, 0, 0);
+        transform: translate3d(var(--toggle-switch-transform), 0, 0);
 
         .icon {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
           opacity: 1;
 
           svg {
