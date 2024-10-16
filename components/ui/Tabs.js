@@ -46,11 +46,13 @@ export function Tabs({
 }
 
 Tabs.propTypes = {
-  selected: PropTypes.string.isRequired,
+  selected: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+    .isRequired,
   items: PropTypes.arrayOf(
     PropTypes.shape({
-      label: PropTypes.string.isRequired,
-      value: PropTypes.string.isRequired,
+      label: PropTypes.node.isRequired,
+      value: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+        .isRequired,
       className: PropTypes.string,
       labelClassName: PropTypes.string,
     }),

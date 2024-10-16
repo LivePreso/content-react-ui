@@ -9,6 +9,7 @@
   cursor: pointer;
 
   .label {
+    color: var(--tab-text);
     font-size: var(--tab-label-fz);
     line-height: var(--tab-label-lh);
     font-weight: var(--tab-label-fw);

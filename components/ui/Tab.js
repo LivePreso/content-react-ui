@@ -52,8 +52,8 @@ export function Tab({
 
 Tab.propTypes = {
   index: PropTypes.number.isRequired,
-  label: PropTypes.string.isRequired,
-  value: PropTypes.oneOf([PropTypes.string, PropTypes.number]).isRequired,
+  label: PropTypes.node.isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   active: PropTypes.bool.isRequired,
   onClick: PropTypes.func,
   disabled: PropTypes.bool,
