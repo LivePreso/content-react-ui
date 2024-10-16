@@ -4,6 +4,7 @@
 ] */
 
 import React, { useCallback } from 'react';
+import PropTypes from 'prop-types';
 import { useChartTheme } from '@ui/hooks/use-chart-theme';
 import { BaseChart } from './BaseChart';
 import {
@@ -34,11 +35,12 @@ export function DateChart({
   tooltips,
   colors,
   themeFunctions,
+  chartFunction,
   onReady,
 }) {
   const combinedThemeFuncs = useChartTheme(themeFunctions);
 
-  const chartFunction = useCallback(
+  const chartFunc = useCallback(
     (chart) => {
       const xAxisObj = createDateXAxis(chart, xAxis);
       const yAxisCollection = yAxes.map((axis) => ({
@@ -48,7 +50,7 @@ export function DateChart({
 
       applyChartColors(chart, colors);
 
-      createSeries(chart, {
+      const chartSeries = createSeries(chart, {
         tooltips,
         colors,
         dataFields: { yAxis: 'valueY', xAxis: 'dateX' },
@@ -66,15 +68,17 @@ export function DateChart({
       if (label) {
         applyLabel(chart, label);
       }
+
+      chartFunction(chart, chartSeries);
     },
-    [series, tooltips, colors, label, xAxis, yAxes, showLegend],
+    [series, tooltips, colors, label, xAxis, yAxes, showLegend, chartFunction],
   );
 
   return (
     <BaseChart
       className={className}
       themeFunctions={combinedThemeFuncs}
-      chartFunction={chartFunction}
+      chartFunction={chartFunc}
       data={data}
       width={width}
       height={height}
@@ -85,8 +89,10 @@ export function DateChart({
 
 DateChart.propTypes = {
   ...baseChartProps,
+  chartFunction: PropTypes.func,
 };
 
 DateChart.defaultProps = {
   ...baseChartDefaultProps,
+  chartFunction: () => {},
 };

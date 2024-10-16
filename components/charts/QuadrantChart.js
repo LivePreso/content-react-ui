@@ -95,6 +95,7 @@ export function QuadrantChart({
   tooltips,
   colors,
   themeFunctions,
+  chartFunction,
   onReady,
 }) {
   const combinedThemeFuncs = useChartTheme(themeFunctions);
@@ -107,7 +108,7 @@ export function QuadrantChart({
     setNormalizedChartData(normalizeData(data, chartDataMinMax));
   }, [data]);
 
-  const chartFunction = useCallback(
+  const chartFunc = useCallback(
     (chart) => {
       // We want both axis to be in the range of 0 - 100
       // to keep grid lines symmetrical
@@ -200,6 +201,8 @@ export function QuadrantChart({
           label[key] = quadrant.label[key];
         });
       });
+
+      chartFunction(chart, seriesInstances);
     },
     [
       quadrants,
@@ -210,6 +213,7 @@ export function QuadrantChart({
       yAxes,
       chartMinMaxValues,
       showLegend,
+      chartFunction,
     ],
   );
 
@@ -217,7 +221,7 @@ export function QuadrantChart({
     <BaseChart
       className={className}
       themeFunctions={combinedThemeFuncs}
-      chartFunction={chartFunction}
+      chartFunction={chartFunc}
       data={[normalizedChartData]}
       width={width}
       height={height}
@@ -228,6 +232,7 @@ export function QuadrantChart({
 
 QuadrantChart.propTypes = {
   ...baseChartProps,
+  chartFunction: PropTypes.func,
   quadrants: PropTypes.arrayOf(
     PropTypes.exact({
       label: PropTypes.string,
@@ -237,4 +242,5 @@ QuadrantChart.propTypes = {
 
 QuadrantChart.defaultProps = {
   ...baseChartDefaultProps,
+  chartFunction: () => {},
 };

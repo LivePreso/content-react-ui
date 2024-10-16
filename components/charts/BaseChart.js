@@ -118,7 +118,7 @@ BaseChart.propTypes = {
   height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   data: PropTypes.arrayOf(
     PropTypes.objectOf(
-      PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+      PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
     ),
   ),
 };
