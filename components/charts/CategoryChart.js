@@ -36,6 +36,7 @@ export function CategoryChart({
   colors,
   themeFunctions,
   chartFunction,
+  enableAnimation,
   onReady,
 }) {
   const combinedThemeFuncs = useChartTheme(themeFunctions);
@@ -81,6 +82,7 @@ export function CategoryChart({
       className={className}
       themeFunctions={combinedThemeFuncs}
       chartFunction={chartFunc}
+      enableAnimation={enableAnimation}
       data={data}
       width={width}
       height={height}

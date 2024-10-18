@@ -37,6 +37,7 @@ export function ValueChart({
   colors,
   themeFunctions,
   chartFunction,
+  enableAnimation,
   onReady,
 }) {
   const combinedThemeFuncs = useChartTheme(themeFunctions);
@@ -85,6 +86,7 @@ export function ValueChart({
       className={className}
       themeFunctions={combinedThemeFuncs}
       chartFunction={chartFunc}
+      enableAnimation={enableAnimation}
       data={data}
       width={width}
       height={height}

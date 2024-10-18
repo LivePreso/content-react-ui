@@ -5,10 +5,12 @@
 
 import { uniqueId, isEqual } from 'lodash-es';
 import React, { useCallback, useEffect, useRef } from 'react';
-import { useSlideDone } from '@livepreso/content-react';
+import { useSlideDone, useModes } from '@livepreso/content-react';
 import PropTypes from 'prop-types';
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
+/* eslint-disable-next-line camelcase */
+import am4themes_animated from '@amcharts/amcharts4/themes/animated';
 
 am4core.options.commercialLicense = true;
 am4core.options.autoSetClassName = true;
@@ -50,6 +52,7 @@ function getAMChartType(type) {
 export const BaseChart = React.memo(function BaseChart({
   className,
   type,
+  enableAnimation,
   chartFunction,
   themeFunctions,
   data,
@@ -59,6 +62,7 @@ export const BaseChart = React.memo(function BaseChart({
   const chartRef = useRef(null);
   const id = useRef(uniqueId('amchart'));
   const chartReady = useSlideDone();
+  const { isScreenshot } = useModes();
 
   const onInitialize = useCallback(
     function (chart) {
@@ -85,6 +89,10 @@ export const BaseChart = React.memo(function BaseChart({
       }
     }
 
+    if (!isScreenshot && enableAnimation) {
+      am4core.useTheme(am4themes_animated);
+    }
+
     const amChart = am4core.create(id.current, getAMChartType(type));
 
     onInitialize(amChart);
@@ -96,7 +104,14 @@ export const BaseChart = React.memo(function BaseChart({
       amChart.events.off('appeared', chartReady);
       amChart.dispose();
     };
-  }, [type, onInitialize, themeFunctions, chartReady]);
+  }, [
+    type,
+    onInitialize,
+    themeFunctions,
+    chartReady,
+    enableAnimation,
+    isScreenshot,
+  ]);
 
   useEffect(() => {
     // Handle data updates triggered by state changes
@@ -112,6 +127,7 @@ BaseChart.propTypes = {
   className: PropTypes.string,
   /* Select between XY chart (eg. category, value, date) or pie chart */
   type: PropTypes.oneOf(['xy', 'pie']),
+  enableAnimation: PropTypes.bool,
   chartFunction: PropTypes.func.isRequired,
   themeFunctions: PropTypes.arrayOf(PropTypes.func),
   width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
@@ -126,6 +142,7 @@ BaseChart.propTypes = {
 BaseChart.defaultProps = {
   className: null,
   type: 'xy',
+  enableAnimation: false,
   width: '100%',
   height: '100%',
   themeFunctions: null,

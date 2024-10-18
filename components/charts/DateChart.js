@@ -36,6 +36,7 @@ export function DateChart({
   colors,
   themeFunctions,
   chartFunction,
+  enableAnimation,
   onReady,
 }) {
   const combinedThemeFuncs = useChartTheme(themeFunctions);
@@ -79,6 +80,7 @@ export function DateChart({
       className={className}
       themeFunctions={combinedThemeFuncs}
       chartFunction={chartFunc}
+      enableAnimation={enableAnimation}
       data={data}
       width={width}
       height={height}

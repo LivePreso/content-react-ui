@@ -33,6 +33,7 @@ export function PieChart({
   innerRadius,
   callout,
   themeFunctions,
+  enableAnimation,
   onReady,
   chartFunction,
 }) {
@@ -82,6 +83,7 @@ export function PieChart({
       type="pie"
       themeFunctions={combinedThemeFuncs}
       chartFunction={chartFunc}
+      enableAnimation={enableAnimation}
       data={data}
       width={width}
       height={height}

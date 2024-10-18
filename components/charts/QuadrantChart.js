@@ -96,6 +96,7 @@ export function QuadrantChart({
   colors,
   themeFunctions,
   chartFunction,
+  enableAnimation,
   onReady,
 }) {
   const combinedThemeFuncs = useChartTheme(themeFunctions);
@@ -222,6 +223,7 @@ export function QuadrantChart({
       className={className}
       themeFunctions={combinedThemeFuncs}
       chartFunction={chartFunc}
+      enableAnimation={enableAnimation}
       data={[normalizedChartData]}
       width={width}
       height={height}
