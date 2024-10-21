@@ -18,6 +18,7 @@ export function Tab({
   disabled,
   isPrep,
   isCompany,
+  children,
 }) {
   const classes = classNames(className, style.tab, {
     [style.isActive]: active,
@@ -46,14 +47,15 @@ export function Tab({
       ) : (
         <h5 className={labelClasses}>{label}</h5>
       )}
+      {children}
     </div>
   );
 }
 
 Tab.propTypes = {
   index: PropTypes.number.isRequired,
-  label: PropTypes.string.isRequired,
-  value: PropTypes.oneOf([PropTypes.string, PropTypes.number]).isRequired,
+  label: PropTypes.node.isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   active: PropTypes.bool.isRequired,
   onClick: PropTypes.func,
   disabled: PropTypes.bool,
@@ -61,6 +63,7 @@ Tab.propTypes = {
   labelClassName: PropTypes.string,
   isPrep: PropTypes.bool,
   isCompany: PropTypes.bool,
+  children: PropTypes.node,
 };
 
 Tab.defaultProps = {
@@ -70,4 +73,5 @@ Tab.defaultProps = {
   labelClassName: '',
   isPrep: false,
   isCompany: false,
+  children: null,
 };

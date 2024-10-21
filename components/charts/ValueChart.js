@@ -4,6 +4,7 @@
 ] */
 
 import React, { useCallback } from 'react';
+import PropTypes from 'prop-types';
 import { useChartTheme } from '@ui/hooks/use-chart-theme';
 import { BaseChart } from './BaseChart';
 import {
@@ -35,11 +36,13 @@ export function ValueChart({
   tooltips,
   colors,
   themeFunctions,
+  chartFunction,
+  enableAnimation,
   onReady,
 }) {
   const combinedThemeFuncs = useChartTheme(themeFunctions);
 
-  const chartFunction = useCallback(
+  const chartFunc = useCallback(
     (chart) => {
       const xAxisObj = createValueXAxis(chart, xAxis);
       const yAxisCollection = yAxes.map((axis) => ({
@@ -49,7 +52,7 @@ export function ValueChart({
 
       applyChartColors(chart, colors);
 
-      createSeries(chart, {
+      const chartSeries = createSeries(chart, {
         tooltips: {
           text: '{name}: {valueY}\n{name}: {valueX}',
           ...tooltips,
@@ -72,15 +75,18 @@ export function ValueChart({
       if (label) {
         applyLabel(chart, label);
       }
+
+      chartFunction(chart, chartSeries);
     },
-    [series, tooltips, colors, label, xAxis, yAxes, showLegend],
+    [series, tooltips, colors, label, xAxis, yAxes, showLegend, chartFunction],
   );
 
   return (
     <BaseChart
       className={className}
       themeFunctions={combinedThemeFuncs}
-      chartFunction={chartFunction}
+      chartFunction={chartFunc}
+      enableAnimation={enableAnimation}
       data={data}
       width={width}
       height={height}
@@ -91,8 +97,10 @@ export function ValueChart({
 
 ValueChart.propTypes = {
   ...baseChartProps,
+  chartFunction: PropTypes.func,
 };
 
 ValueChart.defaultProps = {
   ...baseChartDefaultProps,
+  chartFunction: () => {},
 };

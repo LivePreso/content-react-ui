@@ -4,6 +4,7 @@
 ] */
 
 import React, { useCallback } from 'react';
+import PropTypes from 'prop-types';
 import * as am4core from '@amcharts/amcharts4/core';
 import { useChartTheme } from '@ui/hooks/use-chart-theme';
 import { BaseChart } from './BaseChart';
@@ -32,13 +33,15 @@ export function PieChart({
   innerRadius,
   callout,
   themeFunctions,
+  enableAnimation,
   onReady,
+  chartFunction,
 }) {
   const combinedThemeFuncs = useChartTheme(themeFunctions);
 
-  const chartFunction = useCallback(
+  const chartFunc = useCallback(
     (chart) => {
-      createSeries(chart, {
+      const chartSeries = createSeries(chart, {
         tooltips,
         colors,
         seriesOptions: series,
@@ -58,8 +61,20 @@ export function PieChart({
       if (label) {
         applyLabel(chart, label);
       }
+
+      chartFunction(chart, chartSeries);
     },
-    [series, tooltips, colors, label, showLegend, radius, innerRadius, callout],
+    [
+      series,
+      tooltips,
+      colors,
+      label,
+      showLegend,
+      radius,
+      innerRadius,
+      callout,
+      chartFunction,
+    ],
   );
 
   return (
@@ -67,7 +82,8 @@ export function PieChart({
       className={className}
       type="pie"
       themeFunctions={combinedThemeFuncs}
-      chartFunction={chartFunction}
+      chartFunction={chartFunc}
+      enableAnimation={enableAnimation}
       data={data}
       width={width}
       height={height}
@@ -78,8 +94,10 @@ export function PieChart({
 
 PieChart.propTypes = {
   ...baseChartProps,
+  chartFunction: PropTypes.func,
 };
 
 PieChart.defaultProps = {
   ...baseChartDefaultProps,
+  chartFunction: () => {},
 };

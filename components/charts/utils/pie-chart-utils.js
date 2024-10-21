@@ -40,7 +40,7 @@ export const baseChartProps = {
   }).isRequired,
   data: PropTypes.arrayOf(
     PropTypes.objectOf(
-      PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+      PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
     ),
   ),
   colors: PropTypes.exact({
@@ -99,8 +99,15 @@ export function createSeries(
 
   // Tooltips
   if (tooltips.active) {
-    series.slices.template.tooltipText =
-      tooltips.text || `{category}: {value.formatNumber("${numberFormat}")}`;
+    let tooltipText = '{category}: {value}';
+
+    if (tooltips.text) {
+      tooltipText = tooltips.text;
+    } else if (numberFormat) {
+      tooltipText = `{category}: {value.formatNumber("${numberFormat}")}`;
+    }
+
+    series.slices.template.tooltipText = tooltipText;
     // TODO: tooltip styling options
   } else {
     series.slices.template.states.getKey('hover').properties.scale = 1;

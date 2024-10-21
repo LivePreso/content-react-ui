@@ -4,6 +4,7 @@
 ] */
 
 import React, { useCallback } from 'react';
+import PropTypes from 'prop-types';
 import { useChartTheme } from '@ui/hooks/use-chart-theme';
 import { BaseChart } from './BaseChart';
 import {
@@ -34,11 +35,13 @@ export function CategoryChart({
   tooltips,
   colors,
   themeFunctions,
+  chartFunction,
+  enableAnimation,
   onReady,
 }) {
   const combinedThemeFuncs = useChartTheme(themeFunctions);
 
-  const chartFunction = useCallback(
+  const chartFunc = useCallback(
     (chart) => {
       const xAxisObj = createCategoryXAxis(chart, {
         key: series[0].dataFieldX,
@@ -51,7 +54,7 @@ export function CategoryChart({
 
       applyChartColors(chart, colors);
 
-      createSeries(chart, {
+      const chartSeries = createSeries(chart, {
         tooltips,
         colors,
         dataFields: { yAxis: 'valueY', xAxis: 'categoryX' },
@@ -68,15 +71,18 @@ export function CategoryChart({
       if (label) {
         applyLabel(chart, label);
       }
+
+      chartFunction(chart, chartSeries);
     },
-    [series, tooltips, colors, label, xAxis, yAxes, showLegend],
+    [series, tooltips, colors, label, xAxis, yAxes, showLegend, chartFunction],
   );
 
   return (
     <BaseChart
       className={className}
       themeFunctions={combinedThemeFuncs}
-      chartFunction={chartFunction}
+      chartFunction={chartFunc}
+      enableAnimation={enableAnimation}
       data={data}
       width={width}
       height={height}
@@ -87,8 +93,10 @@ export function CategoryChart({
 
 CategoryChart.propTypes = {
   ...baseChartProps,
+  chartFunction: PropTypes.func,
 };
 
 CategoryChart.defaultProps = {
   ...baseChartDefaultProps,
+  chartFunction: () => {},
 };
