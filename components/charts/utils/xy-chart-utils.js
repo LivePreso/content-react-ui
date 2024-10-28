@@ -259,6 +259,11 @@ const dateFormats = {
     periodChange: "'Q'q ''yy",
     tooltip: "'Q'q yyyy",
   },
+  year: {
+    format: 'yyyy',
+    periodChange: 'yyyy',
+    tooltip: 'yyyy',
+  },
 };
 
 // TODO: labels appear in between data entries for the quarter
