@@ -61,7 +61,7 @@ export const baseChartProps = {
     max: PropTypes.number,
     extraMinMax: PropTypes.number,
     numberFormat: PropTypes.string,
-    granularity: PropTypes.oneOf(['day', 'week', 'month', 'quarter']),
+    granularity: PropTypes.oneOf(['day', 'week', 'month', 'quarter', 'year']),
     hideGrid: PropTypes.bool,
     hideLabels: PropTypes.bool,
     /**
@@ -258,6 +258,11 @@ const dateFormats = {
     format: "'Q'q",
     periodChange: "'Q'q ''yy",
     tooltip: "'Q'q yyyy",
+  },
+  year: {
+    format: 'yyyy',
+    periodChange: 'yyyy',
+    tooltip: 'yyyy',
   },
 };
 
