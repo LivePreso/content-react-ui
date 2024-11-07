@@ -23,7 +23,9 @@ export function Dropdown({
   const ref = useRef(null);
   const [open, setOpen] = useState(false);
 
-  const classes = classNames(style.dropdown, 'no-screenshot', className, { [style.readonly]: readonly });
+  const classes = classNames(style.dropdown, className, {
+    [style.readonly]: readonly,
+  });
 
   useEffect(() => {
     const handleClickOutside = (event) => {
