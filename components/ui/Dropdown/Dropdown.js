@@ -97,9 +97,11 @@ export function Dropdown({
         <h5 className={style.inputLabel}>
           {currentOption?.label || placeholder}
         </h5>
-        <div className={style.arrowIcon}>
-          {arrowIcon || <ChevronDownIcon />}
-        </div>
+        {!readonly && (
+          <div className={style.arrowIcon}>
+            {arrowIcon || <ChevronDownIcon />}
+          </div>
+        )}
       </div>
       <div
         className={classNames(style.options, {
