@@ -5,13 +5,6 @@
   &.readonly {
     cursor: default;
     border: none;
-
-    &::after {
-      display: none;
-    }
-    .arrow-icon {
-      display: none;
-    }
   }
 
   .input {

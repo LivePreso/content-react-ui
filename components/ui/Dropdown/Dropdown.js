@@ -23,7 +23,9 @@ export function Dropdown({
   const ref = useRef(null);
   const [open, setOpen] = useState(false);
 
-  const classes = classNames(style.dropdown, 'no-screenshot', className, { [style.readonly]: readonly });
+  const classes = classNames(style.dropdown, className, {
+    [style.readonly]: readonly,
+  });
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -95,9 +97,11 @@ export function Dropdown({
         <h5 className={style.inputLabel}>
           {currentOption?.label || placeholder}
         </h5>
-        <div className={style.arrowIcon}>
-          {arrowIcon || <ChevronDownIcon />}
-        </div>
+        {!readonly && (
+          <div className={style.arrowIcon}>
+            {arrowIcon || <ChevronDownIcon />}
+          </div>
+        )}
       </div>
       <div
         className={classNames(style.options, {
