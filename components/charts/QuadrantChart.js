@@ -92,6 +92,7 @@ export function QuadrantChart({
   width,
   height,
   showLegend,
+  showCursor,
   tooltips,
   colors,
   themeFunctions,
@@ -164,11 +165,18 @@ export function QuadrantChart({
         yAxes: yAxisCollection,
       });
 
+      let cursor;
+      let legend;
+
       if (showLegend) {
-        chart.legend = createLegend();
+        legend = createLegend();
+        chart.legend = legend;
       }
 
-      chart.cursor = createCursor(xAxisObj);
+      if (showCursor) {
+        cursor = createCursor(xAxisObj);
+        chart.cursor = cursor;
+      }
 
       if (tooltips.active) {
         addValueChartTooltips(xAxisObj);
@@ -203,7 +211,7 @@ export function QuadrantChart({
         });
       });
 
-      chartFunction(chart, seriesInstances);
+      chartFunction(chart, seriesInstances, { cursor, legend });
     },
     [
       quadrants,
@@ -214,6 +222,7 @@ export function QuadrantChart({
       yAxes,
       chartMinMaxValues,
       showLegend,
+      showCursor,
       chartFunction,
     ],
   );

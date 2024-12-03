@@ -31,6 +31,7 @@ export function DateChart({
   width,
   height,
   showLegend,
+  showCursor,
   label,
   tooltips,
   colors,
@@ -60,19 +61,36 @@ export function DateChart({
         granularity: xAxis.granularity,
       });
 
+      let cursor;
+      let legend;
+
       if (showLegend) {
-        chart.legend = createLegend();
+        legend = createLegend();
+        chart.legend = legend;
       }
 
-      chart.cursor = createCursor(xAxisObj);
+      if (showCursor) {
+        cursor = createCursor(xAxisObj);
+        chart.cursor = cursor;
+      }
 
       if (label) {
         applyLabel(chart, label);
       }
 
-      chartFunction(chart, chartSeries);
+      chartFunction(chart, chartSeries, { cursor, legend });
     },
-    [series, tooltips, colors, label, xAxis, yAxes, showLegend, chartFunction],
+    [
+      series,
+      tooltips,
+      colors,
+      label,
+      xAxis,
+      yAxes,
+      showLegend,
+      showCursor,
+      chartFunction,
+    ],
   );
 
   return (

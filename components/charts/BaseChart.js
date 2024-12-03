@@ -58,10 +58,11 @@ export const BaseChart = React.memo(function BaseChart({
   data,
   width,
   height,
+  onReady,
 }) {
   const chartRef = useRef(null);
   const id = useRef(uniqueId('amchart'));
-  const chartReady = useSlideDone();
+  const slideDone = useSlideDone();
   const { isScreenshot } = useModes();
 
   const onInitialize = useCallback(
@@ -97,6 +98,11 @@ export const BaseChart = React.memo(function BaseChart({
 
     onInitialize(amChart);
 
+    const chartReady = () => {
+      onReady();
+      slideDone();
+    };
+
     chartRef.current = amChart;
     amChart.events.on('appeared', chartReady);
 
@@ -108,7 +114,8 @@ export const BaseChart = React.memo(function BaseChart({
     type,
     onInitialize,
     themeFunctions,
-    chartReady,
+    slideDone,
+    onReady,
     enableAnimation,
     isScreenshot,
   ]);
@@ -137,6 +144,7 @@ BaseChart.propTypes = {
       PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
     ),
   ),
+  onReady: PropTypes.func,
 };
 
 BaseChart.defaultProps = {
@@ -147,4 +155,5 @@ BaseChart.defaultProps = {
   height: '100%',
   themeFunctions: null,
   data: [],
+  onReady: () => {},
 };

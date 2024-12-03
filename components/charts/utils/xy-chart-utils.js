@@ -13,6 +13,7 @@ export const baseChartProps = {
   themeFunctions: PropTypes.arrayOf(PropTypes.func),
   onReady: PropTypes.func,
   showLegend: PropTypes.bool,
+  showCursor: PropTypes.bool,
   label: PropTypes.exact({
     text: PropTypes.string,
     fontSize: PropTypes.number,
@@ -108,6 +109,7 @@ export const baseChartDefaultProps = {
   width: '100%',
   height: '100%',
   showLegend: false,
+  showCursor: true,
   colors: {
     list: [],
     applyToEachSeries: false,
