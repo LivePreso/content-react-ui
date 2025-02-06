@@ -21,6 +21,9 @@ export function Dropdown({
   onChange,
 }) {
   const ref = useRef(null);
+  const labelRef = useRef(null);
+  const [labelFontSize, setLabelFontSize] = useState(30);
+
   const [open, setOpen] = useState(false);
 
   const classes = classNames(style.dropdown, className, {
@@ -49,6 +52,7 @@ export function Dropdown({
   const generateItemClick = (val, data) => () => {
     if (readonly) return;
     setOpen(false);
+    setLabelFontSize(30);
     onChange(val, data);
   };
 
@@ -58,6 +62,17 @@ export function Dropdown({
   );
 
   const currentOption = fullOptions.find((v) => v.value === selected);
+
+  useEffect(() => {
+    if (ref.current && labelRef.current) {
+      if (labelRef.current.offsetHeight > ref.current.offsetHeight) {
+        labelRef.current.style.visibility = 'hidden';
+        setLabelFontSize(labelFontSize - 1);
+      } else {
+        labelRef.current.style.visibility = 'visible';
+      }
+    }
+  }, [ref, labelRef, currentOption, labelFontSize]);
 
   // TODO: Switch over to same TYPE logic as Table config
   const items = fullOptions.map((option) => {
@@ -94,7 +109,11 @@ export function Dropdown({
         onClick={toggleOpen}
       >
         {leftIcon && <div className={style.inputIcon}>{leftIcon}</div>}
-        <h5 className={style.inputLabel}>
+        <h5
+          ref={labelRef}
+          className={style.inputLabel}
+          style={{ fontSize: labelFontSize, lineHeight: '1.1em' }}
+        >
           {currentOption?.label || placeholder}
         </h5>
         {!readonly && (
