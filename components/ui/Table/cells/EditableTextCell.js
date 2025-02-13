@@ -1,5 +1,5 @@
 import React from 'react';
-import { EditableText } from '@ui/components/ui';
+import { EditableText } from '../../EditableText';
 import { TableCell } from '../TableCell';
 
 export function EditableTextCell(props) {
