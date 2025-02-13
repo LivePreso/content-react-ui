@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table, Row, Cell } from '@ui/components/ui/Table';
+import { Table, Row, TableCell } from '@ui/components/ui/Table';
 import {
   posNegFactory,
   currencifyFactory,
@@ -49,9 +49,9 @@ export const Default = {
     children: [
       <Table>
         <Row>
-          <Cell>
+          <TableCell>
             <DeltaValue />
-          </Cell>
+          </TableCell>
         </Row>
       </Table>,
     ],

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Cell } from '@ui/components/ui/Table/Cell';
 import classNames from 'classnames';
+import { TableCell } from '../TableCell';
 import style from './ScoreCell.module.scss';
 
 export function ScoreCell(props) {
@@ -12,13 +12,13 @@ export function ScoreCell(props) {
   const colorClass = color ? color(value) : '';
 
   return (
-    <Cell {...cellProps} className={classNames(className, colorClass)}>
+    <TableCell {...cellProps} className={classNames(className, colorClass)}>
       <div>
         <span>{value}</span>
         <span className={style.textMuted}> /{compareValue}</span>
       </div>
       {subtitle && <h6 className={style.textMuted}>{subtitle}</h6>}
-    </Cell>
+    </TableCell>
   );
 }
 
@@ -27,7 +27,7 @@ ScoreCell.propTypes = {
   compareValue: PropTypes.number,
   subtitle: PropTypes.string,
   color: PropTypes.func,
-  ...Cell.propTypes,
+  ...TableCell.propTypes,
 };
 
 ScoreCell.defaultProps = {
@@ -35,5 +35,5 @@ ScoreCell.defaultProps = {
   compareValue: 100,
   subtitle: null,
   color: null,
-  ...Cell.defaultProps,
+  ...TableCell.defaultProps,
 };

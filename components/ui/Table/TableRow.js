@@ -5,7 +5,7 @@ import { getDataProps } from '../../utils';
 import { EMPTY_ACCORDION_KEY } from './table-constants';
 import style from './Table.module.scss';
 
-export function Row({ children, className, onClick, ...props }) {
+export function TableRow({ children, className, onClick, ...props }) {
   const compiledClasses = classNames(style.table, className);
   const dataAttrs = getDataProps(props);
 
@@ -27,13 +27,13 @@ export function Row({ children, className, onClick, ...props }) {
   );
 }
 
-Row.propTypes = {
+TableRow.propTypes = {
   onClick: PropTypes.func,
   children: PropTypes.node,
   className: PropTypes.string,
 };
 
-Row.defaultProps = {
+TableRow.defaultProps = {
   onClick: () => {},
   children: null,
   className: '',

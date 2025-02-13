@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import style from './Cell.module.scss';
+import style from './TableCell.module.scss';
 
-export function Cell(props) {
+export function TableCell(props) {
   const {
     children,
     className,
@@ -41,7 +41,7 @@ export function Cell(props) {
   );
 }
 
-Cell.propTypes = {
+TableCell.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   align: PropTypes.oneOf(['left', 'right', 'center']),
@@ -51,7 +51,7 @@ Cell.propTypes = {
   width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
-Cell.defaultProps = {
+TableCell.defaultProps = {
   children: [],
   className: '',
   colSpan: 1,

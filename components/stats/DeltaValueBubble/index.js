@@ -1,1 +1,1 @@
-export * from './DeltaValueBubble';
+export { DeltaValueBubble } from './DeltaValueBubble';

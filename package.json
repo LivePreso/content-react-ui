@@ -1,6 +1,6 @@
 {
   "name": "@livepreso/content-react-ui",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "React components, hooks and helper functions for content creation",
   "main": "index.js",
   "engines": {
@@ -11,6 +11,9 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "lint-staged": "lint-staged"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "repository": {
     "type": "git",
@@ -24,7 +27,7 @@
   },
   "homepage": "https://github.com/LivePreso/content-react-ui#readme",
   "devDependencies": {
-    "@livepreso/content-react": "^0.3.4",
+    "@livepreso/content-react": "^0.5.2",
     "@livepreso/webpack-deck": "^3.1.5",
     "@storybook/addon-essentials": "^7.6.14",
     "@storybook/addon-interactions": "^7.6.14",
@@ -62,6 +65,7 @@
   "dependencies": {
     "@amcharts/amcharts4": "^4.10.36",
     "classnames": "^2.5.1",
+    "jquery": "^3.7.1",
     "lodash-es": "^4.17.21",
     "prop-types": "^15.8.1",
     "react": "~18.2.0",

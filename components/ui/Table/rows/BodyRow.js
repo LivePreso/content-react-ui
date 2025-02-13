@@ -1,20 +1,20 @@
 import React from 'react';
-import { Row } from '../Row';
+import { TableRow } from '../TableRow';
 
 export function BodyRow(props) {
   const { children, className, ...rowProps } = props;
 
   return (
-    <Row className={className} {...rowProps}>
+    <TableRow className={className} {...rowProps}>
       {children}
-    </Row>
+    </TableRow>
   );
 }
 
 BodyRow.propTypes = {
-  ...Row.propTypes,
+  ...TableRow.propTypes,
 };
 
 BodyRow.defaultProps = {
-  ...Row.defaultProps,
+  ...TableRow.defaultProps,
 };

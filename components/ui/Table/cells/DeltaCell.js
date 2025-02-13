@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { isNull, isUndefined } from 'lodash-es';
-import { Cell } from '@ui/components/ui/Table/Cell';
 import { DeltaValue } from '@ui/components/stats';
+import { TableCell } from '../TableCell';
 
 export function DeltaCell(props) {
   const {
@@ -21,7 +21,7 @@ export function DeltaCell(props) {
     isNull(secondary) || isUndefined(secondary) ? null : `(${secondary})`;
 
   return (
-    <Cell
+    <TableCell
       className={className}
       rowSpan={rowSpan}
       colSpan={colSpan}
@@ -34,7 +34,7 @@ export function DeltaCell(props) {
         formatter={deltaFormat}
         color={color}
       />
-    </Cell>
+    </TableCell>
   );
 }
 
@@ -44,7 +44,7 @@ DeltaCell.propTypes = {
   className: PropTypes.string,
   primary: PropTypes.number,
   secondary: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  ...Cell.propTypes,
+  ...TableCell.propTypes,
 };
 
 DeltaCell.defaultProps = {
@@ -53,5 +53,5 @@ DeltaCell.defaultProps = {
   className: null,
   primary: null,
   secondary: null,
-  ...Cell.defaultProps,
+  ...TableCell.defaultProps,
 };

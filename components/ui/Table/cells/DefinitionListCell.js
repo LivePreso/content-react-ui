@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Cell } from '@ui/components/ui/Table/Cell';
 import { Nbsp } from '@ui/components/text/Nbsp';
+import { TableCell } from '../TableCell';
 import style from './DefinitionListCell.module.scss';
 
 export function DefinitionListCell(props) {
   const { list, className, ...cellProps } = props;
 
   return (
-    <Cell {...cellProps} className={className}>
+    <TableCell {...cellProps} className={className}>
       {list.map(({ label, value, formatter }) => {
         const formattedValue = formatter ? formatter(value) : value;
 
@@ -20,7 +20,7 @@ export function DefinitionListCell(props) {
           </div>
         );
       })}
-    </Cell>
+    </TableCell>
   );
 }
 
@@ -32,10 +32,10 @@ DefinitionListCell.propTypes = {
       formatter: PropTypes.func,
     }),
   ),
-  ...Cell.propTypes,
+  ...TableCell.propTypes,
 };
 
 DefinitionListCell.defaultProps = {
   list: [],
-  ...Cell.defaultProps,
+  ...TableCell.defaultProps,
 };

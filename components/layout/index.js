@@ -1,4 +1,4 @@
-export * from './Block';
-export * from './Column';
-export * from './Flex';
-export * from './Row';
+export { Block } from './Block';
+export { Column } from './Column';
+export { Flex } from './Flex';
+export { Row } from './Row';

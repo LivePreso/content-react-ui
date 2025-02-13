@@ -179,6 +179,13 @@ export function arrayToObjectWithKey(array, key) {
   }, {});
 }
 
+/**
+ * Rounds a decimal number to a specified number of fraction digits.
+ *
+ * @param {number} decimalNumber - The decimal number to be rounded.
+ * @param {number} [fractionDigits=2] - The number of digits after the decimal point. Defaults to 2.
+ * @returns {number} The rounded number with the specified number of fraction digits.
+ */
 export function roundOffDecimal(decimalNumber, fractionDigits = 2) {
   return Number(decimalNumber.toFixed(fractionDigits));
 }
@@ -208,7 +215,9 @@ export function capitalise(input, delimiter = ' ') {
 
   const words = input.split(delimiter);
 
-  return words.map(w => w.substr(0, 1).toUpperCase() + w.substr(1)).join(delimiter);
+  return words
+    .map((w) => w.substr(0, 1).toUpperCase() + w.substr(1))
+    .join(delimiter);
 }
 
 export function slugify() {

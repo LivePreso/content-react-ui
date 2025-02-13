@@ -1,7 +1,6 @@
-export * from 'BaseChart';
-export * from 'CategoryChart';
-export * from 'DateChart';
-export * from 'index';
-export * from 'PieChart';
-export * from 'QuadrantChart';
-export * from 'ValueChart';
+export { BaseChart } from './BaseChart';
+export { CategoryChart } from './CategoryChart';
+export { DateChart } from './DateChart';
+export { PieChart } from './PieChart';
+export { QuadrantChart } from './QuadrantChart';
+export { ValueChart } from './ValueChart';

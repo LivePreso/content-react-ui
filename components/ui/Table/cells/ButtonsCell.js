@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Button } from '@ui/components/ui';
-import { Cell } from '@ui/components/ui/Table/Cell';
+import { TableCell } from '../TableCell';
 import style from './ButtonsCell.module.scss';
 
 export function ButtonsCell(props) {
@@ -13,7 +13,7 @@ export function ButtonsCell(props) {
   });
 
   return (
-    <Cell {...cellProps}>
+    <TableCell {...cellProps}>
       <div className={wrapperClasses}>
         {buttons.map(({ key, className, ...buttonProps }) => {
           const buttonClasses = classNames(className, style.button);
@@ -22,7 +22,7 @@ export function ButtonsCell(props) {
           );
         })}
       </div>
-    </Cell>
+    </TableCell>
   );
 }
 
@@ -33,10 +33,10 @@ ButtonsCell.propTypes = {
       ...Button.propTypes,
     }),
   ),
-  ...Cell.propTypes,
+  ...TableCell.propTypes,
 };
 
 ButtonsCell.defaultProps = {
   buttons: [],
-  ...Cell.defaultProps,
+  ...TableCell.defaultProps,
 };

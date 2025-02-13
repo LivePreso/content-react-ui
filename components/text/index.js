@@ -1,4 +1,4 @@
-export * from 'MiddleEllipsisText';
-export * from 'Nbsp';
-export * from 'SampleEditableText';
-export * from 'SampleParagraph';
+export { MiddleEllipsisText } from './MiddleEllipsisText';
+export { Nbsp } from './Nbsp';
+export { SampleEditableText } from './SampleEditableText';
+export { SampleParagraph } from './SampleParagraph';

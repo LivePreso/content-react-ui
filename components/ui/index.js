@@ -1,14 +1,15 @@
-export * from './ChartFooterMessage';
-export * from './ContextEditableInput';
-export * from './EditableInput';
-export * from './EditableText';
-export * from './LoadingSpinner';
-export * from './Modal';
-export * from './ScrollableArea';
-export * from './Tab';
-export * from './Tabs';
+export { ChartFooterMessage } from './ChartFooterMessage';
+export { ContextEditableInput } from './ContextEditableInput';
+export { EditableInput } from './EditableInput';
+export { EditableText } from './EditableText';
+export { LoadingSpinner } from './LoadingSpinner';
+export { Modal } from './Modal';
+export { ScrollableArea } from './ScrollableArea';
+export { Tab } from './Tab';
+export { Tabs } from './Tabs';
 // subdirs
-export * from './Button';
-export * from './Checkbox';
-export * from './Toggle';
+export { Button } from './Button';
+export { Checkbox } from './Checkbox';
 export * from './Dropdown';
+export * from './Table';
+export { Toggle } from './Toggle';

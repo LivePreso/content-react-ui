@@ -1,1 +1,1 @@
-export * from './MetricItem';
+export { MetricItem } from './MetricItem';

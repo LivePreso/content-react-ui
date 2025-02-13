@@ -1,2 +1,2 @@
-export * from './BigStat';
-export * from './DeltaValue';
+export { BigStat } from './BigStat';
+export { DeltaValue } from './DeltaValue';
