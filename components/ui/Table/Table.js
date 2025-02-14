@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { getColWidth } from '@ui/utils/generate-table-layout';
+import { getColWidth } from '../../../utils/generate-table-layout';
 import { ROW_TYPES, EMPTY_ACCORDION_KEY } from './table-constants';
 import { CELL_TYPES_MAP, ROW_TYPES_MAP } from './table-type-maps';
 import { TextCell, EmptyCell } from './cells';

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Row } from '@ui/components/layout';
+import { Row } from '../layout';
 import { Tab } from './Tab';
 import style from './Tabs.module.scss';
 

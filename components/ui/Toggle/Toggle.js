@@ -1,7 +1,7 @@
 import React, { useId, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { CheckMarkIcon } from '@ui/components/icons';
+import { CheckMarkIcon } from '../../icons';
 import { Row } from '../../layout';
 import style from './Toggle.module.scss';
 

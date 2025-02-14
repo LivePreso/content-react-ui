@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { MiddleEllipsisText } from '@ui/components/text/MiddleEllipsisText';
 import classNames from 'classnames';
+import { MiddleEllipsisText } from '../../../text/MiddleEllipsisText';
 import { TableCell } from '../TableCell';
 import style from './LegendCell.module.scss';
 

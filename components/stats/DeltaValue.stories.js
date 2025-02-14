@@ -1,10 +1,10 @@
 import React from 'react';
-import { Table, Row, TableCell } from '@ui/components/ui/Table';
+import { Table, TableRow, TableCell } from '../ui/Table';
 import {
   posNegFactory,
   currencifyFactory,
   percentifyFactory,
-} from '@ui/utils/data-formatting';
+} from '../../utils/data-formatting';
 import { DeltaValue } from './DeltaValue';
 
 const posGreen = posNegFactory({ pos: 'color-brand-3', neg: 'color-brand-4' });
@@ -48,11 +48,11 @@ export const Default = {
 
     children: [
       <Table>
-        <Row>
+        <TableRow>
           <TableCell>
             <DeltaValue />
           </TableCell>
-        </Row>
+        </TableRow>
       </Table>,
     ],
 

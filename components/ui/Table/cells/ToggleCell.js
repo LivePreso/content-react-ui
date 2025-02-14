@@ -1,5 +1,5 @@
 import React from 'react';
-import { Toggle } from '@ui/components/ui';
+import { Toggle } from '../../Toggle/Toggle';
 import { TableCell } from '../TableCell';
 
 export function ToggleCell(props) {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useArgs } from '@storybook/preview-api';
 
-import { CalendarIcon } from '@ui/components/icons';
+import { CalendarIcon } from '../../icons';
 import { BasicDropdownItem } from './items/BasicDropdownItem';
 import { Dropdown } from './Dropdown';
 

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import React, { useEffect, useRef, useState } from 'react';
-import { ChevronDownIcon } from '@ui/components/icons';
+import { ChevronDownIcon } from '../../icons';
 import { BasicDropdownItem } from './items/BasicDropdownItem';
 import style from './Dropdown.module.scss';
 

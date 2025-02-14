@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Button } from '@ui/components/ui';
+import { Button } from '../../Button';
 import { TableCell } from '../TableCell';
 import style from './ButtonsCell.module.scss';
 

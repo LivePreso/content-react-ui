@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Nbsp } from '@ui/components/text/Nbsp';
+import { Nbsp } from '../../../text/Nbsp';
 import { TableCell } from '../TableCell';
 import style from './DefinitionListCell.module.scss';
 

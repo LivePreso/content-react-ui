@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
-import { EditableText } from '@ui/components/ui';
+import { EditableText } from '../ui';
 import style from './Header.module.scss';
 
 export function Header({ className, isPrep, isCompany, children }) {

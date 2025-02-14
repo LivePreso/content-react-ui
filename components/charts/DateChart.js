@@ -5,7 +5,7 @@
 
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
-import { useChartTheme } from '@ui/hooks/use-chart-theme';
+import { useChartTheme } from '../../hooks/use-chart-theme';
 import { BaseChart } from './BaseChart';
 import {
   baseChartProps,
