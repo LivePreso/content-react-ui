@@ -3,6 +3,13 @@
   "version": "0.0.2",
   "description": "React components, hooks and helper functions for content creation",
   "main": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./utils": "./utils/index.js",
+    "./styles.scss": {
+      "sass": "css/base.scss"
+    }
+  },
   "engines": {
     "node": ">=18.0.0"
   },
@@ -11,9 +18,6 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "lint-staged": "lint-staged"
-  },
-  "publishConfig": {
-    "access": "public"
   },
   "repository": {
     "type": "git",
