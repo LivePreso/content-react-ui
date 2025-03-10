@@ -1,6 +1,6 @@
-import { EditableText } from '@ui/components/ui';
-import { Cell } from '@ui/components/ui/Table/Cell';
 import React from 'react';
+import { EditableText } from '../../EditableText';
+import { TableCell } from '../TableCell';
 
 export function EditableTextCell(props) {
   const {
@@ -28,18 +28,18 @@ export function EditableTextCell(props) {
   };
 
   return (
-    <Cell {...cellProps}>
+    <TableCell {...cellProps}>
       <EditableText {...editableTextProps}>{children}</EditableText>
-    </Cell>
+    </TableCell>
   );
 }
 
 EditableTextCell.propTypes = {
   ...EditableText.propTypes,
-  ...Cell.propTypes,
+  ...TableCell.propTypes,
 };
 
 EditableTextCell.defaultProps = {
   ...EditableText.defaultProps,
-  ...Cell.defaultProps,
+  ...TableCell.defaultProps,
 };

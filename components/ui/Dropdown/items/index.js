@@ -1,2 +1,2 @@
-export * from './BasicDropdownItem';
-export * from './ToggleDropdownItem';
+export { BasicDropdownItem } from './BasicDropdownItem';
+export { ToggleDropdownItem } from './ToggleDropdownItem';

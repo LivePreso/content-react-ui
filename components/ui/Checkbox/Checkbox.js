@@ -1,8 +1,8 @@
 import React, { useId, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Row } from '@ui/components/layout';
-import { CheckMarkIcon } from '@ui/components/icons';
+import { Row } from '../../layout';
+import { CheckMarkIcon } from '../../icons';
 import style from './Checkbox.module.scss';
 
 export function Checkbox({

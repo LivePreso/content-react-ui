@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Column } from '@ui/components/layout';
-import { Header, Slide } from '@ui/components/slide';
+import { Column } from '../layout';
+import { Header, Slide } from '../slide';
 import style from './SectionHeader.module.scss';
 
 export function SectionHeader({ className, title, children }) {

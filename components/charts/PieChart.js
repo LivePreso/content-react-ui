@@ -6,7 +6,7 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import * as am4core from '@amcharts/amcharts4/core';
-import { useChartTheme } from '@ui/hooks/use-chart-theme';
+import { useChartTheme } from '../../hooks/use-chart-theme';
 import { BaseChart } from './BaseChart';
 import {
   baseChartProps,

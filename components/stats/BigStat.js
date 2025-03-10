@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { flexPropTypes } from '@ui/components/layout/flex-prop-types';
-import { Column } from '@ui/components/layout';
+import { flexPropTypes } from '../layout/flex-prop-types';
+import { Column } from '../layout';
 import {
   percentifyFactory,
   decimalifyFactory,
   currencyCodifyFactory,
-} from '@ui/utils/data-formatting';
+} from '../../utils/data-formatting';
 import style from './BigStat.module.scss';
 
 const formatterMap = {

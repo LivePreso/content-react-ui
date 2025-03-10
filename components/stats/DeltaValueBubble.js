@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { Arrow } from '@ui/components/design/Arrow';
+import { Arrow } from '../design/Arrow';
 import style from './DeltaValueBubble.module.scss';
 
 export function DeltaValueBubble(props) {

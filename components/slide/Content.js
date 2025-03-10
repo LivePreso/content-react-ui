@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
-import { Column } from '@ui/components/layout';
+import { Column } from '../layout';
 import style from './Content.module.scss';
 
 export function Content({ className, children }) {

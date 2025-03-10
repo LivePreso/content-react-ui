@@ -1,5 +1,5 @@
 import React from 'react';
-import { SectionHeader } from '@ui/components/slide-types';
+import { SectionHeader } from './SectionHeader';
 
 export default {
   component: SectionHeader,

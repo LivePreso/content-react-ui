@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Nbsp } from '@ui/components/text/Nbsp';
+import { Nbsp } from './Nbsp';
 import style from './MiddleEllipsisText.module.scss';
 
 export function MiddleEllipsisText(props) {

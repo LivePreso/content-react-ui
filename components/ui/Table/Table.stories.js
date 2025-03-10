@@ -3,8 +3,8 @@ import { useArgs } from '@storybook/preview-api';
 import { addRowAndCellUids } from './utils';
 import {
   Table,
-  Row,
-  Cell,
+  TableRow,
+  TableCell,
   HeaderRow,
   SubheaderRow,
   HighlightRow,
@@ -26,34 +26,34 @@ export const Default = {
     children: (
       <>
         <HeaderRow uid="row-1">
-          <Cell uid="r1-c1" colSpan={2}>
+          <TableCell uid="r1-c1" colSpan={2}>
             first cell spans 2
-          </Cell>
-          <Cell uid="r1-c2">
+          </TableCell>
+          <TableCell uid="r1-c2">
             <span>second</span>
-          </Cell>
-          <Cell uid="r1-c3">
+          </TableCell>
+          <TableCell uid="r1-c3">
             <span>third</span>
-          </Cell>
-          <Cell uid="r1-c4">
+          </TableCell>
+          <TableCell uid="r1-c4">
             <span>4th</span>
-          </Cell>
+          </TableCell>
         </HeaderRow>
-        <Row uid="row-2">
+        <TableRow uid="row-2">
           <TitleCell uid="r2-c1" title="first cell" />
-          <Cell uid="r2-c2">
+          <TableCell uid="r2-c2">
             <span>2nd</span>
-          </Cell>
-          <Cell uid="r2-c3">
+          </TableCell>
+          <TableCell uid="r2-c3">
             <span>3rd</span>
-          </Cell>
-          <Cell uid="r2-c4">
+          </TableCell>
+          <TableCell uid="r2-c4">
             <span>4th</span>
-          </Cell>
-          <Cell uid="r2-c5">
+          </TableCell>
+          <TableCell uid="r2-c5">
             <span>5th</span>
-          </Cell>
-        </Row>
+          </TableCell>
+        </TableRow>
       </>
     ),
   },
@@ -65,67 +65,67 @@ export const StickyColumn = {
     sticky: 'column',
     children: [
       <HeaderRow uid="row-1">
-        <Cell uid="r1-c1">
+        <TableCell uid="r1-c1">
           <span>first cell spans 2</span>
-        </Cell>
-        <Cell uid="r1-c2">
+        </TableCell>
+        <TableCell uid="r1-c2">
           <span>second</span>
-        </Cell>
-        <Cell uid="r1-c3">
+        </TableCell>
+        <TableCell uid="r1-c3">
           <span>third</span>
-        </Cell>
-        <Cell uid="r1-c4">
+        </TableCell>
+        <TableCell uid="r1-c4">
           <span>4th</span>
-        </Cell>
-        <Cell uid="r1-c5">
+        </TableCell>
+        <TableCell uid="r1-c5">
           <span>5th</span>
-        </Cell>
+        </TableCell>
       </HeaderRow>,
       <SubheaderRow uid="row-2">
         <TitleCell uid="r1-c1" title="subheader row" />
-        <Cell uid="r1-c2">
+        <TableCell uid="r1-c2">
           <span>2nd</span>
-        </Cell>
-        <Cell uid="r1-c3">
+        </TableCell>
+        <TableCell uid="r1-c3">
           <span>3rd</span>
-        </Cell>
-        <Cell uid="r1-c4">
+        </TableCell>
+        <TableCell uid="r1-c4">
           <span>4th</span>
-        </Cell>
-        <Cell uid="r1-c5">
+        </TableCell>
+        <TableCell uid="r1-c5">
           <span>5th</span>
-        </Cell>
+        </TableCell>
       </SubheaderRow>,
       <HighlightRow uid="row-3">
         <TitleCell uid="r1-c1" title="highlight row" />
-        <Cell uid="r1-c2">
+        <TableCell uid="r1-c2">
           <span>2nd</span>
-        </Cell>
-        <Cell uid="r1-c3">
+        </TableCell>
+        <TableCell uid="r1-c3">
           <span>3rd</span>
-        </Cell>
-        <Cell uid="r1-c4">
+        </TableCell>
+        <TableCell uid="r1-c4">
           <span>4th</span>
-        </Cell>
-        <Cell uid="r1-c5">
+        </TableCell>
+        <TableCell uid="r1-c5">
           <span>5th</span>
-        </Cell>
+        </TableCell>
       </HighlightRow>,
-      <Row uid="row-4">
+      <TableRow uid="row-4">
         <TitleCell uid="r1-c1" title="first cell" />
-        <Cell uid="r1-c2">
+        <TableCell uid="r1-c2">
           <span>2nd</span>
-        </Cell>
-        <Cell uid="r1-c3">
+        </TableCell>
+        <TableCell uid="r1-c3">
           <span>3rd</span>
-        </Cell>
-        <Cell uid="r1-c4">
+        </TableCell>
+        <TableCell uid="r1-c4">
           <span>4th</span>
-        </Cell>
-        <Cell uid="r1-c5">
+        </TableCell>
+        <TableCell uid="r1-c5">
           <span>5th</span>
-        </Cell>
-      </Row>,
+        </TableCell>
+      </TableRow>,
     ],
   },
 };
@@ -306,7 +306,7 @@ const sampleTableConfig = [
       },
       {
         type: CELL_TYPES.DEFAULT,
-        config: { children: (<p>no rowSpan</p>) },
+        config: { children: <p>no rowSpan</p> },
       },
     ],
   },
@@ -349,32 +349,32 @@ export const AccordionTable = {
       {
         renderItem: (item) => (
           <BodyRow uid="r2" {...item}>
-            <Cell uid="r2-c1">
+            <TableCell uid="r2-c1">
               <span>Product name</span>
-            </Cell>
-            <Cell uid="r2-c2">
+            </TableCell>
+            <TableCell uid="r2-c2">
               <span>Product value</span>
-            </Cell>
+            </TableCell>
           </BodyRow>
         ),
       },
       {
         renderItem: (item) => (
           <BodyRow uid="r3" {...item}>
-            <Cell uid="r3-c1">
+            <TableCell uid="r3-c1">
               <span>Product name</span>
-            </Cell>
-            <Cell uid="r3-c2">
+            </TableCell>
+            <TableCell uid="r3-c2">
               <span>Product value</span>
-            </Cell>
+            </TableCell>
           </BodyRow>
         ),
       },
     ],
     children: (
-      <Cell uid="r1-c1" colSpan={2}>
+      <TableCell uid="r1-c1" colSpan={2}>
         <span>Accordion Row</span>
-      </Cell>
+      </TableCell>
     ),
   },
 };

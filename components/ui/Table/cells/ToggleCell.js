@@ -1,6 +1,6 @@
-import { Toggle } from '@ui/components/ui';
-import { Cell } from '@ui/components/ui/Table/Cell';
 import React from 'react';
+import { Toggle } from '../../Toggle/Toggle';
+import { TableCell } from '../TableCell';
 
 export function ToggleCell(props) {
   const {
@@ -25,18 +25,18 @@ export function ToggleCell(props) {
   };
 
   return (
-    <Cell {...cellProps}>
+    <TableCell {...cellProps}>
       <Toggle {...toggleProps} />
-    </Cell>
+    </TableCell>
   );
 }
 
 ToggleCell.propTypes = {
   ...Toggle.propTypes,
-  ...Cell.propTypes,
+  ...TableCell.propTypes,
 };
 
 ToggleCell.defaultProps = {
   ...Toggle.defaultProps,
-  ...Cell.defaultProps,
+  ...TableCell.defaultProps,
 };

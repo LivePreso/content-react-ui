@@ -28,6 +28,7 @@ module.exports = {
     'no-restricted-syntax': 0,
     'no-await-in-loop': 0,
     'import/no-import-module-exports': 0,
+    'import/extensions': 0,
 
     // Change to warnings
     'react/prop-types': 1,

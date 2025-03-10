@@ -1,5 +1,6 @@
 import React from 'react';
-import { Slide, Header, Content, Footer } from '@ui/components/slide';
+import { Header, Content, Footer } from '..';
+import { Slide } from './Slide';
 
 export default {
   component: Slide,

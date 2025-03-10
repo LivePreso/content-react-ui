@@ -1,4 +1,4 @@
-export * from './BodyRow';
-export * from './HeaderRow';
-export * from './SubheaderRow';
-export * from './HighlightRow';
+export { BodyRow } from './BodyRow';
+export { HeaderRow } from './HeaderRow';
+export { SubheaderRow } from './SubheaderRow';
+export { HighlightRow } from './HighlightRow';

@@ -1,18 +1,20 @@
 import React from 'react';
 import classNames from 'classnames';
-import { Cell } from '@ui/components/ui/Table/Cell';
 import style from './EmptyCell.module.scss';
+import { TableCell } from '../TableCell';
 
 export function EmptyCell(props) {
   const { className, ...cellProps } = props;
 
-  return <Cell className={classNames(className, style.empty)} {...cellProps} />;
+  return (
+    <TableCell className={classNames(className, style.empty)} {...cellProps} />
+  );
 }
 
 EmptyCell.propTypes = {
-  ...Cell.propTypes,
+  ...TableCell.propTypes,
 };
 
 EmptyCell.defaultProps = {
-  ...Cell.defaultProps,
+  ...TableCell.defaultProps,
 };

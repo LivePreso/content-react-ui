@@ -1,5 +1,5 @@
 import React from 'react';
-import { MiddleEllipsisText } from '@ui/components/text/MiddleEllipsisText';
+import { MiddleEllipsisText } from './MiddleEllipsisText';
 
 export default {
   component: MiddleEllipsisText,

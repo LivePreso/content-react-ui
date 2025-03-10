@@ -1,9 +1,15 @@
-export * from './Button';
-export * from './Checkbox';
-export * from './Toggle';
-export * from './EditableText';
+export { ChartFooterMessage } from './ChartFooterMessage';
+export { ContextEditableInput } from './ContextEditableInput';
+export { EditableInput } from './EditableInput';
+export { EditableText } from './EditableText';
+export { LoadingSpinner } from './LoadingSpinner';
+export { Modal } from './Modal';
+export { ScrollableArea } from './ScrollableArea';
+export { Tab } from './Tab';
+export { Tabs } from './Tabs';
+// subdirs
+export { Button } from './Button';
+export { Checkbox } from './Checkbox';
 export * from './Dropdown';
-export * from './Tabs';
-export * from './Tab';
-export * from './ScrollableArea';
-export * from './Modal';
+export * from './Table';
+export { Toggle } from './Toggle';

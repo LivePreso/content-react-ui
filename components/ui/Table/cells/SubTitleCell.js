@@ -1,25 +1,25 @@
-import PropTypes from 'prop-types';
-import { Cell } from '@ui/components/ui/Table/Cell';
 import React from 'react';
+import PropTypes from 'prop-types';
+import { TableCell } from '../TableCell';
 
 export function SubTitleCell(props) {
   const { title, subtitle, ...cellProps } = props;
   return (
-    <Cell {...cellProps}>
+    <TableCell {...cellProps}>
       <div>{title}</div>
       {subtitle && <h6>{subtitle}</h6>}
-    </Cell>
+    </TableCell>
   );
 }
 
 SubTitleCell.propTypes = {
   title: PropTypes.string,
   subtitle: PropTypes.string,
-  ...Cell.propTypes,
+  ...TableCell.propTypes,
 };
 
 SubTitleCell.defaultProps = {
   title: 'title',
   subtitle: null,
-  ...Cell.defaultProps,
+  ...TableCell.defaultProps,
 };

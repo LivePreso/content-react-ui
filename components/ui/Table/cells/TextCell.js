@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Cell } from '@ui/components/ui/Table/Cell';
 import classNames from 'classnames';
+import { TableCell } from '../TableCell';
 
 export function TextCell(props) {
   const { value, formatter, color, className, valueClassName, ...cellProps } =
@@ -11,9 +11,9 @@ export function TextCell(props) {
   const colorClass = color ? color(value) : '';
 
   return (
-    <Cell className={classNames(className, colorClass)} {...cellProps}>
+    <TableCell className={classNames(className, colorClass)} {...cellProps}>
       <span className={classNames(valueClassName)}>{formattedValue}</span>
-    </Cell>
+    </TableCell>
   );
 }
 
@@ -22,7 +22,7 @@ TextCell.propTypes = {
   formatter: PropTypes.func,
   color: PropTypes.func,
   valueClassName: PropTypes.string,
-  ...Cell.propTypes,
+  ...TableCell.propTypes,
 };
 
 TextCell.defaultProps = {
@@ -30,5 +30,5 @@ TextCell.defaultProps = {
   formatter: null,
   color: null,
   valueClassName: null,
-  ...Cell.defaultProps,
+  ...TableCell.defaultProps,
 };

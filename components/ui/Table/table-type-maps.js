@@ -13,7 +13,7 @@ import {
   LegendCell,
   DefinitionListCell,
 } from './cells';
-import { Cell } from './Cell';
+import { TableCell } from './TableCell';
 
 import { BodyRow, SubheaderRow, HighlightRow, HeaderRow } from './rows';
 
@@ -26,7 +26,7 @@ export const ROW_TYPES_MAP = {
 };
 
 export const CELL_TYPES_MAP = {
-  [CELL_TYPES.DEFAULT]: Cell,
+  [CELL_TYPES.DEFAULT]: TableCell,
   [CELL_TYPES.EMPTY]: EmptyCell,
   [CELL_TYPES.IMAGE]: ImageCell,
   [CELL_TYPES.DELTA]: DeltaCell,

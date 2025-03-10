@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { isNull, isUndefined } from 'lodash-es';
-import { Row, Column } from '@ui/components/layout';
-
-import { Arrow } from '@ui/components/design/Arrow';
 import classNames from 'classnames';
+import { Row, Column } from '../layout';
+
+import { Arrow } from '../design/Arrow';
 import style from './DeltaValue.module.scss';
 
 export function DeltaValue(props) {

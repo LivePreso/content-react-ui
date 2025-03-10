@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Row } from '../../../layout';
-import { Toggle } from '../..';
+import { Toggle } from '../../Toggle';
 import { DropdownItem } from './DropdownItem';
 import styleBasic from './BasicDropdownItem.module.scss';
 

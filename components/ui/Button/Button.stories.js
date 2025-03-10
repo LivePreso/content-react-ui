@@ -1,5 +1,5 @@
 import React from 'react';
-import { CalendarIcon } from '@ui/components/icons';
+import { CalendarIcon } from '../../icons';
 import { Button } from './Button';
 
 export default {
