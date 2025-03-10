@@ -1,4 +1,6 @@
-node_modules/
+node_modules
+yarn-error.log
+working
 
 # OS generated files #
 ######################
@@ -11,3 +13,30 @@ ehthumbs.db
 Thumbs.db
 .sass-cache
 *.lnk
+
+
+
+# Sublime files #
+*.sublime-project
+*.sublime-workspace
+
+# VSCode files #
+.history
+.vscode
+
+# Testing #
+src/fixtures/testing
+
+# CDK2 #
+# https://stackoverflow.com/a/987162 #
+
+.cdk/*
+!.cdk/feeds
+.cdk/feeds/*
+!.cdk/feeds/*
+.cdk/feeds/*/*
+.cdk/contexts/*
+## add specific, sanitised fixtures here, * in the path will be a feed id
+!.cdk/feeds/*/default.json
+!.cdk/contexts/default.json
+coverage
