@@ -6,3 +6,4 @@ export { usePresoCreatedDate } from './use-preso-created-date';
 export { useSectionVisible } from './use-section-visible';
 export { useShowPrepEditable } from './use-show-prep-editable';
 export { useSlideVisible } from './use-slide-visible';
+export { useSlideKeyPrefix } from './use-slide-key-prefix';

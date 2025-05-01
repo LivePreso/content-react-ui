@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useSlide, useModes } from '@livepreso/content-react';
+import { useModes } from '@livepreso/content-react';
+import { useSlideKeyPrefix } from '../../../hooks/use-slide-key-prefix';
 import style from './EditableText.module.scss';
-
-const blockLevelFormats = ['format', 'list', 'align'];
+import { DEFAULT_PROPS, PROP_TYPES } from './constants';
 
 export const EditableText = React.memo((props) => {
   const {
@@ -12,7 +12,6 @@ export const EditableText = React.memo((props) => {
     isPrep,
     isCompany,
     isGlobal,
-    isReadOnly,
     disableSmartPaste,
     tag,
     className,
@@ -21,28 +20,26 @@ export const EditableText = React.memo((props) => {
     toolbar,
     stopPropagation,
   } = props;
-  const { slideKey } = useSlide();
   const { isPresomanager } = useModes();
+  const cwePrefixedKey = useSlideKeyPrefix(id);
+  const cweKey = isGlobal ? id : cwePrefixedKey;
+  const prepKey = useSlideKeyPrefix(prepId || id);
   const Tag = `${tag}`;
-  const opts = {};
+
+  const testid = isPresomanager ? id : prepId || id;
 
   if (isPrep && isGlobal) {
     throw new Error('EditableText - prep editable values cannot be global');
   }
 
+  const opts = {};
+
   if (isPrep) {
-    opts['data-editable'] = `${slideKey}-${prepId || id}`;
+    opts['data-editable'] = prepKey;
   }
 
-  // TODO: Might need some attention for user templates (check with Hugh)
   if (isCompany) {
-    opts['data-companywide-editable'] = isGlobal
-      ? id
-      : `${slideKey?.replace('template-', '')}-${id}`;
-  }
-
-  if (isReadOnly) {
-    opts['data-readonly'] = true;
+    opts['data-companywide-editable'] = cweKey;
   }
 
   if (disableSmartPaste) {
@@ -50,16 +47,8 @@ export const EditableText = React.memo((props) => {
   }
 
   if (toolbar.length) {
-    // Block-level formatting is restricted to 'div' tags
-    const toolbarOptions =
-      tag === 'div'
-        ? toolbar
-        : toolbar.filter((option) => blockLevelFormats.indexOf(option) < 0);
-
-    opts['data-toolbar'] = toolbarOptions.join(' ');
+    opts['data-toolbar'] = toolbar.join(' ');
   }
-
-  const testid = isPresomanager ? id : prepId || id;
 
   return (
     <>
@@ -85,25 +74,9 @@ EditableText.propTypes = {
    * CWE field with shared content across multiple slides
    */
   isGlobal: PropTypes.bool,
-  isReadOnly: PropTypes.bool,
   disableSmartPaste: PropTypes.bool,
-  tag: PropTypes.oneOf(['div', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p']),
-  toolbar: PropTypes.arrayOf(
-    PropTypes.oneOf([
-      'format',
-      'list',
-      'style',
-      'color',
-      'superscript',
-      'align',
-      'link',
-      'removeformat',
-    ]),
-  ),
-  label: PropTypes.string,
-  children: PropTypes.node,
-  className: PropTypes.string,
   stopPropagation: PropTypes.bool,
+  ...PROP_TYPES,
 };
 
 EditableText.defaultProps = {
@@ -111,20 +84,7 @@ EditableText.defaultProps = {
   isPrep: false,
   isCompany: false,
   isGlobal: false,
-  isReadOnly: false,
   disableSmartPaste: false,
-  tag: 'div',
-  toolbar: [
-    'format',
-    'list',
-    'style',
-    'color',
-    'superscript',
-    'align',
-    'removeformat',
-  ],
-  label: null,
-  children: null,
-  className: '',
   stopPropagation: false,
+  ...DEFAULT_PROPS,
 };
