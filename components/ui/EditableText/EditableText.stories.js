@@ -1,4 +1,4 @@
-import { EditableText } from './EditableText';
+import { EditableText } from './index';
 
 export default {
   component: EditableText,
@@ -17,6 +17,16 @@ export const Companywide = {
   args: {
     id: 'test',
     isCompany: true,
+    children: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+  },
+};
+
+export const ReadOnly = {
+  args: {
+    id: 'test',
+    isCompany: true,
+    isPrep: true,
+    isReadOnly: true,
     children: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
   },
 };

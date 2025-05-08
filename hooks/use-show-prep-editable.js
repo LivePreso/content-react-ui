@@ -1,5 +1,5 @@
 import trim from 'lodash-es/trim';
-import { useModes, usePrepEditable } from '@livepreso/content-react';
+import { useModes, usePrepEditableInfo } from '@livepreso/content-react';
 
 /**
  * Returns true or false whether a prep editable should be shown, based on the following
@@ -9,7 +9,7 @@ import { useModes, usePrepEditable } from '@livepreso/content-react';
  * - If not, it should always show in prep mode, presomanager and during screenshots.
  */
 export function useShowPrepEditable(id) {
-  const { hasValue: hasEditableValue, value } = usePrepEditable(id);
+  const { hasValue: hasEditableValue, value } = usePrepEditableInfo(id);
   const { isPreview, isPresomanager, isThumbnailScreenshot } = useModes();
 
   const alwaysShowEditable =
