@@ -1,5 +1,6 @@
 :root {
   --main-font: arial, helvetica, sans-serif;
+  --heading-font: var(--main-font);
 
   // Font weights
   // https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight
@@ -14,38 +15,43 @@
   --text-fw-black: 900;
   --text-fw-extra-black: 950;
 
+  // useful shortcut vars to change all heading weights at once
+  // can still be overriden at individual heading sizes below
+  --text-fw-heading: var(--text-fw-normal);
+  --text-fw-heading-bold: var(--text-fw-bold);
+
   // fz = font-size
   // lh = line-height
   // fw = font-weight
   --text-fz-h1: 80px;
   --text-lh-h1: 84px;
-  --text-fw-h1: var(--text-fw-normal);
-  --text-fw-h1-bold: var(--text-fw-bold);
+  --text-fw-h1: var(--text-fw-heading);
+  --text-fw-h1-bold: var(--text-fw-heading-bold);
   --text-margin-top-h1: 0.2em;
   --text-fz-h2: 64px;
   --text-lh-h2: 68px;
-  --text-fw-h2: var(--text-fw-normal);
-  --text-fw-h2-bold: var(--text-fw-bold);
+  --text-fw-h2: var(--text-fw-heading);
+  --text-fw-h2-bold: var(--text-fw-heading-bold);
   --text-margin-top-h2: 0.4em;
   --text-fz-h3: 50px;
   --text-lh-h3: 54px;
-  --text-fw-h3: var(--text-fw-normal);
-  --text-fw-h3-bold: var(--text-fw-bold);
+  --text-fw-h3: var(--text-fw-heading);
+  --text-fw-h3-bold: var(--text-fw-heading-bold);
   --text-margin-top-h3: 0.6em;
   --text-fz-h4: 40px;
   --text-lh-h4: 44px;
-  --text-fw-h4: var(--text-fw-normal);
-  --text-fw-h4-bold: var(--text-fw-bold);
+  --text-fw-h4: var(--text-fw-heading);
+  --text-fw-h4-bold: var(--text-fw-heading-bold);
   --text-margin-top-h4: 0.8em;
   --text-fz-h5: 34px;
   --text-lh-h5: 38px;
-  --text-fw-h5: var(--text-fw-normal);
-  --text-fw-h5-bold: var(--text-fw-bold);
+  --text-fw-h5: var(--text-fw-heading);
+  --text-fw-h5-bold: var(--text-fw-heading-bold);
   --text-margin-top-h5: 1em;
   --text-fz-h6: 20px;
   --text-lh-h6: 24px;
-  --text-fw-h6: var(--text-fw-normal);
-  --text-fw-h6-bold: var(--text-fw-bold);
+  --text-fw-h6: var(--text-fw-heading);
+  --text-fw-h6-bold: var(--text-fw-heading-bold);
   --text-margin-top-h6: 0.8em;
   --text-fz-p: 26px;
   --text-lh-p: 30px;

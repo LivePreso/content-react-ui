@@ -8,14 +8,17 @@
   box-sizing: border-box;
 }
 
+%base-type {
+  font-style: normal;
+  font-weight: var(--text-fw-normal);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-decoration: none;
+  margin: 0;
+}
+
 // Components (header, subheader etc.)
 article,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
 p,
 button,
 input,
@@ -30,13 +33,20 @@ th,
 td,
 text,
 label {
-  font-style: normal;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-decoration: none;
-  margin: 0;
+  @extend %base-type;
+
   font-family: var(--main-font);
-  font-weight: var(--text-fw-normal);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @extend %base-type;
+
+  font-family: var(--heading-font);
 }
 
 article {
