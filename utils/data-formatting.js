@@ -50,7 +50,7 @@ export function posNegFactory({ pos, neg }) {
 
 function percentify(num, { numDecimal = 0, minDecimal, maxDecimal } = {}) {
   // Return - for NaN, null, Infinite or undefined
-  if (isInvalidNumber(number)) {
+  if (isInvalidNumber(num)) {
     return '-';
   }
 
