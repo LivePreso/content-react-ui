@@ -49,12 +49,12 @@ export function posNegFactory({ pos, neg }) {
 }
 
 function percentify(num, { numDecimal = 0, minDecimal, maxDecimal } = {}) {
-  const number = Number(num);
-
   // Return - for NaN, null, Infinite or undefined
   if (isInvalidNumber(number)) {
     return '-';
   }
+
+  const number = Number(num);
 
   return number.toLocaleString('en', {
     style: 'percent',
