@@ -47,6 +47,23 @@ h6 {
   @extend %base-type;
 
   font-family: var(--heading-font);
+
+  /* sane subset of inlines, as per https://www.w3schools.com/html/html_blocks.asp */
+  a,
+  b,
+  br,
+  em,
+  i,
+  label,
+  small,
+  span,
+  strong,
+  sub,
+  sup,
+  tt,
+  var {
+    font-family: var(--heading-font);
+  }
 }
 
 article {
