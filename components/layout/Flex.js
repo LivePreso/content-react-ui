@@ -2,9 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { flexPropTypes } from './flex-prop-types';
+import style from './Flex.module.scss';
 
 export function Flex({ className, flex, width, height, children }) {
-  const classes = classNames(className);
+  const classes = classNames(className, style.flex);
 
   return (
     <div className={classes} style={{ flex, width, height }}>
