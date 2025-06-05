@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { ChevronDownIcon } from '../../icons';
 import { BasicDropdownItem } from './items/BasicDropdownItem';
 import style from './Dropdown.module.scss';
+import { MiddleEllipsisText } from '../../text/MiddleEllipsisText';
 
 export function Dropdown({
   className,
@@ -94,9 +95,9 @@ export function Dropdown({
         onClick={toggleOpen}
       >
         {leftIcon && <div className={style.inputIcon}>{leftIcon}</div>}
-        <h5 className={style.inputLabel}>
+        <MiddleEllipsisText className={style.inputLabel}>
           {currentOption?.label || placeholder}
-        </h5>
+        </MiddleEllipsisText>
         {!readonly && (
           <div className={style.arrowIcon}>
             {arrowIcon || <ChevronDownIcon />}

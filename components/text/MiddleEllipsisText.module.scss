@@ -1,5 +1,6 @@
 .wrapper {
   display: flex;
+  min-width: 0;
 
   .before-ellipsis {
     flex: 0 1 auto;
