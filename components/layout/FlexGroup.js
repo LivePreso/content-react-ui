@@ -50,7 +50,7 @@ FlexGroup.propTypes = {
   /**
    * Note: 'justify' is ignored when using a 'flex-' gap
    */
-  justify: PropTypes.oneOf(['start', 'end', 'center']),
+  justify: PropTypes.oneOf(['start', 'end', 'center', 'space-between']),
   children: PropTypes.node,
   className: PropTypes.string,
 };

@@ -34,7 +34,7 @@ Row.propTypes = {
   /**
    * Note: 'justify' is ignored when using a 'flex-' gap
    */
-  justify: PropTypes.oneOf(['start', 'end', 'center']),
+  justify: PropTypes.oneOf(['start', 'end', 'center', 'space-between']),
   reverse: PropTypes.bool,
 };
 
