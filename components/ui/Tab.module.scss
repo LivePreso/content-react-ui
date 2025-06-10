@@ -5,6 +5,7 @@
   justify-content: var(--tab-justify);
   padding: var(--tab-pad);
   background-color: var(--tab-bg);
+  border: var(--tab-border);
   outline: none;
   cursor: pointer;
 
@@ -17,6 +18,7 @@
 
   &.is-active {
     background-color: var(--tab-bg-active);
+    border: var(--tab-border-active);
 
     .label {
       color: var(--tab-text-active);

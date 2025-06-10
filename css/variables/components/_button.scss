@@ -1,4 +1,6 @@
 :root {
+  --button-border: none;
+  --button-border-active: var(--button-border);
   --button-border-radius: var(--border-radius-sml);
   --button-padding-top: var(--space-sml);
   --button-padding-bottom: var(--space-sml);
