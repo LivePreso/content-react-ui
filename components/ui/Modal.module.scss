@@ -11,10 +11,11 @@
   position: relative;
   padding: var(--modal-padding-top) var(--modal-padding-sides)
     var(--modal-padding-bottom);
-  margin: auto var(--modal-margin-sides);
+  margin: auto;
   border-radius: var(--modal-border-radius);
   background-color: var(--color-bg-1);
   max-height: 80%;
+  width: var(--modal-width);
 
   .contents {
     max-height: 100%;
