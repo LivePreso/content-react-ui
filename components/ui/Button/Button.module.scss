@@ -4,9 +4,14 @@
   align-items: center;
   color: var(--button-color-text);
   background-color: var(--button-color-bg);
-  border: 0;
+  border: var(--button-border);
   border-radius: var(--button-border-radius);
   cursor: pointer;
+  transition:
+    color 150ms ease-out,
+    border-color 150ms ease-out,
+    background-color 150ms ease-out,
+    opacity 150ms ease-out;
 
   .label {
     vertical-align: middle;
@@ -20,7 +25,7 @@
     vertical-align: middle;
   }
 
-  svg {
+  svg path {
     fill: var(--button-color-icon);
   }
 
@@ -39,26 +44,35 @@
 
   &:disabled {
     cursor: not-allowed;
-    opacity: 0.7;
+    opacity: var(--button-disabled-opacity);
   }
 
   // variant
   &.secondary {
-    border: 1px solid var(--button-color-bg);
-    background-color: transparent;
-    color: var(--button-color-bg);
+    border: 1px solid var(--button-color-border-secondary);
+    background-color: var(--button-color-bg-secondary);
+    color: var(--button-color-text-secondary);
 
-    svg {
-      fill: var(--button-color-bg);
+    svg path {
+      fill: var(--button-color-icon-secondary);
     }
 
     &:hover:not(:disabled) {
-      border-color: var(--button-color-hover);
-      color: var(--button-color-hover);
+      background-color: var(--button-color-bg-hover-secondary);
+      border-color: var(--button-color-border-hover-secondary);
+      color: var(--button-color-hover-secondary);
 
-      svg {
-        fill: var(--button-color-hover);
+      svg path {
+        fill: var(--button-color-hover-secondary);
       }
+    }
+
+    &:active:not(:disabled) {
+      background-color: var(--button-color-active-secondary);
+    }
+
+    &:focus {
+      box-shadow: 0 0 5px var(--button-color-focus-secondary);
     }
   }
 
@@ -68,7 +82,7 @@
     background-color: transparent;
     color: var(--button-color-text-variant);
 
-    svg {
+    svg path {
       fill: var(--button-color-text-variant);
     }
 
@@ -77,7 +91,7 @@
       color: var(--button-color-text-variant-focus);
       box-shadow: none;
 
-      svg {
+      svg path {
         fill: var(--button-color-text-variant-focus);
       }
     }
@@ -86,7 +100,7 @@
       background-color: transparent;
       color: var(--button-color-text-variant-hover);
 
-      svg {
+      svg path {
         fill: var(--button-color-text-variant-hover);
       }
     }
@@ -95,7 +109,7 @@
       background-color: transparent;
       color: var(--button-color-text-variant-active);
 
-      svg {
+      svg path {
         fill: var(--button-color-text-variant-active);
       }
     }
@@ -196,7 +210,7 @@
       background-color: transparent;
       color: var(--button-color-bg-inverted);
 
-      svg {
+      svg path {
         fill: var(--button-color-bg-inverted);
       }
 
@@ -204,7 +218,7 @@
         border-color: var(--button-color-inverted-hover);
         color: var(--button-color-inverted-hover);
 
-        svg {
+        svg path {
           fill: var(--button-color-inverted-hover);
         }
       }
@@ -214,14 +228,14 @@
       background-color: transparent;
       color: var(--button-color-text-variant-inverted);
 
-      svg {
+      svg path {
         fill: var(--button-color-text-variant-inverted);
       }
 
       &:focus {
         color: var(--button-color-text-variant-inverted-focus);
 
-        svg {
+        svg path {
           fill: var(--button-color-text-variant-inverted-focus);
         }
       }
@@ -229,7 +243,7 @@
       &:hover:not(:disabled) {
         color: var(--button-color-text-variant-inverted-hover);
 
-        svg {
+        svg path {
           fill: var(--button-color-text-variant-inverted-hover);
         }
       }
