@@ -1,11 +1,17 @@
 :root {
+  --grid-gap-xsml: var(--space-xsml);
   --grid-gap-sml: var(--space-sml);
   --grid-gap-med: var(--space-med);
   --grid-gap-lrg: var(--space-lrg);
+  --grid-gap-xlrg: var(--space-xlrg);
+  --col-gap-xsml: var(--grid-gap-xsml);
   --col-gap-sml: var(--grid-gap-sml);
   --col-gap-med: var(--grid-gap-med);
   --col-gap-lrg: var(--grid-gap-lrg);
+  --col-gap-xlrg: var(--grid-gap-xlrg);
+  --row-gap-xsml: var(--grid-gap-xsml);
   --row-gap-sml: var(--grid-gap-sml);
   --row-gap-med: var(--grid-gap-med);
   --row-gap-lrg: var(--grid-gap-lrg);
+  --row-gap-xlrg: var(--grid-gap-xlrg);
 }

@@ -24,9 +24,11 @@ Column.propTypes = {
    */
   gap: PropTypes.oneOf([
     'none',
+    'x-small',
     'small',
     'medium',
     'large',
+    'x-large',
     'flex-around',
     'flex-between',
     'flex-evenly',
