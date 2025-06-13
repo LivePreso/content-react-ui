@@ -1,8 +1,10 @@
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { isArray } from 'lodash-es';
 import React, { useEffect, useRef, useState } from 'react';
 import { ChevronDownIcon } from '../../icons';
 import { BasicDropdownItem } from './items/BasicDropdownItem';
+import { CheckboxDropdownItem } from './items/CheckboxDropdownItem';
 import style from './Dropdown.module.scss';
 import { MiddleEllipsisText } from '../../text/MiddleEllipsisText';
 
@@ -14,6 +16,7 @@ export function Dropdown({
   arrowIcon,
   direction,
   hasOptionsArrow,
+  isMultiSelect,
   placeholder,
   selected,
   width,
@@ -21,6 +24,18 @@ export function Dropdown({
   readonly,
   onChange,
 }) {
+  if (selected) {
+    if (isMultiSelect && !isArray(selected)) {
+      throw new Error(
+        'Selected value must be an array for multi-select dropdown',
+      );
+    } else if (!isMultiSelect && isArray(selected)) {
+      throw new Error(
+        'Must be a multi-select dropdown if you wish to provide an array for the selected value',
+      );
+    }
+  }
+
   const ref = useRef(null);
   const [open, setOpen] = useState(false);
 
@@ -42,47 +57,88 @@ export function Dropdown({
     };
   }, [ref, setOpen]);
 
-  const toggleOpen = () => {
-    if (readonly) return;
-    setOpen(!open);
-  };
-
-  const generateItemClick = (val, data) => () => {
-    if (readonly) return;
-    setOpen(false);
-    onChange(val, data);
-  };
-
   // let fullOptions = [{ label: placeholder, value: '_none_' }]
   const fullOptions = options.map((option) =>
     option.label ? option : { label: option, value: option },
   );
 
-  const currentOption = fullOptions.find((v) => v.value === selected);
+  const toggleOpen = () => {
+    if (readonly) return;
+    setOpen(!open);
+  };
 
-  // TODO: Switch over to same TYPE logic as Table config
+  const generateItemClick =
+    (val, data) =>
+    (isActive = true) => {
+      if (readonly) return;
+
+      if (isMultiSelect) {
+        const newSelected = isActive
+          ? [...selected, val]
+          : selected.filter((v) => v !== val);
+
+        const newData = fullOptions.filter((v) =>
+          newSelected.includes(v.value),
+        );
+
+        onChange(newSelected, newData);
+      } else {
+        setOpen(false);
+        onChange(val, data);
+      }
+    };
+
+  const getSelectedLabel = () => {
+    if (!selected) return '';
+
+    if (isMultiSelect) {
+      return (
+        fullOptions
+          .filter((v) => selected.includes(v.value))
+          .map((v) => v.label)
+          .join(', ') || null
+      );
+    }
+
+    return fullOptions.find((v) => v.value === selected)?.label || null;
+  };
+
+  const selectedLabel = getSelectedLabel();
+
   const items = fullOptions.map((option) => {
     const { value, label, data, renderItem: optionRenderItem } = option;
+    const onClick = generateItemClick(value, data);
 
     if (typeof optionRenderItem === 'function') {
       return optionRenderItem({
         ...option,
-        onClick: generateItemClick(value, data),
+        onClick,
       });
     }
 
     if (typeof renderItem === 'function') {
       return renderItem({
         ...option,
-        onClick: generateItemClick(value, data),
+        onClick,
       });
+    }
+
+    if (isMultiSelect) {
+      return (
+        <CheckboxDropdownItem
+          key={`option-${value}`}
+          label={label}
+          onChange={onClick}
+          active={selected?.includes(value) ?? false}
+        />
+      );
     }
 
     return (
       <BasicDropdownItem
-        onClick={generateItemClick(value, data)}
         key={`option-${value}`}
         label={label}
+        onClick={onClick}
       />
     );
   });
@@ -95,9 +151,15 @@ export function Dropdown({
         onClick={toggleOpen}
       >
         {leftIcon && <div className={style.inputIcon}>{leftIcon}</div>}
-        <MiddleEllipsisText className={style.inputLabel}>
-          {currentOption?.label || placeholder}
-        </MiddleEllipsisText>
+
+        {isMultiSelect ? (
+          <h5 className={style.inputLabel}>{selectedLabel || placeholder}</h5>
+        ) : (
+          <MiddleEllipsisText className={style.inputLabel}>
+            {selectedLabel || placeholder}
+          </MiddleEllipsisText>
+        )}
+
         {!readonly && (
           <div className={style.arrowIcon}>
             {arrowIcon || <ChevronDownIcon />}
@@ -133,8 +195,16 @@ Dropdown.propTypes = {
   arrowIcon: PropTypes.node,
   direction: PropTypes.oneOf(['bottom', 'top']),
   hasOptionsArrow: PropTypes.bool,
+  isMultiSelect: PropTypes.bool,
   placeholder: PropTypes.string,
-  selected: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  /* if isMultiSelect = true, selected is expected to be an array */
+  selected: PropTypes.oneOfType([
+    PropTypes.arrayOf(
+      PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    ),
+    PropTypes.string,
+    PropTypes.number,
+  ]),
   width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   disabled: PropTypes.bool,
   readonly: PropTypes.bool,
@@ -149,8 +219,9 @@ Dropdown.defaultProps = {
   arrowIcon: null,
   direction: 'bottom',
   hasOptionsArrow: false,
+  isMultiSelect: false,
   placeholder: '',
-  selected: '',
+  selected: null,
   width: null,
   disabled: false,
   readonly: false,

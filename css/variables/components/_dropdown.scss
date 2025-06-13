@@ -11,10 +11,12 @@
 
   // Text
   --dropdown-label-color: var(--color-text);
+  --dropdown-label-ff: var(--main-font);
   --dropdown-label-fz: var(--text-fz-h5);
   --dropdown-label-lh: var(--text-lh-h5);
   --dropdown-label-fw: var(--text-fw-normal);
   --dropdown-item-label-color: var(--dropdown-label-color);
+  --dropdown-item-ff: var(--dropdown-label-ff);
   --dropdown-item-label-fz: var(--dropdown-label-fz);
   --dropdown-item-label-lh: var(--dropdown-label-lh);
   --dropdown-item-label-fw: var(--dropdown-label-fw);
@@ -33,6 +35,15 @@
   --dropdown-options-bg-color: var(--color-white);
   --dropdown-options-border-radius: var(--border-radius-none);
   --dropdown-options-pad: 0px;
+  --dropdown-options-pad-sides: var(--dropdown-options-pad);
+  --dropdown-options-pad-top-bottom: var(--dropdown-options-pad);
+  --dropdown-options-pad-top: var(--dropdown-options-pad-top-bottom);
+  --dropdown-options-pad-bottom: var(--dropdown-options-pad-top-bottom);
+  --dropdown-options-pad-left: var(--dropdown-options-pad-sides);
+  --dropdown-options-pad-right: var(--dropdown-options-pad-sides);
   --dropdown-options-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16),
     0 3px 6px rgba(0, 0, 0, 0.23);
+  --dropdown-options-offset: calc(100% + var(--space-sml));
+  --dropdown-direction-bottom-top-offset: var(--dropdown-options-offset);
+  --dropdown-direction-top-bottom-offset: var(--dropdown-options-offset);
 }
