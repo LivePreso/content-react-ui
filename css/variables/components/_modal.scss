@@ -3,6 +3,7 @@
   --modal-padding-top: var(--modal-padding);
   --modal-padding-sides: var(--modal-padding);
   --modal-padding-bottom: var(--modal-padding);
-  --modal-width: calc(100% - (var(--slide-pad-sides) * 2));
+  --modal-margin-sides: var(--slide-pad-sides);
+  --modal-width: auto;
   --modal-border-radius: var(--border-radius-med);
 }

@@ -11,7 +11,7 @@
   position: relative;
   padding: var(--modal-padding-top) var(--modal-padding-sides)
     var(--modal-padding-bottom);
-  margin: auto;
+  margin: auto var(--modal-margin-sides);
   border-radius: var(--modal-border-radius);
   background-color: var(--color-bg-1);
   max-height: 80%;

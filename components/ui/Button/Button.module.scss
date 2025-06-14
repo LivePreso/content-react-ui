@@ -25,7 +25,7 @@
     vertical-align: middle;
   }
 
-  svg path {
+  svg {
     fill: var(--button-color-icon);
   }
 
@@ -53,7 +53,7 @@
     background-color: var(--button-color-bg-secondary);
     color: var(--button-color-text-secondary);
 
-    svg path {
+    svg {
       fill: var(--button-color-icon-secondary);
     }
 
@@ -62,7 +62,7 @@
       border-color: var(--button-color-border-hover-secondary);
       color: var(--button-color-hover-secondary);
 
-      svg path {
+      svg {
         fill: var(--button-color-hover-secondary);
       }
     }
@@ -82,7 +82,7 @@
     background-color: transparent;
     color: var(--button-color-text-variant);
 
-    svg path {
+    svg {
       fill: var(--button-color-text-variant);
     }
 
@@ -91,7 +91,7 @@
       color: var(--button-color-text-variant-focus);
       box-shadow: none;
 
-      svg path {
+      svg {
         fill: var(--button-color-text-variant-focus);
       }
     }
@@ -100,7 +100,7 @@
       background-color: transparent;
       color: var(--button-color-text-variant-hover);
 
-      svg path {
+      svg {
         fill: var(--button-color-text-variant-hover);
       }
     }
@@ -109,7 +109,7 @@
       background-color: transparent;
       color: var(--button-color-text-variant-active);
 
-      svg path {
+      svg {
         fill: var(--button-color-text-variant-active);
       }
     }
@@ -210,7 +210,7 @@
       background-color: transparent;
       color: var(--button-color-bg-inverted);
 
-      svg path {
+      svg {
         fill: var(--button-color-bg-inverted);
       }
 
@@ -218,7 +218,7 @@
         border-color: var(--button-color-inverted-hover);
         color: var(--button-color-inverted-hover);
 
-        svg path {
+        svg {
           fill: var(--button-color-inverted-hover);
         }
       }
@@ -228,14 +228,14 @@
       background-color: transparent;
       color: var(--button-color-text-variant-inverted);
 
-      svg path {
+      svg {
         fill: var(--button-color-text-variant-inverted);
       }
 
       &:focus {
         color: var(--button-color-text-variant-inverted-focus);
 
-        svg path {
+        svg {
           fill: var(--button-color-text-variant-inverted-focus);
         }
       }
@@ -243,7 +243,7 @@
       &:hover:not(:disabled) {
         color: var(--button-color-text-variant-inverted-hover);
 
-        svg path {
+        svg {
           fill: var(--button-color-text-variant-inverted-hover);
         }
       }
