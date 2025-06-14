@@ -5,6 +5,14 @@
     flex-direction: column-reverse;
   }
 
+  &.gap-x-small > *:not(:first-child) {
+    margin-top: var(--col-gap-xsml);
+  }
+
+  &.gap-x-small > *:not(:last-child) {
+    margin-bottom: var(--col-gap-xsml);
+  }
+
   &.gap-small > *:not(:first-child) {
     margin-top: var(--col-gap-sml);
   }
@@ -27,6 +35,14 @@
 
   &.gap-large > *:not(:last-child) {
     margin-bottom: var(--col-gap-lrg);
+  }
+
+  &.gap-x-large > *:not(:first-child) {
+    margin-top: var(--col-gap-xlrg);
+  }
+
+  &.gap-x-large > *:not(:last-child) {
+    margin-bottom: var(--col-gap-xlrg);
   }
 
   &.gap-flex-around {

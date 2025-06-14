@@ -5,6 +5,14 @@
     flex-direction: row-reverse;
   }
 
+  &.gap-x-small > *:not(:first-child) {
+    margin-left: var(--row-gap-xsml);
+  }
+
+  &.gap-x-small > *:not(:last-child) {
+    margin-right: var(--row-gap-xsml);
+  }
+
   &.gap-small > *:not(:first-child) {
     margin-left: var(--row-gap-sml);
   }
@@ -27,6 +35,14 @@
 
   &.gap-large > *:not(:last-child) {
     margin-right: var(--row-gap-lrg);
+  }
+
+  &.gap-x-large > *:not(:first-child) {
+    margin-left: var(--row-gap-xlrg);
+  }
+
+  &.gap-x-large > *:not(:last-child) {
+    margin-right: var(--row-gap-xlrg);
   }
 
   &.gap-flex-around {

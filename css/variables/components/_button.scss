@@ -1,16 +1,17 @@
 :root {
-  --button-border: none;
-  --button-border-active: var(--button-border);
-  --button-border-radius: var(--border-radius-sml);
   --button-padding-top: var(--space-sml);
   --button-padding-bottom: var(--space-sml);
   --button-padding-sides: var(--space-med);
   --button-color-text: var(--color-text-contrast);
   --button-color-bg: var(--color-brand-1);
+  --button-color-border: var(--color-brand-1);
   --button-color-hover: var(--color-brand-1-d2);
   --button-color-active: var(--color-brand-1-l1);
   --button-color-focus: var(--color-brand-1-d2);
-  --button-color-icon: var(--color-text-contrast);
+  --button-color-icon: var(--button-color-text);
+  --button-disabled-opacity: 0.7;
+  --button-border: 0;
+  --button-border-radius: var(--border-radius-sml);
 
   // size
   --button-padding-top-small: var(--button-padding-top);
@@ -37,6 +38,18 @@
   --button-fw-large: var(--button-fw);
   --button-icon-sz-large: 36px;
   --button-icon-margin-large: 10px;
+
+  // Secondary
+  --button-color-text-secondary: var(--button-color-bg);
+  --button-color-bg-secondary: transparent;
+  --button-color-border-secondary: var(--button-color-bg);
+  --button-color-hover-secondary: var(--button-color-hover);
+  --button-color-border-hover-secondary: var(--button-color-hover);
+  --button-color-bg-hover-secondary: var(--button-color-hover);
+  --button-color-active-secondary: var(--button-color-active);
+  --button-color-focus-secondary: var(--button-color-focus);
+  --button-color-icon-secondary: var(--button-color-text-secondary);
+  --button-border-secondary: 1px solid var(--button-color-border-secondary);
 
   // variant
   --button-color-text-variant: var(--button-color-bg);

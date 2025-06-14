@@ -35,6 +35,7 @@
       flex: 1;
       margin-top: 0;
       color: var(--dropdown-label-color);
+      font-family: var(--dropdown-label-ff);
       font-size: var(--dropdown-label-fz);
       line-height: var(--dropdown-label-lh);
       font-weight: var(--dropdown-label-fw);
@@ -48,7 +49,8 @@
   left: 0;
   right: 0;
   background-color: var(--dropdown-options-bg-color);
-  padding: var(--dropdown-options-pad);
+  padding: var(--dropdown-options-pad-top) var(--dropdown-options-pad-right)
+    var(--dropdown-options-pad-bottom) var(--dropdown-options-pad-left);
   border-radius: var(--dropdown-options-border-radius);
   flex-direction: column;
   opacity: 0;
@@ -62,11 +64,11 @@
   }
 
   &.direction-bottom {
-    top: calc(100% + var(--space-sml));
+    top: var(--dropdown-direction-bottom-top-offset);
   }
 
   &.direction-top {
-    bottom: 100%;
+    bottom: var(--dropdown-direction-top-bottom-offset);
   }
 
   &.has-options-arrow {

@@ -60,6 +60,15 @@
   font-family: var(--main-font);
 }
 
+.edit,
+.input,
+.readonly {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
 .edit {
   outline: 1px solid #3c80f6;
   @include shared-styles;

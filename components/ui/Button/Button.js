@@ -7,6 +7,7 @@ export function Button(props) {
   const {
     className,
     classNameLabel,
+    classNameIcon,
     type,
     label,
     leftIcon,
@@ -39,9 +40,17 @@ export function Button(props) {
     // and possible button types are kept in check by prop types
     // eslint-disable-next-line react/button-has-type
     <button {...rest} type={type} className={resolvedClassName} {...opts}>
-      {leftIcon && <span className={style.leftIcon}>{leftIcon}</span>}
+      {leftIcon && (
+        <span className={classNames(classNameIcon, style.leftIcon)}>
+          {leftIcon}
+        </span>
+      )}
       <span className={labelClasses}>{label}</span>
-      {rightIcon && <span className={style.rightIcon}>{rightIcon}</span>}
+      {rightIcon && (
+        <span className={classNames(classNameIcon, style.rightIcon)}>
+          {rightIcon}
+        </span>
+      )}
     </button>
   );
 }
@@ -49,6 +58,7 @@ export function Button(props) {
 Button.propTypes = {
   className: PropTypes.string,
   classNameLabel: PropTypes.string,
+  classNameIcon: PropTypes.string,
   label: PropTypes.string,
   onClick: PropTypes.func.isRequired,
   type: PropTypes.oneOf(['button', 'submit', 'reset']),
@@ -64,6 +74,7 @@ Button.propTypes = {
 Button.defaultProps = {
   className: '',
   classNameLabel: '',
+  classNameIcon: '',
   label: '',
   type: 'button',
   leftIcon: null,
