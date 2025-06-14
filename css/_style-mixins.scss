@@ -3,6 +3,7 @@
 }
 
 @mixin h1-styles {
+  font-family: var(--heading-font);
   font-size: var(--text-fz-h1);
   line-height: var(--text-lh-h1);
   font-weight: var(--text-fw-h1);
@@ -15,6 +16,7 @@
 }
 
 @mixin h2-styles {
+  font-family: var(--heading-font);
   font-size: var(--text-fz-h2);
   line-height: var(--text-lh-h2);
   font-weight: var(--text-fw-h2);
@@ -27,6 +29,7 @@
 }
 
 @mixin h3-styles {
+  font-family: var(--heading-font);
   font-size: var(--text-fz-h3);
   line-height: var(--text-lh-h3);
   font-weight: var(--text-fw-h3);
@@ -39,6 +42,7 @@
 }
 
 @mixin h4-styles {
+  font-family: var(--heading-font);
   font-size: var(--text-fz-h4);
   line-height: var(--text-lh-h4);
   font-weight: var(--text-fw-h4);
@@ -51,6 +55,7 @@
 }
 
 @mixin h5-styles {
+  font-family: var(--heading-font);
   font-size: var(--text-fz-h5);
   line-height: var(--text-lh-h5);
   font-weight: var(--text-fw-h5);
@@ -63,6 +68,7 @@
 }
 
 @mixin h6-styles {
+  font-family: var(--heading-font);
   font-size: var(--text-fz-h6);
   line-height: var(--text-lh-h6);
   font-weight: var(--text-fw-h6);
