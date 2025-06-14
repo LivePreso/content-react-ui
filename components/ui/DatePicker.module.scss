@@ -1,0 +1,26 @@
+.wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.date-picker {
+  font-family: var(--main-font);
+  outline: none;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 26px;
+  pointer-events: none;
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}
