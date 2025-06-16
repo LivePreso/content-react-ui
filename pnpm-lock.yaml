@@ -11,6 +11,9 @@ dependencies:
   classnames:
     specifier: ^2.5.1
     version: 2.5.1
+  flatpickr:
+    specifier: ^4.6.13
+    version: 4.6.13
   jquery:
     specifier: ^3.7.1
     version: 3.7.1
@@ -26,6 +29,9 @@ dependencies:
   react-edit-text:
     specifier: ^5.1.1
     version: 5.1.1(react-dom@18.2.0)(react@18.2.0)
+  react-flatpickr:
+    specifier: ^4.0.10
+    version: 4.0.10(react@18.2.0)
   striptags:
     specifier: ^3.2.0
     version: 3.2.0
@@ -8495,6 +8501,10 @@ packages:
     hasBin: true
     dev: true
 
+  /flatpickr@4.6.13:
+    resolution: {integrity: sha512-97PMG/aywoYpB4IvbvUJi0RQi8vearvU0oov1WW3k0WZPBMrTQVqekSX5CjSG/M4Q3i6A/0FKXC7RyAoAUUSPw==}
+    dev: false
+
   /flatted@3.2.9:
     resolution: {integrity: sha512-36yxDn5H7OFZQla0/jFJmbIKTdZAQHngCedGxiMmpNfEZM0sdEeT+WczLQrjK6D7o2aiyLYDnkw0R3JK0Qv1RQ==}
     dev: true
@@ -11610,6 +11620,15 @@ packages:
       react-dom: 18.2.0(react@18.2.0)
       react-is: 18.1.0
     dev: true
+
+  /react-flatpickr@4.0.10(react@18.2.0):
+    resolution: {integrity: sha512-/pFC+Y0KZ3C4cPwMwvH+CR+AHovPjdQV+Tfn8II9ue2N6AN7+D8KIvo2x5oY29dFFL60hwfqjJ/9s3NBKJzmDA==}
+    peerDependencies:
+      react: '>= 16 <= 19'
+    dependencies:
+      flatpickr: 4.6.13
+      react: 18.2.0
+    dev: false
 
   /react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}

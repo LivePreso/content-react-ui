@@ -10,6 +10,7 @@ import { MiddleEllipsisText } from '../../text/MiddleEllipsisText';
 
 export function Dropdown({
   className,
+  inputClassName,
   options,
   renderItem,
   leftIcon,
@@ -147,7 +148,7 @@ export function Dropdown({
     <div ref={ref} className={classes} style={{ width }}>
       <div
         role="button"
-        className={classNames(style.input)}
+        className={classNames(inputClassName, style.input)}
         onClick={toggleOpen}
       >
         {leftIcon && <div className={style.inputIcon}>{leftIcon}</div>}
@@ -183,6 +184,7 @@ export function Dropdown({
 
 Dropdown.propTypes = {
   className: PropTypes.string,
+  inputClassName: PropTypes.string,
   options: PropTypes.arrayOf(
     PropTypes.shape({
       label: PropTypes.string,
@@ -213,6 +215,7 @@ Dropdown.propTypes = {
 
 Dropdown.defaultProps = {
   className: '',
+  inputClassName: null,
   options: [],
   renderItem: null,
   leftIcon: null,

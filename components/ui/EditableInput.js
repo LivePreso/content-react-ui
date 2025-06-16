@@ -1,7 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 import { EditText } from 'react-edit-text';
+
 import style from './EditableInput.module.scss';
 
 export function EditableInput({
@@ -19,7 +21,7 @@ export function EditableInput({
     const ReactTag = `${tagName}`;
     return (
       <ReactTag className={classNames(style.readonly, className)}>
-        {value}
+        {formatter?.(value) ?? value}
       </ReactTag>
     );
   }
