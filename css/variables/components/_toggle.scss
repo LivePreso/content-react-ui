@@ -9,16 +9,21 @@
   --toggle-inactive-track-bg: var(--toggle-inactive-bg);
   --toggle-inactive-switch-bg: var(--toggle-switch-bg);
   --toggle-inactive-icon-bg: var(--toggle-inactive-bg);
+  --toggle-inactive-icon-opacity: 0;
 
   // Colors - active
   --toggle-active-track-bg: var(--toggle-active-bg);
   --toggle-active-switch-bg: var(--toggle-switch-bg);
   --toggle-active-icon-bg: var(--toggle-active-bg);
+  --toggle-active-icon-opacity: 1;
 
   // Colors - disabled
   --toggle-disabled-track-bg: var(--toggle-disabled-bg);
   --toggle-disabled-switch-bg: var(--toggle-switch-bg);
   --toggle-disabled-icon-bg: var(--toggle-disabled-bg);
+
+  // Colors - focus
+  --toggle-color-focus: var(--button-color-focus);
 
   // Geometry
   --toggle-label-margin: 12px;
