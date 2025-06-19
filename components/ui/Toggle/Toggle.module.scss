@@ -20,7 +20,7 @@
 
     &:focus {
       outline: none;
-      box-shadow: 0 0 5px var(--button-color-focus);
+      box-shadow: 0 0 5px var(--toggle-color-focus);
     }
   }
 
@@ -46,7 +46,7 @@
       text-align: center;
 
       .icon {
-        opacity: 0;
+        opacity: var(--toggle-inactive-icon-opacity);
         transition: opacity 150ms ease-in-out;
 
         svg {
@@ -86,7 +86,7 @@
           flex-direction: column;
           justify-content: center;
           align-items: center;
-          opacity: 1;
+          opacity: var(--toggle-active-icon-opacity);
 
           svg {
             fill: var(--toggle-active-icon-bg);

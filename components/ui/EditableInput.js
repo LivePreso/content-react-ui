@@ -13,18 +13,27 @@ export function EditableInput({
   value,
   onChange,
   formatter,
+  placeholder,
+  disabled,
   className,
   inputClassName,
 }) {
   // Render the real tag instead that our EditText is trying to represent.
-  if (readOnly) {
+  if (readOnly || disabled) {
     const ReactTag = `${tagName}`;
     return (
-      <ReactTag className={classNames(style.readonly, className)}>
+      <ReactTag
+        className={classNames(className, {
+          [style.readonly]: readOnly,
+          [style.disabled]: disabled,
+        })}
+      >
         {formatter?.(value) ?? value}
       </ReactTag>
     );
   }
+
+  const baseClasses = classNames(className, style[tagName]);
 
   const extraProps = {};
 
@@ -36,16 +45,12 @@ export function EditableInput({
     <EditText
       type={type}
       value={value}
-      className={classNames(style.edit, style[tagName], className)}
-      inputClassName={classNames(
-        style.input,
-        style[tagName],
-        className,
-        inputClassName,
-      )}
+      className={classNames(baseClasses, style.edit)}
+      inputClassName={classNames(baseClasses, inputClassName, style.input)}
       onChange={(e) => {
         onChange(e.target.value);
       }}
+      placeholder={placeholder}
       {...extraProps}
     />
   );
@@ -58,6 +63,8 @@ EditableInput.propTypes = {
   readOnly: PropTypes.bool,
   tagName: PropTypes.oneOf(['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6']),
   formatter: PropTypes.func,
+  placeholder: PropTypes.string,
+  disabled: PropTypes.bool,
   className: PropTypes.string,
   inputClassName: PropTypes.string,
 };
@@ -69,6 +76,8 @@ EditableInput.defaultProps = {
   tagName: 'p',
   readOnly: false,
   formatter: null,
+  placeholder: '',
+  disabled: false,
   className: null,
   inputClassName: null,
 };
