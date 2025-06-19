@@ -74,9 +74,10 @@ export function Dropdown({
       if (readonly) return;
 
       if (isMultiSelect) {
+        const currSelected = selected || [];
         const newSelected = isActive
-          ? [...selected, val]
-          : selected.filter((v) => v !== val);
+          ? [...currSelected, val]
+          : currSelected.filter((v) => v !== val);
 
         const newData = fullOptions.filter((v) =>
           newSelected.includes(v.value),
@@ -90,7 +91,7 @@ export function Dropdown({
     };
 
   const getSelectedLabel = () => {
-    if (!selected) return '';
+    if (typeof selected === 'undefined') return '';
 
     if (isMultiSelect) {
       return (
@@ -182,13 +183,15 @@ export function Dropdown({
   );
 }
 
+const valuePropTypes = [PropTypes.string, PropTypes.number, PropTypes.bool];
+
 Dropdown.propTypes = {
   className: PropTypes.string,
   inputClassName: PropTypes.string,
   options: PropTypes.arrayOf(
     PropTypes.shape({
       label: PropTypes.string,
-      value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+      value: PropTypes.oneOfType(valuePropTypes),
       renderItem: PropTypes.func,
     }),
   ),
@@ -201,11 +204,8 @@ Dropdown.propTypes = {
   placeholder: PropTypes.string,
   /* if isMultiSelect = true, selected is expected to be an array */
   selected: PropTypes.oneOfType([
-    PropTypes.arrayOf(
-      PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    ),
-    PropTypes.string,
-    PropTypes.number,
+    PropTypes.arrayOf(PropTypes.oneOfType(valuePropTypes)),
+    ...valuePropTypes,
   ]),
   width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   disabled: PropTypes.bool,
