@@ -1,5 +1,51 @@
 @import '../../css/style-mixins';
 
+@mixin shared-styles {
+  cursor: pointer;
+  padding: 2px;
+  font-family: var(--main-font);
+}
+
+.edit,
+.input,
+.readonly,
+.disabled {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.edit {
+  outline: 1px solid #3c80f6;
+  @include shared-styles;
+}
+
+.input {
+  outline: none;
+  width: 100%;
+  border: 0;
+  background: none;
+
+  &:focus {
+    border: 0;
+    outline: 1px solid #3c80f6;
+    padding: 2px;
+    margin: 0;
+  }
+
+  @include shared-styles;
+}
+
+.readonly {
+  padding: 2px;
+}
+
+.disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
 .p {
   @include p-styles;
 
@@ -50,50 +96,4 @@
 
   min-height: calc(var(--text-lh-h6) + 4px);
   margin-top: 0;
-}
-
-@mixin shared-styles {
-  cursor: pointer;
-  padding: 2px;
-  font-family: var(--main-font);
-}
-
-.edit,
-.input,
-.readonly,
-.disabled {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-}
-
-.edit {
-  outline: 1px solid #3c80f6;
-  @include shared-styles;
-}
-
-.input {
-  outline: none;
-  width: 100%;
-  border: 0;
-  background: none;
-
-  &:focus {
-    border: 0;
-    outline: 1px solid #3c80f6;
-    padding: 2px;
-    margin: 0;
-  }
-
-  @include shared-styles;
-}
-
-.readonly {
-  padding: 2px;
-}
-
-.disabled {
-  cursor: not-allowed;
-  opacity: 0.4;
 }
