@@ -9,7 +9,7 @@ export { ScrollableArea } from './ScrollableArea';
 export { Tab } from './Tab';
 export { Tabs } from './Tabs';
 // subdirs
-export { Button } from './Button';
+export { Button, ExternalLink } from './Button';
 export { Checkbox } from './Checkbox';
 export * from './Dropdown';
 export * from './Table';
