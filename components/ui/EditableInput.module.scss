@@ -1,57 +1,55 @@
 @import '../../css/style-mixins';
 
-@mixin add-tags {
-  &.p {
-    @include p-styles;
+.p {
+  @include p-styles;
 
-    min-height: 23px;
+  min-height: calc(var(--text-lh-p) + 4px);
 
-    // TODO: We need to do these to override the global "first-child" margin
-    // added to the header tags. Perhaps the global one should be more
-    // specific?
-    margin-top: 0;
-  }
+  // TODO: We need to do these to override the global "first-child" margin
+  // added to the header tags. Perhaps the global one should be more
+  // specific?
+  margin-top: 0;
+}
 
-  &.h1 {
-    @include h1-styles;
+.h1 {
+  @include h1-styles;
 
-    min-height: 58px;
-  }
+  min-height: calc(var(--text-lh-h1) + 4px);
+}
 
-  &.h2 {
-    @include h2-styles;
+.h2 {
+  @include h2-styles;
 
-    min-height: 48px;
-    margin-top: 0;
-  }
+  min-height: calc(var(--text-lh-h2) + 4px);
+  margin-top: 0;
+}
 
-  &.h3 {
-    @include h3-styles;
+.h3 {
+  @include h3-styles;
 
-    min-height: 40px;
-    margin-top: 0;
-  }
+  min-height: calc(var(--text-lh-h3) + 4px);
+  margin-top: 0;
+}
 
-  &.h4 {
-    @include h4-styles;
+.h4 {
+  @include h4-styles;
 
-    min-height: 33px;
-    margin-top: 0;
-  }
+  min-height: calc(var(--text-lh-h4) + 4px);
+  margin-top: 0;
+}
 
-  &.h5 {
-    @include h5-styles;
+.h5 {
+  @include h5-styles;
 
-    min-height: 33px;
-    margin-top: 0;
-  }
+  min-height: calc(var(--text-lh-h5) + 4px);
+  margin-top: 0;
+}
 
-  &.h6 {
-    @include h6-styles;
+.h6 {
+  @include h6-styles;
 
-    min-height: 21px;
-    margin-top: 0;
-  }
+  min-height: calc(var(--text-lh-h6) + 4px);
+  margin-top: 0;
 }
 
 @mixin shared-styles {
@@ -73,7 +71,6 @@
 .edit {
   outline: 1px solid #3c80f6;
   @include shared-styles;
-  @include add-tags;
 }
 
 .input {
@@ -90,7 +87,6 @@
   }
 
   @include shared-styles;
-  @include add-tags;
 }
 
 .readonly {
