@@ -1,6 +1,7 @@
 export { ChartFooterMessage } from './ChartFooterMessage';
 export { ContextEditableInput } from './ContextEditableInput';
 export { EditableInput } from './EditableInput';
+export { EditableTextArea } from './EditableTextArea';
 export { EditableText } from './EditableText';
 export { DatePicker } from './DatePicker';
 export { LoadingSpinner } from './LoadingSpinner';
