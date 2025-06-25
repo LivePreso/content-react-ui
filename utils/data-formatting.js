@@ -1,10 +1,11 @@
-import { isNaN, isNull, isUndefined, isNumber } from 'lodash-es';
+import { isNull, isUndefined, isNumber } from 'lodash-es';
 
 export function isInvalidNumber(num) {
   return (
     Number.POSITIVE_INFINITY === num ||
     Number.NEGATIVE_INFINITY === num ||
-    isNaN(num) ||
+    Number.isNaN(Number(num)) ||
+    Number.isNaN(num) ||
     isNull(num) ||
     isUndefined(num)
   );
