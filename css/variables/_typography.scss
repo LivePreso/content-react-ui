@@ -20,44 +20,63 @@
   --text-fw-heading: var(--text-fw-normal);
   --text-fw-heading-bold: var(--text-fw-bold);
 
+  // Letter spacing
+  --text-ls: 0em;
+  --text-ls-heading: var(--text-ls);
+
   // fz = font-size
   // lh = line-height
+  // ls = letter-spacing
   // fw = font-weight
   --text-fz-h1: 80px;
   --text-lh-h1: 84px;
+  --text-ls-h1: var(--text-ls-heading);
   --text-fw-h1: var(--text-fw-heading);
   --text-fw-h1-bold: var(--text-fw-heading-bold);
   --text-margin-top-h1: 0.2em;
   --text-fz-h2: 64px;
   --text-lh-h2: 68px;
+  --text-ls-h2: var(--text-ls-heading);
   --text-fw-h2: var(--text-fw-heading);
   --text-fw-h2-bold: var(--text-fw-heading-bold);
   --text-margin-top-h2: 0.4em;
   --text-fz-h3: 50px;
   --text-lh-h3: 54px;
+  --text-ls-h3: var(--text-ls-heading);
   --text-fw-h3: var(--text-fw-heading);
   --text-fw-h3-bold: var(--text-fw-heading-bold);
   --text-margin-top-h3: 0.6em;
   --text-fz-h4: 40px;
   --text-lh-h4: 44px;
+  --text-ls-h4: var(--text-ls-heading);
   --text-fw-h4: var(--text-fw-heading);
   --text-fw-h4-bold: var(--text-fw-heading-bold);
   --text-margin-top-h4: 0.8em;
   --text-fz-h5: 34px;
   --text-lh-h5: 38px;
+  --text-ls-h5: var(--text-ls-heading);
   --text-fw-h5: var(--text-fw-heading);
   --text-fw-h5-bold: var(--text-fw-heading-bold);
   --text-margin-top-h5: 1em;
   --text-fz-h6: 20px;
   --text-lh-h6: 24px;
+  --text-ls-h6: var(--text-ls-heading);
   --text-fw-h6: var(--text-fw-heading);
   --text-fw-h6-bold: var(--text-fw-heading-bold);
   --text-margin-top-h6: 0.8em;
   --text-fz-p: 26px;
   --text-lh-p: 30px;
+  --text-ls-p: var(--text-ls);
   --text-fw-p: var(--text-fw-normal);
   --text-fw-p-bold: var(--text-fw-bold);
   --text-margin-top-p: 0.8em;
+
+  // Tables
+  --text-fz-table: 18px;
+  --text-lh-table: 20px;
+  --text-ls-table: var(--text-ls);
+  --text-fw-table: var(--text-fw-p);
+  --text-fw-table-bold: var(--text-fw-p-bold);
 
   // Lists
   --text-fz-li: var(--text-fz-p);
