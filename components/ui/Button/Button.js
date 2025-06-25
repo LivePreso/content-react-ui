@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import style from './Button.module.scss';
+import { buttonPropTypes, buttonDefaultProps } from './button-prop-types';
 
 export function Button(props) {
   const {
@@ -56,32 +57,10 @@ export function Button(props) {
 }
 
 Button.propTypes = {
-  className: PropTypes.string,
-  classNameLabel: PropTypes.string,
-  classNameIcon: PropTypes.string,
-  label: PropTypes.string,
+  ...buttonPropTypes,
   onClick: PropTypes.func.isRequired,
-  type: PropTypes.oneOf(['button', 'submit', 'reset']),
-  leftIcon: PropTypes.element,
-  rightIcon: PropTypes.element,
-  isPresoManagerInteractive: PropTypes.bool,
-  disabled: PropTypes.bool,
-  invertColors: PropTypes.bool,
-  variant: PropTypes.oneOf(['primary', 'secondary', 'text']),
-  size: PropTypes.oneOf(['small', 'medium', 'large']),
 };
 
 Button.defaultProps = {
-  className: '',
-  classNameLabel: '',
-  classNameIcon: '',
-  label: '',
-  type: 'button',
-  leftIcon: null,
-  rightIcon: null,
-  isPresoManagerInteractive: false,
-  disabled: false,
-  invertColors: false,
-  variant: 'primary',
-  size: 'medium',
+  ...buttonDefaultProps,
 };

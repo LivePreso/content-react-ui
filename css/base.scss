@@ -144,3 +144,10 @@ ul {
     margin-top: 0;
   }
 }
+
+table {
+  th,
+  td {
+    @include table-styles;
+  }
+}

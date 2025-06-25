@@ -8,7 +8,7 @@
   background-color: var(--color-white);
   border-radius: var(--dropdown-item-border-radius);
 
-  &:hover {
+  &:hover:not(.disabled) {
     background-color: var(--dropdown-item-label-hover-bg);
   }
 
@@ -20,5 +20,9 @@
         background-color: inherit;
       }
     }
+  }
+
+  &.disabled {
+    cursor: not-allowed;
   }
 }

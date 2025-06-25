@@ -7,6 +7,7 @@
   font-size: var(--text-fz-h1);
   line-height: var(--text-lh-h1);
   font-weight: var(--text-fw-h1);
+  letter-spacing: var(--text-ls-h1);
   margin-top: var(--text-margin-top-h1);
 
   b,
@@ -20,6 +21,7 @@
   font-size: var(--text-fz-h2);
   line-height: var(--text-lh-h2);
   font-weight: var(--text-fw-h2);
+  letter-spacing: var(--text-ls-h2);
   margin-top: var(--text-margin-top-h2);
 
   b,
@@ -33,6 +35,7 @@
   font-size: var(--text-fz-h3);
   line-height: var(--text-lh-h3);
   font-weight: var(--text-fw-h3);
+  letter-spacing: var(--text-ls-h3);
   margin-top: var(--text-margin-top-h3);
 
   b,
@@ -46,6 +49,7 @@
   font-size: var(--text-fz-h4);
   line-height: var(--text-lh-h4);
   font-weight: var(--text-fw-h4);
+  letter-spacing: var(--text-ls-h4);
   margin-top: var(--text-margin-top-h4);
 
   b,
@@ -59,6 +63,7 @@
   font-size: var(--text-fz-h5);
   line-height: var(--text-lh-h5);
   font-weight: var(--text-fw-h5);
+  letter-spacing: var(--text-ls-h5);
   margin-top: var(--text-margin-top-h5);
 
   b,
@@ -72,6 +77,7 @@
   font-size: var(--text-fz-h6);
   line-height: var(--text-lh-h6);
   font-weight: var(--text-fw-h6);
+  letter-spacing: var(--text-ls-h6);
   margin-top: var(--text-margin-top-h6);
 
   b,
@@ -84,10 +90,23 @@
   font-size: var(--text-fz-p);
   line-height: var(--text-lh-p);
   font-weight: var(--text-fw-p);
+  letter-spacing: var(--text-ls-p);
   margin-top: var(--text-margin-top-p);
 
   b,
   strong {
     font-weight: var(--text-fw-p-bold);
+  }
+}
+
+@mixin table-styles {
+  font-size: var(--text-fz-table);
+  line-height: var(--text-lh-table);
+  font-weight: var(--text-fw-table);
+  letter-spacing: var(--text-ls-table);
+
+  b,
+  strong {
+    font-weight: var(--text-fw-table-bold);
   }
 }
