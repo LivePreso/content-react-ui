@@ -46,6 +46,10 @@
       text-align: center;
 
       .icon {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
         opacity: var(--toggle-inactive-icon-opacity);
         transition: opacity 150ms ease-in-out;
 
@@ -82,10 +86,6 @@
         transform: translate3d(var(--toggle-switch-transform), 0, 0);
 
         .icon {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
           opacity: var(--toggle-active-icon-opacity);
 
           svg {
