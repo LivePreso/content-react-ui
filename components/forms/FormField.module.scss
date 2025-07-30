@@ -1,0 +1,67 @@
+.wrapper {
+  position: relative;
+  min-height: 56px;
+  background-color: var(--color-brand-1-l4);
+}
+
+.connector {
+  position: relative;
+  width: 0;
+  height: 0;
+  z-index: 1;
+  margin: 0 !important;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: calc(50% - 13px);
+    left: -13px;
+    width: 26px;
+    height: 26px;
+    padding: 7px;
+    border: 1px solid var(--color-brand-1);
+    border-radius: 50%;
+    background-color: var(--color-white);
+    background-image: url('./connector-arrow.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 8px 12px;
+  }
+}
+
+.field,
+.prefix,
+.suffix {
+  min-height: 56px !important;
+  padding: 12px 0;
+}
+
+.prefix,
+.suffix {
+  align-self: flex-start;
+}
+
+.prefix {
+  padding-left: 20px;
+}
+
+.suffix {
+  padding-right: 20px;
+}
+
+.field,
+.field:focus {
+  outline: none !important;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.date-picker-icon {
+  right: 20px;
+}
+
+.dropdown {
+  --dropdown-input-border: 0;
+  --dropdown-input-bg-color: var(--color-brand-1-l4);
+  --dropdown-input-border-radius: 0;
+}
