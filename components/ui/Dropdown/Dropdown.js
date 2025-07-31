@@ -2,17 +2,21 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { isArray } from 'lodash-es';
 import React, { useEffect, useRef, useState } from 'react';
+import { Flex } from '../../layout';
 import { ChevronDownIcon } from '../../icons';
 import { BasicDropdownItem } from './items/BasicDropdownItem';
 import { CheckboxDropdownItem } from './items/CheckboxDropdownItem';
+import { valuePropTypes, optionsPropTypes } from './prop-types';
 import style from './Dropdown.module.scss';
-import { MiddleEllipsisText } from '../../text/MiddleEllipsisText';
+import { DropdownInputLabel } from './DropdownInputLabel';
 
 export function Dropdown({
   className,
   inputClassName,
+  optionsClassName,
   options,
   renderItem,
+  renderLabel,
   leftIcon,
   arrowIcon,
   direction,
@@ -24,6 +28,7 @@ export function Dropdown({
   disabled,
   readonly,
   onChange,
+  isPresoManagerInteractive,
 }) {
   if (selected) {
     if (isMultiSelect && !isArray(selected)) {
@@ -39,6 +44,11 @@ export function Dropdown({
 
   const ref = useRef(null);
   const [open, setOpen] = useState(false);
+
+  const opts = {};
+  if (isPresoManagerInteractive) {
+    opts['data-companywide-interactive'] = true;
+  }
 
   const classes = classNames(style.dropdown, className, {
     [style.readonly]: readonly,
@@ -58,7 +68,6 @@ export function Dropdown({
     };
   }, [ref, setOpen]);
 
-  // let fullOptions = [{ label: placeholder, value: '_none_' }]
   const fullOptions = options.map((option) =>
     option.label ? option : { label: option, value: option },
   );
@@ -89,23 +98,6 @@ export function Dropdown({
         onChange(val, data);
       }
     };
-
-  const getSelectedLabel = () => {
-    if (typeof selected === 'undefined') return '';
-
-    if (isMultiSelect) {
-      return (
-        fullOptions
-          .filter((v) => selected.includes(v.value))
-          .map((v) => v.label)
-          .join(', ') || null
-      );
-    }
-
-    return fullOptions.find((v) => v.value === selected)?.label || null;
-  };
-
-  const selectedLabel = getSelectedLabel();
 
   const items = fullOptions.map((option) => {
     const { value, label, data, renderItem: optionRenderItem } = option;
@@ -146,7 +138,7 @@ export function Dropdown({
   });
 
   return (
-    <div ref={ref} className={classes} style={{ width }}>
+    <div ref={ref} className={classes} style={{ width }} {...opts}>
       <div
         role="button"
         className={classNames(inputClassName, style.input)}
@@ -154,13 +146,15 @@ export function Dropdown({
       >
         {leftIcon && <div className={style.inputIcon}>{leftIcon}</div>}
 
-        {isMultiSelect ? (
-          <h5 className={style.inputLabel}>{selectedLabel || placeholder}</h5>
-        ) : (
-          <MiddleEllipsisText className={style.inputLabel}>
-            {selectedLabel || placeholder}
-          </MiddleEllipsisText>
-        )}
+        <Flex flex={1}>
+          <DropdownInputLabel
+            isMultiSelect={isMultiSelect}
+            selected={selected}
+            options={fullOptions}
+            placeholder={placeholder}
+            renderLabel={renderLabel}
+          />
+        </Flex>
 
         {!readonly && (
           <div className={style.arrowIcon}>
@@ -169,7 +163,7 @@ export function Dropdown({
         )}
       </div>
       <div
-        className={classNames(style.options, {
+        className={classNames(style.options, optionsClassName, {
           [style.open]: open,
           [style.disabled]: disabled,
           [style.readonly]: readonly,
@@ -183,19 +177,13 @@ export function Dropdown({
   );
 }
 
-const valuePropTypes = [PropTypes.string, PropTypes.number, PropTypes.bool];
-
 Dropdown.propTypes = {
   className: PropTypes.string,
   inputClassName: PropTypes.string,
-  options: PropTypes.arrayOf(
-    PropTypes.shape({
-      label: PropTypes.string,
-      value: PropTypes.oneOfType(valuePropTypes),
-      renderItem: PropTypes.func,
-    }),
-  ),
+  optionsClassName: PropTypes.string,
+  options: optionsPropTypes,
   renderItem: PropTypes.func,
+  renderLabel: PropTypes.func,
   leftIcon: PropTypes.node,
   arrowIcon: PropTypes.node,
   direction: PropTypes.oneOf(['bottom', 'top']),
@@ -211,13 +199,16 @@ Dropdown.propTypes = {
   disabled: PropTypes.bool,
   readonly: PropTypes.bool,
   onChange: PropTypes.func,
+  isPresoManagerInteractive: PropTypes.bool,
 };
 
 Dropdown.defaultProps = {
   className: '',
   inputClassName: null,
+  optionsClassName: null,
   options: [],
   renderItem: null,
+  renderLabel: null,
   leftIcon: null,
   arrowIcon: null,
   direction: 'bottom',
@@ -229,4 +220,5 @@ Dropdown.defaultProps = {
   disabled: false,
   readonly: false,
   onChange: () => {},
+  isPresoManagerInteractive: false,
 };
