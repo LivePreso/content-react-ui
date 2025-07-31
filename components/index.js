@@ -1,5 +1,6 @@
 export * from './charts';
 export * from './design';
+export * from './forms';
 export * from './icons';
 export * from './layout';
 export * from './misc';
