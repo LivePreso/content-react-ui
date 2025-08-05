@@ -42,6 +42,7 @@ export function Dropdown({
 
   const classes = classNames(style.dropdown, className, {
     [style.readonly]: readonly,
+    [style.disabled]: disabled,
   });
 
   useEffect(() => {
@@ -64,7 +65,7 @@ export function Dropdown({
   );
 
   const toggleOpen = () => {
-    if (readonly) return;
+    if (readonly || disabled) return;
     setOpen(!open);
   };
 
