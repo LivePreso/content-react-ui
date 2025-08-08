@@ -14,6 +14,7 @@ export const EditableImage = React.memo((props) => {
     isPrep,
     isCompany,
     isGlobal,
+    isFullKey = false,
     isReadOnly,
     className,
     stopPropagation,
@@ -29,14 +30,17 @@ export const EditableImage = React.memo((props) => {
   }
 
   if (isPrep) {
-    opts['data-dynamic-image'] = `${slideKey}-${prepId || id}`;
+    opts['data-dynamic-image'] = isFullKey
+      ? prepId || id
+      : `${slideKey}-${prepId || id}`;
   }
 
   // TODO: Might need some attention for user templates (check with Hugh)
   if (isCompany) {
-    opts['data-companywide-dynamic-image'] = isGlobal
-      ? id
-      : `${slideKey?.replace('template-', '')}-${id}`;
+    opts['data-companywide-dynamic-image'] =
+      isGlobal || isFullKey
+        ? id
+        : `${slideKey?.replace('template-', '')}-${id}`;
   }
 
   if (isReadOnly) {
@@ -73,6 +77,8 @@ EditableImage.propTypes = {
    * CWE field with shared content across multiple slides
    */
   isGlobal: PropTypes.bool,
+  /*  full CWE key has already been specified - do not prefix */
+  isFullKey: PropTypes.bool,
   isReadOnly: PropTypes.bool,
   className: PropTypes.string,
   dimensions: PropTypes.string,
@@ -85,6 +91,7 @@ EditableImage.propTypes = {
 
 EditableImage.defaultProps = {
   prepId: null,
+  isFullKey: null,
   isPrep: false,
   isCompany: false,
   isGlobal: false,
