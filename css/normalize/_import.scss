@@ -3,6 +3,4 @@
 
 @import 'normalize';
 
-#slideshow {
-  @include normalize;
-}
+@include normalize;

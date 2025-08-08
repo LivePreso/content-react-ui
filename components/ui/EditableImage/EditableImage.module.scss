@@ -1,0 +1,64 @@
+:root {
+  --editable-image-background-color: #ddd;
+  --editable-image-color: #888;
+}
+
+$placeholder-size: 9rem;
+
+.image {
+  height: 100%;
+  width: 100%;
+
+  // always tinted when empty, even without rec. dimensions set
+  &:global(.sp-companywide-empty) {
+    background-color: var(--editable-image-background-color);
+  }
+
+  &:global([data-dynamic-image]),
+  &:global([data-companywide-dynamic-image]) {
+    &::after {
+      content: none;
+    }
+
+    &:global(.sp-companywide-empty) {
+      :global(.edit-mode:not(.present)) &,
+      :global(.preview) &,
+      :global(.screenshot-thumbnail) & {
+        position: relative;
+
+        &:global([data-image-dimensions]) {
+          &::after {
+            content: 'Recommended image dimensions: \A'
+              attr(data-image-dimensions);
+            display: flex;
+            align-items: flex-end;
+            position: absolute;
+            top: calc(50% - calc($placeholder-size/2));
+            left: calc(50% - calc($placeholder-size/2));
+            height: $placeholder-size;
+            width: $placeholder-size;
+            text-align: center;
+            font-size: 0.8rem;
+            line-height: 1rem;
+            color: var(--editable-image-color);
+            background-image: url('./EditableImageGraphic.svg');
+            background-repeat: no-repeat;
+            background-position: center top;
+            background-size: $placeholder-size/1.5;
+            pointer-events: none;
+          }
+        }
+      }
+    }
+  }
+
+  &[data-readonly] {
+    &::before {
+      display: none;
+    }
+
+    .dropzone-element {
+      display: none;
+    }
+  }
+}
