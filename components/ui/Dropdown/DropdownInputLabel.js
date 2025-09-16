@@ -42,7 +42,7 @@ export function DropdownInputLabel({
 }
 
 DropdownInputLabel.propTypes = {
-  selected: PropTypes.string,
+  selected: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   options: optionsPropTypes,
   isMultiSelect: PropTypes.bool,
   placeholder: PropTypes.string,
