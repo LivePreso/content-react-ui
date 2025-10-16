@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDraggable } from '@dnd-kit/core';
+import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import { TableRow } from '../TableRow';
 
@@ -7,11 +7,14 @@ export function OrderableRow(props) {
   const { uid, children, className, isOrderable, onReorder, ...rowProps } =
     props;
 
-  const { attributes, listeners, setNodeRef, transform } = useDraggable({
-    id: uid,
-  });
+  const { attributes, listeners, setNodeRef, transform, transition } =
+    useSortable({
+      id: uid,
+    });
+
   const style = {
     transform: CSS.Translate.toString(transform),
+    transition,
   };
 
   return (
