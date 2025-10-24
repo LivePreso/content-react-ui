@@ -64,4 +64,7 @@
   --table-accordion-cell-padding: calc(
     var(--table-accordion-width) * 2 + var(--table-accordion-padding-right)
   );
+
+  // Drag styles
+  --table-cell-bg-drag-over: var(--color-brand-1-l2);
 }

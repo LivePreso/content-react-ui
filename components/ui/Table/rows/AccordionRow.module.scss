@@ -9,7 +9,7 @@
     &::before {
       content: '';
       position: absolute;
-      top: 0.8em;
+      top: calc(50% - 0.2em);
       left: var(--table-cell-padding-h);
       border: var(--table-accordion-width) solid transparent;
       border-top-color: var(--table-cell-text-color);
@@ -21,7 +21,7 @@
   &.is-open {
     td:first-child {
       &::before {
-        top: 0.2em;
+        top: calc(50% - 0.8em);
         transform: scaleY(-1);
       }
     }
