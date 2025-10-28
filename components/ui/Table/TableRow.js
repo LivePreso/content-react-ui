@@ -36,10 +36,10 @@ export const TableRow = React.forwardRef(
     return (
       <tr
         ref={forwardedRef}
-        {...dataAttrs}
         className={compiledClasses}
         onClick={onClick}
         {...props}
+        {...dataAttrs}
       >
         {children}
       </tr>
