@@ -7,39 +7,30 @@ import { TableRow } from '../TableRow';
 import style from './OrderableRow.module.scss';
 
 export function OrderableRow(props) {
-  const {
-    uid,
-    children,
-    className,
-    isOrderable,
-    onReorder,
-    isDragging,
-    ...rowProps
-  } = props;
+  const { uid, children, className, isOrderable, onReorder, ...rowProps } =
+    props;
 
   const { isOver, setNodeRef: setNodeDroppable } = useDroppable({
     id: uid,
   });
 
-  const { attributes, listeners, setNodeRef, transform } = useDraggable({
+  const { active, setNodeRef, transform } = useDraggable({
     id: uid,
   });
 
   const cssStyle = {
-    opacity: !isDragging || isOver ? 1 : 0.4,
+    opacity: !active || isOver ? 1 : 0.4,
     transform: CSS.Translate.toString(transform),
   };
 
   return (
     <TableRow
-      ref={isDragging ? setNodeDroppable : setNodeRef}
+      ref={active ? setNodeDroppable : setNodeRef}
       uid={uid}
       style={cssStyle}
       className={classNames(className, {
         [style.isOver]: isOver,
       })}
-      {...attributes}
-      {...listeners}
       {...rowProps}
     >
       {children}

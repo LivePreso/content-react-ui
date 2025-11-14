@@ -17,9 +17,9 @@ export function TableBase(props) {
     columnWidths,
     children,
     className,
+    wrapperClassName,
     tbodyClassName,
     onReorder,
-    isDragging,
     sticky,
   } = props;
 
@@ -98,7 +98,6 @@ export function TableBase(props) {
           uid={uid}
           type={rowType}
           onReorder={onReorder}
-          isDragging={isDragging}
           rows={accordionRows.map((ar) => {
             return {
               ...ar,
@@ -120,7 +119,6 @@ export function TableBase(props) {
         key={uid}
         uid={uid}
         onReorder={onReorder}
-        isDragging={isDragging}
         className={rowClassName}
         data-accordion-header={headerKey}
         {...rowProps}
@@ -131,11 +129,11 @@ export function TableBase(props) {
   };
 
   const wrapperClasses = classNames(
+    wrapperClassName,
     [style.tableWrapper].concat(isSticky ? stickyClasses[sticky] : []),
     {
       [style.hasBorder]: hasBorder,
       interactive: isSticky,
-      [style.blockHorizontalScroll]: isDragging,
     },
   );
 
@@ -173,6 +171,7 @@ TableBase.propTypes = {
   isPresoManagerInteractive: PropTypes.bool,
   onReorder: PropTypes.func,
   isDragging: PropTypes.bool,
+  wrapperClassName: PropTypes.string,
   tbodyClassName: PropTypes.string,
   className: PropTypes.string,
 };
@@ -186,6 +185,7 @@ TableBase.defaultProps = {
   isPresoManagerInteractive: false,
   onReorder: null,
   isDragging: false,
+  wrapperClassName: '',
   tbodyClassName: '',
   className: '',
 };

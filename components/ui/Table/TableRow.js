@@ -13,7 +13,6 @@ export const TableRow = React.forwardRef(
       onClick,
       active: _active,
       parentKeys: _parentKeys,
-      isDragging: _isDragging,
       isOver: _isOver,
       ...props
     },

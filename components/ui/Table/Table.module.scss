@@ -135,8 +135,8 @@
     border-top-left-radius: 0 !important;
     border-bottom-left-radius: 0 !important;
   }
+}
 
-  &.block-horizontal-scroll {
-    overflow-x: hidden;
-  }
+.block-horizontal-scroll {
+  overflow-x: hidden;
 }
