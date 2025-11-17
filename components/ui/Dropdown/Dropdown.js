@@ -43,6 +43,8 @@ export function Dropdown({
   }
 
   const ref = useRef(null);
+  const optionsRef = useRef(null);
+  const optionsStyle = useRef({});
   const [open, setOpen] = useState(false);
 
   const opts = {};
@@ -54,6 +56,15 @@ export function Dropdown({
     [style.readonly]: readonly,
     [style.disabled]: disabled,
   });
+
+  useEffect(() => {
+    if (open && optionsRef.current) {
+      const optionsDimensions = optionsRef.current.getBoundingClientRect();
+
+      optionsStyle.current.top = `${optionsDimensions.top}px`;
+      optionsStyle.current.left = `${optionsDimensions.left}px`;
+    }
+  }, [optionsRef, open]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -164,15 +175,22 @@ export function Dropdown({
         )}
       </div>
       <div
-        className={classNames(style.options, optionsClassName, {
+        ref={optionsRef}
+        className={classNames(style.optionsWrapper, {
           [style.open]: open,
           [style.disabled]: disabled,
           [style.readonly]: readonly,
           [style[`direction-${direction}`]]: direction,
-          [style.hasOptionsArrow]: hasOptionsArrow,
         })}
       >
-        {items}
+        <div
+          style={{ ...optionsStyle.current }}
+          className={classNames(style.options, optionsClassName, {
+            [style.hasOptionsArrow]: hasOptionsArrow,
+          })}
+        >
+          {items}
+        </div>
       </div>
     </div>
   );

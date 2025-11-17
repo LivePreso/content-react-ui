@@ -48,19 +48,13 @@
   }
 }
 
-.options {
+.options-wrapper {
   position: absolute;
-  z-index: 1000;
   left: 0;
   right: 0;
-  background-color: var(--dropdown-options-bg-color);
-  padding: var(--dropdown-options-pad-top) var(--dropdown-options-pad-right)
-    var(--dropdown-options-pad-bottom) var(--dropdown-options-pad-left);
-  border-radius: var(--dropdown-options-border-radius);
-  flex-direction: column;
+  width: inherit;
+  max-width: inherit;
   opacity: 0;
-  box-shadow: var(--dropdown-options-box-shadow);
-  overflow: hidden;
   display: none;
 
   &.open {
@@ -75,6 +69,21 @@
   &.direction-top {
     bottom: var(--dropdown-direction-top-bottom-offset);
   }
+}
+
+.options {
+  position: fixed;
+  z-index: 1000;
+  width: inherit;
+  max-width: inherit;
+  display: flex;
+  background-color: var(--dropdown-options-bg-color);
+  padding: var(--dropdown-options-pad-top) var(--dropdown-options-pad-right)
+    var(--dropdown-options-pad-bottom) var(--dropdown-options-pad-left);
+  border-radius: var(--dropdown-options-border-radius);
+  flex-direction: column;
+  box-shadow: var(--dropdown-options-box-shadow);
+  overflow: hidden;
 
   &.has-options-arrow {
     &::before {
@@ -86,14 +95,14 @@
       border: var(--space-med) solid transparent;
     }
 
-    &.direction-bottom {
+    .options-wrapper.direction-bottom & {
       &::before {
         top: -23px;
         border-bottom-color: var(--dropdown-options-bg-color);
       }
     }
 
-    &.direction-top {
+    .options-wrapper.direction-top & {
       &::before {
         bottom: -23px;
         border-top-color: var(--dropdown-options-bg-color);
