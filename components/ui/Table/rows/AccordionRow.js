@@ -9,6 +9,7 @@ import style from './AccordionRow.module.scss';
 export function AccordionRow({
   uid,
   type,
+  component,
   children,
   rows,
   className,
@@ -22,7 +23,8 @@ export function AccordionRow({
     setIsOpen(!isOpen);
   };
 
-  const RowComponent = ROW_TYPES_MAP[type] || ROW_TYPES_MAP.HeaderRow;
+  const RowComponent =
+    component || ROW_TYPES_MAP[type] || ROW_TYPES_MAP.HeaderRow;
 
   return (
     <>
@@ -33,6 +35,8 @@ export function AccordionRow({
         data-accordion-header={uid}
         data-accordion-parent={parentKeys.join(' ')}
         onClick={handleClick}
+        // optionally allow the child row to interact with the accordion
+        accordionStateSetter={setIsOpen}
         {...rowProps}
         className={classNames(className, style.accordionRow, {
           [style.isOpen]: isOpen,
@@ -77,6 +81,7 @@ AccordionRow.propTypes = {
       renderItem: PropTypes.func,
     }),
   ),
+  component: PropTypes.func,
   type: PropTypes.oneOf(Object.values(ROW_TYPES)),
   children: PropTypes.node,
   className: PropTypes.string,
@@ -88,6 +93,7 @@ AccordionRow.defaultProps = {
   onToggle: () => {},
   rows: [],
   type: null,
+  component: null,
   children: null,
   className: '',
 };
