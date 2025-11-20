@@ -23,6 +23,10 @@ export function AccordionRow({
     setIsOpen(!isOpen);
   };
 
+  const toggleAccordion = (toggle) => {
+    setIsOpen(toggle ?? !isOpen);
+  };
+
   const RowComponent =
     component || ROW_TYPES_MAP[type] || ROW_TYPES_MAP.HeaderRow;
 
@@ -36,7 +40,7 @@ export function AccordionRow({
         data-accordion-parent={parentKeys.join(' ')}
         onClick={handleClick}
         // optionally allow the child row to interact with the accordion
-        accordionStateSetter={setIsOpen}
+        toggleAccordion={toggleAccordion}
         {...rowProps}
         className={classNames(className, style.accordionRow, {
           [style.isOpen]: isOpen,
