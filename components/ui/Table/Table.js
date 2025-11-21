@@ -19,7 +19,8 @@ Table.propTypes = {
   rows: PropTypes.arrayOf(
     PropTypes.shape({
       uid: PropTypes.string.isRequired,
-      type: PropTypes.oneOf(Object.values(ROW_TYPES)).isRequired,
+      type: PropTypes.oneOf(Object.values(ROW_TYPES)),
+      component: PropTypes.func,
       // We're letting the components further down check the cell types
       // rather than trying to check at the top level due to complexity of the propTypes
       cells: PropTypes.arrayOf(PropTypes.shape({})),

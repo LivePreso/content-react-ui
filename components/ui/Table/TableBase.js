@@ -55,6 +55,7 @@ export function TableBase(props) {
   const generateRow = (row) => {
     const {
       type: rowType,
+      component: rowComponent,
       uid,
       cells = [],
       headerKey,
@@ -64,7 +65,7 @@ export function TableBase(props) {
     } = row;
 
     const rowCells = cells.map((cell) => {
-      const { type, config, ...cellProps } = cell;
+      const { type, component, config, ...cellProps } = cell;
       const width = getColWidth(columnWidths, cells, cell);
 
       // augment with a key
@@ -73,7 +74,7 @@ export function TableBase(props) {
         width,
       };
 
-      const CellComponent = CELL_TYPES_MAP[type];
+      const CellComponent = component || CELL_TYPES_MAP[type];
 
       if (!CellComponent) {
         const errorMessage = { value: `unknown component '${type}' ` };
@@ -97,6 +98,7 @@ export function TableBase(props) {
           key={uid}
           uid={uid}
           type={rowType}
+          component={rowComponent}
           onReorder={onReorder}
           isDragging={isDragging}
           rows={accordionRows.map((ar) => {
@@ -113,7 +115,8 @@ export function TableBase(props) {
       );
     }
 
-    const RowComponent = ROW_TYPES_MAP[rowType] || ROW_TYPES_MAP.BodyRow;
+    const RowComponent =
+      rowComponent || ROW_TYPES_MAP[rowType] || ROW_TYPES_MAP.BodyRow;
 
     return (
       <RowComponent
@@ -157,7 +160,8 @@ TableBase.propTypes = {
   rows: PropTypes.arrayOf(
     PropTypes.shape({
       uid: PropTypes.string.isRequired,
-      type: PropTypes.oneOf(Object.values(ROW_TYPES)).isRequired,
+      type: PropTypes.oneOf(Object.values(ROW_TYPES)),
+      component: PropTypes.func,
       // We're letting the components further down check the cell types
       // rather than trying to check at the top level due to complexity of the propTypes
       cells: PropTypes.arrayOf(PropTypes.shape({})),
