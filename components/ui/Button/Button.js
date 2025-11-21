@@ -17,6 +17,7 @@ export function Button(props) {
     variant,
     size,
     isPresoManagerInteractive,
+    disabled,
     ...rest
   } = props;
 
@@ -32,6 +33,10 @@ export function Button(props) {
 
   const opts = {};
 
+  if (disabled) {
+    opts.disabled = true;
+  }
+
   if (isPresoManagerInteractive) {
     opts['data-companywide-interactive'] = true;
   }
@@ -46,7 +51,7 @@ export function Button(props) {
           {leftIcon}
         </span>
       )}
-      <span className={labelClasses}>{label}</span>
+      {label && <span className={labelClasses}>{label}</span>}
       {rightIcon && (
         <span className={classNames(classNameIcon, style.rightIcon)}>
           {rightIcon}
