@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import 'flatpickr/dist/themes/airbnb.css';
 import Flatpickr from 'react-flatpickr';
-import { CalendarIcon } from '../icons';
+import { Row } from '../layout';
+import { Button } from './Button';
+import { CalendarIcon, CloseIcon } from '../icons';
 import style from './DatePicker.module.scss';
 
 export function DatePicker({
@@ -11,10 +13,12 @@ export function DatePicker({
   iconClassName,
   value,
   icon,
+  removeIcon,
   onChange,
   dateFormat,
   minDate,
   maxDate,
+  canRemove,
 }) {
   // const slideEl = Bridge?.Slides.getArticle()[0];
   const classes = classNames(className, style.datePicker);
@@ -31,22 +35,39 @@ export function DatePicker({
     onChange(selectedDate);
   };
 
+  const handleClear = () => {
+    onChange(null);
+  };
+
   // TODO: try using the onOpen function to DOM manipulate the calendar into the scale and position you want
 
   return (
-    <div className={style.wrapper}>
+    <Row className={style.wrapper} width="100%">
       <Flatpickr
         data-input
         value={value}
         onChange={handleChange}
         options={options}
       >
-        <div className={classNames(iconClassName, style.icon)}>
+        <div
+          className={classNames(iconClassName, style.icon, style.calendarIcon)}
+        >
           {icon || <CalendarIcon />}
         </div>
         <input type="text" data-input className={classes} />
       </Flatpickr>
-    </div>
+
+      {canRemove && (
+        <Button
+          className={style.removeButton}
+          leftIcon={removeIcon || <CloseIcon className={style.icon} />}
+          variant="text"
+          size="small"
+          onClick={handleClear}
+          disabled={!value}
+        />
+      )}
+    </Row>
   );
 }
 
@@ -59,6 +80,8 @@ DatePicker.propTypes = {
   maxDate: PropTypes.instanceOf(Date),
   dateFormat: PropTypes.string,
   icon: PropTypes.node,
+  removeIcon: PropTypes.node,
+  canRemove: PropTypes.bool,
 };
 
 DatePicker.defaultProps = {
@@ -70,4 +93,6 @@ DatePicker.defaultProps = {
   maxDate: null,
   dateFormat: 'j / n / Y',
   icon: null,
+  removeIcon: null,
+  canRemove: false,
 };

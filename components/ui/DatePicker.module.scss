@@ -1,6 +1,10 @@
 .wrapper {
   position: relative;
-  width: 100%;
+}
+
+:global(.flatpickr) {
+  position: relative;
+  flex: 1;
 }
 
 .date-picker {
@@ -12,18 +16,26 @@
   border: 0;
   background: none;
   cursor: pointer;
+  width: 100%;
 }
 
-.icon {
+.calendar-icon {
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
-  width: 26px;
   pointer-events: none;
+}
+
+.icon {
+  width: 26px;
 
   svg {
     width: 100%;
     height: 100%;
   }
+}
+
+.remove-button {
+  margin-left: 4px;
 }

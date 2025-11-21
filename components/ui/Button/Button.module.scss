@@ -130,11 +130,11 @@
       font-weight: var(--button-fw-small);
     }
 
-    .left-icon {
+    .left-icon:not(:last-child) {
       margin-right: var(--button-icon-margin-small);
     }
 
-    .right-icon {
+    .right-icon:not(:first-child) {
       margin-left: var(--button-icon-margin-small);
     }
 
@@ -158,11 +158,11 @@
       font-weight: var(--button-fw-medium);
     }
 
-    .left-icon {
+    .left-icon:not(:last-child) {
       margin-right: var(--button-icon-margin-medium);
     }
 
-    .right-icon {
+    .right-icon:not(:first-child) {
       margin-left: var(--button-icon-margin-medium);
     }
 
@@ -186,11 +186,11 @@
       font-weight: var(--button-fw-large);
     }
 
-    .left-icon {
+    .left-icon:not(:last-child) {
       margin-right: var(--button-icon-margin-large);
     }
 
-    .right-icon {
+    .right-icon:not(:first-child) {
       margin-left: var(--button-icon-margin-large);
     }
 
