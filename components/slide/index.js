@@ -1,3 +1,4 @@
+export { SlideWrapper } from './SlideWrapper';
 export { Slide } from './Slide';
 export { Header } from './Header';
 export { Footer } from './Footer';

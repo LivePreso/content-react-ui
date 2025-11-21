@@ -1,0 +1,26 @@
+.drag-handle {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: grab;
+
+  &.is-dragging {
+    cursor: grabbing;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: -14px;
+  }
+
+  &:focus {
+    outline: none;
+
+    &::after {
+      background-color: rgba(0, 0, 0, 0.05);
+      border-radius: 6px;
+    }
+  }
+}

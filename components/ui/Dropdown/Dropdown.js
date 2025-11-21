@@ -1,7 +1,17 @@
+import React, { useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { isArray } from 'lodash-es';
-import React, { useEffect, useRef, useState } from 'react';
+import {
+  autoUpdate,
+  size,
+  flip,
+  inline,
+  offset,
+  useFloating,
+  useDismiss,
+  useInteractions,
+} from '@floating-ui/react';
 import { Flex } from '../../layout';
 import { ChevronDownIcon } from '../../icons';
 import { BasicDropdownItem } from './items/BasicDropdownItem';
@@ -9,6 +19,7 @@ import { CheckboxDropdownItem } from './items/CheckboxDropdownItem';
 import { valuePropTypes, optionsPropTypes } from './prop-types';
 import style from './Dropdown.module.scss';
 import { DropdownInputLabel } from './DropdownInputLabel';
+import { UIOverlayPortal } from '../UiOverlayPortal';
 
 export function Dropdown({
   className,
@@ -43,7 +54,34 @@ export function Dropdown({
   }
 
   const ref = useRef(null);
-  const [open, setOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const { refs, floatingStyles, context } = useFloating({
+    whileElementsMounted: autoUpdate,
+    open: isOpen,
+    onOpenChange: setIsOpen,
+    transform: false,
+    placement: direction === 'bottom' ? 'bottom-start' : 'top-start',
+    middleware: [
+      inline(),
+      flip(),
+      offset(8),
+      size({
+        apply({ availableHeight, elements }) {
+          Object.assign(elements.floating.style, {
+            maxHeight:
+              availableHeight > 0
+                ? `${Math.max(0, availableHeight)}px`
+                : 'auto',
+          });
+        },
+      }),
+    ],
+  });
+
+  const dismiss = useDismiss(context);
+
+  const { getReferenceProps, getFloatingProps } = useInteractions([dismiss]);
 
   const opts = {};
   if (isPresoManagerInteractive) {
@@ -55,27 +93,13 @@ export function Dropdown({
     [style.disabled]: disabled,
   });
 
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (ref.current && !ref.current.contains(event.target)) {
-        setOpen(false);
-      }
-    };
-
-    document.addEventListener('click', handleClickOutside, true);
-
-    return () => {
-      document.removeEventListener('click', handleClickOutside, true);
-    };
-  }, [ref, setOpen]);
-
   const fullOptions = options.map((option) =>
     option.label ? option : { label: option, value: option },
   );
 
   const toggleOpen = () => {
     if (readonly || disabled) return;
-    setOpen(!open);
+    setIsOpen(!isOpen);
   };
 
   const generateItemClick =
@@ -95,7 +119,7 @@ export function Dropdown({
 
         onChange(newSelected, newData);
       } else {
-        setOpen(false);
+        setIsOpen(false);
         onChange(val, data);
       }
     };
@@ -139,42 +163,53 @@ export function Dropdown({
   });
 
   return (
-    <div ref={ref} className={classes} style={{ width }} {...opts}>
-      <div
-        role="button"
-        className={classNames(inputClassName, style.input)}
-        onClick={toggleOpen}
-      >
-        {leftIcon && <div className={style.inputIcon}>{leftIcon}</div>}
+    <>
+      <div ref={ref} className={classes} style={{ width }} {...opts}>
+        <div
+          ref={refs.setReference}
+          role="button"
+          className={classNames(inputClassName, style.input)}
+          onClick={toggleOpen}
+          {...getReferenceProps()}
+        >
+          {leftIcon && <div className={style.inputIcon}>{leftIcon}</div>}
 
-        <Flex flex={1}>
-          <DropdownInputLabel
-            isMultiSelect={isMultiSelect}
-            selected={selected}
-            options={fullOptions}
-            placeholder={placeholder}
-            renderLabel={renderLabel}
-          />
-        </Flex>
+          <Flex flex={1}>
+            <DropdownInputLabel
+              isMultiSelect={isMultiSelect}
+              selected={selected}
+              options={fullOptions}
+              placeholder={placeholder}
+              renderLabel={renderLabel}
+            />
+          </Flex>
 
-        {!readonly && (
-          <div className={style.arrowIcon}>
-            {arrowIcon || <ChevronDownIcon />}
+          {!readonly && (
+            <div className={style.arrowIcon}>
+              {arrowIcon || <ChevronDownIcon />}
+            </div>
+          )}
+        </div>
+      </div>
+
+      {isOpen && (
+        <UIOverlayPortal>
+          <div
+            ref={refs.setFloating}
+            style={{ width, ...floatingStyles }}
+            className={classNames(style.options, optionsClassName, {
+              [style.disabled]: disabled,
+              [style.readonly]: readonly,
+              [style.hasOptionsArrow]: hasOptionsArrow,
+            })}
+            {...opts}
+            {...getFloatingProps()}
+          >
+            {items}
           </div>
-        )}
-      </div>
-      <div
-        className={classNames(style.options, optionsClassName, {
-          [style.open]: open,
-          [style.disabled]: disabled,
-          [style.readonly]: readonly,
-          [style[`direction-${direction}`]]: direction,
-          [style.hasOptionsArrow]: hasOptionsArrow,
-        })}
-      >
-        {items}
-      </div>
-    </div>
+        </UIOverlayPortal>
+      )}
+    </>
   );
 }
 

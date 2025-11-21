@@ -4,10 +4,10 @@
 }
 
 .date-picker {
-  font-size: var(--text-fz-p);
-  line-height: var(--text-lh-p);
-  font-weight: var(--text-fw-p);
-  font-family: var(--main-font);
+  font-size: var(--date-picker-fz);
+  line-height: var(--date-picker-lh);
+  font-weight: var(--date-picker-fw);
+  font-family: var(--date-picker-ff);
   outline: none;
   border: 0;
   background: none;

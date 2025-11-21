@@ -29,7 +29,12 @@ export function DropdownInputLabel({
   const label = getLabel();
 
   if (typeof renderLabel === 'function') {
-    return renderLabel({ selected, label, isMultiSelect, placeholder });
+    return renderLabel({
+      selected,
+      label: label || placeholder,
+      isMultiSelect,
+      placeholder,
+    });
   }
 
   return isMultiSelect ? (

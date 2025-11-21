@@ -1,12 +1,17 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import classNames from 'classnames';
 import { DropdownItem } from './DropdownItem';
 import style from './BasicDropdownItem.module.scss';
 
-export function BasicDropdownItem({ label, ...dropdownItemProps }) {
+export function BasicDropdownItem({
+  labelClassName,
+  label,
+  ...dropdownItemProps
+}) {
   return (
     <DropdownItem {...dropdownItemProps}>
-      <p className={style.label}>{label}</p>
+      <p className={classNames(labelClassName, style.label)}>{label}</p>
     </DropdownItem>
   );
 }
