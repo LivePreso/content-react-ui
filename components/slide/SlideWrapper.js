@@ -10,6 +10,10 @@ export function SlideWrapper({ children }) {
   const { className: brandingClassName, cssVariables } =
     useContext(BrandingContext);
 
+  const overlayOpts = {
+    'data-companywide-interactive': true,
+  };
+
   return (
     <SlideOverlayRefContext.Provider value={ref}>
       <div
@@ -18,7 +22,9 @@ export function SlideWrapper({ children }) {
       >
         {children}
 
-        <div ref={ref} className={style.slideOverlayLayer} />
+        <div className={style.slideOverlayLayer}>
+          <div ref={ref} {...overlayOpts} />
+        </div>
       </div>
     </SlideOverlayRefContext.Provider>
   );
