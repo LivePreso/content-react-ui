@@ -19,7 +19,7 @@ import { CheckboxDropdownItem } from './items/CheckboxDropdownItem';
 import { valuePropTypes, optionsPropTypes } from './prop-types';
 import style from './Dropdown.module.scss';
 import { DropdownInputLabel } from './DropdownInputLabel';
-import { UIOverlayPortal } from '../UiOverlayPortal';
+import { UIOverlayPortal } from '../UIOverlayPortal';
 
 export function Dropdown({
   className,
