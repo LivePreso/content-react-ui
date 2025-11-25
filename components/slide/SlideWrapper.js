@@ -23,7 +23,11 @@ export function SlideWrapper({ children }) {
         {children}
 
         <div className={style.slideOverlayLayer}>
-          <div ref={ref} {...overlayOpts} />
+          <div
+            ref={ref}
+            className={style.slideOverlayContent}
+            {...overlayOpts}
+          />
         </div>
       </div>
     </SlideOverlayRefContext.Provider>

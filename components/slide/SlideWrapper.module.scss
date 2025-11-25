@@ -4,12 +4,18 @@
   height: 100%;
 }
 
-.slide-overlay-layer {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 1000;
+.slide-overlay {
+  &-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1000;
+  }
+
+  &-content {
+    pointer-events: initial;
+  }
 }
