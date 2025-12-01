@@ -1,6 +1,12 @@
 .table-wrapper {
   width: 100%;
 
+  // Don't want to apply width: 100% to potential editable tables
+  // inside of a table, so explicitly adding to .table class
+  .table {
+    width: 100%;
+  }
+
   td {
     position: relative;
     border-left: var(--table-cell-border);
@@ -9,27 +15,26 @@
     border-bottom: var(--table-row-border);
   }
 
+  // reset all tables inside of wrapper
   table {
-    // reset
-    width: 100%;
     border: none;
     table-layout: fixed;
     border-spacing: 0;
     border-radius: var(--table-border-radius);
 
-    tr {
-      td {
-        &:first-child {
-          border-left: none;
-        }
-
-        &:last-child {
-          border-right: none;
-        }
+    td {
+      &:first-child {
+        border-left: none;
       }
 
+      &:last-child {
+        border-right: none;
+      }
+    }
+
+    tr {
       &:first-child {
-        td {
+        > td {
           border-top: none;
 
           &:first-child {
@@ -43,7 +48,7 @@
       }
 
       &:last-child {
-        td {
+        > td {
           border-bottom: none;
 
           &:first-child {
@@ -61,11 +66,11 @@
   &.has-border {
     table {
       tr {
-        &:first-child td {
+        &:first-child > td {
           border-top: var(--table-row-border);
         }
 
-        &:last-child td {
+        &:last-child > td {
           border-bottom: var(--table-row-border);
         }
 
@@ -90,32 +95,49 @@
     &.table-sticky-row {
       overflow: hidden auto;
 
-      // 2nd child sticky skips over the "empty" row colSpan fix
-      tr:nth-child(2) td {
-        position: sticky;
-        top: 0;
-        z-index: 2;
+      .table.is-sticky {
+        // Specificity to prevent sticky styles attaching to
+        // editable tables that may appear within the hardcoded tables
+        // (eg. Advice Strategy Recs)
+        > tr,
+        > thead > tr,
+        > tbody > tr {
+          // 2nd child sticky skips over the "empty" row colSpan fix
+          &:nth-child(2) {
+            > th,
+            > td {
+              position: sticky;
+              top: 0;
+              z-index: 2;
+            }
+          }
+        }
       }
     }
 
     &.table-sticky-column {
       overflow: auto hidden;
 
-      table {
-        tr td {
-          &:first-child {
-            position: sticky;
-            left: 0;
-            z-index: 1;
+      .table.is-sticky {
+        > tr,
+        > thead > tr,
+        > tbody > tr {
+          > th,
+          > td {
+            &:first-child {
+              position: sticky;
+              left: 0;
+              z-index: 1;
 
-            &::after {
-              content: '';
-              position: absolute;
-              top: 0;
-              right: -1px;
-              bottom: 0;
-              width: 2px;
-              background-color: var(--table-row-border);
+              &::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                right: -1px;
+                bottom: 0;
+                width: 2px;
+                background-color: var(--table-row-border);
+              }
             }
           }
         }
