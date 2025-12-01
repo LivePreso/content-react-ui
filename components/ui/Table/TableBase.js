@@ -140,9 +140,13 @@ export function TableBase(props) {
     },
   );
 
+  const tableClasses = classNames(className, style.table, {
+    [style.isSticky]: isSticky,
+  });
+
   return (
     <div className={wrapperClasses} {...opts}>
-      <table className={className}>
+      <table className={tableClasses}>
         <tbody className={tbodyClassName}>
           {blankRow}
           {rows.map((row) => generateRow(row))}
