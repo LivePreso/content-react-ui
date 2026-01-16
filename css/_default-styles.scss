@@ -5,12 +5,15 @@
 }
 
 %base-type {
-  font-style: normal;
-  font-weight: var(--text-fw-normal);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-decoration: none;
   margin: 0;
+}
+
+%normal-type {
+  font-style: normal;
+  font-weight: var(--text-fw-normal);
 }
 
 // Components (header, subheader etc.)
@@ -18,10 +21,6 @@ article,
 p,
 button,
 input,
-b,
-strong,
-em,
-i,
 ol,
 ul,
 li,
@@ -29,6 +28,16 @@ th,
 td,
 text,
 label {
+  @extend %base-type;
+  @extend %normal-type;
+
+  font-family: var(--main-font);
+}
+
+b,
+strong,
+em,
+i {
   @extend %base-type;
 
   font-family: var(--main-font);
@@ -41,6 +50,7 @@ h4,
 h5,
 h6 {
   @extend %base-type;
+  @extend %normal-type;
 
   font-family: var(--heading-font);
 
