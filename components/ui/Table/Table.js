@@ -1,50 +1,58 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { ROW_TYPES } from './table-constants';
+import React, { forwardRef } from 'react';
 import { TableBase } from './TableBase';
 import { OrderableTable } from './OrderableTable';
 
-export function Table(props) {
-  const { onReorder } = props;
+/**
+ * @typedef {Object} TableRow
+ * @property {string} uid - Unique identifier for the row.
+ * @property {('header'|'body'|'footer')} [type] - The type of row based on ROW_TYPES.
+ * @property {Function} [component] - Optional component override for the row.
+ * @property {Object[]} [cells] - Array of cell data objects.
+ * @property {Object[]} [rows] - Nested rows for expandable table structures.
+ * @property {string} [className] - CSS class for the row.
+ */
+
+/**
+ * @param {Object} props
+ * @param {boolean} [props.hasBorder=false] - Whether the table has a border.
+ * @param {TableRow[]} [props.rows=[]] - Array of row objects to render.
+ * @param {(number|string)[]} [props.columnWidths=[]] - Widths for each column.
+ * @param {React.ReactNode} [props.children=[]] - Child elements.
+ * @param {'none'|'row'|'column'|'both'} [props.sticky='none'] - Stickiness configuration.
+ * @param {boolean} [props.isPresoManagerInteractive=false] - Interactive state toggle.
+ * @param {string} [props.tbodyClassName=''] - CSS class for the tbody element.
+ * @param {string} [props.className=''] - CSS class for the table element.
+ */
+export const Table = forwardRef(function Table(
+  {
+    hasBorder = false,
+    rows = [],
+    columnWidths = [],
+    children = [],
+    sticky = 'none',
+    isPresoManagerInteractive = false,
+    tbodyClassName = '',
+    className = '',
+    ...otherProps
+  },
+  ref,
+) {
+  const { onReorder, ...rest } = otherProps;
+
+  const props = {
+    hasBorder,
+    rows,
+    columnWidths,
+    children,
+    sticky,
+    isPresoManagerInteractive,
+    tbodyClassName,
+    className,
+  };
 
   if (typeof onReorder === 'function') {
-    return <OrderableTable {...props} />;
+    return <OrderableTable ref={ref} {...props} {...otherProps} />;
   }
 
-  return <TableBase {...props} />;
-}
-
-Table.propTypes = {
-  hasBorder: PropTypes.bool,
-  rows: PropTypes.arrayOf(
-    PropTypes.shape({
-      uid: PropTypes.string.isRequired,
-      type: PropTypes.oneOf(Object.values(ROW_TYPES)),
-      component: PropTypes.func,
-      // We're letting the components further down check the cell types
-      // rather than trying to check at the top level due to complexity of the propTypes
-      cells: PropTypes.arrayOf(PropTypes.shape({})),
-      rows: PropTypes.arrayOf(PropTypes.shape({})),
-      className: PropTypes.string,
-    }),
-  ),
-  columnWidths: PropTypes.arrayOf(
-    PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  ),
-  children: PropTypes.node,
-  sticky: PropTypes.oneOf(['none', 'row', 'column', 'both']),
-  isPresoManagerInteractive: PropTypes.bool,
-  tbodyClassName: PropTypes.string,
-  className: PropTypes.string,
-};
-
-Table.defaultProps = {
-  hasBorder: false,
-  rows: [],
-  columnWidths: [],
-  children: [],
-  sticky: 'none',
-  isPresoManagerInteractive: false,
-  tbodyClassName: '',
-  className: '',
-};
+  return <TableBase ref={ref} {...props} {...rest} />;
+});
