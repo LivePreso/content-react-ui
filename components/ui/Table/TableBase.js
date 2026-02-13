@@ -1,4 +1,4 @@
-import React, { forwardRef, useImperativeHandle, useRef } from 'react';
+import React from 'react';
 import classNames from 'classnames';
 import { getColWidth } from '../../../utils/generate-table-layout';
 import { EMPTY_ACCORDION_KEY } from './table-constants';
@@ -31,28 +31,27 @@ import { AccordionRow } from './rows/AccordionRow';
  * @param {string} [props.tbodyClassName=''] - CSS class for the tbody element
  * @param {string} [props.className=''] - CSS class for the table element
  */
-export const TableBase = forwardRef(function TableBase(
-  {
-    hasBorder = false,
-    rows = [],
-    columnWidths = [],
-    children = [],
-    sticky = 'none',
-    isPresoManagerInteractive = false,
-    onReorder = null,
-    wrapperClassName = '',
-    tbodyClassName = '',
-    className = '',
-  },
-  ref,
-) {
+export function TableBase({
+  hasBorder = false,
+  rows = [],
+  columnWidths = [],
+  children = [],
+  sticky = 'none',
+  isPresoManagerInteractive = false,
+  onReorder = null,
+  wrapperClassName = '',
+  tbodyClassName = '',
+  className = '',
+  addRow = () => {},
+  removeRow = () => {},
+}) {
   const opts = {};
 
   if (isPresoManagerInteractive) {
     opts['data-companywide-interactive'] = true;
   }
 
-  const rowRefs = useRef({});
+  // const rowRefs = useRef({});
 
   const isSticky = sticky !== 'none';
 
@@ -77,31 +76,31 @@ export const TableBase = forwardRef(function TableBase(
     </BodyRow>
   );
 
-  useImperativeHandle(
-    ref,
-    () => ({
-      openAll() {
-        Object.values(rowRefs.current).forEach((row) => {
-          row?.open();
-        });
-      },
+  // useImperativeHandle(
+  //   ref,
+  //   () => ({
+  //     openAll() {
+  //       Object.values(rowRefs.current).forEach((row) => {
+  //         row?.open();
+  //       });
+  //     },
 
-      closeAll() {
-        Object.values(rowRefs.current).forEach((row) => {
-          row?.close();
-        });
-      },
+  //     closeAll() {
+  //       Object.values(rowRefs.current).forEach((row) => {
+  //         row?.close();
+  //       });
+  //     },
 
-      allAccordionsOpen() {
-        const someClosed = Object.values(rowRefs.current).some(
-          (row) => !row.isOpen(),
-        );
+  //     allAccordionsOpen() {
+  //       const someClosed = Object.values(rowRefs.current).some(
+  //         (row) => !row.isOpen(),
+  //       );
 
-        return !someClosed;
-      },
-    }),
-    [rowRefs.current],
-  );
+  //       return !someClosed;
+  //     },
+  //   }),
+  //   [rowRefs.current],
+  // );
 
   const generateRow = (row) => {
     const {
@@ -146,33 +145,31 @@ export const TableBase = forwardRef(function TableBase(
 
     if (accordionRows?.length) {
       return (
-        <>
-          <AccordionRow
-            key={uid}
-            uid={uid}
-            type={rowType}
-            component={rowComponent}
-            onReorder={onReorder}
-            rows={accordionRows.map((ar) => {
-              return {
-                ...ar,
-                renderItem: (item) => generateRow(item),
-              };
-            })}
-            className={rowClassName}
-            ref={(el) => {
-              if (el) {
-                rowRefs.current[uid] = el;
-              } else {
-                delete rowRefs.current[uid];
-              }
-            }}
-            isOpenDefault={isOpenDefault}
-            {...rowProps}
-          >
-            {rowCells}
-          </AccordionRow>
-        </>
+        <AccordionRow
+          key={uid}
+          uid={uid}
+          type={rowType}
+          component={rowComponent}
+          onReorder={onReorder}
+          rows={accordionRows.map((ar) => {
+            return {
+              ...ar,
+              renderItem: (item) => generateRow(item),
+            };
+          })}
+          className={rowClassName}
+          ref={(el) => {
+            if (el) {
+              addRow(uid, el);
+            } else {
+              removeRow(uid);
+            }
+          }}
+          isOpenDefault={isOpenDefault}
+          {...rowProps}
+        >
+          {rowCells}
+        </AccordionRow>
       );
     }
 
@@ -217,4 +214,4 @@ export const TableBase = forwardRef(function TableBase(
       </table>
     </div>
   );
-});
+}
