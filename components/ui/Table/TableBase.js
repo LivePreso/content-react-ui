@@ -1,4 +1,4 @@
-import React, { forwardRef, useImperativeHandle, useRef } from 'react';
+import React from 'react';
 import classNames from 'classnames';
 import { getColWidth } from '../../../utils/generate-table-layout';
 import { EMPTY_ACCORDION_KEY } from './table-constants';
@@ -31,28 +31,23 @@ import { AccordionRow } from './rows/AccordionRow';
  * @param {string} [props.tbodyClassName=''] - CSS class for the tbody element
  * @param {string} [props.className=''] - CSS class for the table element
  */
-export const TableBase = forwardRef(function TableBase(
-  {
-    hasBorder = false,
-    rows = [],
-    columnWidths = [],
-    children = [],
-    sticky = 'none',
-    isPresoManagerInteractive = false,
-    onReorder = null,
-    wrapperClassName = '',
-    tbodyClassName = '',
-    className = '',
-  },
-  ref,
-) {
+export function TableBase({
+  hasBorder = false,
+  rows = [],
+  columnWidths = [],
+  children = [],
+  sticky = 'none',
+  isPresoManagerInteractive = false,
+  onReorder = null,
+  wrapperClassName = '',
+  tbodyClassName = '',
+  className = '',
+}) {
   const opts = {};
 
   if (isPresoManagerInteractive) {
     opts['data-companywide-interactive'] = true;
   }
-
-  const rowRefs = useRef({});
 
   const isSticky = sticky !== 'none';
 
@@ -75,32 +70,6 @@ export const TableBase = forwardRef(function TableBase(
         );
       })}
     </BodyRow>
-  );
-
-  useImperativeHandle(
-    ref,
-    () => ({
-      openAll() {
-        Object.values(rowRefs.current).forEach((row) => {
-          row?.open();
-        });
-      },
-
-      closeAll() {
-        Object.values(rowRefs.current).forEach((row) => {
-          row?.close();
-        });
-      },
-
-      allAccordionsOpen() {
-        const someClosed = Object.values(rowRefs.current).some(
-          (row) => !row.isOpen(),
-        );
-
-        return !someClosed;
-      },
-    }),
-    [rowRefs.current],
   );
 
   const generateRow = (row) => {
@@ -160,14 +129,6 @@ export const TableBase = forwardRef(function TableBase(
               };
             })}
             className={rowClassName}
-            ref={(el) => {
-              if (el) {
-                rowRefs.current[uid] = el;
-              } else {
-                delete rowRefs.current[uid];
-              }
-            }}
-            isOpenDefault={isOpenDefault}
             {...rowProps}
           >
             {rowCells}
@@ -217,4 +178,4 @@ export const TableBase = forwardRef(function TableBase(
       </table>
     </div>
   );
-});
+}

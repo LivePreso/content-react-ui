@@ -1,6 +1,8 @@
-import React, { forwardRef } from 'react';
+import React from 'react';
 import { TableBase } from './TableBase';
 import { OrderableTable } from './OrderableTable';
+import { AccordionController } from './AccordionController';
+import { AccordionToggleAll } from './AccordionToggleAll';
 
 /**
  * @typedef {Object} TableRow
@@ -23,20 +25,17 @@ import { OrderableTable } from './OrderableTable';
  * @param {string} [props.tbodyClassName=''] - CSS class for the tbody element.
  * @param {string} [props.className=''] - CSS class for the table element.
  */
-export const Table = forwardRef(function Table(
-  {
-    hasBorder = false,
-    rows = [],
-    columnWidths = [],
-    children = [],
-    sticky = 'none',
-    isPresoManagerInteractive = false,
-    tbodyClassName = '',
-    className = '',
-    ...otherProps
-  },
-  ref,
-) {
+export function Table({
+  hasBorder = false,
+  rows = [],
+  columnWidths = [],
+  children = [],
+  sticky = 'none',
+  isPresoManagerInteractive = false,
+  tbodyClassName = '',
+  className = '',
+  ...otherProps
+}) {
   const { onReorder, ...rest } = otherProps;
 
   const props = {
@@ -51,8 +50,8 @@ export const Table = forwardRef(function Table(
   };
 
   if (typeof onReorder === 'function') {
-    return <OrderableTable ref={ref} {...props} {...otherProps} />;
+    return <OrderableTable {...props} {...otherProps} />;
   }
 
-  return <TableBase ref={ref} {...props} {...rest} />;
-});
+  return <TableBase {...props} {...rest} />;
+}

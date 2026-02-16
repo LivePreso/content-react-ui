@@ -1,10 +1,67 @@
-import React, { forwardRef, useImperativeHandle, useState } from 'react';
-import { useModes } from '@livepreso/content-react';
-import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
+
 import classNames from 'classnames';
-import { ROW_TYPES } from '../table-constants';
+
+import { useAccordionControls } from '../AccordionController';
 import { ROW_TYPES_MAP } from '../table-type-maps';
+
 import style from './AccordionRow.module.scss';
+
+export function AccordionRow({ uid, ...props }) {
+  const controls = useAccordionControls();
+
+  if (!controls) {
+    return <SelfManagedAccordionRow uid={uid} {...props} />;
+  }
+
+  const { isOpen: getIsOpen, toggleRow, registerRow, unregisterRow } = controls;
+
+  const isOpen = getIsOpen(uid);
+
+  useEffect(() => {
+    registerRow(uid);
+    return () => unregisterRow(uid);
+  }, [uid]);
+
+  const handleClick = () => {
+    toggleRow(uid);
+  };
+
+  const toggleAccordion = (toggle) => {
+    toggleRow(uid);
+  };
+
+  return (
+    <AccordionRowBase
+      uid={uid}
+      {...props}
+      isOpen={isOpen}
+      onClick={handleClick}
+      toggleAccordion={toggleAccordion}
+    />
+  );
+}
+
+function SelfManagedAccordionRow(props) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleClick = () => {
+    setIsOpen((prev) => !prev);
+  };
+
+  const toggleAccordion = (toggle) => {
+    setIsOpen(toggle ?? ((prev) => !prev));
+  };
+
+  return (
+    <AccordionRowBase
+      {...props}
+      isOpen={isOpen}
+      onClick={handleClick}
+      toggleAccordion={toggleAccordion}
+    />
+  );
+}
 
 /**
  * @typedef {Object} RowShape
@@ -25,51 +82,17 @@ import style from './AccordionRow.module.scss';
  * @param {React.ReactNode} [props.children=null] - Child elements.
  * @param {string} [props.className=''] - CSS class name.
  */
-export const AccordionRow = forwardRef(function AccordionRow(
-  {
-    uid,
-    parentKeys = [],
-    rows = [],
-    component = null,
-    type = null,
-    children = null,
-    className = '',
-    isOpenDefault = false,
-    ...rowProps
-  },
-  ref,
-) {
-  const { isPdfScreenshot } = useModes();
-  const [isOpen, setIsOpen] = useState(isPdfScreenshot || isOpenDefault);
-  const [openChildrenByDefault, setOpenChildrenByDefault] =
-    useState(isOpenDefault);
-
-  const handleClick = () => {
-    setIsOpen(!isOpen);
-  };
-
-  const toggleAccordion = (toggle) => {
-    setIsOpen(toggle ?? !isOpen);
-  };
-
-  useImperativeHandle(
-    ref,
-    () => ({
-      open() {
-        setIsOpen(true);
-        setOpenChildrenByDefault(true);
-      },
-      close() {
-        setIsOpen(false);
-        setOpenChildrenByDefault(false);
-      },
-      isOpen() {
-        return isOpen;
-      },
-    }),
-    [isOpen],
-  );
-
+function AccordionRowBase({
+  uid,
+  parentKeys = [],
+  rows = [],
+  component = null,
+  type = null,
+  children = null,
+  className = '',
+  isOpen = false,
+  ...rowProps
+}) {
   const RowComponent =
     component || ROW_TYPES_MAP[type] || ROW_TYPES_MAP.HeaderRow;
 
@@ -81,9 +104,6 @@ export const AccordionRow = forwardRef(function AccordionRow(
         data-companywide-interactive
         data-accordion-header={uid}
         data-accordion-parent={parentKeys.join(' ')}
-        onClick={handleClick}
-        // optionally allow the child row to interact with the accordion
-        toggleAccordion={toggleAccordion}
         {...rowProps}
         className={classNames(className, style.accordionRow, {
           [style.isOpen]: isOpen,
@@ -104,9 +124,8 @@ export const AccordionRow = forwardRef(function AccordionRow(
             ...row,
             parentKeys: parentKeysCollection,
             'data-accordion-parent': parentKeysCollection.join(' '),
-            isOpenDefault: openChildrenByDefault,
           });
         })}
     </>
   );
-});
+}
