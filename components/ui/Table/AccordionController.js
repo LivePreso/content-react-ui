@@ -2,10 +2,10 @@ import React, { useState, useContext } from 'react';
 import { useModes } from '@livepreso/content-react';
 import { AccordionToggleAll } from './AccordionToggleAll';
 
-export const TableContext = React.createContext(null);
+export const AccordionControlContext = React.createContext(null);
 
 export const useAccordionControls = () => {
-  const context = useContext(TableContext);
+  const context = useContext(AccordionControlContext);
   return context;
 };
 
@@ -75,7 +75,7 @@ export function AccordionController({ children }) {
   };
 
   return (
-    <TableContext.Provider value={value}>
+    <AccordionControlContext.Provider value={value}>
       {hasRows && (
         <div style={{ position: 'relative' }}>
           <AccordionToggleAll />
@@ -83,6 +83,6 @@ export function AccordionController({ children }) {
       )}
 
       {children}
-    </TableContext.Provider>
+    </AccordionControlContext.Provider>
   );
 }

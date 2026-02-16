@@ -1,11 +1,12 @@
 import React, { useContext } from 'react';
-import { TableContext } from './AccordionController';
+import { AccordionControlContext } from './AccordionController';
 
 import style from './AccordionToggleAll.module.scss';
 
 export function AccordionToggleAll() {
-  const { expandAll, collapseAll, hasRows, allRowsOpen } =
-    useContext(TableContext);
+  const { expandAll, collapseAll, hasRows, allRowsOpen } = useContext(
+    AccordionControlContext,
+  );
 
   function handleClick() {
     if (hasRows) {
