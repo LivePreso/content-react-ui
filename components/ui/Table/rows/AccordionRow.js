@@ -10,14 +10,16 @@ import { ROW_TYPES_MAP } from '../table-type-maps';
 
 import style from './AccordionRow.module.scss';
 
-export function AccordionRow({ uid, ...props }) {
+export function AccordionRow(props) {
+  // If there's no controller context, render an unmanaged accordion row that handles its own state
+  // We don't use the useAccordionControls hook here because it throws an error if used outside of a controller.
   const { hasController } = useContext(AccordionControlContext);
 
   if (!hasController) {
-    return <UnmanagedAccordionRow uid={uid} {...props} />;
+    return <UnmanagedAccordionRow {...props} />;
   }
 
-  return <ManagedAccordionRow uid={uid} {...props} />;
+  return <ManagedAccordionRow {...props} />;
 }
 
 function UnmanagedAccordionRow(props) {
