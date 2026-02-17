@@ -32,20 +32,22 @@ export const useAccordionControls = () => {
 export function AccordionController({ children }) {
   const { isPdfScreenshot } = useModes();
   const [registry, setRegistry] = useState(new Set());
-  const [expandedRows, setExpandedRows] = useState(new Set());
-  const [expandByDefault, setExpandByDefault] = useState(isPdfScreenshot);
+  const [exceptions, setExceptions] = useState(new Set());
+  const [isAllOpen, setIsAllOpen] = useState(isPdfScreenshot);
 
-  const isOpen = (uid) => expandedRows.has(uid);
+  const isRowExpanded = (uid) => {
+    // If Global is OPEN, an exception means CLOSED.
+    // If Global is CLOSED, an exception means OPEN.
+    return isAllOpen ? !exceptions.has(uid) : exceptions.has(uid);
+  };
 
   const hasRows = registry.size > 0;
-  const allRowsOpen = hasRows && expandedRows.size === registry.size;
+  const allRowsOpen =
+    (isAllOpen && exceptions.size === 0) ||
+    (!isAllOpen && exceptions.size === registry.size);
 
   const registerRow = (uid) => {
     setRegistry((prev) => new Set(prev).add(uid));
-
-    if (expandByDefault) {
-      setExpandedRows((prev) => new Set(prev).add(uid));
-    }
   };
 
   const unregisterRow = (uid) => {
@@ -54,15 +56,10 @@ export function AccordionController({ children }) {
       newSet.delete(uid);
       return newSet;
     });
-    setExpandedRows((prev) => {
-      const newSet = new Set(prev);
-      newSet.delete(uid);
-      return newSet;
-    });
   };
 
   const toggleRow = (uid) => {
-    setExpandedRows((prev) => {
+    setExceptions((prev) => {
       const newSet = new Set(prev);
       if (newSet.has(uid)) {
         newSet.delete(uid);
@@ -74,35 +71,37 @@ export function AccordionController({ children }) {
   };
 
   const expandAll = () => {
-    setExpandedRows(new Set(registry));
-    setExpandByDefault(true);
+    setIsAllOpen(true);
+    setExceptions(new Set());
   };
 
   const collapseAll = () => {
-    setExpandedRows(new Set());
-    setExpandByDefault(false);
+    setIsAllOpen(false);
+    setExceptions(new Set());
   };
 
   const value = useMemo(
     () => ({
       registerRow,
       unregisterRow,
-      isOpen,
+      isRowExpanded,
       toggleRow,
       hasRows,
       expandAll,
       collapseAll,
+      isAllOpen,
       allRowsOpen,
       hasController: true,
     }),
     [
       registerRow,
       unregisterRow,
-      isOpen,
+      isRowExpanded,
       toggleRow,
       hasRows,
       expandAll,
       collapseAll,
+      isAllOpen,
       allRowsOpen,
     ],
   );

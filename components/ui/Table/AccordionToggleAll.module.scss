@@ -36,20 +36,4 @@
     border: 8px solid transparent;
     border-top-color: var(--color-text);
   }
-
-  &.open {
-    &::before {
-      border-bottom-color: transparent;
-      border-top-color: var(--color-text);
-      margin-bottom: -10px;
-    }
-    &::after {
-      border-top-color: transparent;
-      border-bottom-color: var(--color-text);
-    }
-
-    &:hover::before {
-      margin-bottom: -14px;
-    }
-  }
 }

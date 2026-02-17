@@ -44,14 +44,10 @@ function UnmanagedAccordionRow(props) {
 }
 
 function ManagedAccordionRow({ uid, ...props }) {
-  const {
-    isOpen: getIsOpen,
-    toggleRow,
-    registerRow,
-    unregisterRow,
-  } = useAccordionControls();
+  const { isRowExpanded, toggleRow, registerRow, unregisterRow } =
+    useAccordionControls();
 
-  const isOpen = getIsOpen(uid);
+  const isOpen = isRowExpanded(uid);
 
   useEffect(() => {
     registerRow(uid);
