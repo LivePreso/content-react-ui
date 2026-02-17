@@ -1,7 +1,5 @@
 import React from 'react';
 
-import classNames from 'classnames';
-
 import { useAccordionControls } from './AccordionController';
 
 import style from './AccordionToggleAll.module.scss';
@@ -24,7 +22,7 @@ export function AccordionToggleAll() {
 
   return (
     <div
-      className={classNames(style.toggle, { [style.open]: allRowsOpen })}
+      className={style.toggle}
       onClick={handleClick}
       title={allRowsOpen ? 'Collapse all' : 'Expand all'}
     ></div>
