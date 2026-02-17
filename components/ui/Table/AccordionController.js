@@ -108,7 +108,7 @@ export function AccordionController({ children }) {
 
   return (
     <AccordionControlContext.Provider value={value}>
-      {hasRows && (
+      {hasRows && !isPdfScreenshot && (
         <div style={{ position: 'relative' }}>
           <AccordionToggleAll />
         </div>

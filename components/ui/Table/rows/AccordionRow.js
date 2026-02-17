@@ -9,6 +9,7 @@ import {
 import { ROW_TYPES_MAP } from '../table-type-maps';
 
 import style from './AccordionRow.module.scss';
+import { useModes } from '@livepreso/content-react';
 
 export function AccordionRow(props) {
   // If there's no controller context, render an unmanaged accordion row that handles its own state
@@ -23,7 +24,8 @@ export function AccordionRow(props) {
 }
 
 function UnmanagedAccordionRow(props) {
-  const [isOpen, setIsOpen] = useState(false);
+  const { isPdfScreenshot } = useModes();
+  const [isOpen, setIsOpen] = useState(isPdfScreenshot);
 
   const handleClick = () => {
     setIsOpen((prev) => !prev);
