@@ -1,28 +1,28 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+
 import classNames from 'classnames';
+
 import { getColWidth } from '../../../utils/generate-table-layout';
-import { ROW_TYPES, EMPTY_ACCORDION_KEY } from './table-constants';
+import { EMPTY_ACCORDION_KEY } from './table-constants';
 import { CELL_TYPES_MAP, ROW_TYPES_MAP } from './table-type-maps';
 import { TextCell, EmptyCell } from './cells';
-import style from './Table.module.scss';
 import { BodyRow } from './rows';
 import { AccordionRow } from './rows/AccordionRow';
 
-export function TableBase(props) {
-  const {
-    hasBorder,
-    isPresoManagerInteractive,
-    rows,
-    columnWidths,
-    children,
-    className,
-    wrapperClassName,
-    tbodyClassName,
-    onReorder,
-    sticky,
-  } = props;
+import style from './Table.module.scss';
 
+export function TableBase({
+  hasBorder = false,
+  rows = [],
+  columnWidths = [],
+  children = [],
+  sticky = 'none',
+  isPresoManagerInteractive = false,
+  onReorder = null,
+  wrapperClassName = '',
+  tbodyClassName = '',
+  className = '',
+}) {
   const opts = {};
 
   if (isPresoManagerInteractive) {
@@ -61,6 +61,7 @@ export function TableBase(props) {
       headerKey,
       rows: accordionRows,
       className: rowClassName,
+      isOpenDefault,
       ...rowProps
     } = row;
 
@@ -156,44 +157,3 @@ export function TableBase(props) {
     </div>
   );
 }
-
-TableBase.propTypes = {
-  hasBorder: PropTypes.bool,
-  rows: PropTypes.arrayOf(
-    PropTypes.shape({
-      uid: PropTypes.string.isRequired,
-      type: PropTypes.oneOf(Object.values(ROW_TYPES)),
-      component: PropTypes.func,
-      // We're letting the components further down check the cell types
-      // rather than trying to check at the top level due to complexity of the propTypes
-      cells: PropTypes.arrayOf(PropTypes.shape({})),
-      rows: PropTypes.arrayOf(PropTypes.shape({})),
-      className: PropTypes.string,
-    }),
-  ),
-  columnWidths: PropTypes.arrayOf(
-    PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  ),
-  children: PropTypes.node,
-  sticky: PropTypes.oneOf(['none', 'row', 'column', 'both']),
-  isPresoManagerInteractive: PropTypes.bool,
-  onReorder: PropTypes.func,
-  isDragging: PropTypes.bool,
-  wrapperClassName: PropTypes.string,
-  tbodyClassName: PropTypes.string,
-  className: PropTypes.string,
-};
-
-TableBase.defaultProps = {
-  hasBorder: false,
-  rows: [],
-  columnWidths: [],
-  children: [],
-  sticky: 'none',
-  isPresoManagerInteractive: false,
-  onReorder: null,
-  isDragging: false,
-  wrapperClassName: '',
-  tbodyClassName: '',
-  className: '',
-};

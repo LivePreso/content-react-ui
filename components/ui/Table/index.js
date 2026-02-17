@@ -6,3 +6,7 @@ export { TableCell } from './TableCell';
 export { TableRow } from './TableRow';
 export { Table } from './Table';
 export { TableDragHandle } from './TableDragHandle';
+export {
+  AccordionController,
+  useAccordionControls,
+} from './AccordionController';
