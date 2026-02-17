@@ -1,28 +1,32 @@
-import React, { useContext } from 'react';
-import { AccordionControlContext } from './AccordionController';
+import React from 'react';
+
+import classNames from 'classnames';
+
+import { useAccordionControls } from './AccordionController';
 
 import style from './AccordionToggleAll.module.scss';
 
 export function AccordionToggleAll() {
-  const { expandAll, collapseAll, hasRows, allRowsOpen } = useContext(
-    AccordionControlContext,
-  );
+  const { expandAll, collapseAll, hasRows, allRowsOpen } =
+    useAccordionControls();
 
   function handleClick() {
-    if (hasRows) {
-      if (allRowsOpen) {
-        collapseAll();
-      } else {
-        expandAll();
-      }
+    if (allRowsOpen) {
+      collapseAll();
+    } else {
+      expandAll();
     }
+  }
+
+  if (!hasRows) {
+    return null;
   }
 
   return (
     <div
-      className={style.toggle}
+      className={classNames(style.toggle, { [style.open]: allRowsOpen })}
       onClick={handleClick}
-      title={'Toggle all'}
+      title={allRowsOpen ? 'Collapse all' : 'Expand all'}
     ></div>
   );
 }

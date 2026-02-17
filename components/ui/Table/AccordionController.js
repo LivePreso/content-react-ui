@@ -1,11 +1,31 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useMemo } from 'react';
+
 import { useModes } from '@livepreso/content-react';
+
 import { AccordionToggleAll } from './AccordionToggleAll';
 
-export const AccordionControlContext = React.createContext(null);
+export const AccordionControlContext = React.createContext({
+  registerRow: () => {},
+  unregisterRow: () => {},
+  isOpen: () => false,
+  toggleRow: () => {},
+  hasRows: false,
+  expandAll: () => {},
+  collapseAll: () => {},
+  allRowsOpen: false,
+  hasController: false,
+});
 
 export const useAccordionControls = () => {
   const context = useContext(AccordionControlContext);
+
+  if (!context.hasController) {
+    throw new Error(`
+      useAccordionControls must be used within an AccordionController.
+      Please wrap your table with AccordionController to use this hook.
+    `);
+  }
+
   return context;
 };
 
@@ -63,16 +83,29 @@ export function AccordionController({ children }) {
     setExpandByDefault(false);
   };
 
-  const value = {
-    registerRow,
-    unregisterRow,
-    isOpen,
-    toggleRow,
-    hasRows,
-    expandAll,
-    collapseAll,
-    allRowsOpen,
-  };
+  const value = useMemo(
+    () => ({
+      registerRow,
+      unregisterRow,
+      isOpen,
+      toggleRow,
+      hasRows,
+      expandAll,
+      collapseAll,
+      allRowsOpen,
+      hasController: true,
+    }),
+    [
+      registerRow,
+      unregisterRow,
+      isOpen,
+      toggleRow,
+      hasRows,
+      expandAll,
+      collapseAll,
+      allRowsOpen,
+    ],
+  );
 
   return (
     <AccordionControlContext.Provider value={value}>

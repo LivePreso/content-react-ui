@@ -1,20 +1,53 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import classNames from 'classnames';
 
-import { useAccordionControls } from '../AccordionController';
+import {
+  AccordionControlContext,
+  useAccordionControls,
+} from '../AccordionController';
 import { ROW_TYPES_MAP } from '../table-type-maps';
 
 import style from './AccordionRow.module.scss';
 
 export function AccordionRow({ uid, ...props }) {
-  const controls = useAccordionControls();
+  const { hasController } = useContext(AccordionControlContext);
 
-  if (!controls) {
-    return <SelfManagedAccordionRow uid={uid} {...props} />;
+  if (!hasController) {
+    return <UnmanagedAccordionRow uid={uid} {...props} />;
   }
 
-  const { isOpen: getIsOpen, toggleRow, registerRow, unregisterRow } = controls;
+  return <ManagedAccordionRow uid={uid} {...props} />;
+}
+
+function UnmanagedAccordionRow(props) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleClick = () => {
+    setIsOpen((prev) => !prev);
+  };
+
+  const toggleAccordion = (toggle) => {
+    setIsOpen(toggle ?? ((prev) => !prev));
+  };
+
+  return (
+    <AccordionRowBase
+      {...props}
+      isOpen={isOpen}
+      onClick={handleClick}
+      toggleAccordion={toggleAccordion}
+    />
+  );
+}
+
+function ManagedAccordionRow({ uid, ...props }) {
+  const {
+    isOpen: getIsOpen,
+    toggleRow,
+    registerRow,
+    unregisterRow,
+  } = useAccordionControls();
 
   const isOpen = getIsOpen(uid);
 
@@ -42,27 +75,6 @@ export function AccordionRow({ uid, ...props }) {
   );
 }
 
-function SelfManagedAccordionRow(props) {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const handleClick = () => {
-    setIsOpen((prev) => !prev);
-  };
-
-  const toggleAccordion = (toggle) => {
-    setIsOpen(toggle ?? ((prev) => !prev));
-  };
-
-  return (
-    <AccordionRowBase
-      {...props}
-      isOpen={isOpen}
-      onClick={handleClick}
-      toggleAccordion={toggleAccordion}
-    />
-  );
-}
-
 /**
  * @typedef {Object} RowShape
  * @property {(number|string)[]} [parentKeys]
@@ -75,7 +87,7 @@ function SelfManagedAccordionRow(props) {
 /**
  * @param {Object} props
  * @param {number|string} props.uid - Unique identifier for the row.
- * @param {(number|string)[]} [props.parentKeys=[]] - Array of parent keys.
+ * @param {(number|string)[]} [props.parentKeys=[]] - Array of parent keys, used for nested accordion relationships.
  * @param {RowShape[]} [props.rows=[]] - Nested row configurations.
  * @param {Function} [props.component=null] - Custom component to render.
  * @param {string} [props.type=null] - The specific ROW_TYPES value.

@@ -1,8 +1,6 @@
 import React from 'react';
 import { TableBase } from './TableBase';
 import { OrderableTable } from './OrderableTable';
-import { AccordionController } from './AccordionController';
-import { AccordionToggleAll } from './AccordionToggleAll';
 
 /**
  * @typedef {Object} TableRow
@@ -20,8 +18,8 @@ import { AccordionToggleAll } from './AccordionToggleAll';
  * @param {TableRow[]} [props.rows=[]] - Array of row objects to render.
  * @param {(number|string)[]} [props.columnWidths=[]] - Widths for each column.
  * @param {React.ReactNode} [props.children=[]] - Child elements.
- * @param {'none'|'row'|'column'|'both'} [props.sticky='none'] - Stickiness configuration.
- * @param {boolean} [props.isPresoManagerInteractive=false] - Interactive state toggle.
+ * @param {'none'|'row'|'column'|'both'} [props.sticky='none'] - Provides scrolling with a 'sticky' header or column.
+ * @param {boolean} [props.isPresoManagerInteractive=false] - Allows interaction in PresoManager. Mouse events are otherwise ignored.
  * @param {string} [props.tbodyClassName=''] - CSS class for the tbody element.
  * @param {string} [props.className=''] - CSS class for the table element.
  */

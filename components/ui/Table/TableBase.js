@@ -1,36 +1,16 @@
 import React from 'react';
+
 import classNames from 'classnames';
+
 import { getColWidth } from '../../../utils/generate-table-layout';
 import { EMPTY_ACCORDION_KEY } from './table-constants';
 import { CELL_TYPES_MAP, ROW_TYPES_MAP } from './table-type-maps';
 import { TextCell, EmptyCell } from './cells';
-import style from './Table.module.scss';
 import { BodyRow } from './rows';
 import { AccordionRow } from './rows/AccordionRow';
 
-/**
- * @typedef {Object} TableRow
- * @property {string} uid - Unique identifier for the row
- * @property {string} [type] - One of ROW_TYPES values
- * @property {Function} [component] - Custom component to render the row
- * @property {Object[]} [cells] - Array of cell data objects
- * @property {Object[]} [rows] - Nested rows for sub-grids
- * @property {string} [className] - Optional CSS class for the row
- */
+import style from './Table.module.scss';
 
-/**
- * @param {Object} props
- * @param {boolean} [props.hasBorder=false] - Whether the table has a border
- * @param {TableRow[]} [props.rows=[]] - Array of row objects
- * @param {(number|string)[]} [props.columnWidths=[]] - Array of widths for columns
- * @param {React.ReactNode} [props.children=[]] - Table children
- * @param {'none'|'row'|'column'|'both'} [props.sticky='none'] - Sticky behavior configuration
- * @param {boolean} [props.isPresoManagerInteractive=false] - Interaction flag for presentation manager
- * @param {Function|null} [props.onReorder=null] - Callback function for reordering rows
- * @param {string} [props.wrapperClassName=''] - CSS class for the table wrapper
- * @param {string} [props.tbodyClassName=''] - CSS class for the tbody element
- * @param {string} [props.className=''] - CSS class for the table element
- */
 export function TableBase({
   hasBorder = false,
   rows = [],
@@ -115,25 +95,23 @@ export function TableBase({
 
     if (accordionRows?.length) {
       return (
-        <>
-          <AccordionRow
-            key={uid}
-            uid={uid}
-            type={rowType}
-            component={rowComponent}
-            onReorder={onReorder}
-            rows={accordionRows.map((ar) => {
-              return {
-                ...ar,
-                renderItem: (item) => generateRow(item),
-              };
-            })}
-            className={rowClassName}
-            {...rowProps}
-          >
-            {rowCells}
-          </AccordionRow>
-        </>
+        <AccordionRow
+          key={uid}
+          uid={uid}
+          type={rowType}
+          component={rowComponent}
+          onReorder={onReorder}
+          rows={accordionRows.map((ar) => {
+            return {
+              ...ar,
+              renderItem: (item) => generateRow(item),
+            };
+          })}
+          className={rowClassName}
+          {...rowProps}
+        >
+          {rowCells}
+        </AccordionRow>
       );
     }
 

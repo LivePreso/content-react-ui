@@ -21,21 +21,35 @@
   }
 
   &::before {
-    content: "";
+    content: '';
     width: 0;
     height: 0;
     border: 8px solid transparent;
     border-bottom-color: var(--color-text);
     margin-bottom: 4px;
-    // transform-origin: 50% 50%;
     transition: margin-bottom 150ms ease-out;
   }
   &::after {
-    content: "";
+    content: '';
     width: 0;
     height: 0;
     border: 8px solid transparent;
     border-top-color: var(--color-text);
-    // transform-origin: 50% 50%;
+  }
+
+  &.open {
+    &::before {
+      border-bottom-color: transparent;
+      border-top-color: var(--color-text);
+      margin-bottom: -10px;
+    }
+    &::after {
+      border-top-color: transparent;
+      border-bottom-color: var(--color-text);
+    }
+
+    &:hover::before {
+      margin-bottom: -14px;
+    }
   }
 }
