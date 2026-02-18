@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useAccordionControls } from './AccordionController';
+import { useAccordionControls } from './use-accordion-controls';
 
 import style from './AccordionToggleAll.module.scss';
 
@@ -25,6 +25,7 @@ export function AccordionToggleAll() {
       className={style.toggle}
       onClick={handleClick}
       title={allRowsOpen ? 'Collapse all' : 'Expand all'}
-    ></div>
+      data-companywide-interactive
+    />
   );
 }
