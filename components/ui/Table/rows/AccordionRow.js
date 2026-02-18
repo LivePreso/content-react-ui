@@ -2,14 +2,14 @@ import React, { useContext, useEffect, useState } from 'react';
 
 import classNames from 'classnames';
 
+import { useModes } from '@livepreso/content-react';
 import {
   AccordionControlContext,
   useAccordionControls,
-} from '../AccordionController';
+} from '../use-accordion-controls';
 import { ROW_TYPES_MAP } from '../table-type-maps';
 
 import style from './AccordionRow.module.scss';
-import { useModes } from '@livepreso/content-react';
 
 export function AccordionRow(props) {
   // If there's no controller context, render an unmanaged accordion row that handles its own state
@@ -54,13 +54,13 @@ function ManagedAccordionRow({ uid, ...props }) {
   useEffect(() => {
     registerRow(uid);
     return () => unregisterRow(uid);
-  }, [uid]);
+  }, [uid, registerRow, unregisterRow]);
 
   const handleClick = () => {
     toggleRow(uid);
   };
 
-  const toggleAccordion = (toggle) => {
+  const toggleAccordion = () => {
     toggleRow(uid);
   };
 
