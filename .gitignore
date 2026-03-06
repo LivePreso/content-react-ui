@@ -40,3 +40,5 @@ src/fixtures/testing
 !.cdk/feeds/*/default.json
 !.cdk/contexts/default.json
 coverage
+
+AGENTS.md
