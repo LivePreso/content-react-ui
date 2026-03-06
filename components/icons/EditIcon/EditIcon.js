@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import style from './EditIcon.module.scss';
 
-export function EditIcon({ className, color }) {
+export function EditIcon({ className = '', color = null }) {
   const classes = classNames(className, style.editIcon);
 
   return (
@@ -31,9 +31,4 @@ export function EditIcon({ className, color }) {
 EditIcon.propTypes = {
   color: PropTypes.string,
   className: PropTypes.string,
-};
-
-EditIcon.defaultProps = {
-  color: null,
-  className: '',
 };

@@ -5,8 +5,14 @@ import classNames from 'classnames';
 import { Arrow } from '../design/Arrow';
 import style from './DeltaValueBubble.module.scss';
 
-export function DeltaValueBubble(props) {
-  const { primary, secondary, formatter, color, showArrow, className } = props;
+export function DeltaValueBubble({
+  formatter = (v) => v,
+  color = () => 'color-text',
+  className = null,
+  primary = 567.34,
+  secondary = null,
+  showArrow = true,
+}) {
   const outputColor = color(primary);
   return (
     <div
@@ -31,13 +37,4 @@ DeltaValueBubble.propTypes = {
   primary: PropTypes.number,
   showArrow: PropTypes.bool,
   secondary: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-};
-
-DeltaValueBubble.defaultProps = {
-  formatter: (v) => v,
-  color: () => 'color-text',
-  className: null,
-  primary: 567.34,
-  secondary: null,
-  showArrow: true,
 };

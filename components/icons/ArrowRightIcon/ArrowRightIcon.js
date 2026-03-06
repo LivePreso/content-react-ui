@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import style from './ArrowRightIcon.module.scss';
 
-export function ArrowRightIcon({ className, color }) {
+export function ArrowRightIcon({ className = '', color = null }) {
   const classes = classNames(className, style.arrowRightIcon);
 
   return (
@@ -23,9 +23,4 @@ export function ArrowRightIcon({ className, color }) {
 ArrowRightIcon.propTypes = {
   color: PropTypes.string,
   className: PropTypes.string,
-};
-
-ArrowRightIcon.defaultProps = {
-  color: null,
-  className: '',
 };

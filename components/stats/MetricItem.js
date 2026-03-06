@@ -6,9 +6,7 @@ import { isValidNumber } from '../../../utils/math-utils';
 import { Errors } from '../../misc/Errors';
 import style from './MetricItem.module.scss';
 
-export function MetricItem(props) {
-  const { title, metric, bubble } = props;
-
+export function MetricItem({ title = '', metric = {}, bubble = null }) {
   return (
     <div className={style.metric}>
       <div className={style.metricName}>{title}</div>
@@ -26,10 +24,4 @@ MetricItem.propTypes = {
   title: PropTypes.string,
   metric: PropTypes.shape({ DeltaValue }.propTypes),
   bubble: PropTypes.shape({ DeltaValueBubble }.propTypes),
-};
-
-MetricItem.defaultProps = {
-  title: '',
-  metric: {},
-  bubble: null,
 };

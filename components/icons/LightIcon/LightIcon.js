@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export function LightIcon({ className }) {
+export function LightIcon({ className = '' }) {
   return (
     <svg
       className={className}
@@ -81,8 +81,4 @@ export function LightIcon({ className }) {
 
 LightIcon.propTypes = {
   className: PropTypes.string,
-};
-
-LightIcon.defaultProps = {
-  className: '',
 };

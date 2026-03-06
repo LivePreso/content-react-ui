@@ -5,11 +5,11 @@ import style from './Dropdown.module.scss';
 import { optionsPropTypes } from './prop-types';
 
 export function DropdownInputLabel({
-  selected,
-  options,
-  isMultiSelect,
-  placeholder,
-  renderLabel,
+  selected = '',
+  options = [],
+  isMultiSelect = false,
+  placeholder = '',
+  renderLabel = null,
 }) {
   const getLabel = () => {
     if (typeof selected === 'undefined') return '';
@@ -52,12 +52,4 @@ DropdownInputLabel.propTypes = {
   isMultiSelect: PropTypes.bool,
   placeholder: PropTypes.string,
   renderLabel: PropTypes.func,
-};
-
-DropdownInputLabel.defaultProps = {
-  selected: '',
-  options: [],
-  isMultiSelect: false,
-  placeholder: '',
-  renderLabel: null,
 };

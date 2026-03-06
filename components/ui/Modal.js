@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import style from './Modal.module.scss';
 
-export function Modal({ children, className, onClose }) {
+export function Modal({ children = null, className = '', onClose = null }) {
   const classes = classNames(className, style.modal);
   const shroudClasses = classNames(style.shroud, {
     [style.isClickable]: typeof onClose === 'function',
@@ -25,10 +25,4 @@ Modal.propTypes = {
   onClose: PropTypes.func,
   children: PropTypes.node,
   className: PropTypes.string,
-};
-
-Modal.defaultProps = {
-  onClose: null,
-  children: null,
-  className: '',
 };

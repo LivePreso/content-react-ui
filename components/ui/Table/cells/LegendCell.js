@@ -5,9 +5,13 @@ import { MiddleEllipsisText } from '../../../text/MiddleEllipsisText';
 import { TableCell } from '../TableCell';
 import style from './LegendCell.module.scss';
 
-export function LegendCell(props) {
-  const { value, color, className, valueClassName, ...cellProps } = props;
-
+export function LegendCell({
+  value = '',
+  color = '#000',
+  valueClassName = null,
+  className = '',
+  ...cellProps
+}) {
   return (
     <TableCell
       className={classNames(className, style.legendCell)}
@@ -28,11 +32,4 @@ LegendCell.propTypes = {
   color: PropTypes.string,
   valueClassName: PropTypes.string,
   ...TableCell.propTypes,
-};
-
-LegendCell.defaultProps = {
-  value: '',
-  color: '#000',
-  valueClassName: null,
-  ...TableCell.defaultProps,
 };

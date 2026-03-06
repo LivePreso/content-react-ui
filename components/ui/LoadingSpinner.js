@@ -3,7 +3,13 @@ import PropTypes from 'prop-types';
 import { Row } from '../layout';
 import style from './LoadingSpinner.module.scss';
 
-export function LoadingSpinner({ className, justify, align, width, height }) {
+export function LoadingSpinner({
+  className = null,
+  justify = 'center',
+  align = 'center',
+  width = '100%',
+  height = '100%',
+}) {
   return (
     <Row
       className={className}
@@ -23,12 +29,4 @@ LoadingSpinner.propTypes = {
   height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   align: PropTypes.oneOf(['stretch', 'start', 'end', 'center']),
   justify: PropTypes.oneOf(['start', 'end', 'center']),
-};
-
-LoadingSpinner.defaultProps = {
-  className: null,
-  width: '100%',
-  height: '100%',
-  align: 'center',
-  justify: 'center',
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export function HomeCashIcon({ className }) {
+export function HomeCashIcon({ className = '' }) {
   return (
     <svg
       className={className}
@@ -79,8 +79,4 @@ export function HomeCashIcon({ className }) {
 
 HomeCashIcon.propTypes = {
   className: PropTypes.string,
-};
-
-HomeCashIcon.defaultProps = {
-  className: '',
 };

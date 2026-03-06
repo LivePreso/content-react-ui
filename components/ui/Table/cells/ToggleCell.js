@@ -1,19 +1,18 @@
 import React from 'react';
 import { Toggle } from '../../Toggle/Toggle';
 import { TableCell } from '../TableCell';
+import { CheckMarkIcon } from '../../../icons';
 
-export function ToggleCell(props) {
-  const {
-    tabIndex,
-    label,
-    active,
-    onChange,
-    disabled,
-    id,
-    icon,
-    ...cellProps
-  } = props;
-
+export function ToggleCell({
+  tabIndex = null,
+  label = null,
+  active = false,
+  onChange = () => {},
+  disabled = false,
+  id = undefined,
+  icon = <CheckMarkIcon />,
+  ...cellProps
+}) {
   const { ...toggleProps } = {
     tabIndex,
     label,
@@ -34,9 +33,4 @@ export function ToggleCell(props) {
 ToggleCell.propTypes = {
   ...Toggle.propTypes,
   ...TableCell.propTypes,
-};
-
-ToggleCell.defaultProps = {
-  ...Toggle.defaultProps,
-  ...TableCell.defaultProps,
 };

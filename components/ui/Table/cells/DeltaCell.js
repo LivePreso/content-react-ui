@@ -4,19 +4,17 @@ import { isNull, isUndefined } from 'lodash-es';
 import { DeltaValue } from '../../../stats';
 import { TableCell } from '../TableCell';
 
-export function DeltaCell(props) {
-  const {
-    cellClassName: className,
-    className: innerClassName,
-    primary,
-    secondary,
-    formatter: deltaFormat,
-    color,
-    rowSpan,
-    colSpan,
-    width,
-  } = props;
-
+export function DeltaCell({
+  cellClassName: className = null,
+  className: innerClassName = null,
+  primary = null,
+  secondary = null,
+  formatter: deltaFormat = (v) => v,
+  color = () => 'color-text',
+  rowSpan = 1,
+  colSpan = 1,
+  width = null,
+}) {
   const secondaryValue =
     isNull(secondary) || isUndefined(secondary) ? null : `(${secondary})`;
 
@@ -45,13 +43,4 @@ DeltaCell.propTypes = {
   primary: PropTypes.number,
   secondary: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   ...TableCell.propTypes,
-};
-
-DeltaCell.defaultProps = {
-  formatter: (v) => v,
-  color: () => 'color-text',
-  className: null,
-  primary: null,
-  secondary: null,
-  ...TableCell.defaultProps,
 };

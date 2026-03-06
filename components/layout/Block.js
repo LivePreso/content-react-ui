@@ -5,16 +5,16 @@ import style from './Block.module.scss';
 import { flexPropTypes } from './flex-prop-types';
 
 export function Block({
-  flex,
-  width,
-  height,
-  maxHeight,
-  hasBorder,
-  hasMarginBottom,
-  noPadding,
-  className,
-  children,
-  isHidden,
+  flex = 'none',
+  width = 'auto',
+  height = 'auto',
+  maxHeight = null,
+  hasBorder = false,
+  hasMarginBottom = false,
+  noPadding = false,
+  className = '',
+  children = null,
+  isHidden = false,
 }) {
   const classes = classNames(style.block, className, {
     [style.hasBorder]: hasBorder,
@@ -43,20 +43,7 @@ Block.propTypes = {
   isHidden: PropTypes.bool,
 };
 
-Block.defaultProps = {
-  flex: 'none',
-  width: 'auto',
-  height: 'auto',
-  maxHeight: null,
-  hasBorder: false,
-  hasMarginBottom: false,
-  noPadding: false,
-  className: '',
-  children: null,
-  isHidden: false,
-};
-
-export function BlockTitle({ className, children }) {
+export function BlockTitle({ className = '', children = null }) {
   const classes = classNames(className, style.blockTitle);
 
   return <div className={classes}>{children}</div>;
@@ -65,9 +52,4 @@ export function BlockTitle({ className, children }) {
 BlockTitle.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-};
-
-BlockTitle.defaultProps = {
-  children: null,
-  className: '',
 };

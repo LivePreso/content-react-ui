@@ -4,9 +4,13 @@ import PropTypes from 'prop-types';
 import style from './SubheaderRow.module.scss';
 import { BodyRow } from './BodyRow';
 
-export function SubheaderRow(props) {
-  const { uid, isAccordion, children, className, ...rowProps } = props;
-
+export function SubheaderRow({
+  uid,
+  isAccordion = false,
+  children = null,
+  className = '',
+  ...rowProps
+}) {
   return (
     <BodyRow
       uid={uid}
@@ -23,9 +27,4 @@ export function SubheaderRow(props) {
 SubheaderRow.propTypes = {
   isAccordion: PropTypes.bool,
   ...BodyRow.propTypes,
-};
-
-SubheaderRow.defaultProps = {
-  isAccordion: false,
-  ...BodyRow.defaultProps,
 };

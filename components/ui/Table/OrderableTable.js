@@ -8,7 +8,7 @@ import { useContentDimensions } from '../../../hooks/use-content-dimensions';
 import style from './Table.module.scss';
 
 export function OrderableTable(props) {
-  const { onReorder, onDragStart } = props;
+  const { onReorder = () => {}, onDragStart = () => {} } = props;
 
   const contentDimensions = useContentDimensions();
   const scaleDragger = createScaleModifier(contentDimensions);
@@ -36,9 +36,4 @@ OrderableTable.propTypes = {
   uid: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
   onReorder: PropTypes.func,
   onDragStart: PropTypes.func,
-};
-
-OrderableTable.defaultProps = {
-  onReorder: () => {},
-  onDragStart: () => {},
 };

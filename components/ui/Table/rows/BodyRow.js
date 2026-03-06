@@ -4,10 +4,9 @@ import { OrderableRow } from './OrderableRow';
 
 export function BodyRow(props) {
   const {
-    children,
-    className,
-    isOrderable,
-    onReorder,
+    children = null,
+    className = '',
+    isOrderable = false,
     // intercept this to stop it going to the DOM node
     toggleAccordion: _toggleAccordion,
     ...rowProps
@@ -26,8 +25,4 @@ export function BodyRow(props) {
 
 BodyRow.propTypes = {
   ...TableRow.propTypes,
-};
-
-BodyRow.defaultProps = {
-  ...TableRow.defaultProps,
 };

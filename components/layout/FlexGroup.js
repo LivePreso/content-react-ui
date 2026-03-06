@@ -5,14 +5,14 @@ import style from './FlexGroup.module.scss';
 import { flexPropTypes } from './flex-prop-types';
 
 export function FlexGroup({
-  flex,
-  width,
-  height,
-  className,
-  children,
-  align,
-  gap,
-  justify,
+  flex = 'none',
+  width = null,
+  height = null,
+  className = '',
+  children = null,
+  align = 'stretch',
+  gap = null,
+  justify = 'start',
 }) {
   const classes = classNames(
     className,
@@ -55,15 +55,4 @@ FlexGroup.propTypes = {
   justify: PropTypes.oneOf(['start', 'end', 'center']),
   children: PropTypes.node,
   className: PropTypes.string,
-};
-
-FlexGroup.defaultProps = {
-  flex: 'none',
-  width: null,
-  height: null,
-  align: 'stretch',
-  gap: null,
-  justify: 'start',
-  children: null,
-  className: '',
 };

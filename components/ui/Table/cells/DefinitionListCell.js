@@ -4,9 +4,11 @@ import { Nbsp } from '../../../text/Nbsp';
 import { TableCell } from '../TableCell';
 import style from './DefinitionListCell.module.scss';
 
-export function DefinitionListCell(props) {
-  const { list, className, ...cellProps } = props;
-
+export function DefinitionListCell({
+  list = [],
+  className = '',
+  ...cellProps
+}) {
   return (
     <TableCell {...cellProps} className={className}>
       {list.map(({ label, value, formatter }) => {
@@ -33,9 +35,4 @@ DefinitionListCell.propTypes = {
     }),
   ),
   ...TableCell.propTypes,
-};
-
-DefinitionListCell.defaultProps = {
-  list: [],
-  ...TableCell.defaultProps,
 };

@@ -5,12 +5,12 @@ import style from './ScrollableArea.module.scss';
 import { flexPropTypes } from '../layout/flex-prop-types';
 
 export function ScrollableArea({
-  flex,
-  width,
-  height,
-  isPresoManagerInteractive,
-  children,
-  className,
+  flex = 'none',
+  width = null,
+  height = null,
+  isPresoManagerInteractive = false,
+  children = null,
+  className = '',
 }) {
   const classes = classNames(className, style.scrollableArea);
 
@@ -34,13 +34,4 @@ ScrollableArea.propTypes = {
   isPresoManagerInteractive: PropTypes.bool,
   children: PropTypes.node,
   className: PropTypes.string,
-};
-
-ScrollableArea.defaultProps = {
-  flex: 'none',
-  width: null,
-  height: null,
-  isPresoManagerInteractive: false,
-  children: null,
-  className: '',
 };

@@ -4,9 +4,13 @@ import PropTypes from 'prop-types';
 import style from './HighlightRow.module.scss';
 import { BodyRow } from './BodyRow';
 
-export function HighlightRow(props) {
-  const { uid, isAccordion, children, className, ...rowProps } = props;
-
+export function HighlightRow({
+  uid,
+  isAccordion = false,
+  children = null,
+  className = '',
+  ...rowProps
+}) {
   return (
     <BodyRow
       uid={uid}
@@ -23,9 +27,4 @@ export function HighlightRow(props) {
 HighlightRow.propTypes = {
   isAccordion: PropTypes.bool,
   ...BodyRow.propTypes,
-};
-
-HighlightRow.defaultProps = {
-  isAccordion: false,
-  ...BodyRow.defaultProps,
 };
