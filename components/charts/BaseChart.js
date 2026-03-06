@@ -50,14 +50,14 @@ function getAMChartType(type) {
  * https://react.dev/reference/react/memo
  */
 export const BaseChart = React.memo(function BaseChart({
-  className,
-  type,
-  enableAnimation,
+  className = null,
+  type = 'xy',
+  enableAnimation = false,
   chartFunction,
-  themeFunctions,
-  data,
-  width,
-  height,
+  themeFunctions = null,
+  data = [],
+  width = '100%',
+  height = '100%',
 }) {
   const chartRef = useRef(null);
   const id = useRef(uniqueId('amchart'));
@@ -137,14 +137,4 @@ BaseChart.propTypes = {
       PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
     ),
   ),
-};
-
-BaseChart.defaultProps = {
-  className: null,
-  type: 'xy',
-  enableAnimation: false,
-  width: '100%',
-  height: '100%',
-  themeFunctions: null,
-  data: [],
 };

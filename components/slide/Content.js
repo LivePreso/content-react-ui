@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { Column } from '../layout';
 import style from './Content.module.scss';
 
-export function Content({ className, children }) {
+export function Content({ className = '', children = null }) {
   const classes = classNames(className, style.content);
 
   return (
@@ -17,9 +17,4 @@ export function Content({ className, children }) {
 Content.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-};
-
-Content.defaultProps = {
-  children: null,
-  className: '',
 };

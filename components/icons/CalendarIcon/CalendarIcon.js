@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import style from './CalendarIcon.module.scss';
 
-export function CalendarIcon({ className, color }) {
+export function CalendarIcon({ className = '', color = null }) {
   const classes = classNames(className, style.calendarIcon);
 
   return (
@@ -28,9 +28,4 @@ export function CalendarIcon({ className, color }) {
 CalendarIcon.propTypes = {
   color: PropTypes.string,
   className: PropTypes.string,
-};
-
-CalendarIcon.defaultProps = {
-  color: null,
-  className: '',
 };

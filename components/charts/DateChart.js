@@ -3,8 +3,9 @@
   { "props": true, "ignorePropertyModificationsFor": ["chart"] }
 ] */
 
+import { defaultsDeep } from 'lodash-es';
+
 import React, { useCallback } from 'react';
-import PropTypes from 'prop-types';
 import { useChartTheme } from '../../hooks/use-chart-theme';
 import { BaseChart } from './BaseChart';
 import {
@@ -22,23 +23,24 @@ import {
 /**
  * Chart with date x-axis (date) & value y-axes (number)
  */
-export function DateChart({
-  className,
-  series,
-  xAxis,
-  yAxes,
-  data,
-  width,
-  height,
-  showLegend,
-  label,
-  tooltips,
-  colors,
-  themeFunctions,
-  chartFunction,
-  enableAnimation,
-  onReady,
-}) {
+export function DateChart(props) {
+  const {
+    className,
+    series,
+    xAxis,
+    yAxes,
+    data,
+    width,
+    height,
+    showLegend,
+    label,
+    tooltips,
+    colors,
+    themeFunctions,
+    chartFunction,
+    enableAnimation,
+    onReady,
+  } = defaultsDeep({}, props, baseChartDefaultProps);
   const combinedThemeFuncs = useChartTheme(themeFunctions);
 
   const chartFunc = useCallback(
@@ -91,10 +93,4 @@ export function DateChart({
 
 DateChart.propTypes = {
   ...baseChartProps,
-  chartFunction: PropTypes.func,
-};
-
-DateChart.defaultProps = {
-  ...baseChartDefaultProps,
-  chartFunction: () => {},
 };

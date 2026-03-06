@@ -18,9 +18,13 @@ const formatterMap = {
   percent: percentifyFactory({ numDecimal: 1 }),
 };
 
-export function BigStat(props) {
-  const { label, value, format, className, ...columnProps } = props;
-
+export function BigStat({
+  label = null,
+  value = null,
+  format = 'number',
+  className = null,
+  ...columnProps
+}) {
   const formatValue = (val) => {
     return formatterMap[format](val);
   };
@@ -43,14 +47,4 @@ BigStat.propTypes = {
   format: PropTypes.oneOf(['currency', 'number', 'percent']),
   label: PropTypes.string,
   value: PropTypes.number,
-};
-
-BigStat.defaultProps = {
-  flex: 'none',
-  width: null,
-  height: null,
-  format: 'number',
-  className: null,
-  label: null,
-  value: null,
 };

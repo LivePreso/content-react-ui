@@ -3,9 +3,10 @@
   { "props": true, "ignorePropertyModificationsFor": ["chart"] }
 ] */
 
+import { defaultsDeep } from 'lodash-es';
+
 import React, { useCallback, useEffect, useState } from 'react';
 import * as am4core from '@amcharts/amcharts4/core';
-import PropTypes from 'prop-types';
 import { useChartTheme } from '../../hooks/use-chart-theme';
 import { BaseChart } from './BaseChart';
 import {
@@ -82,23 +83,25 @@ const normalizeData = (data, chartDataMinMax) =>
  * Chart with value x-axis (value) & value y-axes (number)
  * Plot area is visually divided into 4 equal quadrants with optional labels
  */
-export function QuadrantChart({
-  className,
-  series,
-  quadrants = [],
-  xAxis,
-  yAxes,
-  data,
-  width,
-  height,
-  showLegend,
-  tooltips,
-  colors,
-  themeFunctions,
-  chartFunction,
-  enableAnimation,
-  onReady,
-}) {
+export function QuadrantChart(props) {
+  const {
+    className,
+    series,
+    quadrants = [],
+    xAxis,
+    yAxes,
+    data,
+    width,
+    height,
+    showLegend,
+    tooltips,
+    colors,
+    themeFunctions,
+    chartFunction,
+    enableAnimation,
+    onReady,
+  } = defaultsDeep({}, props, baseChartDefaultProps);
+
   const combinedThemeFuncs = useChartTheme(themeFunctions);
   const [normalizedChartData, setNormalizedChartData] = useState([]);
   const [chartMinMaxValues, setChartMinMaxValues] = useState({});
@@ -234,15 +237,4 @@ export function QuadrantChart({
 
 QuadrantChart.propTypes = {
   ...baseChartProps,
-  chartFunction: PropTypes.func,
-  quadrants: PropTypes.arrayOf(
-    PropTypes.exact({
-      label: PropTypes.string,
-    }),
-  ),
-};
-
-QuadrantChart.defaultProps = {
-  ...baseChartDefaultProps,
-  chartFunction: () => {},
 };

@@ -95,6 +95,7 @@ export const baseChartProps = {
       PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     ),
   ),
+  chartFunction: PropTypes.func,
 };
 
 export const baseChartDefaultProps = {
@@ -114,6 +115,7 @@ export const baseChartDefaultProps = {
   },
   xAxis: {},
   data: [],
+  chartFunction: () => {},
 };
 
 function getSeriesType(type) {

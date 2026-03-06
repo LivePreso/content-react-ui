@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { Column } from '../../layout';
 import style from './Slide.module.scss';
 
-export function Slide({ className, children }) {
+export function Slide({ className = '', children = null }) {
   const classes = classNames(style.slide, className);
 
   return (
@@ -17,9 +17,4 @@ export function Slide({ className, children }) {
 Slide.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-};
-
-Slide.defaultProps = {
-  children: null,
-  className: '',
 };

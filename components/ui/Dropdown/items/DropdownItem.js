@@ -3,7 +3,12 @@ import classNames from 'classnames';
 import React from 'react';
 import style from './DropdownItem.module.scss';
 
-export function DropdownItem({ className, onClick, disabled, children }) {
+export function DropdownItem({
+  className = '',
+  onClick = () => {},
+  disabled = false,
+  children = null,
+}) {
   const classes = classNames(style.item, className, {
     [style.disabled]: disabled,
   });
@@ -21,11 +26,4 @@ DropdownItem.propTypes = {
   onClick: PropTypes.func,
   children: PropTypes.element,
   disabled: PropTypes.bool,
-};
-
-DropdownItem.defaultProps = {
-  className: '',
-  onClick: () => {},
-  children: null,
-  disabled: false,
 };

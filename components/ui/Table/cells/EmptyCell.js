@@ -4,7 +4,7 @@ import style from './EmptyCell.module.scss';
 import { TableCell } from '../TableCell';
 
 export function EmptyCell(props) {
-  const { className, ...cellProps } = props;
+  const { className = '', ...cellProps } = props;
 
   return (
     <TableCell className={classNames(className, style.empty)} {...cellProps} />
@@ -13,8 +13,4 @@ export function EmptyCell(props) {
 
 EmptyCell.propTypes = {
   ...TableCell.propTypes,
-};
-
-EmptyCell.defaultProps = {
-  ...TableCell.defaultProps,
 };

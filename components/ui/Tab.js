@@ -8,17 +8,17 @@ import { EditableText } from './EditableText';
 const toSlug = slugify();
 
 export function Tab({
-  className,
-  labelClassName,
+  className = '',
+  labelClassName = '',
   index,
   label,
   value,
-  onClick,
+  onClick = () => {},
   active,
-  disabled,
-  isPrep,
-  isCompany,
-  children,
+  disabled = false,
+  isPrep = false,
+  isCompany = false,
+  children = null,
 }) {
   const classes = classNames(className, style.tab, {
     [style.isActive]: active,
@@ -64,14 +64,4 @@ Tab.propTypes = {
   isPrep: PropTypes.bool,
   isCompany: PropTypes.bool,
   children: PropTypes.node,
-};
-
-Tab.defaultProps = {
-  onClick: () => {},
-  disabled: false,
-  className: '',
-  labelClassName: '',
-  isPrep: false,
-  isCompany: false,
-  children: null,
 };

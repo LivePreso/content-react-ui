@@ -9,16 +9,16 @@ import { CalendarIcon, CloseIcon } from '../icons';
 import style from './DatePicker.module.scss';
 
 export function DatePicker({
-  className,
-  iconClassName,
-  value,
-  icon,
-  removeIcon,
-  onChange,
-  dateFormat,
-  minDate,
-  maxDate,
-  canRemove,
+  className = null,
+  iconClassName = null,
+  value = null,
+  icon = null,
+  removeIcon = null,
+  onChange = () => {},
+  dateFormat = 'j / n / Y',
+  minDate = null,
+  maxDate = null,
+  canRemove = false,
 }) {
   // const slideEl = Bridge?.Slides.getArticle()[0];
   const classes = classNames(className, style.datePicker);
@@ -82,17 +82,4 @@ DatePicker.propTypes = {
   icon: PropTypes.node,
   removeIcon: PropTypes.node,
   canRemove: PropTypes.bool,
-};
-
-DatePicker.defaultProps = {
-  value: null,
-  className: null,
-  iconClassName: null,
-  onChange: () => {},
-  minDate: null,
-  maxDate: null,
-  dateFormat: 'j / n / Y',
-  icon: null,
-  removeIcon: null,
-  canRemove: false,
 };

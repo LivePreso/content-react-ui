@@ -5,7 +5,11 @@ import { Column } from '../layout';
 import { Header, Slide } from '../slide';
 import style from './SectionHeader.module.scss';
 
-export function SectionHeader({ className, title, children }) {
+export function SectionHeader({
+  className = '',
+  title = null,
+  children = null,
+}) {
   const classes = classNames(style.sectionHeader, className);
 
   return (
@@ -24,10 +28,4 @@ SectionHeader.propTypes = {
   title: PropTypes.string,
   className: PropTypes.string,
   children: PropTypes.node,
-};
-
-SectionHeader.defaultProps = {
-  title: null,
-  className: '',
-  children: null,
 };

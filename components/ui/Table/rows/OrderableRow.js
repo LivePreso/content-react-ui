@@ -6,9 +6,13 @@ import { TableRow } from '../TableRow';
 
 import style from './OrderableRow.module.scss';
 
-export function OrderableRow(props) {
-  const { uid, children, className, isOrderable, onReorder, ...rowProps } =
-    props;
+export function OrderableRow({
+  uid,
+  children = null,
+  className = '',
+  ...rowProps
+}) {
+  if (!uid) throw new Error('OrderableRow requires a uid');
 
   const { isOver, setNodeRef: setNodeDroppable } = useDroppable({
     id: uid,
@@ -37,11 +41,3 @@ export function OrderableRow(props) {
     </TableRow>
   );
 }
-
-OrderableRow.propTypes = {
-  ...TableRow.propTypes,
-};
-
-OrderableRow.defaultProps = {
-  ...TableRow.defaultProps,
-};

@@ -5,7 +5,7 @@ import style from './SlideWrapper.module.scss';
 import { BrandingContext } from '../../contexts/branding';
 import { SlideOverlayRefContext } from '../../contexts/slide-overlay-ref';
 
-export function SlideWrapper({ children }) {
+export function SlideWrapper({ children = null }) {
   const ref = useRef(null);
   const { className: brandingClassName, cssVariables } =
     useContext(BrandingContext);
@@ -36,8 +36,4 @@ export function SlideWrapper({ children }) {
 
 SlideWrapper.propTypes = {
   children: PropTypes.node,
-};
-
-SlideWrapper.defaultProps = {
-  children: null,
 };

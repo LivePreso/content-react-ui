@@ -5,9 +5,7 @@ import { Button } from '../../Button';
 import { TableCell } from '../TableCell';
 import style from './ButtonsCell.module.scss';
 
-export function ButtonsCell(props) {
-  const { buttons, ...cellProps } = props;
-
+export function ButtonsCell({ buttons = [], ...cellProps }) {
   const wrapperClasses = classNames(style.buttonsContainer, {
     [style.alignRight]: cellProps.align === 'right',
   });
@@ -34,9 +32,4 @@ ButtonsCell.propTypes = {
     }),
   ),
   ...TableCell.propTypes,
-};
-
-ButtonsCell.defaultProps = {
-  buttons: [],
-  ...TableCell.defaultProps,
 };

@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import style from './ChevronUpIcon.module.scss';
 
-export function ChevronUpIcon({ className, color }) {
+export function ChevronUpIcon({ className = '', color = null }) {
   const classes = classNames(className, style.chevronUpIcon);
 
   return (
@@ -28,9 +28,4 @@ export function ChevronUpIcon({ className, color }) {
 ChevronUpIcon.propTypes = {
   color: PropTypes.string,
   className: PropTypes.string,
-};
-
-ChevronUpIcon.defaultProps = {
-  color: null,
-  className: '',
 };

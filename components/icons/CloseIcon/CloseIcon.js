@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import style from './CloseIcon.module.scss';
 
-export function CloseIcon({ className, color }) {
+export function CloseIcon({ className = '', color = null }) {
   const classes = classNames(className, style.closeIcon);
 
   return (
@@ -24,9 +24,4 @@ export function CloseIcon({ className, color }) {
 CloseIcon.propTypes = {
   color: PropTypes.string,
   className: PropTypes.string,
-};
-
-CloseIcon.defaultProps = {
-  color: null,
-  className: '',
 };

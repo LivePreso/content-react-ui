@@ -3,16 +3,15 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import style from './TableCell.module.scss';
 
-export function TableCell(props) {
-  const {
-    children,
-    className,
-    colSpan,
-    rowSpan,
-    rowSpanAdjacent,
-    width,
-    align,
-  } = props;
+export function TableCell({
+  children = [],
+  className = '',
+  colSpan = 1,
+  rowSpan = 1,
+  rowSpanAdjacent = null,
+  width = null,
+  align = 'left',
+}) {
   const compiledClasses = classNames(style.cell, className, {
     [style.hasSpanLeft]: rowSpanAdjacent === 'left',
   });
@@ -49,14 +48,4 @@ TableCell.propTypes = {
   rowSpan: PropTypes.number,
   rowSpanAdjacent: PropTypes.oneOf(['left', 'right']),
   width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-};
-
-TableCell.defaultProps = {
-  children: [],
-  className: '',
-  colSpan: 1,
-  rowSpan: 1,
-  rowSpanAdjacent: null,
-  width: null,
-  align: 'left',
 };

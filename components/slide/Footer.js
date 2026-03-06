@@ -3,7 +3,7 @@ import React from 'react';
 import { EditableText } from '../ui';
 import style from './Footer.module.scss';
 
-export function Footer({ isPrep, isCompany, children }) {
+export function Footer({ isPrep = false, isCompany = true, children = '' }) {
   return (
     <EditableText
       className={style.footer}
@@ -20,10 +20,4 @@ Footer.propTypes = {
   isPrep: PropTypes.bool,
   isCompany: PropTypes.bool,
   children: PropTypes.node,
-};
-
-Footer.defaultProps = {
-  isPrep: false,
-  isCompany: true,
-  children: '',
 };

@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export function SampleEditableText(props) {
-  const { title } = props;
-
+export function SampleEditableText({ title = '' }) {
   return (
     <>
       {title && (
@@ -41,8 +39,4 @@ export function SampleEditableText(props) {
 
 SampleEditableText.propTypes = {
   title: PropTypes.string,
-};
-
-SampleEditableText.defaultProps = {
-  title: '',
 };

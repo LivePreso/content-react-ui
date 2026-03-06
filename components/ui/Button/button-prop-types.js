@@ -14,18 +14,3 @@ export const buttonPropTypes = {
   variant: PropTypes.oneOf(['primary', 'secondary', 'text']),
   size: PropTypes.oneOf(['small', 'medium', 'large']),
 };
-
-export const buttonDefaultProps = {
-  className: '',
-  classNameLabel: '',
-  classNameIcon: '',
-  label: '',
-  type: 'button',
-  leftIcon: null,
-  rightIcon: null,
-  isPresoManagerInteractive: false,
-  disabled: false,
-  invertColors: false,
-  variant: 'primary',
-  size: 'medium',
-};

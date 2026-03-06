@@ -66,6 +66,7 @@ export const baseChartDefaultProps = {
   colors: {
     list: [],
   },
+  chartFunction: () => {},
 };
 
 export function createSeries(

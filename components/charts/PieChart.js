@@ -3,8 +3,9 @@
   { "props": true, "ignorePropertyModificationsFor": ["chart"] }
 ] */
 
+import { defaultsDeep } from 'lodash-es';
+
 import React, { useCallback } from 'react';
-import PropTypes from 'prop-types';
 import * as am4core from '@amcharts/amcharts4/core';
 import { useChartTheme } from '../../hooks/use-chart-theme';
 import { BaseChart } from './BaseChart';
@@ -19,24 +20,25 @@ import {
 /**
  * Pie Chart with category (name) & value (number)
  */
-export function PieChart({
-  className,
-  label,
-  series,
-  data,
-  width,
-  height,
-  tooltips,
-  colors,
-  showLegend,
-  radius,
-  innerRadius,
-  callout,
-  themeFunctions,
-  enableAnimation,
-  onReady,
-  chartFunction,
-}) {
+export function PieChart(props) {
+  const {
+    className,
+    label,
+    series,
+    data,
+    width,
+    height,
+    tooltips,
+    colors,
+    showLegend,
+    radius,
+    innerRadius,
+    callout,
+    themeFunctions,
+    enableAnimation,
+    onReady,
+    chartFunction,
+  } = defaultsDeep({}, props, baseChartDefaultProps);
   const combinedThemeFuncs = useChartTheme(themeFunctions);
 
   const chartFunc = useCallback(
@@ -94,10 +96,4 @@ export function PieChart({
 
 PieChart.propTypes = {
   ...baseChartProps,
-  chartFunction: PropTypes.func,
-};
-
-PieChart.defaultProps = {
-  ...baseChartDefaultProps,
-  chartFunction: () => {},
 };

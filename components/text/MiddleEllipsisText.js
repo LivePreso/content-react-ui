@@ -4,9 +4,11 @@ import classNames from 'classnames';
 import { Nbsp } from './Nbsp';
 import style from './MiddleEllipsisText.module.scss';
 
-export function MiddleEllipsisText(props) {
-  const { children, minAfter, className } = props;
-
+export function MiddleEllipsisText({
+  children = '',
+  minAfter = 5,
+  className = null,
+}) {
   const words = children.toString().split(' ');
   let after = words.length > 1 ? words.pop() : null;
   let before = words.join(' ');
@@ -31,10 +33,4 @@ MiddleEllipsisText.propTypes = {
   children: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   minAfter: PropTypes.number,
   className: PropTypes.string,
-};
-
-MiddleEllipsisText.defaultProps = {
-  children: '',
-  minAfter: 5,
-  className: null,
 };

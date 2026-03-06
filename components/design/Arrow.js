@@ -3,8 +3,11 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import style from './Arrow.module.scss';
 
-export function Arrow(props) {
-  const { className, orientation, color } = props;
+export function Arrow({
+  className = null,
+  orientation = 'up',
+  color = 'color-text',
+}) {
   return (
     <svg
       className={classNames(className, style.svg, style[orientation])}
@@ -28,9 +31,4 @@ Arrow.propTypes = {
   orientation: PropTypes.oneOf(['up', 'down', 'left', 'right']),
   color: PropTypes.string,
   className: PropTypes.string,
-};
-Arrow.defaultProps = {
-  orientation: 'up',
-  color: 'color-text',
-  className: null,
 };

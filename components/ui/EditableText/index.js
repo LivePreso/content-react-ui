@@ -1,10 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { BLOCK_LEVEL_FORMATS, DEFAULT_PROPS, PROP_TYPES } from './constants';
+import { BLOCK_LEVEL_FORMATS, PROP_TYPES } from './constants';
 import { EditableText as EditableTextBase } from './EditableText';
 import { EditableTextReadonly } from './EditableTextReadonly';
 
-export function EditableText({ tag, toolbar, isReadOnly, ...props }) {
+export function EditableText({
+  tag = 'div',
+  toolbar = [
+    'format',
+    'list',
+    'style',
+    'color',
+    'superscript',
+    'align',
+    'removeformat',
+  ],
+  isReadOnly = false,
+  ...props
+}) {
   // Block-level formatting is restricted to 'div' tags
   const toolbarOptions =
     tag === 'div'
@@ -23,9 +36,4 @@ export function EditableText({ tag, toolbar, isReadOnly, ...props }) {
 EditableText.propTypes = {
   isReadOnly: PropTypes.bool,
   ...PROP_TYPES,
-};
-
-EditableText.defaultProps = {
-  isReadOnly: false,
-  ...DEFAULT_PROPS,
 };

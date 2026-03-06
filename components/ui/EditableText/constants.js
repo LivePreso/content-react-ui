@@ -55,23 +55,3 @@ export const PROP_TYPES = {
     ]),
   ),
 };
-
-export const DEFAULT_PROPS = {
-  prepId: null,
-  isPrep: false,
-  isCompany: false,
-  isGlobal: false,
-  label: null,
-  className: '',
-  children: null,
-  tag: 'div',
-  toolbar: [
-    'format',
-    'list',
-    'style',
-    'color',
-    'superscript',
-    'align',
-    'removeformat',
-  ],
-};

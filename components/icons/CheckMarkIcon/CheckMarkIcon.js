@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import style from './CheckMarkIcon.module.scss';
 
-export function CheckMarkIcon({ className, color }) {
+export function CheckMarkIcon({ className = '', color = null }) {
   const classes = classNames(className, style.checkMarkIcon);
 
   return (
@@ -31,9 +31,4 @@ export function CheckMarkIcon({ className, color }) {
 CheckMarkIcon.propTypes = {
   color: PropTypes.string,
   className: PropTypes.string,
-};
-
-CheckMarkIcon.defaultProps = {
-  color: null,
-  className: '',
 };
