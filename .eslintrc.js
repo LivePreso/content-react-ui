@@ -20,6 +20,8 @@ module.exports = {
 
     // Disabling rules we don't care about following
     'func-names': 0,
+    'react/prop-types': 0,
+    'react/require-default-props': 0,
     'react/jsx-filename-extension': 0,
     'import/no-unresolved': 0,
     'import/prefer-default-export': 0,
@@ -31,7 +33,6 @@ module.exports = {
     'import/extensions': 0,
 
     // Change to warnings
-    'react/prop-types': 1,
     'jsx-a11y/click-events-have-key-events': 1,
     'jsx-a11y/interactive-supports-focus': 1,
     'jsx-a11y/role-has-required-aria-props': 1,
