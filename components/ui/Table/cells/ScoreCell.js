@@ -4,10 +4,14 @@ import classNames from 'classnames';
 import { TableCell } from '../TableCell';
 import style from './ScoreCell.module.scss';
 
-export function ScoreCell(props) {
-  const { value, compareValue, color, className, subtitle, ...cellProps } =
-    props;
-
+export function ScoreCell({
+  value = 0,
+  compareValue = 100,
+  subtitle = null,
+  color = null,
+  className = '',
+  ...cellProps
+}) {
   /* TODO revise this once a clean way of handling colors exists */
   const colorClass = color ? color(value) : '';
 
@@ -28,12 +32,4 @@ ScoreCell.propTypes = {
   subtitle: PropTypes.string,
   color: PropTypes.func,
   ...TableCell.propTypes,
-};
-
-ScoreCell.defaultProps = {
-  value: 0,
-  compareValue: 100,
-  subtitle: null,
-  color: null,
-  ...TableCell.defaultProps,
 };

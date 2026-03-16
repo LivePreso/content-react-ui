@@ -4,7 +4,12 @@ import classNames from 'classnames';
 import { EditableText } from '../ui';
 import style from './Header.module.scss';
 
-export function Header({ className, isPrep, isCompany, children }) {
+export function Header({
+  className = '',
+  isPrep = false,
+  isCompany = true,
+  children = '',
+}) {
   const classes = classNames(className, style.header);
 
   return (
@@ -24,11 +29,4 @@ Header.propTypes = {
   isPrep: PropTypes.bool,
   isCompany: PropTypes.bool,
   children: PropTypes.string,
-};
-
-Header.defaultProps = {
-  className: '',
-  isPrep: false,
-  isCompany: true,
-  children: '',
 };

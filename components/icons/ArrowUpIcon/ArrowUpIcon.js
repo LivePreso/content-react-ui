@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import style from './ArrowUpIcon.module.scss';
 
-export function ArrowUpIcon({ className, color }) {
+export function ArrowUpIcon({ className = '', color = null }) {
   const classes = classNames(className, style.arrowUpIcon);
 
   return (
@@ -23,9 +23,4 @@ export function ArrowUpIcon({ className, color }) {
 ArrowUpIcon.propTypes = {
   color: PropTypes.string,
   className: PropTypes.string,
-};
-
-ArrowUpIcon.defaultProps = {
-  color: null,
-  className: '',
 };

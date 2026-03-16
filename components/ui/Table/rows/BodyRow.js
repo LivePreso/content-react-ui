@@ -4,17 +4,20 @@ import { OrderableRow } from './OrderableRow';
 
 export function BodyRow(props) {
   const {
-    children,
-    className,
-    isOrderable,
-    onReorder,
+    children = null,
+    className = '',
+    onReorder = null,
     // intercept this to stop it going to the DOM node
     toggleAccordion: _toggleAccordion,
     ...rowProps
   } = props;
 
-  if (isOrderable) {
-    return <OrderableRow {...props}>{children}</OrderableRow>;
+  if (typeof onReorder === 'function') {
+    return (
+      <OrderableRow className={className} onReorder={onReorder} {...rowProps}>
+        {children}
+      </OrderableRow>
+    );
   }
 
   return (
@@ -26,8 +29,4 @@ export function BodyRow(props) {
 
 BodyRow.propTypes = {
   ...TableRow.propTypes,
-};
-
-BodyRow.defaultProps = {
-  ...TableRow.defaultProps,
 };

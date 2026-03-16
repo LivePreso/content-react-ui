@@ -4,7 +4,13 @@ import PropTypes from 'prop-types';
 import { FlexGroup } from './FlexGroup';
 import style from './Row.module.scss';
 
-export function Row({ className, children, gap, reverse, ...props }) {
+export function Row({
+  className = '',
+  children = null,
+  gap = null,
+  reverse = false,
+  ...props
+}) {
   const classes = classNames(className, style.row, style[`gap-${gap}`], {
     [style.reverse]: reverse,
   });
@@ -38,10 +44,4 @@ Row.propTypes = {
    */
   justify: PropTypes.oneOf(['start', 'end', 'center']),
   reverse: PropTypes.bool,
-};
-
-Row.defaultProps = {
-  ...FlexGroup.defaultProps,
-  gap: null,
-  reverse: false,
 };

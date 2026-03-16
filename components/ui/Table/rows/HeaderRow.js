@@ -5,7 +5,13 @@ import { BodyRow } from './BodyRow';
 import style from './HeaderRow.module.scss';
 
 export function HeaderRow(props) {
-  const { isAccordion, children, className, uid, ...rowProps } = props;
+  const {
+    uid,
+    isAccordion = false,
+    children = null,
+    className = '',
+    ...rowProps
+  } = props;
 
   return (
     <BodyRow
@@ -23,9 +29,4 @@ export function HeaderRow(props) {
 HeaderRow.propTypes = {
   isAccordion: PropTypes.bool,
   ...BodyRow.propTypes,
-};
-
-HeaderRow.defaultProps = {
-  isAccordion: false,
-  ...BodyRow.defaultProps,
 };

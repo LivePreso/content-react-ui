@@ -7,9 +7,15 @@ import { Row, Column } from '../layout';
 import { Arrow } from '../design/Arrow';
 import style from './DeltaValue.module.scss';
 
-export function DeltaValue(props) {
-  const { primary, secondary, formatter, color, showArrow, className, theme } =
-    props;
+export function DeltaValue({
+  primary = 0,
+  secondary = null,
+  formatter = (v) => v,
+  color = () => 'color-text',
+  showArrow = true,
+  className = null,
+  theme = '',
+}) {
   const outputColor = color(primary);
 
   const themeClassName = {
@@ -48,14 +54,4 @@ DeltaValue.propTypes = {
   showArrow: PropTypes.bool,
   secondary: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   theme: PropTypes.string,
-};
-
-DeltaValue.defaultProps = {
-  formatter: (v) => v,
-  color: () => 'color-text',
-  className: null,
-  primary: 567.34,
-  secondary: null,
-  showArrow: true,
-  theme: '',
 };

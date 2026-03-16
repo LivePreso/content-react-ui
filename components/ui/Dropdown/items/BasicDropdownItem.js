@@ -5,8 +5,8 @@ import { DropdownItem } from './DropdownItem';
 import style from './BasicDropdownItem.module.scss';
 
 export function BasicDropdownItem({
-  labelClassName,
-  label,
+  labelClassName = '',
+  label = '',
   ...dropdownItemProps
 }) {
   return (
@@ -19,9 +19,4 @@ export function BasicDropdownItem({
 BasicDropdownItem.propTypes = {
   ...DropdownItem.propTypes,
   label: PropTypes.string,
-};
-
-BasicDropdownItem.defaultProps = {
-  ...DropdownItem.defaultProps,
-  label: '',
 };

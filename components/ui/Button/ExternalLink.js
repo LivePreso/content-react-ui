@@ -2,10 +2,10 @@ import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { useModes } from '@livepreso/content-react';
 import { Button } from './Button';
-import { buttonPropTypes, buttonDefaultProps } from './button-prop-types';
+import { buttonPropTypes } from './button-prop-types';
 import style from './ExternalLink.module.scss';
 
-export function ExternalLink({ url, onClick, ...buttonProps }) {
+export function ExternalLink({ url, onClick = () => {}, ...buttonProps }) {
   const { isPdfScreenshot } = useModes();
 
   const openLink = useCallback(() => {
@@ -29,9 +29,4 @@ ExternalLink.propTypes = {
   ...buttonPropTypes,
   url: PropTypes.string.isRequired,
   onClick: PropTypes.func,
-};
-
-ExternalLink.defaultProps = {
-  ...buttonDefaultProps,
-  onClick: () => {},
 };

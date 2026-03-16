@@ -2,25 +2,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import style from './Button.module.scss';
-import { buttonPropTypes, buttonDefaultProps } from './button-prop-types';
+import { buttonPropTypes } from './button-prop-types';
 
-export function Button(props) {
-  const {
-    className,
-    classNameLabel,
-    classNameIcon,
-    type,
-    label,
-    leftIcon,
-    rightIcon,
-    invertColors,
-    variant,
-    size,
-    isPresoManagerInteractive,
-    disabled,
-    ...rest
-  } = props;
-
+export function Button({
+  className = '',
+  classNameLabel = '',
+  classNameIcon = '',
+  type = 'button',
+  label = '',
+  leftIcon = null,
+  rightIcon = null,
+  invertColors = false,
+  variant = 'primary',
+  size = 'medium',
+  isPresoManagerInteractive = false,
+  disabled = false,
+  ...rest
+}) {
   const resolvedClassName = classNames(
     style.button,
     style[variant],
@@ -64,8 +62,4 @@ export function Button(props) {
 Button.propTypes = {
   ...buttonPropTypes,
   onClick: PropTypes.func.isRequired,
-};
-
-Button.defaultProps = {
-  ...buttonDefaultProps,
 };

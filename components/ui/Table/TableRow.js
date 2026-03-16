@@ -8,9 +8,9 @@ import style from './Table.module.scss';
 export const TableRow = React.forwardRef(
   (
     {
-      children,
-      className,
-      onClick,
+      children = null,
+      className = '',
+      onClick = () => {},
       active: _active,
       parentKeys: _parentKeys,
       isOver: _isOver,
@@ -50,10 +50,4 @@ TableRow.propTypes = {
   onClick: PropTypes.func,
   children: PropTypes.node,
   className: PropTypes.string,
-};
-
-TableRow.defaultProps = {
-  onClick: () => {},
-  children: null,
-  className: '',
 };

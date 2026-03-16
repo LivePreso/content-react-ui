@@ -6,10 +6,10 @@ import { DropdownItem } from './DropdownItem';
 import styleBasic from './BasicDropdownItem.module.scss';
 
 export function ToggleDropdownItem({
-  label,
-  onToggleChange,
-  toggleActive,
-  toggleLabel,
+  label = '',
+  onToggleChange = () => {},
+  toggleActive = false,
+  toggleLabel = null,
   ...dropdownItemProps
 }) {
   return (
@@ -34,11 +34,4 @@ ToggleDropdownItem.propTypes = {
   label: PropTypes.string,
   onToggleChange: PropTypes.func,
   toggleLabel: PropTypes.string,
-};
-
-ToggleDropdownItem.defaultProps = {
-  ...DropdownItem.defaultProps,
-  label: '',
-  onToggleChange: () => {},
-  toggleLabel: null,
 };

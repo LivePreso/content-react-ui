@@ -6,12 +6,12 @@ import { Tab } from './Tab';
 import style from './Tabs.module.scss';
 
 export function Tabs({
-  className,
+  className = '',
   selected,
-  items,
-  renderItem,
-  onChange,
-  disabled,
+  items = [],
+  renderItem = null,
+  onChange = () => {},
+  disabled = false,
 }) {
   const classes = classNames(className, style.tabs);
 
@@ -51,9 +51,8 @@ Tabs.propTypes = {
     .isRequired,
   items: PropTypes.arrayOf(
     PropTypes.shape({
-      label: PropTypes.node.isRequired,
-      value: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-        .isRequired,
+      label: PropTypes.node,
+      value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
       className: PropTypes.string,
       labelClassName: PropTypes.string,
     }),
@@ -62,12 +61,4 @@ Tabs.propTypes = {
   disabled: PropTypes.bool,
   onChange: PropTypes.func,
   className: PropTypes.string,
-};
-
-Tabs.defaultProps = {
-  items: [],
-  renderItem: null,
-  disabled: false,
-  onChange: () => {},
-  className: '',
 };

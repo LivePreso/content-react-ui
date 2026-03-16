@@ -3,8 +3,9 @@
   { "props": true, "ignorePropertyModificationsFor": ["chart"] }
 ] */
 
+import { defaultsDeep } from 'lodash-es';
+
 import React, { useCallback } from 'react';
-import PropTypes from 'prop-types';
 import { useChartTheme } from '../../hooks/use-chart-theme';
 import { BaseChart } from './BaseChart';
 import {
@@ -23,23 +24,24 @@ import {
 /**
  * Chart with value x-axis (number) & value y-axes (number)
  */
-export function ValueChart({
-  className,
-  series,
-  xAxis,
-  yAxes,
-  data,
-  width,
-  height,
-  showLegend,
-  label,
-  tooltips,
-  colors,
-  themeFunctions,
-  chartFunction,
-  enableAnimation,
-  onReady,
-}) {
+export function ValueChart(props) {
+  const {
+    className,
+    series,
+    xAxis,
+    yAxes,
+    data,
+    width,
+    height,
+    showLegend,
+    label,
+    tooltips,
+    colors,
+    themeFunctions,
+    chartFunction,
+    enableAnimation,
+    onReady,
+  } = defaultsDeep({}, props, baseChartDefaultProps);
   const combinedThemeFuncs = useChartTheme(themeFunctions);
 
   const chartFunc = useCallback(
@@ -97,10 +99,4 @@ export function ValueChart({
 
 ValueChart.propTypes = {
   ...baseChartProps,
-  chartFunction: PropTypes.func,
-};
-
-ValueChart.defaultProps = {
-  ...baseChartDefaultProps,
-  chartFunction: () => {},
 };

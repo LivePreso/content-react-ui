@@ -6,10 +6,10 @@ import { DropdownItem } from './DropdownItem';
 import style from './BasicDropdownItem.module.scss';
 
 export function CheckboxDropdownItem({
-  label,
-  active,
-  disabled,
-  onChange,
+  label = '',
+  active = false,
+  disabled = false,
+  onChange = () => {},
   ...dropdownItemProps
 }) {
   const handleClick = () => {
@@ -37,9 +37,4 @@ export function CheckboxDropdownItem({
 CheckboxDropdownItem.propTypes = {
   ...DropdownItem.propTypes,
   label: PropTypes.string,
-};
-
-CheckboxDropdownItem.defaultProps = {
-  ...DropdownItem.defaultProps,
-  label: '',
 };

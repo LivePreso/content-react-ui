@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import style from './ChevronDownIcon.module.scss';
 
-export function ChevronDownIcon({ className, color }) {
+export function ChevronDownIcon({ className = '', color = null }) {
   const classes = classNames(className, style.chevronDownIcon);
 
   return (
@@ -28,9 +28,4 @@ export function ChevronDownIcon({ className, color }) {
 ChevronDownIcon.propTypes = {
   color: PropTypes.string,
   className: PropTypes.string,
-};
-
-ChevronDownIcon.defaultProps = {
-  color: null,
-  className: '',
 };

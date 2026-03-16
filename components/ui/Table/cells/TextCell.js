@@ -3,10 +3,14 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { TableCell } from '../TableCell';
 
-export function TextCell(props) {
-  const { value, formatter, color, className, valueClassName, ...cellProps } =
-    props;
-
+export function TextCell({
+  value = null,
+  formatter = null,
+  color = null,
+  valueClassName = null,
+  className = '',
+  ...cellProps
+}) {
   const formattedValue = formatter ? formatter(value) : value;
   const colorClass = color ? color(value) : '';
 
@@ -23,12 +27,4 @@ TextCell.propTypes = {
   color: PropTypes.func,
   valueClassName: PropTypes.string,
   ...TableCell.propTypes,
-};
-
-TextCell.defaultProps = {
-  value: null,
-  formatter: null,
-  color: null,
-  valueClassName: null,
-  ...TableCell.defaultProps,
 };

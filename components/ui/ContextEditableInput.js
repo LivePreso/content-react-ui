@@ -41,7 +41,12 @@ function useEditableReadOnly(allowedModes) {
   return false;
 }
 
-export function ContextEditableInput({ id, tagName, allowedModes, children }) {
+export function ContextEditableInput({
+  id,
+  tagName = 'p',
+  allowedModes = ['prep'],
+  children = '',
+}) {
   const { slideKey } = useSlide();
   const [value, setValue] = useSlideContext(
     `context-editables.${slideKey}.${id}`,
@@ -70,10 +75,4 @@ ContextEditableInput.propTypes = {
   allowedModes: PropTypes.arrayOf(
     PropTypes.oneOf(['prep', 'present', 'review']),
   ),
-};
-
-ContextEditableInput.defaultProps = {
-  children: '',
-  tagName: EditableInput.defaultProps.tagName,
-  allowedModes: ['prep'],
 };

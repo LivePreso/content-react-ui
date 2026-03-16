@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import style from './TableDragHandle.module.scss';
 
-export function TableDragHandle({ uid, className, children }) {
+export function TableDragHandle({ uid, className, children = null }) {
   const { isDragging, attributes, listeners } = useDraggable({
     id: uid,
   });
@@ -25,8 +25,4 @@ export function TableDragHandle({ uid, className, children }) {
 TableDragHandle.propTypes = {
   uid: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
   children: PropTypes.node,
-};
-
-TableDragHandle.defaultProps = {
-  children: null,
 };

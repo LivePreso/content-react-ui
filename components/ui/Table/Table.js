@@ -34,9 +34,9 @@ export function Table({
   className = '',
   ...otherProps
 }) {
-  const { onReorder, ...rest } = otherProps;
+  const { onReorder = null, ...rest } = otherProps;
 
-  const props = {
+  const tableProps = {
     hasBorder,
     rows,
     columnWidths,
@@ -48,8 +48,8 @@ export function Table({
   };
 
   if (typeof onReorder === 'function') {
-    return <OrderableTable {...props} {...otherProps} />;
+    return <OrderableTable onReorder={onReorder} {...tableProps} {...rest} />;
   }
 
-  return <TableBase {...props} {...rest} />;
+  return <TableBase {...tableProps} {...rest} />;
 }

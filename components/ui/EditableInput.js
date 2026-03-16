@@ -7,16 +7,16 @@ import { EditText } from 'react-edit-text';
 import style from './EditableInput.module.scss';
 
 export function EditableInput({
-  type,
-  tagName,
-  readOnly,
-  value,
-  onChange,
-  formatter,
-  placeholder,
-  disabled,
-  className,
-  inputClassName,
+  type = 'text',
+  tagName = 'p',
+  readOnly = false,
+  value = '',
+  onChange = () => {},
+  formatter = null,
+  placeholder = '',
+  disabled = false,
+  className = null,
+  inputClassName = null,
 }) {
   // Render the real tag instead that our EditText is trying to represent.
   if (readOnly || disabled) {
@@ -67,17 +67,4 @@ EditableInput.propTypes = {
   disabled: PropTypes.bool,
   className: PropTypes.string,
   inputClassName: PropTypes.string,
-};
-
-EditableInput.defaultProps = {
-  value: '',
-  type: 'text',
-  onChange: () => {},
-  tagName: 'p',
-  readOnly: false,
-  formatter: null,
-  placeholder: '',
-  disabled: false,
-  className: null,
-  inputClassName: null,
 };

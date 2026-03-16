@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { TableCell } from '../TableCell';
 
 export function SubTitleCell(props) {
-  const { title, subtitle, ...cellProps } = props;
+  const { title = '', subtitle = null, ...cellProps } = props;
   return (
     <TableCell {...cellProps}>
       <div>{title}</div>
@@ -16,10 +16,4 @@ SubTitleCell.propTypes = {
   title: PropTypes.string,
   subtitle: PropTypes.string,
   ...TableCell.propTypes,
-};
-
-SubTitleCell.defaultProps = {
-  title: 'title',
-  subtitle: null,
-  ...TableCell.defaultProps,
 };

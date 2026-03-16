@@ -4,7 +4,13 @@ import classNames from 'classnames';
 import { flexPropTypes } from './flex-prop-types';
 import style from './Flex.module.scss';
 
-export function Flex({ className, flex, width, height, children }) {
+export function Flex({
+  className = '',
+  flex = 1,
+  width = null,
+  height = null,
+  children = null,
+}) {
   const classes = classNames(className, style.flex);
 
   return (
@@ -20,12 +26,4 @@ Flex.propTypes = {
   width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   children: PropTypes.node,
-};
-
-Flex.defaultProps = {
-  flex: 1,
-  className: '',
-  width: null,
-  height: null,
-  children: null,
 };
