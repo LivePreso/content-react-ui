@@ -6,14 +6,18 @@ export function BodyRow(props) {
   const {
     children = null,
     className = '',
-    isOrderable = false,
+    onReorder = null,
     // intercept this to stop it going to the DOM node
     toggleAccordion: _toggleAccordion,
     ...rowProps
   } = props;
 
-  if (isOrderable) {
-    return <OrderableRow {...props}>{children}</OrderableRow>;
+  if (typeof onReorder === 'function') {
+    return (
+      <OrderableRow className={className} onReorder={onReorder} {...rowProps}>
+        {children}
+      </OrderableRow>
+    );
   }
 
   return (

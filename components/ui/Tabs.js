@@ -51,9 +51,8 @@ Tabs.propTypes = {
     .isRequired,
   items: PropTypes.arrayOf(
     PropTypes.shape({
-      label: PropTypes.node.isRequired,
-      value: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-        .isRequired,
+      label: PropTypes.node,
+      value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
       className: PropTypes.string,
       labelClassName: PropTypes.string,
     }),
