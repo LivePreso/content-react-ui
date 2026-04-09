@@ -42,3 +42,4 @@ src/fixtures/testing
 coverage
 
 AGENTS.md
+*.local.*
