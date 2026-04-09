@@ -1,6 +1,6 @@
-# SKILL-reference.md
+# USAGE-reference.md
 
-Reference appendix for `@livepreso/content-react-ui`. Load this file when you need UI controls (Button, Dropdown, Modal, Checkbox), additional hooks, or the theming/color system. For the core components used on most slides, see **SKILL.md**.
+Reference appendix for `@livepreso/content-react-ui`. Load this file when you need UI controls (Button, Dropdown, Modal, Checkbox), additional hooks, or the theming/color system. For the core components used on most slides, see **USAGE.md**.
 
 > **Global note:** All components accept a `className` prop (string) for additional CSS classes. This is not repeated in individual prop tables below.
 

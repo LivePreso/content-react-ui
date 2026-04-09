@@ -8,7 +8,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 The library is consumed by individual deck projects, which bundle it themselves (there is no build step here). Components integrate with the LivePreso runtime via `@livepreso/content-react` (slide state management) and a host-injected `Bridge` global (navigation, external links, etc.).
 
-Storybook is the primary development environment, allowing components to be built and reviewed in isolation with a simulated `SlideContext`.
+The primary way to develop this package is to create a link to the package on disk from a client project.
 
 ## Commands
 
@@ -76,3 +76,12 @@ Extends Airbnb + Prettier. Notable rule changes:
 - `react/prop-types` and `react/require-default-props` are disabled
 - `import/no-unresolved` is disabled (module resolution handled by consumers)
 - Accessibility rules (`jsx-a11y/*`) are warnings, not errors
+
+## Usage Documentation
+
+Two files document the component library's public API for consumers:
+
+- **`USAGE.md`** — covers the core components used on most slides: Slide/Header/Content/Footer, layout primitives, charts, tables, stats, text, and the `useFeed` hook.
+- **`USAGE-reference.md`** — covers UI controls (Button, Dropdown, Modal, Checkbox), additional hooks, and the theming/color system.
+
+**These files must be kept up to date.** When you make changes that affect how a component is used (props, behavior, patterns) or add a new component, update the relevant file to reflect the change. This includes adding, removing, or renaming props; changing default values; adding new components or hooks; and removing or deprecating existing ones.

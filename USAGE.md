@@ -1,6 +1,6 @@
-# SKILL.md
+# USAGE.md
 
-This file documents the components and patterns used on the majority of LivePreso deck slides. For UI controls (Button, Dropdown, Modal, Checkbox), additional hooks, and the full theming/color reference, see **SKILL-reference.md**.
+This file documents the components and patterns used on the majority of LivePreso deck slides. For UI controls (Button, Dropdown, Modal, Checkbox), additional hooks, and the full theming/color reference, see **USAGE-reference.md**.
 
 > **Global note:** All components accept a `className` prop (string) for additional CSS classes. This is not repeated in individual prop tables below.
 
@@ -859,7 +859,7 @@ const [showTrends, setShowTrends] = useSectionVisible('trends');
 <Toggle active={showTrends} onChange={setShowTrends} label="Include Trends Section" />
 ```
 
-For `useShowPrepEditable`, `useSlideKeyPrefix`, `usePresoCreatedDate`, and `useNavigation`, see **SKILL-reference.md**.
+For `useShowPrepEditable`, `useSlideKeyPrefix`, `usePresoCreatedDate`, and `useNavigation`, see **USAGE-reference.md**.
 
 ---
 
