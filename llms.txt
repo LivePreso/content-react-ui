@@ -1,0 +1,230 @@
+Package map for `@livepreso/content-react-ui`. All exports below are available from the main entry unless noted. See llms-full.txt for full usage documentation.
+
+## Entry points
+
+```
+@livepreso/content-react-ui          → index.js
+@livepreso/content-react-ui/utils    → utils/index.js
+@livepreso/content-react-ui/styles.scss → css/base.scss
+```
+
+---
+
+## Slide structure
+
+| Export | File |
+|--------|------|
+| `Slide` | `components/slide/Slide/Slide.js` |
+| `Header` | `components/slide/Header.js` |
+| `Footer` | `components/slide/Footer.js` |
+| `Content` | `components/slide/Content.js` |
+| `SlideWrapper` | `components/slide/SlideWrapper.js` |
+| `SubslideNav` | `components/slide/SubslideNav.js` |
+| `SectionHeader` | `components/slide-types/SectionHeader.js` |
+
+---
+
+## Layout
+
+| Export | File |
+|--------|------|
+| `Row` | `components/layout/Row.js` |
+| `Column` | `components/layout/Column.js` |
+| `Flex` | `components/layout/Flex.js` |
+| `Block` | `components/layout/Block.js` |
+
+---
+
+## Charts
+
+| Export | File |
+|--------|------|
+| `CategoryChart` | `components/charts/CategoryChart.js` |
+| `DateChart` | `components/charts/DateChart.js` |
+| `PieChart` | `components/charts/PieChart.js` |
+| `ValueChart` | `components/charts/ValueChart.js` |
+| `QuadrantChart` | `components/charts/QuadrantChart.js` |
+| `BaseChart` | `components/charts/BaseChart.js` |
+
+---
+
+## Stats
+
+| Export | File |
+|--------|------|
+| `BigStat` | `components/stats/BigStat.js` |
+| `DeltaValue` | `components/stats/DeltaValue.js` |
+
+---
+
+## Table
+
+| Export | File |
+|--------|------|
+| `Table` | `components/ui/Table/Table.js` |
+| `TableCell` | `components/ui/Table/TableCell.js` |
+| `TableRow` | `components/ui/Table/TableRow.js` |
+| `TableDragHandle` | `components/ui/Table/TableDragHandle.js` |
+| `AccordionController` | `components/ui/Table/AccordionController.js` |
+| `useAccordionControls` | `components/ui/Table/use-accordion-controls.js` |
+| `ROW_TYPES`, `CELL_TYPES` | `components/ui/Table/table-constants.js` |
+| `ROW_TYPES_MAP`, `CELL_TYPES_MAP` | `components/ui/Table/table-type-maps.js` |
+
+### Table rows
+
+| Export | File |
+|--------|------|
+| `HeaderRow` | `components/ui/Table/rows/HeaderRow.js` |
+| `SubheaderRow` | `components/ui/Table/rows/SubheaderRow.js` |
+| `BodyRow` | `components/ui/Table/rows/BodyRow.js` |
+| `HighlightRow` | `components/ui/Table/rows/HighlightRow.js` |
+| `OrderableRow` | `components/ui/Table/rows/OrderableRow.js` |
+
+### Table cells
+
+| Export | File |
+|--------|------|
+| `TitleCell` | `components/ui/Table/cells/TitleCell.js` |
+| `SubTitleCell` | `components/ui/Table/cells/SubTitleCell.js` |
+| `TextCell` | `components/ui/Table/cells/TextCell.js` |
+| `DeltaCell` | `components/ui/Table/cells/DeltaCell.js` |
+| `EmptyCell` | `components/ui/Table/cells/EmptyCell.js` |
+| `ImageCell` | `components/ui/Table/cells/ImageCell.js` |
+| `LegendCell` | `components/ui/Table/cells/LegendCell.js` |
+| `ScoreCell` | `components/ui/Table/cells/ScoreCell.js` |
+| `EditableTextCell` | `components/ui/Table/cells/EditableTextCell.js` |
+| `ToggleCell` | `components/ui/Table/cells/ToggleCell.js` |
+| `ButtonsCell` | `components/ui/Table/cells/ButtonsCell.js` |
+| `DefinitionListCell` | `components/ui/Table/cells/DefinitionListCell.js` |
+
+---
+
+## UI controls
+
+| Export | File |
+|--------|------|
+| `Button` | `components/ui/Button/Button.js` |
+| `ExternalLink` | `components/ui/Button/ExternalLink.js` |
+| `Checkbox` | `components/ui/Checkbox/Checkbox.js` |
+| `Toggle` | `components/ui/Toggle/Toggle.js` |
+| `Tabs` | `components/ui/Tabs.js` |
+| `Tab` | `components/ui/Tab.js` |
+| `Modal` | `components/ui/Modal.js` |
+| `LoadingSpinner` | `components/ui/LoadingSpinner.js` |
+| `ScrollableArea` | `components/ui/ScrollableArea.js` |
+| `EditableText` | `components/ui/EditableText/EditableText.js` |
+| `EditableInput` | `components/ui/EditableInput.js` |
+| `ContextEditableInput` | `components/ui/ContextEditableInput.js` |
+| `EditableImage` | `components/ui/EditableImage/EditableImage.js` |
+| `DatePicker` | `components/ui/DatePicker.js` |
+| `ChartFooterMessage` | `components/ui/ChartFooterMessage.js` |
+
+### Dropdown
+
+| Export | File |
+|--------|------|
+| `Dropdown` | `components/ui/Dropdown/Dropdown.js` |
+| `DropdownItem` | `components/ui/Dropdown/items/DropdownItem.js` |
+| `BasicDropdownItem` | `components/ui/Dropdown/items/BasicDropdownItem.js` |
+| `ToggleDropdownItem` | `components/ui/Dropdown/items/ToggleDropdownItem.js` |
+
+---
+
+## Text
+
+| Export | File |
+|--------|------|
+| `MiddleEllipsisText` | `components/text/MiddleEllipsisText.js` |
+| `Nbsp` | `components/text/Nbsp.js` |
+| `SampleEditableText` | `components/text/SampleEditableText.js` |
+| `SampleParagraph` | `components/text/SampleParagraph.js` |
+
+---
+
+## Icons
+
+| Export | File |
+|--------|------|
+| `ArrowRightIcon` | `components/icons/ArrowRightIcon/ArrowRightIcon.js` |
+| `ArrowUpIcon` | `components/icons/ArrowUpIcon/ArrowUpIcon.js` |
+| `CalendarIcon` | `components/icons/CalendarIcon/CalendarIcon.js` |
+| `CheckMarkIcon` | `components/icons/CheckMarkIcon/CheckMarkIcon.js` |
+| `ChevronDownIcon` | `components/icons/ChevronDownIcon/ChevronDownIcon.js` |
+| `ChevronUpIcon` | `components/icons/ChevronUpIcon/ChevronUpIcon.js` |
+| `CloseIcon` | `components/icons/CloseIcon/CloseIcon.js` |
+| `EditIcon` | `components/icons/EditIcon/EditIcon.js` |
+| `LightIcon` | `components/icons/LightIcon/LightIcon.js` |
+| `HomeCashIcon` | `components/icons/HomeCashIcon/HomeCashIcon.js` |
+
+---
+
+## Design
+
+| Export | File |
+|--------|------|
+| `Arrow` | `components/design/Arrow.js` |
+
+---
+
+## Forms
+
+| Export | File |
+|--------|------|
+| `Form` | `components/forms/Form.js` |
+| `FIELD_TYPES`, `PREFIX_MIN`, `PREFIX_MAX`, `SUFFIX_M`, `SUFFIX_KM`, `SUFFIX_AREA`, `LAYOUT_VERTICAL`, `LAYOUT_HORIZONTAL` | `components/forms/constants.js` |
+
+---
+
+## Hooks
+
+| Export | File |
+|--------|------|
+| `useFeed` | `hooks/use-feed.js` |
+| `useSlideVisible` | `hooks/use-slide-visible.js` |
+| `useSectionVisible` | `hooks/use-section-visible.js` |
+| `useShowPrepEditable` | `hooks/use-show-prep-editable.js` |
+| `useSlideKeyPrefix` | `hooks/use-slide-key-prefix.js` |
+| `usePresoCreatedDate` | `hooks/use-preso-created-date.js` |
+| `useNavigation` | `hooks/use-navigation.js` |
+| `useChartTheme` | `hooks/use-chart-theme.js` |
+| `useContentVisibility` | `hooks/use-content-visibility.js` |
+
+---
+
+## Contexts
+
+| Export | File |
+|--------|------|
+| `BrandingContext` | `contexts/branding.js` |
+
+---
+
+## Bridge
+
+| Export | File |
+|--------|------|
+| `openExternalLink` | `bridge/navigation/open-external-link.js` |
+
+---
+
+## Utils (`@livepreso/content-react-ui/utils`)
+
+### Data formatting (`utils/data-formatting.js`)
+
+`percentifyFactory`, `currencifyFactory`, `currencyCodifyFactory`, `cleanNumberFactory`, `decimalifyFactory`, `prettyNumberifyFactory`, `posNegFactory`, `undefinedAsDash`, `getPlural`, `isInvalidNumber`, `isUpperCase`, `roundOffDecimal`, `percentToFraction`, `toTwoDecimalsFloat`, `toThreeDecimalsFloat`, `toPercentGrowth`, `capitalise`, `slugify`, `arrayToObjectWithKey`
+
+### Date utilities (`utils/date.js`)
+
+`toDateString`, `getDateRange`, `getDateRangeByDays`, `groupByGranularity`, `getStartOfPeriodsByGranularity`, `getWeekNumberForYear`, `getStartOfWeek`, `getLastYearDate`
+
+### Data processing (`utils/data-processing.js`)
+
+`getFeedDataInRange`, `calculateAverageByMetric`, `processDataToDateDict`, `processYoyDataToDateDict`
+
+### Math utilities (`utils/math-utils.js`)
+
+`findMinMax`, `calculatePercent`, `isValidNumber`
+
+### Table layout (`utils/generate-table-layout.js`)
+
+`getColWidth`
