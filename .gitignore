@@ -41,5 +41,4 @@ src/fixtures/testing
 !.cdk/contexts/default.json
 coverage
 
-AGENTS.md
 *.local.*
