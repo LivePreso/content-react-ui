@@ -58,6 +58,7 @@ export const BaseChart = React.memo(function BaseChart({
   data = [],
   width = '100%',
   height = '100%',
+  onReady = () => {},
 }) {
   const chartRef = useRef(null);
   const id = useRef(uniqueId('amchart'));
@@ -66,8 +67,6 @@ export const BaseChart = React.memo(function BaseChart({
 
   const onInitialize = useCallback(
     function (chart) {
-      chartFunction(chart);
-
       // Prevent bullets on the edge of a chart being cropped
       chart.maskBullets = false;
 
@@ -76,6 +75,8 @@ export const BaseChart = React.memo(function BaseChart({
         // Disable pinch to zoom
         chart.zoomOutButton.disabled = true;
       }
+
+      chartFunction(chart);
     },
     [chartFunction, type],
   );
@@ -97,17 +98,23 @@ export const BaseChart = React.memo(function BaseChart({
 
     onInitialize(amChart);
 
+    function handleChartReady() {
+      chartReady();
+      onReady();
+    }
+
     chartRef.current = amChart;
-    amChart.events.on('appeared', chartReady);
+    amChart.events.on('appeared', handleChartReady);
 
     return () => {
-      amChart.events.off('appeared', chartReady);
+      amChart.events.off('appeared', handleChartReady);
       amChart.dispose();
     };
   }, [
     type,
     onInitialize,
     themeFunctions,
+    onReady,
     chartReady,
     enableAnimation,
     isScreenshot,
