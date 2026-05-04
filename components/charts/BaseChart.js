@@ -66,8 +66,6 @@ export const BaseChart = React.memo(function BaseChart({
 
   const onInitialize = useCallback(
     function (chart) {
-      chartFunction(chart);
-
       // Prevent bullets on the edge of a chart being cropped
       chart.maskBullets = false;
 
@@ -76,6 +74,8 @@ export const BaseChart = React.memo(function BaseChart({
         // Disable pinch to zoom
         chart.zoomOutButton.disabled = true;
       }
+
+      chartFunction(chart);
     },
     [chartFunction, type],
   );
