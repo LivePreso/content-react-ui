@@ -5,3 +5,18 @@
   padding: var(--slide-content-pad-top) var(--slide-content-pad-right)
     var(--slide-content-pad-bottom) var(--slide-content-pad-left);
 }
+
+.fade-in {
+  opacity: 0;
+  transition: opacity 250ms ease-out;
+
+  &.entered {
+    opacity: 1;
+  }
+
+  :global(.screenshot) &,
+  :global(.animation-complete) & {
+    opacity: 1;
+    transition: none;
+  }
+}

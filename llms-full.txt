@@ -239,7 +239,12 @@ Renders an editable `<h6>`. Company-wide editable by default.
 
 Flex-growing `Column` wrapper for the slide body.
 
+| Prop             | Type   | Default    | Description                                              |
+| ---------------- | ------ | ---------- | -------------------------------------------------------- |
+| `introAnimation` | string | `'none'`   | Entrance animation: `'none'` \| `'fade-in'` (opacity transition triggered on slide enter) |
+
 ```jsx
+// No animation (default)
 <Slide>
   <Header>Title</Header>
   <Content>{/* Everything between header and footer */}</Content>
