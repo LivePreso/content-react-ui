@@ -14,6 +14,7 @@ export const TableRow = React.forwardRef(
       active: _active,
       parentKeys: _parentKeys,
       isOver: _isOver,
+      accordionButtonAlign: _accordionButtonAlign,
       ...props
     },
     forwardedRef,

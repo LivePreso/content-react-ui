@@ -10,8 +10,9 @@
     &::before {
       content: '';
       position: absolute;
-      top: calc(50% - 0.2em);
+      top: 50%;
       left: var(--table-cell-padding-h);
+      margin-top: -0.2em;
       border: var(--table-accordion-width) solid transparent;
       border-top-color: var(--table-cell-text-color);
       width: 0;
@@ -22,9 +23,15 @@
   &.is-open {
     td:first-child {
       &::before {
-        top: calc(50% - 0.8em);
+        margin-top: -0.8em;
         transform: scaleY(-1);
       }
+    }
+  }
+
+  &.accordion-button-top {
+    td:first-child::before {
+      top: calc(var(--table-cell-padding-v) + 0.65em);
     }
   }
 }
