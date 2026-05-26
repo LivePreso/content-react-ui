@@ -91,6 +91,7 @@ function ManagedAccordionRow({ uid, ...props }) {
  * @param {RowShape[]} [props.rows=[]] - Nested row configurations.
  * @param {Function} [props.component=null] - Custom component to render.
  * @param {string} [props.type=null] - The specific ROW_TYPES value.
+ * @param {String} [props.accordionButtonAlign='middle'] - Aligns the accordion button ('top', 'middle').
  * @param {React.ReactNode} [props.children=null] - Child elements.
  * @param {string} [props.className=''] - CSS class name.
  */
@@ -103,6 +104,7 @@ function AccordionRowBase({
   children = null,
   className = '',
   isOpen = false,
+  accordionButtonAlign = 'middle',
   ...rowProps
 }) {
   const RowComponent =
@@ -117,9 +119,14 @@ function AccordionRowBase({
         data-accordion-header={uid}
         data-accordion-parent={parentKeys.join(' ')}
         {...rowProps}
-        className={classNames(className, style.accordionRow, {
-          [style.isOpen]: isOpen,
-        })}
+        className={classNames(
+          className,
+          style.accordionRow,
+          [style[`accordion-button-${accordionButtonAlign}`]],
+          {
+            [style.isOpen]: isOpen,
+          },
+        )}
       >
         {children}
       </RowComponent>

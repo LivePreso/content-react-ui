@@ -28,4 +28,10 @@
       }
     }
   }
+
+  &.accordion-button-top {
+    td:first-child::before {
+      top: calc(var(--table-cell-padding-v) + 0.65em);
+    }
+  }
 }
