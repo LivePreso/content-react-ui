@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { ManagedTextField } from '@livepreso/react-plugin-textfield';
+import { SIMPLE_TOOLBAR_CONFIG } from '@livepreso/react-plugin-textfield/constants';
 import { slugify } from '../../utils/data-formatting';
 import style from './Tab.module.scss';
-import { EditableText } from './EditableText';
+import { useSlideKeyPrefix } from '../../hooks/use-slide-key-prefix';
 
 const toSlug = slugify();
 
@@ -18,8 +20,11 @@ export function Tab({
   disabled = false,
   isPrep = false,
   isCompany = false,
+  tokens = [],
   children = null,
 }) {
+  const id = `tab-${toSlug(value)}`;
+  const cwePrefixedKey = useSlideKeyPrefix(id);
   const classes = classNames(className, style.tab, {
     [style.isActive]: active,
     [style.isDisabled]: disabled,
@@ -35,15 +40,17 @@ export function Tab({
       role="tab"
     >
       {isPrep || isCompany ? (
-        <EditableText
-          id={`tab-${toSlug(value)}`}
+        <ManagedTextField
+          id={cwePrefixedKey}
           className={labelClasses}
           isPrep={isPrep}
           isCompany={isCompany}
           tag="h5"
+          tokens={tokens}
+          toolbarConfig={SIMPLE_TOOLBAR_CONFIG}
         >
           {label}
-        </EditableText>
+        </ManagedTextField>
       ) : (
         <h5 className={labelClasses}>{label}</h5>
       )}
