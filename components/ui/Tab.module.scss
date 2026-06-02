@@ -9,7 +9,8 @@
   outline: none;
   cursor: pointer;
 
-  .label {
+  .label,
+  .label h5 {
     color: var(--tab-text);
     font-size: var(--tab-label-fz);
     line-height: var(--tab-label-lh);
@@ -20,7 +21,8 @@
     background-color: var(--tab-bg-active);
     border: var(--tab-border-active);
 
-    .label {
+    .label,
+    .label h5 {
       color: var(--tab-text-active);
       font-weight: var(--tab-label-fw-active);
     }
