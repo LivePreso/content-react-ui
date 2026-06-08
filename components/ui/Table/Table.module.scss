@@ -13,6 +13,14 @@
     border-right: var(--table-cell-border);
     border-top: var(--table-row-border);
     border-bottom: var(--table-row-border);
+
+    // Coloured rows (header/subheader/highlight) set --cell-bg; recolour the
+    // borders to it here, on the cell, so the cell's own --cell-bg resolves and
+    // the divider/seam matches the row background. Plain cells leave --cell-bg
+    // unset and fall back to the grey --border-color. This must live on the cell
+    // — nesting var(--cell-bg) inside the :root border tokens above would resolve
+    // it at :root, where --cell-bg is unset, and always produce grey.
+    border-color: var(--cell-bg, var(--border-color));
   }
 
   // reset all tables inside of wrapper

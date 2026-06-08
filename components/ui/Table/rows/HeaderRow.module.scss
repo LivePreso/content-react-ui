@@ -1,8 +1,11 @@
 .header-row {
   td {
+    // Match the cell borders to the background (see --table-cell-border)
+    --cell-bg: var(--table-header-bg);
+
     padding: var(--table-header-cell-padding-v)
       var(--table-header-cell-padding-h);
-    background-color: var(--table-header-bg);
+    background-color: var(--cell-bg);
     color: var(--table-header-color);
     font-size: var(--table-header-fz);
     line-height: var(--table-header-lh);
