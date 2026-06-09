@@ -1,3 +1,7 @@
 .is-over {
-  background-color: var(--table-cell-bg-drag-over);
+  // Match the cell borders to the drag-over background (see --table-cell-border).
+  // Set on the row so it inherits down to the cells' borders.
+  --cell-bg: var(--table-cell-bg-drag-over);
+
+  background-color: var(--cell-bg);
 }

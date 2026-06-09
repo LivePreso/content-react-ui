@@ -1,8 +1,11 @@
 .highlight-row {
   td {
+    // Match the cell borders to the background (see --table-cell-border)
+    --cell-bg: var(--table-highlight-bg);
+
     padding: var(--table-highlight-cell-padding-v)
       var(--table-highlight-cell-padding-h);
-    background-color: var(--table-highlight-bg);
+    background-color: var(--cell-bg);
     color: var(--table-highlight-color);
     font-size: var(--table-highlight-fz);
     line-height: var(--table-highlight-lh);
