@@ -100,6 +100,13 @@
     max-height: 100%;
     border-radius: var(--table-border-radius);
 
+    // Promote the scroll container to its own compositor layer. Without this,
+    // Chromium fails to route mouse-wheel events to this scroller when it sits
+    // inside the deck's scaled/clipped slide stage (scrollbar drag and
+    // programmatic scrolling still work, only the wheel is dead). Forcing a
+    // layer makes the compositor scroll it directly. Do not remove.
+    transform: translateZ(0);
+
     &.table-sticky-row {
       overflow: hidden auto;
 
