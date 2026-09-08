@@ -31,8 +31,8 @@
   },
   "homepage": "https://github.com/LivePreso/content-react-ui#readme",
   "devDependencies": {
-    "@livepreso/content-react": "^1.0.0",
-    "@livepreso/webpack-deck": "^3.5.0",
+    "@livepreso/content-react": "^2.3.0",
+    "@livepreso/webpack-deck": "^3.6.1",
     "@storybook/addon-essentials": "^7.6.14",
     "@storybook/addon-interactions": "^7.6.14",
     "@storybook/addon-links": "^7.6.14",
