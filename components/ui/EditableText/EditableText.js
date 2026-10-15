@@ -1,16 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useModes } from '@livepreso/content-react';
-import { useSlideKeyPrefix } from '../../../hooks/use-slide-key-prefix';
 import style from './EditableText.module.scss';
 import { PROP_TYPES } from './constants';
 
+// Renders what it is given. The marker attributes are resolved by the wrapper
+// in index.js, which is where this component's editable source is declared.
 export const EditableText = React.memo(
   ({
     id,
     prepId = null,
+    attrs = {},
     isPrep = false,
-    isCompany = false,
     isGlobal = false,
     disableSmartPaste = false,
     stopPropagation = false,
@@ -18,12 +19,8 @@ export const EditableText = React.memo(
     className = '',
     children = null,
     label = null,
-    toolbar = [],
   }) => {
     const { isPresomanager } = useModes();
-    const cwePrefixedKey = useSlideKeyPrefix(id);
-    const cweKey = isGlobal ? id : cwePrefixedKey;
-    const prepKey = useSlideKeyPrefix(prepId || id);
     const Tag = `${tag}`;
 
     const testid = isPresomanager ? id : prepId || id;
@@ -32,22 +29,10 @@ export const EditableText = React.memo(
       throw new Error('EditableText - prep editable values cannot be global');
     }
 
-    const opts = {};
-
-    if (isPrep) {
-      opts['data-editable'] = prepKey;
-    }
-
-    if (isCompany) {
-      opts['data-companywide-editable'] = cweKey;
-    }
+    const opts = { ...attrs };
 
     if (disableSmartPaste) {
       opts['data-disable-smart-paste'] = true;
-    }
-
-    if (toolbar.length) {
-      opts['data-toolbar'] = toolbar.join(' ');
     }
 
     return (

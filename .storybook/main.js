@@ -1,6 +1,6 @@
 const path = require('path');
 const ProjectPlugin = require('@livepreso/webpack-deck/plugins/project.js');
-const webpackConfig = require('@livepreso/webpack-deck/webpack.base.config.js');
+const webpackConfig = require('@livepreso/webpack-deck/webpack.base.config');
 
 /** @type { import('@storybook/react-webpack5').StorybookConfig } */
 const config = {

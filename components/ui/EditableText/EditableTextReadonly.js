@@ -6,7 +6,6 @@ import {
   useCWEEditableInfo,
   usePrepEditableInfo,
 } from '@livepreso/content-react';
-import { useSlideKeyPrefix } from '../../../hooks/use-slide-key-prefix';
 import { getValidTags } from './utils';
 import { PROP_TYPES } from './constants';
 import style from './EditableText.module.scss';
@@ -15,9 +14,9 @@ export const EditableTextReadonly = React.memo(
   ({
     id,
     prepId = null,
+    keys = {},
     isPrep = false,
     isCompany = false,
-    isGlobal = false,
     label = null,
     className = '',
     children = null,
@@ -33,9 +32,10 @@ export const EditableTextReadonly = React.memo(
     ],
   }) => {
     const { isPresomanager } = useModes();
-    const cwePrefixedKey = useSlideKeyPrefix(id);
-    const cweKey = isGlobal ? id : cwePrefixedKey;
-    const prepKey = useSlideKeyPrefix(prepId || id);
+    // Resolved by the wrapper in index.js, which is where the source is
+    // declared. A channel that is switched off has no key here, which is
+    // harmless: its value is only read when its own flag is set.
+    const { everyone: cweKey, personal: prepKey } = keys;
     const { value: cweValue, hasValue: hasCWEValue } =
       useCWEEditableInfo(cweKey);
     const { value: prepValue, hasValue: hasPrepValue } =
@@ -58,7 +58,8 @@ export const EditableTextReadonly = React.memo(
     const classes = classNames(className, 'editable-text-tiny-mce');
     const Tag = `${tag}`;
 
-    const testid = isPresomanager ? cweKey : prepKey || cweKey;
+    const testid =
+      (isPresomanager ? cweKey : prepKey || cweKey) ?? (prepId || id);
 
     if (!hasValue) {
       return (
