@@ -1,3 +1,5 @@
+@use 'sass:math';
+
 :root {
   --editable-image-background-color: #ddd;
   --editable-image-color: #888;
@@ -44,7 +46,7 @@ $placeholder-size: 9rem;
             background-image: url('./EditableImageGraphic.svg');
             background-repeat: no-repeat;
             background-position: center top;
-            background-size: $placeholder-size/1.5;
+            background-size: math.div($placeholder-size, 1.5);
             pointer-events: none;
           }
         }

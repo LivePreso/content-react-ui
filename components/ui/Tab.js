@@ -44,6 +44,8 @@ export function Tab({
     >
       {isPrep || isCompany ? (
         <ManagedTextField
+          // The key is a slug of the tab's value, worked out at render time.
+          // livepreso-ignore-next-line id-not-written-out
           id={cwePrefixedKey}
           className={labelClasses}
           isPrep={isPrep}
