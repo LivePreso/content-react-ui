@@ -21,11 +21,11 @@ importers:
         specifier: ^0.27.16
         version: 0.27.16(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@livepreso/react-plugin-textfield':
-        specifier: ^1.0.0
-        version: 1.0.0(@floating-ui/dom@1.8.0)(@types/react-dom@19.2.3(@types/react@18.2.55))(@types/react@18.2.55)(anylogger@1.0.11)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(webpack@5.112.2(@swc/core@1.4.0)(esbuild@0.18.20)(postcss@8.5.32))
+        specifier: ^1.0.1
+        version: 1.0.1(@floating-ui/dom@1.8.0)(@types/react-dom@19.2.3(@types/react@18.2.55))(@types/react@18.2.55)(anylogger@1.0.11)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(webpack@5.112.2(@swc/core@1.4.0)(esbuild@0.18.20)(postcss@8.5.32))
       '@livepreso/webpack-deck':
-        specifier: ^4.0.0
-        version: 4.0.0(webpack@5.112.2(@swc/core@1.4.0)(esbuild@0.18.20)(postcss@8.5.32))
+        specifier: ^4.0.1
+        version: 4.0.1(webpack@5.112.2(@swc/core@1.4.0)(esbuild@0.18.20)(postcss@8.5.32))
       classnames:
         specifier: ^2.5.1
         version: 2.5.1
@@ -58,8 +58,8 @@ importers:
         version: 3.2.0
     devDependencies:
       '@livepreso/content-react':
-        specifier: ^3.0.0
-        version: 3.0.0(anylogger@1.0.11)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(webpack@5.112.2(@swc/core@1.4.0)(esbuild@0.18.20)(postcss@8.5.32))
+        specifier: ^3.0.1
+        version: 3.0.1(anylogger@1.0.11)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(webpack@5.112.2(@swc/core@1.4.0)(esbuild@0.18.20)(postcss@8.5.32))
       '@storybook/addon-essentials':
         specifier: ^7.6.14
         version: 7.6.14(@types/react-dom@19.2.3(@types/react@18.2.55))(@types/react@18.2.55)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -1674,25 +1674,25 @@ packages:
   '@livepreso/content-base@2.0.0':
     resolution: {integrity: sha512-ek2IIxAeMuL25o0mAxWIrVVqZYzgSJpKEKYXkVhhbTEYIGXqd60nP5aAk6MWFjPT6WIqlfChPOCb15TJBZNHYg==}
 
-  '@livepreso/content-react@3.0.0':
-    resolution: {integrity: sha512-LE34A3KbgIgXVYc9RnQnAU8XezVxQ4srqOHHUDsW3vtm1rl1zeAp0eeQ1Jcw27MikALw8DEgKTPfMAidrTgywg==}
+  '@livepreso/content-react@3.0.1':
+    resolution: {integrity: sha512-lotThSmzVtyfhby/urvjXgt7TU5SqFwexD7YQtlAgXQzQ0poptWfE2V6+0HUyyW9ZzzLNBHPdI8YKq/++2qJ6A==}
     peerDependencies:
       react: '>= 18.0.0 <= 19.x'
       react-dom: '>= 18.0.0 <= 19.x'
 
-  '@livepreso/react-plugin-textfield@1.0.0':
-    resolution: {integrity: sha512-dbGYd73jr18Mcr6AtASeIJ9roPPL84t6czo41aa08t9TlHun1mlUOWqG+QH/Dln+wI0cd3CHTrddES/HQBYkVg==}
+  '@livepreso/react-plugin-textfield@1.0.1':
+    resolution: {integrity: sha512-1DyD6Q2U6cB6Om0WR3g5KDy54C/g7k+1vHocxgxhJAJV1dslu8XI2X4Go7lAY3+8RpqCvjd6DipcOJ0KkvABrA==}
     peerDependencies:
       react: '>= 18.0.0 <= 19.x'
       react-dom: '>= 18.0.0 <= 19.x'
 
-  '@livepreso/react-plugin-ui@2.0.0':
-    resolution: {integrity: sha512-ZST0QLJgLove1cTMNje2HzSUcRKpu4QuNvI0JcX+i5gUmBwxuwN0OZDloV8wJwHTXjZMugRzoxBHD5gHK8PXGw==}
+  '@livepreso/react-plugin-ui@2.0.1':
+    resolution: {integrity: sha512-+VlokvB0H2Xl6UqxVLKejnMAOmuodsO/5O1IXBSU7UWbgSwnLUYMMBWjCbfsWarvEaOi7c8EkRRSL7AsqcBGIw==}
     peerDependencies:
       react: '>= 18.0.0 <= 19.x'
 
-  '@livepreso/webpack-deck@4.0.0':
-    resolution: {integrity: sha512-DCF4H0vUF7Lpnp4jn2dQHxT3t2ZtcjWEeyDWSd4HUhSgAcwGJ3JR6X7lrrPM9Gw2IovU77oUdgEeo9If43AwPg==}
+  '@livepreso/webpack-deck@4.0.1':
+    resolution: {integrity: sha512-5F3h5lpYZ45rAKR6j2iCaZD/0WNvqaNzR7vA77cf0tSNG9QJNpz7v31rPgN5niWL5gHb9XhpPs4WkiYxtJS4Xw==}
     hasBin: true
 
   '@mdx-js/react@2.3.0':
@@ -9630,15 +9630,15 @@ snapshots:
   '@babel/preset-modules@0.1.6-no-external-plugins(@babel/core@7.23.9)':
     dependencies:
       '@babel/core': 7.23.9
-      '@babel/helper-plugin-utils': 7.22.5
-      '@babel/types': 7.29.0
+      '@babel/helper-plugin-utils': 7.29.7
+      '@babel/types': 7.29.11
       esutils: 2.0.3
 
   '@babel/preset-modules@0.1.6-no-external-plugins(@babel/core@7.26.10)':
     dependencies:
       '@babel/core': 7.26.10
-      '@babel/helper-plugin-utils': 7.22.5
-      '@babel/types': 7.29.0
+      '@babel/helper-plugin-utils': 7.29.7
+      '@babel/types': 7.29.11
       esutils: 2.0.3
 
   '@babel/preset-react@7.23.3(@babel/core@7.26.10)':
@@ -10073,10 +10073,10 @@ snapshots:
 
   '@livepreso/content-base@2.0.0': {}
 
-  '@livepreso/content-react@3.0.0(anylogger@1.0.11)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(webpack@5.112.2(@swc/core@1.4.0)(esbuild@0.18.20)(postcss@8.5.32))':
+  '@livepreso/content-react@3.0.1(anylogger@1.0.11)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(webpack@5.112.2(@swc/core@1.4.0)(esbuild@0.18.20)(postcss@8.5.32))':
     dependencies:
       '@livepreso/content-base': 2.0.0
-      '@livepreso/webpack-deck': 4.0.0(webpack@5.112.2(@swc/core@1.4.0)(esbuild@0.18.20)(postcss@8.5.32))
+      '@livepreso/webpack-deck': 4.0.1(webpack@5.112.2(@swc/core@1.4.0)(esbuild@0.18.20)(postcss@8.5.32))
       lodash.get: 4.4.2
       lodash.isequal: 4.5.0
       lodash.isplainobject: 4.0.6
@@ -10096,12 +10096,12 @@ snapshots:
       - supports-color
       - webpack
 
-  '@livepreso/react-plugin-textfield@1.0.0(@floating-ui/dom@1.8.0)(@types/react-dom@19.2.3(@types/react@18.2.55))(@types/react@18.2.55)(anylogger@1.0.11)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(webpack@5.112.2(@swc/core@1.4.0)(esbuild@0.18.20)(postcss@8.5.32))':
+  '@livepreso/react-plugin-textfield@1.0.1(@floating-ui/dom@1.8.0)(@types/react-dom@19.2.3(@types/react@18.2.55))(@types/react@18.2.55)(anylogger@1.0.11)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(webpack@5.112.2(@swc/core@1.4.0)(esbuild@0.18.20)(postcss@8.5.32))':
     dependencies:
       '@floating-ui/react-dom': 2.1.9(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@livepreso/content-react': 3.0.0(anylogger@1.0.11)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(webpack@5.112.2(@swc/core@1.4.0)(esbuild@0.18.20)(postcss@8.5.32))
-      '@livepreso/react-plugin-ui': 2.0.0(@types/react-dom@19.2.3(@types/react@18.2.55))(@types/react@18.2.55)(anylogger@1.0.11)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(webpack@5.112.2(@swc/core@1.4.0)(esbuild@0.18.20)(postcss@8.5.32))
-      '@livepreso/webpack-deck': 4.0.0(webpack@5.112.2(@swc/core@1.4.0)(esbuild@0.18.20)(postcss@8.5.32))
+      '@livepreso/content-react': 3.0.1(anylogger@1.0.11)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(webpack@5.112.2(@swc/core@1.4.0)(esbuild@0.18.20)(postcss@8.5.32))
+      '@livepreso/react-plugin-ui': 2.0.1(@types/react-dom@19.2.3(@types/react@18.2.55))(@types/react@18.2.55)(anylogger@1.0.11)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(webpack@5.112.2(@swc/core@1.4.0)(esbuild@0.18.20)(postcss@8.5.32))
+      '@livepreso/webpack-deck': 4.0.1(webpack@5.112.2(@swc/core@1.4.0)(esbuild@0.18.20)(postcss@8.5.32))
       '@radix-ui/react-icons': 1.3.2(react@18.3.1)
       '@tiptap/core': 3.31.4(@tiptap/pm@3.31.4)
       '@tiptap/extension-bold': 3.31.4(@tiptap/core@3.31.4(@tiptap/pm@3.31.4))
@@ -10151,10 +10151,10 @@ snapshots:
       - supports-color
       - webpack
 
-  '@livepreso/react-plugin-ui@2.0.0(@types/react-dom@19.2.3(@types/react@18.2.55))(@types/react@18.2.55)(anylogger@1.0.11)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(webpack@5.112.2(@swc/core@1.4.0)(esbuild@0.18.20)(postcss@8.5.32))':
+  '@livepreso/react-plugin-ui@2.0.1(@types/react-dom@19.2.3(@types/react@18.2.55))(@types/react@18.2.55)(anylogger@1.0.11)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(webpack@5.112.2(@swc/core@1.4.0)(esbuild@0.18.20)(postcss@8.5.32))':
     dependencies:
       '@floating-ui/react-dom': 2.1.9(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@livepreso/content-react': 3.0.0(anylogger@1.0.11)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(webpack@5.112.2(@swc/core@1.4.0)(esbuild@0.18.20)(postcss@8.5.32))
+      '@livepreso/content-react': 3.0.1(anylogger@1.0.11)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(webpack@5.112.2(@swc/core@1.4.0)(esbuild@0.18.20)(postcss@8.5.32))
       '@radix-ui/react-icons': 1.3.2(react@18.3.1)
       classnames: 2.5.1
       radix-ui: 1.4.3(@types/react-dom@19.2.3(@types/react@18.2.55))(@types/react@18.2.55)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -10173,7 +10173,7 @@ snapshots:
       - supports-color
       - webpack
 
-  '@livepreso/webpack-deck@4.0.0(webpack@5.112.2(@swc/core@1.4.0)(esbuild@0.18.20)(postcss@8.5.32))':
+  '@livepreso/webpack-deck@4.0.1(webpack@5.112.2(@swc/core@1.4.0)(esbuild@0.18.20)(postcss@8.5.32))':
     dependencies:
       '@babel/core': 7.26.10
       '@babel/preset-env': 7.29.7(@babel/core@7.26.10)
@@ -15418,7 +15418,7 @@ snapshots:
 
   make-dir@3.1.0:
     dependencies:
-      semver: 6.3.1
+      semver: 6.3.2
 
   makeerror@1.0.12:
     dependencies:
