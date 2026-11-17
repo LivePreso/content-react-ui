@@ -71,6 +71,12 @@ EditableImage.propTypes = {
   isGlobal: PropTypes.bool,
   /*  full CWE key has already been specified - do not prefix */
   isFullKey: PropTypes.bool,
+  /**
+   * "instance" (default) stores one image per placement of the slide, so each
+   * placement of a template keeps its own. "deck" shares one image across every
+   * slide and placement using the same key.
+   */
+  scope: PropTypes.oneOf(['instance', 'deck']),
   isReadOnly: PropTypes.bool,
   className: PropTypes.string,
   dimensions: PropTypes.string,
@@ -84,17 +90,24 @@ EditableImage.propTypes = {
 // Both channels compose the same key. That moves prep keys on templates, which
 // is safe where moving a companywide one would not be: a prep value belongs to
 // one appointment, whose deck version is frozen.
+//
+// `{instance}` is what makes a value belong to one placement: the platform fills
+// it per placement (`-autoadjunct-<n>` in PresoManager), and an HTML template's
+// image fields are stored the same way. Without it every placement of a template
+// shares one image. `isGlobal` stays deck-wide by design.
 const editable = defineEditableSource(EditableImage, {
   type: 'image',
   everyone: {
     when: prop('isCompany'),
-    key: '{targetKey}-{id}',
-    keyWhen: { isGlobal: '{id}', isFullKey: '{id}' },
+    key: '{targetKey}-{id}-{instance}',
+    keyWhen: { isGlobal: '{id}', isFullKey: '{id}-{instance}' },
+    scope: prop('scope', { default: 'instance' }),
   },
   personal: {
     when: prop('isPrep'),
     id: prop('prepId'),
-    key: '{targetKey}-{id}',
-    keyWhen: { isFullKey: '{id}' },
+    key: '{targetKey}-{id}-{instance}',
+    keyWhen: { isFullKey: '{id}-{instance}' },
+    scope: prop('scope', { default: 'instance' }),
   },
 });
