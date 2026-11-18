@@ -39,6 +39,8 @@ export const PROP_TYPES = {
    */
   isGlobal: PropTypes.bool,
   label: PropTypes.string,
+  /** The field's purpose, read by an AI agent. Never shown on the slide. */
+  agentHelpText: PropTypes.string,
   className: PropTypes.string,
   children: PropTypes.node,
   tag: PropTypes.oneOf(['div', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p']),
