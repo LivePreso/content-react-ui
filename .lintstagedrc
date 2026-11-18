@@ -10,6 +10,6 @@
       "stylelint"
     ],
     "**/*.js": [
-      "eslint --fix",
+      "eslint --fix"
     ]
 }
