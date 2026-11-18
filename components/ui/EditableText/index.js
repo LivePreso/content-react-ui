@@ -56,7 +56,12 @@ export function EditableText(props) {
   }
 
   return (
-    <EditableTextBase tag={tag} toolbar={toolbarOptions} attrs={attrs} {...rest} />
+    <EditableTextBase
+      tag={tag}
+      toolbar={toolbarOptions}
+      attrs={attrs}
+      {...rest}
+    />
   );
 }
 
@@ -66,6 +71,7 @@ EditableText.propTypes = {
 };
 
 const editable = defineEditableSource(EditableText, {
+  fields: { description: prop('agentHelpText') },
   toolbar: prop('toolbar'),
   everyone: {
     when: prop('isCompany'),

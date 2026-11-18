@@ -85,6 +85,8 @@ EditableImage.propTypes = {
     width: PropTypes.number,
     height: PropTypes.number,
   }),
+  /** The image's purpose, read by an AI agent. Never shown on the slide. */
+  agentHelpText: PropTypes.string,
 };
 
 // Both channels compose the same key. That moves prep keys on templates, which
@@ -97,6 +99,7 @@ EditableImage.propTypes = {
 // shares one image. `isGlobal` stays deck-wide by design.
 const editable = defineEditableSource(EditableImage, {
   type: 'image',
+  fields: { description: prop('agentHelpText') },
   everyone: {
     when: prop('isCompany'),
     key: '{targetKey}-{id}-{instance}',

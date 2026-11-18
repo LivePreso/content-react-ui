@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-  defineEditableSource,
-  prop,
-} from '@livepreso/webpack-deck';
+import { defineEditableSource, prop } from '@livepreso/webpack-deck';
 import { EditableText } from '../../EditableText';
 import { TableCell } from '../TableCell';
 
@@ -53,7 +50,12 @@ EditableTextCell.propTypes = {
 // them straight down. isGlobal is not among them, leaving no branch here that
 // drops the target.
 defineEditableSource(EditableTextCell, {
+  fields: { description: prop('agentHelpText') },
   toolbar: prop('toolbar'),
   everyone: { when: prop('isCompany'), key: '{targetKey}-{id}' },
-  personal: { when: prop('isPrep'), id: prop('prepId'), key: '{targetKey}-{id}' },
+  personal: {
+    when: prop('isPrep'),
+    id: prop('prepId'),
+    key: '{targetKey}-{id}',
+  },
 });
