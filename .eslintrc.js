@@ -32,6 +32,13 @@ module.exports = {
     'import/no-import-module-exports': 0,
     'import/extensions': 0,
 
+    // Allows a component to reference a value defined after it, e.g. the result of
+    // defineEditableSource(Component, ...). Still flags use in the same scope.
+    'no-use-before-define': [
+      2,
+      { functions: true, classes: true, variables: false },
+    ],
+
     // Change to warnings
     'jsx-a11y/click-events-have-key-events': 1,
     'jsx-a11y/interactive-supports-focus': 1,
